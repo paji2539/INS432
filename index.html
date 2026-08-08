@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INS 4/532 — Employee Benefits | Fall 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EC;
+    --paper-dim:#F0EBDD;
+    --ink:#1E3A4C;
+    --ink-soft:#4B6472;
+    --brand:#14555A;
+    --brand-dark:#0E3E42;
+    --brand-tint:#E4EEEC;
+    --gold:#C68A3D;
+    --gold-tint:#F6E9D3;
+    --sage:#6E8F72;
+    --sage-tint:#E7EEE3;
+    --rust:#A63D40;
+    --rust-tint:#F4E1DF;
+    --line:#DCD4BE;
+    --card:#FFFFFF;
+    --shadow: 0 1px 2px rgba(30,58,76,.06), 0 8px 24px rgba(30,58,76,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--gold-tint); color:var(--brand-dark); }
+  h1,h2,h3,h4{
+    font-family:'Source Serif 4', Georgia, serif;
+    color:var(--brand-dark);
+    margin:0 0 .4em 0;
+    line-height:1.15;
+    font-weight:600;
+  }
+  a{ color:var(--brand); }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- Skip link / focus ---------- */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible{
+    outline:3px solid var(--gold); outline-offset:2px;
+  }
+  .skip-link{position:absolute; left:-999px; top:0; background:var(--brand); color:#fff; padding:10px 16px; z-index:200;}
+  .skip-link:focus{ left:12px; top:12px; }
+
+  /* ---------- Top nav ---------- */
+  header.topnav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,244,236,.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:12px 24px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; font-family:'Source Serif 4',serif; font-weight:600; color:var(--brand-dark); white-space:nowrap;}
+  .brandmark img{ height:26px; width:auto; display:block; }
+  .brandmark .id{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--ink-soft); font-weight:500; }
+  nav.links{ display:flex; gap:2px; flex-wrap:wrap; margin-left:auto; }
+  nav.links a{
+    text-decoration:none; color:var(--ink-soft); font-size:.86rem; font-weight:600;
+    padding:8px 10px; border-radius:6px; transition:background .15s, color .15s;
+  }
+  nav.links a:hover{ background:var(--brand-tint); color:var(--brand-dark); }
+  .navtoggle{ display:none; }
+
+  @media (max-width:820px){
+    nav.links{ display:none; width:100%; margin-left:0; flex-direction:column; gap:0;
+      border-top:1px solid var(--line); padding-top:8px; }
+    nav.links.open{ display:flex; }
+    .navtoggle{ display:inline-flex; margin-left:auto; align-items:center; gap:6px;
+      background:var(--brand); color:#fff; border:none; padding:8px 12px; border-radius:6px; font-weight:600; font-size:.82rem; cursor:pointer; }
+    nav.links a{ padding:10px 6px; border-bottom:1px solid var(--line); border-radius:0; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 420px at 85% -120px, var(--gold-tint) 0%, transparent 60%),
+      linear-gradient(180deg, var(--paper-dim), var(--paper));
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .card-badge{
+    display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--brand);
+    background:var(--brand-tint); border:1px solid #cfe0dd; padding:5px 12px; border-radius:999px;
+    margin-bottom:18px;
+  }
+  .hero h1{ font-size:clamp(1.7rem, 3.4vw, 2.5rem); max-width:16ch; }
+  .hero .sub{ color:var(--ink-soft); max-width:60ch; font-size:1.02rem; margin-bottom:26px;}
+
+  .id-card{
+    display:grid; grid-template-columns:1.15fr 1fr; gap:0;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .id-card .id-main{ padding:26px 28px; border-right:1px dashed var(--line); }
+  .id-card .id-side{ padding:26px 28px; background:var(--brand-dark); color:#EAF3F1; }
+  .id-side h3{ color:#fff; font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; font-family:'IBM Plex Mono',monospace; font-weight:600; margin-bottom:14px; opacity:.85;}
+  .plan-admin{ display:flex; gap:14px; align-items:flex-start; margin-bottom:8px;}
+  .plan-admin .avatar{
+    width:46px; height:46px; border-radius:50%; background:var(--gold); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',serif; font-weight:700; font-size:1.1rem; flex:none;
+  }
+  .plan-admin .name{ font-family:'Source Serif 4',serif; font-weight:600; color:var(--brand-dark); font-size:1.08rem;}
+  .plan-admin .role{ font-size:.8rem; color:var(--ink-soft); }
+  .id-main dl{ margin:14px 0 0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:.88rem; }
+  .id-main dt{ color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; align-self:center;}
+  .id-main dd{ margin:0; }
+  .id-side dl{ margin:0; display:grid; gap:12px; font-size:.88rem; }
+  .id-side dt{ font-family:'IBM Plex Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; opacity:.7; margin-bottom:2px;}
+  .id-side dd{ margin:0; }
+  .id-side a{ color:#F6E9D3; }
+  @media (max-width:680px){ .id-card{ grid-template-columns:1fr; } .id-card .id-main{ border-right:none; border-bottom:1px dashed var(--line);} }
+
+  /* ---------- Sections ---------- */
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:.74rem; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); display:inline-block;}
+  section > .wrap > h2{ font-size:clamp(1.3rem,2.4vw,1.75rem); margin-bottom:8px;}
+  .lede{ color:var(--ink-soft); max-width:70ch; margin-bottom:32px; }
+
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:760px){ .grid-2, .grid-3{ grid-template-columns:1fr; } }
+
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 24px; box-shadow:var(--shadow); }
+  .card h3{ font-size:1.02rem; }
+  .card h4{ font-size:.92rem; margin-top:18px; color:var(--brand);}
+
+  .tag{ display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--sage-tint); color:#3E5B43; padding:3px 9px; border-radius:5px; font-weight:600; margin-right:6px;}
+  .tag.gold{ background:var(--gold-tint); color:#7C5322; }
+  .tag.rust{ background:var(--rust-tint); color:#7C2C2E; }
+
+  ul.check{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  ul.check li{ position:relative; padding-left:26px; }
+  ul.check li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--brand); font-weight:700; }
+  ol.spec{ padding-left:1.1em; display:grid; gap:8px; }
+  ol.spec li::marker{ color:var(--gold); font-weight:700; font-family:'IBM Plex Mono',monospace; }
+
+  /* ---------- Objectives numbered plate ---------- */
+  .obj-list{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .obj-list li{ display:grid; grid-template-columns:38px 1fr; gap:14px; align-items:start; }
+  .obj-num{
+    width:34px; height:34px; border-radius:8px; background:var(--brand-tint); color:var(--brand-dark);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:.82rem;
+  }
+
+  .toggle-row{ display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;}
+  .toggle-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; font-weight:600; letter-spacing:.03em;
+    background:var(--card); border:1px solid var(--line); color:var(--ink-soft); padding:9px 16px; border-radius:999px; cursor:pointer;
+    transition:all .15s;
+  }
+  .toggle-btn[aria-pressed="true"]{ background:var(--brand); color:#fff; border-color:var(--brand); }
+  .toggle-panel{ display:none; }
+  .toggle-panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  /* ---------- Benefits statement (grading) ---------- */
+  .statement{
+    background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .statement-head{
+    background:var(--brand-dark); color:#EAF3F1; padding:20px 26px;
+    display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .statement-head h3{ color:#fff; margin:0; font-size:1.05rem; }
+  .statement-head .meta{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; opacity:.75; }
+  .statement-body{ padding:8px 26px 26px; }
+  .ledger{ width:100%; border-collapse:collapse; margin-top:10px; }
+  .ledger th{ text-align:left; font-family:'IBM Plex Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--ink-soft); padding:10px 6px; border-bottom:1px solid var(--line); font-weight:600;}
+  .ledger td{ padding:12px 6px; border-bottom:1px dotted var(--line); font-size:.92rem; }
+  .ledger td.pts{ font-family:'IBM Plex Mono',monospace; text-align:right; color:var(--brand-dark); font-weight:600;}
+  .ledger tr.total td{ border-bottom:none; border-top:2px solid var(--ink); font-weight:700; padding-top:14px; }
+  .ledger tr.total td.pts{ color:var(--gold); font-size:1.05rem; }
+  .footnote{ font-size:.8rem; color:var(--ink-soft); margin-top:14px; }
+
+  .scale-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-top:14px; }
+  .scale-pill{ background:var(--paper-dim); border:1px solid var(--line); border-radius:9px; padding:10px 12px; text-align:center; }
+  .scale-pill .g{ font-family:'Source Serif 4',serif; font-weight:700; font-size:1.15rem; color:var(--brand-dark);}
+  .scale-pill .r{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--ink-soft); }
+  .scale-pill.fail{ background:var(--rust-tint); }
+  .scale-pill.fail .g{ color:#7C2C2E; }
+
+  /* ---------- Calculator ---------- */
+  .calc{ margin-top:34px; background:var(--paper-dim); border:1px solid var(--line); border-radius:14px; padding:26px 28px; }
+  .calc-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px; margin-bottom:6px;}
+  .calc-head h3{ margin:0; font-size:1.05rem; }
+  .calc-head .hint{ font-size:.8rem; color:var(--ink-soft); }
+  .slider-row{ display:grid; grid-template-columns:1fr 210px 60px; gap:14px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line); }
+  .slider-row label{ font-size:.9rem; }
+  .slider-row input[type=range]{ width:100%; accent-color:var(--brand); }
+  .slider-row .val{ font-family:'IBM Plex Mono',monospace; text-align:right; font-size:.86rem; color:var(--brand-dark); font-weight:600;}
+  .calc-result{ display:flex; gap:24px; align-items:center; flex-wrap:wrap; margin-top:20px; padding-top:20px; border-top:1px dashed var(--line); }
+  .result-num{ font-family:'Source Serif 4',serif; font-size:2.4rem; font-weight:700; color:var(--brand-dark); line-height:1; }
+  .result-num span{ font-size:1rem; font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); font-weight:500; }
+  .grade-pill{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:1.5rem; background:var(--gold); color:#fff;
+    padding:10px 22px; border-radius:10px; min-width:70px; text-align:center;
+  }
+  .bar{ height:10px; border-radius:6px; background:#E4DEC9; overflow:hidden; flex:1 1 220px; min-width:180px; }
+  .bar > i{ display:block; height:100%; background:linear-gradient(90deg,var(--sage),var(--brand)); width:0%; transition:width .2s; }
+
+  /* ---------- Coverage detail cards (assignments) ---------- */
+  .coverage{ display:grid; gap:16px; }
+  .coverage-item{
+    background:var(--card); border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:10px;
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .coverage-item.gold{ border-left-color:var(--gold); }
+  .coverage-item.sage{ border-left-color:var(--sage); }
+  .coverage-item.rust{ border-left-color:var(--rust); }
+  .coverage-item .ci-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+  .coverage-item h3{ font-size:1rem; margin:0; }
+  .coverage-item .pts{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--brand-dark); font-size:.85rem; background:var(--brand-tint); padding:3px 10px; border-radius:999px; white-space:nowrap;}
+  .coverage-item p{ margin:0; color:var(--ink-soft); font-size:.92rem; }
+
+  /* ---------- Plan documents (policy accordion) ---------- */
+  .accordion{ display:grid; gap:10px; }
+  details.policy{ background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  details.policy summary{
+    list-style:none; cursor:pointer; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; gap:14px;
+    font-family:'Source Serif 4',serif; font-weight:600; color:var(--brand-dark); font-size:.98rem;
+  }
+  details.policy summary::-webkit-details-marker{ display:none; }
+  details.policy summary::after{ content:"+"; font-family:'IBM Plex Mono',monospace; font-size:1.2rem; color:var(--gold); transition:transform .2s; flex:none;}
+  details.policy[open] summary::after{ transform:rotate(45deg); }
+  details.policy summary:hover{ background:var(--paper-dim); }
+  .policy-body{ padding:2px 22px 22px; color:var(--ink-soft); font-size:.92rem; }
+  .policy-body p{ margin:0 0 12px; }
+  .policy-body blockquote{ margin:12px 0; padding:10px 16px; border-left:3px solid var(--gold); background:var(--gold-tint); color:#5B4322; font-style:italic; font-size:.9rem; }
+  .policy-body ul, .policy-body ol{ margin:0 0 12px; padding-left:1.2em; }
+  .policy-body a{ word-break:break-word; }
+  .contact-block{ background:var(--paper-dim); border-radius:8px; padding:12px 16px; margin:10px 0; font-size:.88rem; }
+  .contact-block div{ margin-bottom:4px; }
+
+  /* ---------- Schedule / plan year ---------- */
+  .term-line{ position:relative; margin-top:10px; }
+  .term-line::before{ content:""; position:absolute; left:19px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .term-row{ position:relative; display:grid; grid-template-columns:40px 1fr; gap:16px; padding:14px 0; }
+  .term-dot{ width:40px; height:40px; border-radius:50%; background:var(--card); border:2px solid var(--brand); color:var(--brand-dark);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:.72rem; z-index:1; }
+  .term-row.break .term-dot{ border-color:var(--rust); color:var(--rust); }
+  .term-row.exam .term-dot{ border-color:var(--gold); color:#7C5322; background:var(--gold-tint); }
+  .term-card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:13px 18px; }
+  .term-card .wk{ font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px;}
+  .term-card p{ margin:2px 0 0; font-size:.92rem; }
+
+  footer{ padding:36px 0 60px; text-align:center; color:var(--ink-soft); font-size:.82rem; }
+  footer a{ color:var(--brand); }
+  .back-top{ display:inline-block; margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:.76rem; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="topnav">
+  <div class="nav-inner">
+    <div class="brandmark">
+      <img src="data:image/png;base64,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" alt="Indiana State University, Scott College of Business">
+      <span class="id">INS 4/532 · FALL 2026</span>
+    </div>
+    <button class="navtoggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#overview">I. Plan Overview</a>
+      <a href="#eligibility">II. Eligibility</a>
+      <a href="#responsibilities">III. Responsibilities</a>
+      <a href="#statement">IV. Benefits Statement</a>
+      <a href="#coverage">V. Coverage Details</a>
+      <a href="#documents">VI. Plan Documents</a>
+      <a href="#calendar">VII. Plan Year</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ARTICLE I : HERO / OVERVIEW -->
+<section class="hero" id="overview">
+  <div class="wrap">
+    <span class="card-badge">Summary Plan Description · Group ID INS 4/532</span>
+    <h1>Employee Benefits<br>Your Course Benefits Plan</h1>
+    <p class="sub">A study of the group approach to providing life, health, disability, and retirement plans — and, this semester, the plan governing your own 3&nbsp;credit hours. Web-based distance learning · Fall 2026.</p>
+
+    <div class="id-card">
+      <div class="id-main">
+        <div class="plan-admin">
+          <div class="avatar">JP</div>
+          <div>
+            <div class="name">Jin Park, Ph.D.</div>
+            <div class="role">Plan Administrator (Instructor)</div>
+          </div>
+        </div>
+        <dl>
+          <dt>Office</dt><dd>Federal Hall #116</dd>
+          <dt>Phone</dt><dd>(812) 237-9036</dd>
+          <dt>Email</dt><dd><a href="mailto:jin.park@indstate.edu">jin.park@indstate.edu</a></dd>
+          <dt>Admin Hours</dt><dd>Tue–Thur, 2:00–4:00&nbsp;pm EST, or by appointment</dd>
+        </dl>
+      </div>
+      <div class="id-side">
+        <h3>Virtual Office</h3>
+        <dl>
+          <div>
+            <dt>Zoom room</dt>
+            <dd><a href="https://indstate-edu.zoom.us/j/96932457729" target="_blank" rel="noopener">indstate-edu.zoom.us/j/96932457729</a></dd>
+          </div>
+          <div>
+            <dt>Delivery mode</dt>
+            <dd>100% online — asynchronous, via Canvas</dd>
+          </div>
+          <div>
+            <dt>Prerequisite</dt>
+            <dd>INS 340</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG / OVERVIEW / MATERIALS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Article I · Plan Overview</div>
+    <h2>Catalog Description &amp; Course Overview</h2>
+    <p class="lede">Study of group approach to providing life, health, disability, and retirement plans. New developments in employee benefits, plan design, administration, cost, funding, regulation, and tax considerations. <strong>Prerequisites:</strong> INS 340.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Why this plan matters</h3>
+        <p style="color:var(--ink-soft); font-size:.94rem;">In today's competitive workforce environment, employee benefits serve as a strategic tool, constituting approximately one-third of the total compensation package. This course explores the dynamic landscape of employee benefits from both the employee's and employer's perspectives — health plans, retirement options, paid time off, and the perks that shape financial security and well-being.</p>
+        <p style="color:var(--ink-soft); font-size:.94rem;">On the employer side, attracting and retaining talent depends on the strategic design and management of benefit programs, aligned with legal requirements and diverse employee needs.</p>
+      </div>
+      <div class="card">
+        <h3>Required Textbook &amp; Readings</h3>
+        <p style="font-size:.94rem;"><strong>Joseph J. Martocchio</strong><br>Employee Benefits: A Primer for Human Resource Professionals, 7th ed.<br>McGraw-Hill · <span class="mono">ISBN 978-1-260-26048-9</span></p>
+        <p style="color:var(--ink-soft); font-size:.9rem; margin-top:12px;">Additional reading and preparation packets — articles and media clips — will be available on Canvas throughout the semester.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE II : ELIGIBILITY / LEARNING OBJECTIVES -->
+<section id="eligibility">
+  <div class="wrap">
+    <div class="eyebrow">Article II · Eligibility &amp; Learning Objectives</div>
+    <h2>What Completing This Plan Gets You</h2>
+    <p class="lede">Upon completion of this course, students will acquire an understanding of:</p>
+
+    <ol class="obj-list" style="list-style:none; padding:0;">
+      <li><span class="obj-num">01</span><span>Various employee benefits and how they are funded</span></li>
+      <li><span class="obj-num">02</span><span>Tax implications of each employee benefit for both employees and employers</span></li>
+      <li><span class="obj-num">03</span><span>Legal and regulatory issues regarding employee benefits practices and programs in the U.S.</span></li>
+      <li><span class="obj-num">04</span><span>The economic rationales for employers to offer a comprehensive benefits package</span></li>
+      <li><span class="obj-num">05</span><span>Pros and cons of different retirement plans for both employees and employers</span></li>
+      <li><span class="obj-num">06</span><span>Different types of group health insurance programs and their characteristics</span></li>
+      <li><span class="obj-num">07</span><span>How group insurance works in employee benefit programs</span></li>
+      <li><span class="obj-num">08</span><span>Ethical and global business issues related to designing, operating, and managing employee benefits for employees traveling to, dispatched to, or hired overseas</span></li>
+    </ol>
+
+    <h3 style="margin-top:36px; font-size:1.05rem;">Your Coverage Tier</h3>
+    <p class="lede" style="margin-bottom:18px;">Outcomes differ by enrollment level. Toggle to see what applies to you.</p>
+    <div class="toggle-row" role="tablist" aria-label="Coverage tier">
+      <button class="toggle-btn" data-tier="432" aria-pressed="true">INS 432 — Undergraduate</button>
+      <button class="toggle-btn" data-tier="532" aria-pressed="false">INS 532 — Graduate</button>
+    </div>
+
+    <div class="toggle-panel active" data-panel="432">
+      <div class="card">
+        <h3>Specific Outcomes for 432 Students</h3>
+        <p style="color:var(--ink-soft); font-size:.9rem; margin-top:-6px;">By the end of the semester, students should be able to:</p>
+        <ol class="spec">
+          <li>Collect information about employee benefit programs and evaluate employee benefit programs offered by organizations;</li>
+          <li>Perform retirement benefit analysis under various assumptions for employed and self-employed individuals;</li>
+          <li>Identify the best employee benefit combination to maximize their compensation, considering employee benefits of various types and their family / financial / career status; and</li>
+          <li>Communicate effectively with benefit specialists, family members, colleagues, friends, and others about various benefit programs and recent changes in regulations and/or benefits.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="toggle-panel" data-panel="532">
+      <div class="card">
+        <h3>Specific Outcomes for 532 Students</h3>
+        <p style="color:var(--ink-soft); font-size:.9rem; margin-top:-6px;">In addition to the outcomes above for 432 students, by the end of the semester, students should be able to:</p>
+        <ol class="spec">
+          <li>Perform SWOT analyses on organizations' employee benefit programs from both employee and employer perspectives; and</li>
+          <li>Consult with self-employed individuals to strategically design employee benefit programs for both individual self-employed scenarios and those with employees, considering individual needs and organizational goals.</li>
+        </ol>
+        <p class="footnote">See Article V for the additional INS 532 assignment requirement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE III : RESPONSIBILITIES -->
+<section id="responsibilities">
+  <div class="wrap">
+    <div class="eyebrow">Article III · Participant Responsibilities</div>
+    <h2>Course Expectations</h2>
+    <p class="lede">Like any good benefits plan, this one runs on mutual obligation between the plan administrator and the participants.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="tag">Students are expected</span></h3>
+        <ul class="check" style="margin-top:14px;">
+          <li>To be responsible for class — attending, preparing, reading assigned material, completing assignments on time, being courteous and respectful, and properly utilizing Canvas;</li>
+          <li>To be active — participating in class discussion and regularly visiting Canvas (at least three times a week, for example);</li>
+          <li>To be well-informed about the course requirements and to follow them; and</li>
+          <li>To be ethical, and to use common sense whenever necessary.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="tag gold">Dr. Park is expected</span></h3>
+        <ul class="check" style="margin-top:14px;">
+          <li>To have course materials available for students' use before class;</li>
+          <li>To prepare for lectures and discussions;</li>
+          <li>To introduce extra cases to broaden students' ethical perspectives;</li>
+          <li>To grade assignments and provide feedback in a timely manner;</li>
+          <li>To be a good listener;</li>
+          <li>To treat students fairly with respect at all times; and to be ethical in and out of class.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE IV : BENEFITS STATEMENT (GRADING) -->
+<section id="statement">
+  <div class="wrap">
+    <div class="eyebrow">Article IV · Your Benefits Statement</div>
+    <h2>Grading &amp; Grading Policies</h2>
+    <p class="lede">Your final grade for the course is based on the following items, shown as your personal statement below.</p>
+
+    <div class="statement">
+      <div class="statement-head">
+        <h3>Total Rewards Statement — INS 4/532</h3>
+        <span class="meta">PLAN YEAR: FALL 2026</span>
+      </div>
+      <div class="statement-body">
+        <table class="ledger">
+          <thead><tr><th>Line Item</th><th style="text-align:right;">Points</th><th>Line Item</th><th style="text-align:right;">Points</th></tr></thead>
+          <tbody>
+            <tr><td>Reaction Papers</td><td class="pts">120</td><td>Chapter Quizzes</td><td class="pts">220</td></tr>
+            <tr><td>Canvas Discussion</td><td class="pts">100</td><td>Other Reading Quizzes</td><td class="pts">80</td></tr>
+            <tr><td>Group Assignment</td><td class="pts">100</td><td>Final Exam</td><td class="pts">100</td></tr>
+            <tr class="total"><td colspan="2"></td><td>Total</td><td class="pts">680</td></tr>
+          </tbody>
+        </table>
+        <p class="footnote">* Students enrolled as INS 532 have an additional requirement discussed in Article V — bringing their total possible points to 740.</p>
+
+        <h4 style="margin-top:26px; font-family:'IBM Plex Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);">Final Letter Grade Scale</h4>
+        <div class="scale-grid" id="scaleGrid">
+          <div class="scale-pill"><div class="g">A+</div><div class="r">≥ 97%</div></div>
+          <div class="scale-pill"><div class="g">A</div><div class="r">≥ 93%</div></div>
+          <div class="scale-pill"><div class="g">A-</div><div class="r">≥ 89%</div></div>
+          <div class="scale-pill"><div class="g">B+</div><div class="r">≥ 87%</div></div>
+          <div class="scale-pill"><div class="g">B</div><div class="r">≥ 83%</div></div>
+          <div class="scale-pill"><div class="g">B-</div><div class="r">≥ 79%</div></div>
+          <div class="scale-pill"><div class="g">C+</div><div class="r">≥ 77%</div></div>
+          <div class="scale-pill"><div class="g">C</div><div class="r">≥ 73%</div></div>
+          <div class="scale-pill"><div class="g">C-</div><div class="r">≥ 69%</div></div>
+          <div class="scale-pill"><div class="g">D+</div><div class="r">≥ 66%</div></div>
+          <div class="scale-pill"><div class="g">D</div><div class="r">≥ 61%</div></div>
+          <div class="scale-pill"><div class="g">D-</div><div class="r">≥ 59%</div></div>
+          <div class="scale-pill fail"><div class="g">F</div><div class="r">&lt; 59%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc">
+      <div class="calc-head">
+        <h3>Estimate Your Grade</h3>
+        <span class="hint">Drag each slider to your expected or earned points. Calculated against the 680-point scale above.</span>
+      </div>
+
+      <div class="slider-row">
+        <label for="s1">Reaction Papers</label>
+        <input type="range" id="s1" min="0" max="120" value="0" step="1" data-max="120">
+        <span class="val" id="v1">0 / 120</span>
+      </div>
+      <div class="slider-row">
+        <label for="s2">Canvas Discussion</label>
+        <input type="range" id="s2" min="0" max="100" value="0" step="1" data-max="100">
+        <span class="val" id="v2">0 / 100</span>
+      </div>
+      <div class="slider-row">
+        <label for="s3">Group Assignment</label>
+        <input type="range" id="s3" min="0" max="100" value="0" step="1" data-max="100">
+        <span class="val" id="v3">0 / 100</span>
+      </div>
+      <div class="slider-row">
+        <label for="s4">Chapter Quizzes</label>
+        <input type="range" id="s4" min="0" max="220" value="0" step="1" data-max="220">
+        <span class="val" id="v4">0 / 220</span>
+      </div>
+      <div class="slider-row">
+        <label for="s5">Other Reading Quizzes</label>
+        <input type="range" id="s5" min="0" max="80" value="0" step="1" data-max="80">
+        <span class="val" id="v5">0 / 80</span>
+      </div>
+      <div class="slider-row" style="border-bottom:none;">
+        <label for="s6">Final Exam</label>
+        <input type="range" id="s6" min="0" max="100" value="0" step="1" data-max="100">
+        <span class="val" id="v6">0 / 100</span>
+      </div>
+
+      <div class="calc-result">
+        <div class="result-num" id="calcTotal">0 <span>/ 680 pts</span></div>
+        <div class="bar"><i id="calcBar"></i></div>
+        <div class="grade-pill" id="calcGrade">—</div>
+      </div>
+      <p class="footnote">This tool is a personal estimate only and does not reflect your official Canvas grade.</p>
+    </div>
+
+    <h3 style="margin-top:36px; font-size:1.02rem;">Grading Policies</h3>
+    <ul class="check" style="max-width:74ch;">
+      <li>All written assignments must be submitted using an appropriate link on Canvas — email submission is not accepted.</li>
+      <li>Submitted assignments are expected to be graded within a few business days of the due date.</li>
+      <li>Refer to the detailed assignment guidelines on Canvas for each assignment listed in Article V.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ARTICLE V : COVERAGE DETAILS (ASSIGNMENTS) -->
+<section id="coverage">
+  <div class="wrap">
+    <div class="eyebrow">Article V · Coverage Details</div>
+    <h2>Assignments &amp; Exams</h2>
+    <p class="lede">What each line item on your Benefits Statement actually covers.</p>
+
+    <div class="coverage">
+      <div class="coverage-item">
+        <div class="ci-head"><h3>Reaction Papers</h3><span class="pts">120 pts · max 10 pts each</span></div>
+        <p>Intended to promote analysis, evaluation, and synthesis of information — and to prompt critical engagement with course material. Read course-related articles or news/media regularly and submit a weekly reaction paper (one per week, first 14 weeks): a concise summary plus your thoughts and critical analysis of a key issue. Sources should be from the past 12 months, align with your interests, and preferably relate to that week's module.</p>
+      </div>
+      <div class="coverage-item gold">
+        <div class="ci-head"><h3>Canvas Discussion</h3><span class="pts">100 pts</span></div>
+        <p>Engaging with discussion topics is a highly effective distance-learning method: analyze different perspectives, articulate your viewpoint, and respond to classmates. This sharpens written communication and collaboration while building a sense of community in a virtual environment.</p>
+      </div>
+      <div class="coverage-item sage">
+        <div class="ci-head"><h3>Group Assignment</h3><span class="pts">100 pts</span></div>
+        <p>Each group chooses a real organization to thoroughly analyze its employee benefit programs, including a SWOT analysis — strengths, weaknesses, opportunities, and threats present in the benefit offerings. No length requirement, but the report must show comprehensive understanding and thoughtful insight. Each group presents its findings briefly to the class.</p>
+      </div>
+      <div class="coverage-item">
+        <div class="ci-head"><h3>Chapter Quizzes &amp; Other Reading Quizzes</h3><span class="pts">220 + 80 pts</span></div>
+        <p>Quizzes serve as both learning and assessment tools for chapter content and supplementary materials, mixing true/false, multiple-choice, and open-ended questions. Of the 12 chapter quizzes, the highest 11 count toward your grade.</p>
+      </div>
+      <div class="coverage-item gold">
+        <div class="ci-head"><h3>Final Exam</h3><span class="pts">100 pts</span></div>
+        <p>Comprehensive — covering all material from the semester, with a mix of multiple-choice, open-ended, and case analysis questions.</p>
+      </div>
+      <div class="coverage-item sage">
+        <div class="ci-head"><h3>Participation / Attendance</h3></div>
+        <p>ISU defines an Online (Asynchronous) course as one where "100% of all class activity is done online" — instruction and interaction occur electronically, with faculty and students physically separated. To learn effectively, comprehend weekly readings, routinely check Canvas, actively engage in discussions, and ask questions when needed.</p>
+      </div>
+      <div class="coverage-item rust">
+        <div class="ci-head"><h3>Additional Requirement — INS 532</h3><span class="pts">100 pts · total 740</span></div>
+        <p>In addition to the above, INS 532 students complete one additional assignment (e.g., term paper, current-issue analysis, benefit analysis, consulting project). In the first two weeks, contact Dr. Park to jointly determine an appropriate topic. Regardless of performance elsewhere, failing to complete this requirement results in an overall course failure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE VI : PLAN DOCUMENTS (POLICIES) -->
+<section id="documents">
+  <div class="wrap">
+    <div class="eyebrow">Article VI · Plan Documents</div>
+    <h2>Summary Plan Description — Course &amp; University Policies</h2>
+    <p class="lede">You're responsible for reviewing and complying with all university and course policies below. Expand each document for the full text.</p>
+
+    <div class="accordion">
+      <details class="policy">
+        <summary>Honesty &amp; Academic Integrity</summary>
+        <div class="policy-body">
+          <p>It is assumed that all students have read and understand ISU's Academic Integrity Policy, Non-Academic Policies and Prohibited Conduct, and Student Rights and Complaint Resolution Procedures, among others, from the <a href="https://indianastate.edu/media/2266/download?inline" target="_blank" rel="noopener">Code of Student Conduct</a>. Infractions may result in various actions as outlined in the policy.</p>
+          <p><strong>It is your responsibility to understand what constitutes plagiarism within an academic setting.</strong> Any involvement in plagiarism or other academic dishonesty in written assignments, quizzes, or the final exam may result in an "F" for the course. Any plagiarism in a written assignment results in a zero grade; for a group assignment, plagiarism by one member also zeroes the group assignment for members who did not plagiarize.</p>
+          <p>According to the Council of Writing Program Administrators (WPA), plagiarism is defined as:</p>
+          <blockquote>In an instructional setting, plagiarism occurs when a writer deliberately uses someone else's language, ideas, or other original (not common-knowledge) material without acknowledging its source. This definition applies to texts published in print or online, to manuscripts, and to the work of other student writers.</blockquote>
+          <p>Most current discussions of plagiarism fail to distinguish between (1) submitting someone else's text as one's own, or blurring the line between one's own ideas/words and those borrowed from a source, and (2) carelessly or inadequately citing borrowed ideas and words. Such discussions conflate plagiarism with the misuse of sources.</p>
+          <p>Ethical writers make every effort to acknowledge sources fully and appropriately. A student who attempts — even clumsily — to identify and credit a source, but misuses a citation format or misuses quotation marks, has not plagiarized; rather, they have failed to cite and document sources appropriately.</p>
+          <p style="font-size:.82rem;">Source: Defining and Avoiding Plagiarism — The WPA Statement on Best Practices (<a href="http://www.wpacouncil.org/node/9" target="_blank" rel="noopener">wpacouncil.org/node/9</a>)</p>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Academic Freedom</summary>
+        <div class="policy-body">
+          <p>Indiana State subscribes to the American Association of University Professors' guidelines for academic freedom and faculty duties and responsibilities. Among other things, the AAUP states:</p>
+          <blockquote>Teachers are entitled to freedom in the classroom in discussing their subject, but they should be careful not to introduce into their teaching controversial matter which has no relation to their subject.… As scholars and educational officers, they should remember that the public may judge their profession and their institution by their utterances. Hence they should at all times be accurate, should exercise appropriate restraint, should show respect for the opinions of others, and should make every effort to indicate that they are not speaking for the institution.</blockquote>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Non-Discrimination, Harassment &amp; Sexual Misconduct</summary>
+        <div class="policy-body">
+          <p>Indiana State University Policy 923 strictly prohibits discrimination based on age, disability, genetic information, national origin, pregnancy, race/color, religion, sex, gender identity or expression, sexual orientation, veteran status, or any other class protected by federal and state statutes in ISU programs and activities, or that interferes with the educational or workplace environment.</p>
+          <p>Title IX of the Educational Amendments of 1972 prohibits sex-based discrimination, including sexual harassment — quid pro quo harassment, unwelcome verbal or physical conduct, sexual assault, dating violence, domestic violence, and stalking.</p>
+          <p>If you witness or experience any form of the above, you may report to:</p>
+          <div class="contact-block">
+            <div><strong>Office:</strong> Equal Opportunity &amp; Title IX · (812) 237-8954 · Rankin Hall, Room 426</div>
+            <div><strong>Email:</strong> <a href="mailto:ISU-equalopportunity-titleix@mail.indstate.edu">ISU-equalopportunity-titleix@mail.indstate.edu</a></div>
+            <div><strong>Online:</strong> <a href="https://cm.maxient.com/reportingform.php?IndianaStateUniv&layout_id=10" target="_blank" rel="noopener">Report a concern</a></div>
+          </div>
+          <p>Disclosures made to the following <em>confidential</em> campus resources will not be reported to the Office of Equal Opportunity and Title IX:</p>
+          <div class="contact-block">
+            <div>ISU Student Counseling Center · (812) 237-3939 · Gillum Hall, 2nd Floor</div>
+            <div>Victim Advocate · (812) 237-3829 · HMSU 8th Floor</div>
+            <div>UAP Clinic / ISU Health Center · (812) 237-3883 · 567 N. 5th Street</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>ADA Accommodations &amp; Sycamores Care</summary>
+        <div class="policy-body">
+          <p>Indiana State University recognizes that students with disabilities may have special needs that must be met to give them equal access to college programs and facilities. If you need course adaptations or accommodations because of a disability, please contact us as soon as possible in a confidential setting, either after class or in office hours. All conversations regarding your disability are kept in strict confidence.</p>
+          <p>ISU's Accessibility &amp; Advocacy Resources Office coordinates services for students with disabilities — documentation must be on file before accommodations can be provided. Located at HMSU room 816; contact (812) 237-3829 or <a href="mailto:isu-aaro@indstate.edu">isu-aaro@indstate.edu</a>. Appointments to discuss accommodations are encouraged. Once notified that a student qualifies for accommodations, faculty are obligated to provide or allow reasonable classroom accommodation under ADA.</p>
+          <p><strong>Sycamores Care</strong> is a campus-wide program that helps students overcome obstacles. The Office of the Dean of Students collaborates across ISU to build a caring campus culture. Anonymous referrals are accepted, and students may also refer themselves — via the Sycamores Care Referral Form, <a href="mailto:ISU-DeanOfStudents@mail.indstate.edu">ISU-DeanOfStudents@mail.indstate.edu</a>, or (812) 237-3829.</p>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Communication Policy</summary>
+        <div class="policy-body">
+          <p>For individualized communication, the Canvas Inbox and your official Indiana State University email account are the primary channels between the professor and students. For general course-related questions, use the course Q&amp;A Board so all students can benefit from shared information.</p>
+          <p>Course announcements and important updates are communicated through Canvas announcements — check them regularly, along with course messages and your official ISU email. Expect a response within 24 hours on weekdays; messages sent on Fridays, holiday eves, weekends, or holidays may not be answered until the next business day.</p>
+          <p>Need more help? Request a virtual meeting or visit during scheduled office hours (virtual or in-person) or by appointment, subject to availability. All email and message communication should address recipients appropriately and maintain a professional, respectful tone.</p>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Laptops &amp; Technology</summary>
+        <div class="policy-body">
+          <p>It is each student's responsibility to have equipment sufficient to participate in all classes. All students must have a computer or tablet with audio and video capability, and will follow faculty instructions regarding muting/unmuting audio and video, as in any classroom setting.</p>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Getting Help — Writing, Math &amp; Tech Support</summary>
+        <div class="policy-body">
+          <p>The <strong>Writing Center</strong> offers one-on-one consultations, drop-in services, online appointments, and group study tables — free of charge — for any area of reading or writing, for any class or personal project. Make an appointment by calling (812) 237-2989 or via the Writing Center website. Bring your textbook, notes, and a printed copy of your work so far.</p>
+          <p>For math assistance, contact the <strong>Math Lab</strong> at <a href="mailto:ISU-MathLab@indstate.edu">ISU-MathLab@indstate.edu</a> or (812) 237-2130.</p>
+          <p>For technical issues, the <strong>Office of Information Technology (OIT)</strong> offers many resources — contact the OIT Help Desk at (812) 237-2910.</p>
+          <p>For immediate help with any SCOB class content, first reach out to your professor or Graduate Assistant, if available, or submit a request through the <a href="https://indstate.qualtrics.com/jfe/form/SV_9YSbTW8x2vAZi1o" target="_blank" rel="noopener">SCOB-Helpline</a>.</p>
+        </div>
+      </details>
+
+      <details class="policy">
+        <summary>Commitment to Career Readiness</summary>
+        <div class="policy-body">
+          <p>ISU's administration, faculty, and staff are committed to incorporating the eight career competencies outlined by the National Association of Colleges and Employers (NACE) as necessary for success in the job search and workplace. Many will be taught and integrated into your classroom learning:</p>
+          <p>Critical Thinking/Problem Solving · Oral/Written Communications · Teamwork/Collaboration · Digital Technology Application · Leadership · Professionalism/Work Ethic · Career Management · Global/Intercultural Fluency</p>
+          <p>For additional support with career development, contact the <a href="mailto:ISU-Career-Center@indstate.edu">Career Center</a>.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE VII : PLAN YEAR CALENDAR -->
+<section id="calendar">
+  <div class="wrap">
+    <div class="eyebrow">Article VII · Plan Year Calendar</div>
+    <h2>Schedule of Topics</h2>
+    <p class="lede">The following schedule is subject to change.</p>
+
+    <div class="term-line">
+      <div class="term-row">
+        <div class="term-dot">01</div>
+        <div class="term-card"><div class="wk">Week 1</div><p>Preparation for the course and the semester — overview of course expectations, requirements, syllabus, etc.</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">02</div>
+        <div class="term-card"><div class="wk">Week 2</div><p>Chapter 1 — Introducing Employee Benefits</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">03</div>
+        <div class="term-card"><div class="wk">Week 3</div><p>Chapter 2 — The Psychology and Economics of Employee Benefits</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">04</div>
+        <div class="term-card"><div class="wk">Week 4</div><p>Chapter 3 — Regulating Employee Benefits</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">05–06</div>
+        <div class="term-card"><div class="wk">Weeks 5 &amp; 6</div><p>Chapter 4 — Employer-Sponsored Retirement Plans</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">06–07</div>
+        <div class="term-card"><div class="wk">Weeks 6 &amp; 7</div><p>Chapter 5 — Employer-Sponsored Health-Care Plans</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">08</div>
+        <div class="term-card"><div class="wk">Week 8</div><p>Chapter 6 — Employer-Sponsored Disability Insurance, Life Insurance, and Workers' Compensation</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">09</div>
+        <div class="term-card"><div class="wk">Week 9</div><p>Chapter 7 — Government-Mandated Social Security Programs</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">10</div>
+        <div class="term-card"><div class="wk">Week 10</div><p>Chapter 8 — Paid Time-Off Benefits</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">11</div>
+        <div class="term-card"><div class="wk">Week 11</div><p>Chapter 9 — Accommodation and Enhancement Benefits</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">12</div>
+        <div class="term-card"><div class="wk">Week 12</div><p>Chapter 10 — Managing the Employee-Benefits System</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">13</div>
+        <div class="term-card"><div class="wk">Week 13</div><p>Chapter 11 — Contingent Workers and Remote Work Arrangements</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">14</div>
+        <div class="term-card"><div class="wk">Week 14</div><p>Chapter 12 — Nonqualified Deferred Compensation Plans for Executives</p></div>
+      </div>
+      <div class="term-row break">
+        <div class="term-dot">15</div>
+        <div class="term-card"><div class="wk">Week 15</div><p>Thanksgiving Break — University closed, no classes</p></div>
+      </div>
+      <div class="term-row">
+        <div class="term-dot">16</div>
+        <div class="term-card"><div class="wk">Week 16 — Study Week</div><p>Preparation for Final Exam · Group Presentation and Evaluation · INS 532 Students' Presentation, if any</p></div>
+      </div>
+      <div class="term-row exam">
+        <div class="term-dot">FX</div>
+        <div class="term-card"><div class="wk">Final Exam Week</div><p>Wednesday, December 9, 2026. More information is available on Canvas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    INS 4/532 — Employee Benefits · Fall 2026 · Jin Park, Ph.D. · Scott College of Business, Indiana State University
+    <br><a class="back-top" href="#main">↑ Back to top</a>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Tier toggle (432 / 532)
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.toggle-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      const tier = btn.dataset.tier;
+      document.querySelectorAll('.toggle-panel').forEach(p => {
+        p.classList.toggle('active', p.dataset.panel === tier);
+      });
+    });
+  });
+
+  // Grade calculator
+  const sliderIds = ['s1','s2','s3','s4','s5','s6'];
+  const scale = [
+    ['A+',97],['A',93],['A-',89],['B+',87],['B',83],['B-',79],
+    ['C+',77],['C',73],['C-',69],['D+',66],['D',61],['D-',59]
+  ];
+  function letterFor(pct){
+    for(const [g,min] of scale){ if(pct >= min) return g; }
+    return 'F';
+  }
+  function recalc(){
+    let total = 0, max = 0;
+    sliderIds.forEach(id => {
+      const el = document.getElementById(id);
+      const v = parseInt(el.value,10);
+      const m = parseInt(el.dataset.max,10);
+      total += v; max += m;
+      document.getElementById('v'+id.slice(1)).textContent = v + ' / ' + m;
+    });
+    document.getElementById('calcTotal').innerHTML = total + ' <span>/ ' + max + ' pts</span>';
+    const pct = max ? (total/max*100) : 0;
+    document.getElementById('calcBar').style.width = Math.min(pct,100) + '%';
+    document.getElementById('calcGrade').textContent = total === 0 ? '—' : letterFor(pct);
+  }
+  sliderIds.forEach(id => document.getElementById(id).addEventListener('input', recalc));
+  recalc();
+</script>
+</body>
+</html>
