@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 — Introducing Employee Benefits</title>
+<style>
+  :root{
+    --navy:#17365d;
+    --blue:#2f75b5;
+    --light:#eef5fb;
+    --gold:#d6a84f;
+    --green:#548235;
+    --gray:#5b6573;
+    --dark:#202733;
+    --white:#ffffff;
+    --border:#d9e1ea;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--dark);
+    background:#f5f7fa;
+    line-height:1.6;
+  }
+  .page{
+    max-width:1100px;
+    margin:0 auto;
+    background:var(--white);
+    min-height:100vh;
+  }
+  header{
+    background:linear-gradient(135deg,var(--navy),var(--blue));
+    color:white;
+    padding:48px 56px;
+  }
+  header .label{
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.82rem;
+    opacity:.85;
+    font-weight:bold;
+  }
+  h1{font-size:2.5rem;margin:.3rem 0 .4rem}
+  header p{font-size:1.15rem;margin:0;max-width:760px}
+  main{padding:42px 56px 60px}
+  section{margin:0 0 42px}
+  h2{
+    color:var(--navy);
+    font-size:1.7rem;
+    margin:0 0 18px;
+    border-bottom:3px solid var(--light);
+    padding-bottom:8px;
+  }
+  h3{color:var(--blue);margin-top:0}
+  .intro{
+    font-size:1.12rem;
+    background:var(--light);
+    border-left:5px solid var(--blue);
+    padding:20px 24px;
+    border-radius:6px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+  }
+  .card{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:22px;
+    background:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .card h3{margin-bottom:8px}
+  .badge{
+    display:inline-block;
+    font-size:.78rem;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:4px 9px;
+    border-radius:20px;
+    background:var(--light);
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .strategy{
+    padding:22px;
+    border-radius:10px;
+    border:1px solid var(--border);
+  }
+  .strategy.proactive{border-top:5px solid var(--green)}
+  .strategy.reactive{border-top:5px solid var(--gold)}
+  ul{padding-left:22px}
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:25px 0;
+  }
+  .flow span{
+    background:var(--light);
+    border:1px solid #c9dced;
+    color:var(--navy);
+    font-weight:bold;
+    padding:12px 16px;
+    border-radius:8px;
+    text-align:center;
+  }
+  .arrow{font-size:1.4rem;color:var(--gray)}
+  .objectives li{margin:9px 0}
+  .discussion{
+    background:#faf8f0;
+    border:1px solid #eadfbf;
+    border-radius:10px;
+    padding:24px;
+  }
+  .discussion h3{color:#8a6b1f}
+  .roadmap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:14px;
+  }
+  .step{
+    text-align:center;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px 12px;
+  }
+  .step strong{display:block;color:var(--navy);font-size:1.05rem}
+  .big-idea{
+    background:var(--navy);
+    color:white;
+    border-radius:12px;
+    padding:28px;
+    text-align:center;
+  }
+  .big-idea h2{color:white;border-bottom-color:rgba(255,255,255,.25)}
+  .big-idea .question{
+    font-size:1.25rem;
+    font-weight:bold;
+    margin-top:18px;
+  }
+  footer{
+    background:#eef1f5;
+    padding:20px 56px;
+    color:var(--gray);
+    font-size:.9rem;
+  }
+  @media(max-width:700px){
+    header,main,footer{padding-left:22px;padding-right:22px}
+    h1{font-size:2rem}
+    .two-col{grid-template-columns:1fr}
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <div class="label">INS 432 / INS 532 · Week 2</div>
+  <h1>Chapter 1: Introducing Employee Benefits</h1>
+  <p>A visual roadmap for understanding what employee benefits are, why they matter, and how organizations make benefits decisions.</p>
+</header>
+
+<main>
+
+<section>
+  <div class="intro">
+    <strong>Big idea:</strong> Employee benefits are more than “extras.” They are an important part of total compensation and can play a significant role in an organization’s legal compliance, employee needs, and business strategy.
+  </div>
+</section>
+
+<section>
+  <h2>Our Roadmap for Chapter 1</h2>
+  <div class="grid">
+    <div class="card"><span class="badge">1</span><h3>What are employee benefits?</h3><p>Understand the basic definition and major categories of employee benefits.</p></div>
+    <div class="card"><span class="badge">2</span><h3>Total compensation</h3><p>See how benefits fit into the broader total compensation system.</p></div>
+    <div class="card"><span class="badge">3</span><h3>The benefits field</h3><p>Understand the role of benefits professionals and the importance of benefits to organizations.</p></div>
+    <div class="card"><span class="badge">4</span><h3>Law & regulation</h3><p>Recognize how laws and regulations influence employee-benefit practices.</p></div>
+    <div class="card"><span class="badge">5</span><h3>Strategic planning</h3><p>Understand why benefits should support organizational strategy.</p></div>
+    <div class="card"><span class="badge">6</span><h3>Planning information</h3><p>Identify the external and internal information used to plan benefits.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>What Are Employee Benefits?</h2>
+  <div class="intro">
+    <strong>Employee benefits = compensation other than an hourly wage or salary.</strong>
+  </div>
+  <p>Examples include health care, paid time off, retirement plans, disability and life insurance, educational assistance, and wellness or family assistance programs.</p>
+  <p>We can organize benefits according to <strong>the role they serve</strong> and <strong>the source of the benefit</strong>.</p>
+</section>
+
+<section>
+  <h2>Three Roles of Benefits</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1. Protection</h3>
+      <p>Protect employees and families from income loss, illness, or disability.</p>
+    </div>
+    <div class="card">
+      <h3>2. Paid Time Off</h3>
+      <p>Compensate employees when they are not performing their normal work duties.</p>
+      <p><strong>Examples:</strong> vacation, sick leave, holidays.</p>
+    </div>
+    <div class="card">
+      <h3>3. Accommodation & Enhancement</h3>
+      <p>Support employees and families through programs such as wellness, flexible work arrangements, educational assistance, and family assistance.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Two Sources of Benefits</h2>
+  <div class="two-col">
+    <div class="card">
+      <h3>Legally Required</h3>
+      <p>Benefits required by federal, state, or local government.</p>
+      <ul>
+        <li>Social Security</li>
+        <li>Workers’ compensation</li>
+        <li>Family and Medical Leave Act</li>
+        <li>Certain paid-leave requirements</li>
+        <li>Other legally required programs</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Discretionary</h3>
+      <p>Benefits employers choose to provide beyond legal requirements.</p>
+      <ul>
+        <li>Health and dental benefits</li>
+        <li>Retirement plans</li>
+        <li>Life insurance</li>
+        <li>Paid time off</li>
+        <li>Educational assistance</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>Keep this distinction in mind throughout the course.</strong></p>
+</section>
+
+<section>
+  <h2>Benefits & Total Compensation</h2>
+  <p>Total compensation includes more than the employee’s paycheck.</p>
+  <div class="flow">
+    <span>Core Compensation<br><small>Hourly wage / Salary</small></span>
+    <span class="arrow">→</span>
+    <span>Adjustments<br><small>Merit · Incentives · COLA · Seniority</small></span>
+    <span class="arrow">→</span>
+    <span>Employee Benefits<br><small>Required + Discretionary</small></span>
+  </div>
+  <p><strong>Key question:</strong> How does an employee’s total compensation package compare with the paycheck alone?</p>
+</section>
+
+<section>
+  <h2>The Employee-Benefits Field</h2>
+  <div class="card">
+    <p>Benefits professionals may:</p>
+    <ul>
+      <li>Design and manage benefit programs</li>
+      <li>Coordinate retirement plans</li>
+      <li>Manage health-care benefits</li>
+      <li>Work with HR professionals and managers</li>
+      <li>Help organizations comply with laws</li>
+      <li>Support recruitment and retention</li>
+    </ul>
+    <p><strong>Benefits are both an HR function and a business decision.</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2>The Legal & Regulatory Dimension</h2>
+  <p>Employee benefits operate within a legal and regulatory framework.</p>
+  <div class="grid">
+    <div class="card"><h3>Social Security Act</h3></div>
+    <div class="card"><h3>Workers’ Compensation</h3></div>
+    <div class="card"><h3>Family & Medical Leave Act</h3></div>
+    <div class="card"><h3>Affordable Care Act</h3></div>
+    <div class="card"><h3>SECURE Act</h3></div>
+  </div>
+  <div class="intro" style="margin-top:20px;">
+    <strong>You do not need to master every law yet.</strong><br>
+    Instead, understand the principle: laws and regulations influence how employee benefits are designed and administered.
+  </div>
+</section>
+
+<section>
+  <h2>Benefits & Business Strategy</h2>
+  <p>Benefits should support the organization’s overall business objectives.</p>
+  <div class="flow">
+    <span>Competitive<br>Strategy</span>
+    <span class="arrow">↓</span>
+    <span>HR<br>Strategy</span>
+    <span class="arrow">↓</span>
+    <span>Benefits<br>Strategy</span>
+    <span class="arrow">↓</span>
+    <span>Specific Benefits<br>Practices</span>
+  </div>
+  <p><strong>Key question:</strong> Does this benefit support what the organization is trying to accomplish?</p>
+</section>
+
+<section>
+  <h2>Two Strategic Approaches</h2>
+  <div class="two-col">
+    <div class="strategy proactive">
+      <h3>Top-Down — Proactive</h3>
+      <ul>
+        <li>Begin with organizational strategy</li>
+        <li>Regularly review benefits</li>
+        <li>Anticipate future needs</li>
+        <li>Adjust the program strategically</li>
+      </ul>
+    </div>
+    <div class="strategy reactive">
+      <h3>Backing-In — Reactive</h3>
+      <ul>
+        <li>A problem occurs</li>
+        <li>Organization investigates</li>
+        <li>Benefits are changed in response</li>
+      </ul>
+    </div>
+  </div>
+  <p style="text-align:center;font-weight:bold;">Think: Plan ahead vs. respond to a problem.</p>
+</section>
+
+<section>
+  <h2>What Information Do Employers Need?</h2>
+  <div class="two-col">
+    <div class="card">
+      <h3>External Environment</h3>
+      <ul>
+        <li>Industry prospects</li>
+        <li>Economic conditions</li>
+        <li>Employer benefit costs</li>
+        <li>Government regulation</li>
+        <li>Labor-force demographics</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Internal Environment</h3>
+      <ul>
+        <li>Workforce demographics</li>
+        <li>Employee needs and preferences</li>
+        <li>Collective bargaining agreements</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>Benefits planning requires information about both the organization and its environment.</strong></p>
+</section>
+
+<section>
+  <h2>Your Five Learning Objectives</h2>
+  <ol class="objectives">
+    <li>Understand employee benefits and their fit in the total compensation scheme.</li>
+    <li>Understand the field of employee-benefits practice.</li>
+    <li>Understand legal and regulatory influences on discretionary benefits practices.</li>
+    <li>Understand the strategic importance of benefits and approaches to strategic benefits planning.</li>
+    <li>Understand information used to develop strategic benefits plans.</li>
+  </ol>
+</section>
+
+<section>
+  <div class="discussion">
+    <h2>💬 Discussion: What Matters Most?</h2>
+    <p><strong>Imagine this:</strong> You have two job offers with similar pay.</p>
+    <h3>Which employee benefit would most influence your decision?</h3>
+
+    <p><strong>Your initial post:</strong></p>
+    <ul>
+      <li>Identify one benefit.</li>
+      <li>Explain why it matters to you.</li>
+      <li>Give an example from a company, news article, or personal observation.</li>
+      <li>Include a reference.</li>
+    </ul>
+
+    <p><strong>Your reply:</strong> Respond to a classmate who selected a different benefit.</p>
+    <ul>
+      <li>What did you learn?</li>
+      <li>Did their perspective change or reinforce your view?</li>
+      <li>Add an insight or ask a follow-up question.</li>
+    </ul>
+
+    <p><strong>Connect your thinking to Chapter 1.</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2>Your Chapter 1 Roadmap</h2>
+  <div class="roadmap">
+    <div class="step">📖<strong>Read</strong>Chapter 1</div>
+    <div class="step">▶️<strong>Review</strong>Chapter Overview & Roadmap</div>
+    <div class="step">💬<strong>Discuss</strong>What Matters Most?</div>
+    <div class="step">📝<strong>Complete</strong>Chapter 1 Quiz</div>
+    <div class="step">✍️<strong>Apply</strong>Week 2 Reaction Paper</div>
+    <div class="step">🎓<strong>INS 532</strong>Contact Dr. Park</div>
+  </div>
+</section>
+
+<section>
+  <div class="big-idea">
+    <h2>The Big Picture</h2>
+    <p>Don’t just memorize benefits.</p>
+    <p><strong>Think about why they exist.</strong></p>
+    <div class="flow">
+      <span>Employee Needs</span>
+      <span class="arrow">→</span>
+      <span>Employer Decisions</span>
+      <span class="arrow">→</span>
+      <span>Legal Requirements</span>
+      <span class="arrow">→</span>
+      <span>Costs & Resources</span>
+      <span class="arrow">→</span>
+      <span>Business Strategy</span>
+      <span class="arrow">→</span>
+      <span>Benefits Program</span>
+    </div>
+    <div class="question">
+      Why would an employer choose to offer this benefit—and why might an employee value it?
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  INS 432 / INS 532 — Employee Benefits · Chapter 1: Introducing Employee Benefits
+</footer>
+
+</div>
+</body>
+</html>
