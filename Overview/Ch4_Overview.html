@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 — Employer-Sponsored Retirement Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#20262B; --ink-soft:#525A62; --line:#E4E1D8;
+    --teal:#0E5B54; --teal-deep:#083F3A; --teal-tint:#E4F1EE;
+    --clay:#B5522C; --clay-tint:#F7E7DF;
+    --gold:#8A6416; --gold-tint:#F5EEDC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  header.top{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--teal);font-weight:600;letter-spacing:.02em;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--teal-deep);}
+  .subtitle{font-size:16px;color:var(--ink-soft);margin-top:14px;max-width:600px;}
+  .big-idea{margin-top:26px;background:var(--teal-tint);border-left:3px solid var(--teal);padding:16px 20px;font-size:15px;color:var(--teal-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+  section{margin-top:56px;}
+  .section-label{font-size:13px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--teal-deep);margin-bottom:18px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--clay);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+  .stool{
+    margin-top:22px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .leg{
+    flex:1 1 30%;
+    min-width:190px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:3px solid var(--teal);
+    border-radius:8px;
+    padding:16px 18px;
+  }
+  .leg.dim{border-top-color:var(--line);opacity:.65;}
+  .leg h3{font-size:14.5px;margin-bottom:6px;}
+  .leg p{font-size:13px;margin:0;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+  .col-card{border-radius:10px;padding:18px 20px;}
+  .col-card.a{background:var(--teal-tint);}
+  .col-card.b{background:var(--clay-tint);}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--teal-deep);}
+  .col-card.b h3{color:#7C3517;}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card li{font-size:14px;color:var(--ink-soft);margin-bottom:6px;}
+  .factor-list{margin-top:18px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px;}
+  .factor .dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-top:7px;}
+  .factor p{margin:0;font-size:14px;}
+  .factor b{color:var(--ink);}
+  .example-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .example-card{flex:1 1 45%;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .example-card h3{font-size:14.5px;color:var(--teal-deep);margin-bottom:8px;}
+  .example-card p{font-size:13.5px;margin:0 0 6px;}
+  .example-card .calc{font-size:13px;color:var(--clay);font-family:'Lora',serif;}
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+  .plan-card h3{font-size:14px;color:var(--ink);margin-bottom:5px;}
+  .plan-card p{font-size:12.5px;margin:0;}
+  .myth-box{margin-top:22px;background:var(--gold-tint);border-left:3px solid var(--gold);padding:16px 20px;}
+  .myth-box p{color:#5C4310;margin:0;font-size:14.5px;}
+  .myth-box b{color:#5C4310;}
+  .obj-list{margin-top:20px;display:grid;gap:10px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--teal);font-weight:600;font-size:15px;width:20px;}
+  .obj-item p{margin:0;font-size:14.5px;color:var(--ink);}
+  .big-picture{margin-top:56px;text-align:center;padding:44px 30px;background:var(--clay-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:#7C3517;margin-bottom:6px;}
+  .big-picture h2{font-size:22px;color:#5C2812;margin-bottom:20px;}
+  .flow{font-size:14px;color:#7C3517;font-weight:500;line-height:2;}
+  .flow .arrow{color:#C98159;padding:0 6px;}
+  .big-picture .question{margin-top:20px;font-size:14.5px;color:#5C2812;font-style:italic;}
+  footer{margin-top:60px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:24px;border-top:1px solid var(--line);}
+  @media (max-width:600px){.roadmap-grid,.two-col,.plan-grid{grid-template-columns:1fr;}.stool,.example-row{flex-direction:column;}h1.title{font-size:27px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532 · Week 5</div>
+    <h1 class="title">Chapter 4: Employer-Sponsored Retirement Plans</h1>
+    <p class="subtitle">A roadmap through how employers help fund your retirement — and the tradeoffs baked into every plan design.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Retirement plans aren't one-size-fits-all. Every design choice shifts risk somewhere — usually between the employer and the employee — and understanding that shift is the key to understanding this whole chapter.
+    </div>
+  </header>
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 4</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>The three-legged stool</h3><p>See where employer plans fit alongside Social Security and personal savings.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Qualified vs. nonqualified</h3><p>Understand the tax-status line that shapes every plan decision.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>The rules qualified plans follow</h3><p>Learn the participation, vesting, and nondiscrimination rules that apply.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>Defined benefit plans</h3><p>See how employers guarantee a fixed retirement payout.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Defined contribution plans</h3><p>Explore the many flavors — 401(k), 403(b), profit-sharing, and more.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>Hybrid plans</h3><p>Understand designs that blend features of both.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">The three-legged stool</h2>
+    <p>The federal government describes retirement security as a three-legged stool. This chapter covers one leg in depth — the other two show up elsewhere in the course.</p>
+    <div class="stool">
+      <div class="leg"><h3>Employer-sponsored plans</h3><p>This chapter. Plans your employer designs, funds, and administers.</p></div>
+      <div class="leg dim"><h3>Government benefits</h3><p>Social Security retirement benefits — covered in Chapter 7.</p></div>
+      <div class="leg dim"><h3>Personal savings</h3><p>What you set aside on your own, outside any employer or government program.</p></div>
+    </div>
+    <p style="margin-top:16px;">One trend is worth holding onto as you read: between the early 1990s and 2020, participation in <b style="color:var(--ink);">defined benefit</b> plans fell from 32% to just 11% of private-sector workers, while <b style="color:var(--ink);">defined contribution</b> plan participation rose from 35% to 47%. This chapter explains why that shift happened — and what it means for whoever's reading their retirement statement.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Qualified vs. nonqualified plans</h2>
+    <p>Whether a plan meets every minimum standard set by ERISA determines its tax treatment — and who it's typically designed for.</p>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Qualified plans</h3>
+        <ul>
+          <li>Meet all ERISA minimum standards</li>
+          <li>Immediate tax benefits for employer and employee</li>
+          <li>Typically cover nonexecutive employees</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Nonqualified plans</h3>
+        <ul>
+          <li>Fail to meet at least one minimum standard</li>
+          <li>Used for nonqualified deferred compensation (NQDC)</li>
+          <li>Typically cover key or highly compensated employees</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">The rules qualified plans must follow</h2>
+    <div class="factor-list">
+      <div class="factor"><div class="dot"></div><p><b>Participation:</b> generally, employees must be at least 21 with one year of service — though the SECURE Act now requires access for long-term part-time employees too.</p></div>
+      <div class="factor"><div class="dot"></div><p><b>Vesting:</b> employees earn non-forfeitable rights on a schedule — either cliff vesting (100% after up to three years) or a six-year graduated schedule.</p></div>
+      <div class="factor"><div class="dot"></div><p><b>Coverage:</b> plans can't disproportionately favor highly compensated employees — tested by percentage, ratio, or average-benefit tests.</p></div>
+      <div class="factor"><div class="dot"></div><p><b>Nondiscrimination:</b> plans must meet safe harbor conditions or pass facts-and-circumstances testing to avoid favoring high earners.</p></div>
+      <div class="factor"><div class="dot"></div><p><b>Top-heavy provisions:</b> if key employees hold more than 60% of plan value, the plan must provide minimum benefits to everyone else.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Part Two: Two Main Designs</div>
+    <h2 class="section-title">Defined benefit plans</h2>
+    <p>A defined benefit plan guarantees a retirement payout — usually a percentage of pay multiplied by years of service. The employer bears the investment risk.</p>
+    <div class="example-row">
+      <div class="example-card">
+        <h3>Flat benefit formula example</h3>
+        <p>Employee averages $100,000/year over their final 3 years. Plan pays 60% of that average.</p>
+        <p class="calc">$100,000 × 60% = $60,000/year</p>
+      </div>
+      <div class="example-card">
+        <h3>Unit benefit formula example</h3>
+        <p>Employee retires with 25 years of service and a $52,500 final average salary; the plan's earned percentage is 43.43%.</p>
+        <p class="calc">$52,500 × 43.43% = $22,800.75/year</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;">To prevent employers from "backloading" benefits toward the end of a career, accrual rules like the <b style="color:var(--ink);">3% rule</b> and the <b style="color:var(--ink);">fractional rule</b> require benefits to build up at a steady pace. If a plan fails and can't pay, the <b style="color:var(--ink);">PBGC</b> insures a portion of what's owed.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Defined contribution plans</h2>
+    <p>Here, the employer and/or employee contribute to an individual account, and the eventual payout depends on contributions plus investment performance. The employee bears the investment risk — this is the design driving the shift you saw in the three-legged-stool section above.</p>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>401(k) / Roth 401(k)</h3><p>Employees defer part of their pay; Roth version taxes contributions now, not withdrawals.</p></div>
+      <div class="plan-card"><h3>Profit-sharing plans</h3><p>Employer contributions come from a pool tied to company profits.</p></div>
+      <div class="plan-card"><h3>Stock bonus / ESOPs</h3><p>Paid in employer stock rather than cash; employees can vote as shareholders.</p></div>
+      <div class="plan-card"><h3>SIMPLE plans</h3><p>Designed for small companies (100 or fewer employees) as IRAs or 401(k)s.</p></div>
+      <div class="plan-card"><h3>403(b) plans</h3><p>Tax-deferred annuities available to nonprofit organizations.</p></div>
+      <div class="plan-card"><h3>457 plans</h3><p>Typically for state or local government employees; only employees contribute.</p></div>
+    </div>
+    <p style="margin-top:16px;">The SECURE Act also created <b style="color:var(--ink);">pooled employer plans</b>, letting small, unrelated employers band together into a single 401(k) — improving their bargaining power on fees.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Hybrid plans</h2>
+    <p>Hybrid designs blend features of both worlds — <b style="color:var(--ink);">cash balance plans</b>, <b style="color:var(--ink);">pension equity plans</b>, <b style="color:var(--ink);">target benefit plans</b>, and <b style="color:var(--ink);">money purchase plans</b> all combine a defined-benefit-style guarantee with a defined-contribution-style individual account.</p>
+    <div class="myth-box">
+      <p><b>Watch for:</b> when a company converts a traditional pension into a cash balance plan, older workers can experience "wearaway" — a period where their benefit stops growing under the new formula. The Pension Protection Act addressed this directly, since it disproportionately hurt employees closest to retirement.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your five learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><span class="obj-num">1</span><p>Understand how employer-sponsored retirement plans are defined.</p></div>
+      <div class="obj-item"><span class="obj-num">2</span><p>Understand the differences between qualified plans and nonqualified plans.</p></div>
+      <div class="obj-item"><span class="obj-num">3</span><p>Understand the features of defined benefit plans and defined contribution plans.</p></div>
+      <div class="obj-item"><span class="obj-num">4</span><p>Understand specific types of defined contribution plans.</p></div>
+      <div class="obj-item"><span class="obj-num">5</span><p>Understand the features of various hybrid plans.</p></div>
+    </div>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the plan types.</p>
+    <h2>Think about who's holding the risk.</h2>
+    <div class="flow">Employer designs a plan <span class="arrow">→</span> Contributions are set <span class="arrow">→</span> Investments perform (or don't) <span class="arrow">→</span> Risk lands on employer or employee <span class="arrow">→</span> Retirement outcome</div>
+    <p class="question">Every plan type in this chapter answers the same question differently: who bears the risk if the investments underperform? Keep asking that as you read.</p>
+  </div>
+
+  <footer>INS 432 / INS 532 — Employee Benefits · Chapter 4: Employer-Sponsored Retirement Plans</footer>
+
+</div>
+</body>
+</html>

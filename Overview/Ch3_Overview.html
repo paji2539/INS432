@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 — Regulating Employee Benefits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#20262B; --ink-soft:#525A62; --line:#E4E1D8;
+    --teal:#0E5B54; --teal-deep:#083F3A; --teal-tint:#E4F1EE;
+    --clay:#B5522C; --clay-tint:#F7E7DF;
+    --gold:#8A6416; --gold-tint:#F5EEDC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  header.top{padding:56px 0 40px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--teal);font-weight:600;letter-spacing:.02em;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--teal-deep);}
+  .subtitle{font-size:16px;color:var(--ink-soft);margin-top:14px;max-width:600px;}
+  .big-idea{margin-top:26px;background:var(--teal-tint);border-left:3px solid var(--teal);padding:16px 20px;font-size:15px;color:var(--teal-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+  section{margin-top:56px;}
+  .section-label{font-size:13px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--teal-deep);margin-bottom:18px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--clay);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+  .reason-row{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;}
+  .reason-card{flex:1 1 30%;min-width:190px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .reason-card .tag{display:inline-block;font-size:11.5px;font-weight:600;color:var(--teal);background:var(--teal-tint);padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+  .reason-card h3{font-size:15px;margin-bottom:6px;}
+  .reason-card p{font-size:13.5px;margin:0;}
+  .factor-list{margin-top:18px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px;}
+  .factor .dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-top:7px;}
+  .factor p{margin:0;font-size:14px;}
+  .factor b{color:var(--ink);}
+  .myth-box{margin-top:22px;background:var(--gold-tint);border-left:3px solid var(--gold);padding:16px 20px;}
+  .myth-box p{color:#5C4310;margin:0;font-size:14.5px;}
+  .myth-box b{color:#5C4310;}
+  .titles-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .title-card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;padding:16px 18px;}
+  .title-card h3{font-size:14.5px;color:var(--teal-deep);margin-bottom:6px;}
+  .title-card p{font-size:13.5px;margin:0;}
+  .obj-list{margin-top:20px;display:grid;gap:10px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--teal);font-weight:600;font-size:15px;width:20px;}
+  .obj-item p{margin:0;font-size:14.5px;color:var(--ink);}
+  .big-picture{margin-top:56px;text-align:center;padding:44px 30px;background:var(--clay-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:#7C3517;margin-bottom:6px;}
+  .big-picture h2{font-size:22px;color:#5C2812;margin-bottom:20px;}
+  .flow{font-size:14px;color:#7C3517;font-weight:500;line-height:2;}
+  .flow .arrow{color:#C98159;padding:0 6px;}
+  .big-picture .question{margin-top:20px;font-size:14.5px;color:#5C2812;font-style:italic;}
+  footer{margin-top:60px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:24px;border-top:1px solid var(--line);}
+  @media (max-width:600px){.roadmap-grid,.titles-grid{grid-template-columns:1fr;}.reason-row{flex-direction:column;}h1.title{font-size:27px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532 · Week 4</div>
+    <h1 class="title">Chapter 3: Regulating Employee Benefits</h1>
+    <p class="subtitle">A roadmap through the federal laws that shape what employers can offer, how they must run their plans, and who's protected along the way.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Employers don't design benefits in a vacuum. A layered set of federal laws — built up over nearly a century — sets the floor for what's required, what's protected, and what happens when things go wrong.
+    </div>
+  </header>
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 3</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>Why regulate at all?</h3><p>Understand the tension between freedom to contract and protecting workers.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Unions and the NLRA</h3><p>See how collective bargaining shapes which benefits get negotiated.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>Tax code and wage law</h3><p>Learn how the IRC and FLSA quietly shape benefits design.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>ERISA, the big one</h3><p>Understand the law that protects retirement and health plans — and its major amendments.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>The modern era</h3><p>See how the ACA and SECURE Act reshaped access to benefits.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>Equal opportunity laws</h3><p>Understand how anti-discrimination law applies to benefits, not just pay.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Part One: The Foundation</div>
+    <h2 class="section-title">Why does government regulate benefits at all?</h2>
+    <p>Congress generally avoids telling employers how to run their business. But when workers and employers aren't on equal footing, lawmakers have stepped in. In 1911, a fire at the Triangle Shirtwaist factory in New York City killed 150 workers — many trapped behind exit doors the company had locked. That tragedy helped set in motion decades of labor law aimed at rebalancing power between employers and employees.</p>
+    <p style="margin-top:12px;">That same logic runs through every law in this chapter: <b style="color:var(--ink);">when the market alone doesn't protect workers, the law fills the gap.</b></p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Labor unions and the NLRA (1935)</h2>
+    <p>The <b style="color:var(--ink);">National Labor Relations Act</b> restored bargaining power to employees by protecting their right to unionize. It covers most private-sector companies, but not agricultural or domestic workers, independent contractors, or government employees — the National Labor Relations Board enforces it. Once a union is in place, benefits-related topics fall into three bargaining categories:</p>
+    <div class="reason-row">
+      <div class="reason-card"><span class="tag">Mandatory</span><h3>Must negotiate</h3><p>Disability pay, health care, paid time off, and retirement plans — if either side asks.</p></div>
+      <div class="reason-card"><span class="tag">Permissive</span><h3>May negotiate</h3><p>Fund administration, retiree benefits, and workers' compensation.</p></div>
+      <div class="reason-card"><span class="tag">Illegal</span><h3>Cannot negotiate</h3><p>Anything that would violate the NLRA or other federal/state law.</p></div>
+    </div>
+    <p style="margin-top:16px;">Unions were also behind the <b style="color:var(--ink);">WARN Act</b>, which requires 60 days' notice before mass layoffs or plant closings.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Tax code and wage law</h2>
+    <div class="factor-list">
+      <div class="factor"><div class="dot"></div><p><b>The Internal Revenue Code (IRC)</b> governs federal taxation — and offers tax incentives that make many benefits attractive for employers to offer in the first place.</p></div>
+      <div class="factor"><div class="dot"></div><p><b>The Fair Labor Standards Act (FLSA, 1938)</b> sets minimum wage, overtime pay, and child labor rules. Because some benefits are tied to pay, they rise correspondingly during overtime hours.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Part Two: The Big Structure</div>
+    <h2 class="section-title">ERISA: the law behind most benefits practice</h2>
+    <p>The <b style="color:var(--ink);">Employee Retirement Income Security Act of 1974</b> regulates medical care, life and disability insurance, and retirement programs. It's detailed, far-reaching, and preempts most state law. It breaks into four titles:</p>
+    <div class="titles-grid">
+      <div class="title-card"><h3>Title I — Protection of employee rights</h3><p>Reporting, disclosure, vesting, funding, and fiduciary duties.</p></div>
+      <div class="title-card"><h3>Title II — IRC amendments</h3><p>Tax treatment rules for pension and welfare benefits.</p></div>
+      <div class="title-card"><h3>Title III — Jurisdiction and enforcement</h3><p>Gives the Department of Labor power to investigate and enforce.</p></div>
+      <div class="title-card"><h3>Title IV — Plan termination insurance</h3><p>Created the PBGC, which insures roughly 25,000 pension plans covering over 34 million workers.</p></div>
+    </div>
+    <p style="margin-top:18px;">Three major amendments extended ERISA's reach: <b style="color:var(--ink);">COBRA</b> (1985) lets employees keep group health coverage after a qualifying event like job loss; <b style="color:var(--ink);">HIPAA</b> (1996) protects health plan portability and privacy; and the <b style="color:var(--ink);">Pension Protection Act</b> (2006) strengthened funding rules and made automatic 401(k) enrollment easier.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">The modern era: ACA and SECURE Act</h2>
+    <div class="reason-row">
+      <div class="reason-card">
+        <span class="tag">2010</span>
+        <h3>Affordable Care Act</h3>
+        <p>Requires employers with 50+ employees to offer affordable health coverage. Helped an estimated 20 million people gain coverage pre-pandemic. (More in Chapter 5.)</p>
+      </div>
+      <div class="reason-card">
+        <span class="tag">2020</span>
+        <h3>SECURE Act</h3>
+        <p>Expanded retirement plan access to long-term part-time employees and created pooled employer plans, letting small employers band together for better terms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Equal-employment opportunity laws</h2>
+    <p>Benefits aren't exempt from anti-discrimination law. The EEOC enforces a series of laws that apply just as much to benefits as to hiring and pay:</p>
+    <div class="myth-box">
+      <p><b>The through-line:</b> the Equal Pay Act (1963), Title VII of the Civil Rights Act (1964), the Age Discrimination in Employment Act (1967), the Pregnancy Discrimination Act (1978), the ADA (1990), the Civil Rights Act (1991), and GINA (2008) all prohibit discrimination in employment practices — including who gets access to which benefits, and on what terms.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your eight learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><span class="obj-num">1</span><p>Understand the need for government regulation in the employment setting.</p></div>
+      <div class="obj-item"><span class="obj-num">2</span><p>Understand the National Labor Relations Act of 1935.</p></div>
+      <div class="obj-item"><span class="obj-num">3</span><p>Understand the Internal Revenue Code.</p></div>
+      <div class="obj-item"><span class="obj-num">4</span><p>Understand the Fair Labor Standards Act of 1938.</p></div>
+      <div class="obj-item"><span class="obj-num">5</span><p>Understand ERISA (1974) and key amendments — the Pension Protection Act, COBRA, and HIPAA.</p></div>
+      <div class="obj-item"><span class="obj-num">6</span><p>Understand the Patient Protection and Affordable Care Act of 2010.</p></div>
+      <div class="obj-item"><span class="obj-num">7</span><p>Understand the SECURE Act.</p></div>
+      <div class="obj-item"><span class="obj-num">8</span><p>Understand equal-opportunity employment laws.</p></div>
+    </div>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the acronyms.</p>
+    <h2>Think about what problem each law was solving.</h2>
+    <div class="flow">Unequal bargaining power <span class="arrow">→</span> Congress intervenes <span class="arrow">→</span> Law sets a floor <span class="arrow">→</span> Employers design compliant benefits <span class="arrow">→</span> Employees gain protection</div>
+    <p class="question">Every law in this chapter was a response to something. What was it responding to — and is that problem still around today?</p>
+  </div>
+
+  <footer>INS 432 / INS 532 — Employee Benefits · Chapter 3: Regulating Employee Benefits</footer>
+
+</div>
+</body>
+</html>
