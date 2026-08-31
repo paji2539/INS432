@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 2 — The Psychology and Economics of Employee Benefits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7;
+    --card:#FFFFFF;
+    --ink:#20262B;
+    --ink-soft:#525A62;
+    --line:#E4E1D8;
+    --teal:#0E5B54;
+    --teal-deep:#083F3A;
+    --teal-tint:#E4F1EE;
+    --clay:#B5522C;
+    --clay-tint:#F7E7DF;
+    --gold:#8A6416;
+    --gold-tint:#F5EEDC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Lora',serif;
+    font-weight:600;
+    margin:0;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  header.top{
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:13px;
+    color:var(--teal);
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  h1.title{
+    font-size:34px;
+    line-height:1.25;
+    margin-top:10px;
+    color:var(--teal-deep);
+  }
+  .subtitle{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-top:14px;
+    max-width:600px;
+  }
+  .big-idea{
+    margin-top:26px;
+    background:var(--teal-tint);
+    border-left:3px solid var(--teal);
+    padding:16px 20px;
+    font-size:15px;
+    color:var(--teal-deep);
+  }
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+  section{margin-top:56px;}
+  .section-label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:8px;
+  }
+  h2.section-title{
+    font-size:24px;
+    color:var(--teal-deep);
+    margin-bottom:18px;
+  }
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  .roadmap-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:24px;
+  }
+  .rm-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 18px 16px;
+  }
+  .rm-num{
+    font-family:'Lora',serif;
+    font-size:22px;
+    color:var(--clay);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:6px;
+  }
+  .col-card{
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  .col-card.economic{background:var(--clay-tint);}
+  .col-card.social{background:var(--teal-tint);}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.economic h3{color:#7C3517;}
+  .col-card.social h3{color:var(--teal-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card li{font-size:14px;color:var(--ink-soft);margin-bottom:6px;}
+  .continuum{
+    margin-top:22px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:22px 24px;
+  }
+  .continuum-track{
+    position:relative;
+    height:6px;
+    background:linear-gradient(to right, var(--gold), var(--line) 50%, var(--teal));
+    border-radius:3px;
+    margin:28px 0 10px;
+  }
+  .continuum-labels{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .continuum-ends{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    font-weight:600;
+    margin-top:2px;
+  }
+  .continuum-ends span:first-child{color:var(--gold);}
+  .continuum-ends span:last-child{color:var(--teal);}
+  .justice-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:22px;
+  }
+  .j-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--teal);
+    border-radius:8px;
+    padding:16px 18px;
+  }
+  .j-card h3{font-size:15px;color:var(--teal-deep);margin-bottom:6px;}
+  .j-card p{font-size:13.5px;margin:0;}
+  .reason-row{
+    display:flex;
+    gap:14px;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .reason-card{
+    flex:1 1 30%;
+    min-width:200px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+  }
+  .reason-card .num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;height:26px;
+    background:var(--clay);
+    color:#fff;
+    border-radius:50%;
+    font-size:13px;
+    font-weight:600;
+    font-family:'Lora',serif;
+    margin-bottom:10px;
+  }
+  .reason-card h3{font-size:15px;margin-bottom:6px;}
+  .reason-card p{font-size:13.5px;margin:0;}
+  .myth-box{
+    margin-top:22px;
+    background:var(--gold-tint);
+    border-left:3px solid var(--gold);
+    padding:16px 20px;
+  }
+  .myth-box p{color:#5C4310;margin:0;font-size:14.5px;}
+  .factor-list{
+    margin-top:18px;
+    display:grid;
+    gap:10px;
+  }
+  .factor{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 16px;
+  }
+  .factor .dot{
+    flex-shrink:0;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--teal);
+    margin-top:7px;
+  }
+  .factor p{margin:0;font-size:14px;}
+  .obj-list{
+    margin-top:20px;
+    display:grid;
+    gap:10px;
+  }
+  .obj-item{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{
+    font-family:'Lora',serif;
+    color:var(--teal);
+    font-weight:600;
+    font-size:15px;
+    width:20px;
+  }
+  .obj-item p{margin:0;font-size:14.5px;color:var(--ink);}
+  .discussion{
+    background:var(--teal-deep);
+    color:#EAF2F0;
+    border-radius:14px;
+    padding:32px 30px;
+  }
+  .discussion .section-label{color:#9FD3C7;}
+  .discussion h2.section-title{color:#fff;}
+  .discussion p{color:#CFE4DF;}
+  .discussion .prompt{
+    background:rgba(255,255,255,.08);
+    border-radius:8px;
+    padding:16px 18px;
+    margin:16px 0;
+    font-size:15px;
+    color:#fff;
+  }
+  .discussion ul{margin:10px 0 0;padding-left:20px;}
+  .discussion li{font-size:14px;color:#CFE4DF;margin-bottom:5px;}
+  .discussion .subhead{font-size:13px;font-weight:600;color:#9FD3C7;margin:18px 0 4px;text-transform:uppercase;letter-spacing:.05em;}
+  .checklist{
+    margin-top:20px;
+    display:grid;
+    gap:10px;
+  }
+  .check-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:14px 18px;
+  }
+  .check-icon{font-size:18px;width:26px;text-align:center;}
+  .check-item b{font-size:14.5px;}
+  .check-item span.detail{font-size:13.5px;color:var(--ink-soft);display:block;}
+  .big-picture{
+    margin-top:56px;
+    text-align:center;
+    padding:44px 30px;
+    background:var(--clay-tint);
+    border-radius:14px;
+  }
+  .big-picture p.lead{font-size:15px;color:#7C3517;margin-bottom:6px;}
+  .big-picture h2{font-size:22px;color:#5C2812;margin-bottom:20px;}
+  .flow{
+    font-size:14px;
+    color:#7C3517;
+    font-weight:500;
+    line-height:2;
+  }
+  .flow .arrow{color:#C98159;padding:0 6px;}
+  .big-picture .question{
+    margin-top:20px;
+    font-size:14.5px;
+    color:#5C2812;
+    font-style:italic;
+  }
+  footer{
+    margin-top:60px;
+    text-align:center;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:600px){
+    .roadmap-grid,.two-col,.justice-grid{grid-template-columns:1fr;}
+    .reason-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532 · Week 3</div>
+    <h1 class="title">Chapter 2: The Psychology and Economics of Employee Benefits</h1>
+    <p class="subtitle">A roadmap for understanding why employers offer benefits in the first place — both the psychological forces that shape how employees experience them, and the economic logic behind offering them at all.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Benefits aren't just a line item. They shape how employees feel about their employer, and they follow real economic logic about who actually pays for them.
+    </div>
+  </header>
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 2</div>
+    <div class="roadmap-grid">
+      <div class="rm-card">
+        <div class="rm-num">1</div>
+        <h3>The employment relationship</h3>
+        <p>See benefits as part of a social and economic exchange between employer and employee.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-num">2</div>
+        <h3>Psychological contracts</h3>
+        <p>Understand how unwritten expectations about benefits form — and what happens when they're broken.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-num">3</div>
+        <h3>Fairness and attitudes</h3>
+        <p>Learn how perceptions of justice shape employee satisfaction, commitment, and citizenship behavior.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-num">4</div>
+        <h3>Why employers offer benefits</h3>
+        <p>Explore the three economic rationales: cost advantage, recruitment, and tax incentives.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-num">5</div>
+        <h3>Who really pays</h3>
+        <p>Unpack the myth that benefits are a "free" employer gift.</p>
+      </div>
+      <div class="rm-card">
+        <div class="rm-num">6</div>
+        <h3>Putting it together</h3>
+        <p>Connect the psychology and the economics into one picture of why benefits exist.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Part One: Psychology</div>
+    <h2 class="section-title">The employment relationship as exchange</h2>
+    <p>At its core, the employer-employee relationship is a form of <b>social exchange</b> — the employer offers inducements (wages, benefits) in return for employee contributions (effort, commitment). That exchange happens on two levels at once.</p>
+    <div class="two-col">
+      <div class="col-card economic">
+        <h3>Economic exchange</h3>
+        <ul>
+          <li>Terms specified at time of hire</li>
+          <li>Governed by explicit policy</li>
+          <li>Example: wages, health insurance</li>
+        </ul>
+      </div>
+      <div class="col-card social">
+        <h3>Social exchange</h3>
+        <ul>
+          <li>Evolves over the employment period</li>
+          <li>Not fully specified up front</li>
+          <li>Builds motivation and commitment over time</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:16px;">A shifting workforce — more contingent work, less job security, more diversity in needs — makes this exchange harder to standardize. It's also expensive: companies spend roughly <b style="color:var(--ink);">30% of total compensation</b> on benefits alone.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Psychological contracts</h2>
+    <p>A <b>psychological contract</b> is an employee's subjective sense of the mutual obligations between them and their employer. Unlike a wage agreement, it's implicit — and it forms mostly before day one, shaped by interactions with the company and perceptions of its culture.</p>
+    <div class="continuum">
+      <div class="continuum-labels"><span>Legally required benefits</span><span>Accommodation &amp; enhancement</span></div>
+      <div class="continuum-track"></div>
+      <div class="continuum-ends"><span>Transactional</span><span>Relational</span></div>
+      <p style="margin-top:14px;font-size:13.5px;">Transactional expectations are economic and extrinsic (pay, legally required benefits). Relational expectations are emotional and intrinsic (career growth, job security). Retirement plans and educational assistance sit in the middle — they touch both.</p>
+    </div>
+    <p style="margin-top:18px;"><b style="color:var(--ink);">When contracts break:</b> a violation happens when an employee perceives a gap between what was promised and what was delivered — through either <b style="color:var(--clay);">reneging</b> (the employer deliberately breaks a promise) or <b style="color:var(--clay);">incongruence</b> (employer and employee never shared the same understanding to begin with). Clear communication is the best defense against both.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Fairness, attitudes, and citizenship</h2>
+    <p>When contracts are violated, employees experience it as unfairness. Perceptions of <b>justice</b> around benefits fall into four types:</p>
+    <div class="justice-grid">
+      <div class="j-card"><h3>Distributive</h3><p>Is what I receive fair, given what I contribute?</p></div>
+      <div class="j-card"><h3>Procedural</h3><p>Was the process used to decide benefits fair?</p></div>
+      <div class="j-card"><h3>Informational</h3><p>Was I given accurate, timely explanations?</p></div>
+      <div class="j-card"><h3>Interpersonal</h3><p>Was I treated with respect along the way?</p></div>
+    </div>
+    <p style="margin-top:18px;">These perceptions, plus a sense of <b style="color:var(--ink);">perceived organizational support</b>, drive whether employees engage in <b style="color:var(--ink);">organizational citizenship behavior</b> — the discretionary, above-and-beyond effort that isn't required but helps the organization succeed. Employees who feel fairly treated give more of it. Employees who don't, withhold it.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Part Two: Economics</div>
+    <h2 class="section-title">Why do employers offer benefits?</h2>
+    <p>If cash were all that mattered, employers and employees might both prefer cash-only pay. Three economic rationales explain why benefits persist:</p>
+    <div class="reason-row">
+      <div class="reason-card">
+        <div class="num">1</div>
+        <h3>Cost advantage</h3>
+        <p>Group insurance is cheaper per person than individual coverage — larger groups mean lower risk and lower administrative cost per employee.</p>
+      </div>
+      <div class="reason-card">
+        <div class="num">2</div>
+        <h3>Recruiting the right workers</h3>
+        <p>Offering benefits like tuition reimbursement can attract candidates with the traits employers want, even traits a job application can't reveal.</p>
+      </div>
+      <div class="reason-card">
+        <div class="num">3</div>
+        <h3>Tax incentives</h3>
+        <p>Many benefits aren't taxed as employee income, which the Internal Revenue Code rewards employers for offering.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Who actually pays for benefits?</h2>
+    <div class="myth-box">
+      <p><b>Common misconception:</b> benefits are a "free" gift from the employer. In practice, employees pay for their own benefits — through lower cash wages than they'd otherwise receive. When benefit costs rise, it's employees who absorb the cost, not employer profits.</p>
+    </div>
+    <p style="margin-top:18px;">How much of a cost increase gets passed on to employees depends on four factors:</p>
+    <div class="factor-list">
+      <div class="factor"><div class="dot"></div><p>The cash value employees place on the benefit</p></div>
+      <div class="factor"><div class="dot"></div><p>Whether employers change hiring as compensation costs shift</p></div>
+      <div class="factor"><div class="dot"></div><p>Whether the cost increase hits one employer or the whole market</p></div>
+      <div class="factor"><div class="dot"></div><p>Whether one employer's hiring decisions move the broader market rate</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your five learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><span class="obj-num">1</span><p>Understand the employment relationship as an exchange relationship and the psychology behind why firms provide benefits.</p></div>
+      <div class="obj-item"><span class="obj-num">2</span><p>Understand employee benefits as part of the psychological contract and how employee expectations form.</p></div>
+      <div class="obj-item"><span class="obj-num">3</span><p>Understand how perceptions of justice and fairness shape employee attitudes toward pay and benefits.</p></div>
+      <div class="obj-item"><span class="obj-num">4</span><p>Understand the economic rationales for why companies offer employee benefits.</p></div>
+      <div class="obj-item"><span class="obj-num">5</span><p>Understand who pays for employee benefits.</p></div>
+    </div>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the theories.</p>
+    <h2>Think about why they hold.</h2>
+    <div class="flow">Employer offers benefit <span class="arrow">→</span> Employee forms expectation <span class="arrow">→</span> Expectation met or violated <span class="arrow">→</span> Perception of fairness <span class="arrow">→</span> Employee attitude &amp; behavior</div>
+    <p class="question">Why would an employer choose to offer this benefit — and why might an employee come to expect it?</p>
+  </div>
+
+  <footer>INS 432 / INS 532 — Employee Benefits · Chapter 2: The Psychology and Economics of Employee Benefits</footer>
+
+</div>
+</body>
+</html>
