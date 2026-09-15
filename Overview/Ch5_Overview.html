@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 — Employer-Sponsored Health-Care Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Chapter 5 palette — high-contrast (WCAG AAA) variant of the
+     Chapter 4 warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:10px;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532 · Weeks 6–7</div>
+    <h1 class="title">Chapter 5: Employer-Sponsored Health-Care Plans</h1>
+    <p class="subtitle">A roadmap through the benefit that costs employers the most, confuses employees the most, and changes the fastest.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Every health plan design in this chapter buys cost control by taking something away from the patient — choice of provider, freedom from paperwork, or dollars out of pocket. Learn to spot which one is being traded, and the whole chapter organizes itself.
+    </div>
+
+    <div class="notice" role="note">
+      <h2>⚠ About the numbers on this page</h2>
+      <p>Your textbook's health-care chapter runs on <b>2020–2022 figures</b>, and almost none of them are still accurate. Premiums, deductibles, HSA and FSA limits, ACA penalty amounts, and the legal status of several provisions have all changed — in some cases dramatically.</p>
+      <p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (U.S. Bureau of Labor Statistics, IRS, HHS, and KFF) and is footnoted in <a href="#refs">Sources</a> at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker. Use these numbers, not the book's, on quizzes and papers.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 5</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>What a health plan actually is</h3><p>Fully insured vs. self-funded, individual vs. group, single vs. family — and who carries the risk in each.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Where coverage came from, what it costs</h3><p>An accident of wartime wage controls, now the most expensive benefit employers buy.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>The rules</h3><p>HMOA, ERISA, ADA, and the ACA — plus fifty states regulating on top.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>Plan design alternatives</h3><p>Fee-for-service, HMO, PPO, EPO, POS. Four questions tell them apart.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Consumer-driven health care</h3><p>High deductibles paired with HSAs, HRAs, and FSAs — shifting the first dollars onto the employee.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>Everything else, plus retirees</h3><p>Dental, vision, prescription drugs, mental health, maternity, telemedicine, and the disappearing retiree plan.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART ONE ============ -->
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">What is a health-care plan?</h2>
+    <p>A <b>health-care plan</b> covers the cost of services that support physical and mental health: exams, diagnostic testing, surgery, hospitalization, psychotherapy, dental work, corrective lenses. Simple enough. The interesting question is who stands behind the promise to pay.</p>
+
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Fully insured plans</h3>
+        <ul>
+          <li>Employer contracts with an insurance company</li>
+          <li>The <b>insurer</b> assumes the risk of paying claims</li>
+          <li>The insurer administers the plan</li>
+          <li>Employer pays a negotiated <b>premium</b></li>
+          <li>Subject to state insurance regulation</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Self-funded plans</h3>
+        <ul>
+          <li>Employer decides what to cover</li>
+          <li>The <b>employer</b> pays claims from its own assets and assumes the risk</li>
+          <li>No premiums paid in advance, so cash stays with the employer</li>
+          <li>Makes sense when expected claims cost less than premiums</li>
+          <li>Largely exempt from state insurance mandates under ERISA</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:16px;">That last line on each side is why self-funding has quietly taken over. <b>67% of covered workers were in a self-funded plan in 2025</b>, including 80% at large firms.<span class="upd">Updated</span> When you hear that a state passed a law requiring coverage of some treatment, remember it generally does not reach the self-funded plans where most covered workers actually are.</p>
+
+    <h3 class="sub">Three more distinctions worth keeping straight</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Individual vs. group coverage.</b> Individual coverage is bought outside the employment setting. Extending coverage to most or all employees is <b>group coverage</b> — the basis of everything in this chapter. Group plans generally cannot exclude a member based on health status; the health of the group sets the employer's premium instead.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Single vs. family coverage.</b> Single covers only the employee; family adds qualified dependents. The cost gap between them is enormous, and it falls mostly on the employee.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Multiple-payer vs. single-payer.</b> The U.S. is a <b>multiple-payer system</b>: government, employers, employees, and individuals all pay parts of the bill. Canada is the standard contrast — a <b>single-payer system</b> funded through taxation.</p></div>
+    </div>
+
+    <div class="callout">
+      <p><b>How insurers set the premium.</b> <b>Underwriting</b> uses <b>mortality tables</b> (annual probability of death), <b>morbidity tables</b> (annual probability of illness), and <b>experience ratings</b> (this group's actual claims history). A workforce with more hospitalizations and surgeries pays more next year. This is exactly why a company with a healthy, young workforce may find self-funding attractive — and why the sickest groups have the least bargaining power.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Where employer coverage came from</h2>
+    <p>Nothing about employer-sponsored health insurance was inevitable. It exists because of a series of accidents.</p>
+    <ul class="plain">
+      <li><b>Late 1800s.</b> Mining and railroad companies hire doctors to treat workers. The first company medicine.</li>
+      <li><b>1930s.</b> The Depression produces the Social Security Act of 1935 — but President Roosevelt keeps health coverage out of it. Nonprofit Blue Cross forms; for-profit insurers follow with fee-for-service plans.</li>
+      <li><b>World War II.</b> Wartime <b>wage freezes</b> leave employers unable to compete on pay, so they compete on benefits instead. Health coverage becomes a recruiting tool. This is the hinge of the whole story.</li>
+      <li><b>1960s.</b> Medicare and Medicaid arrive as Titles XVIII and XIX of the amended Social Security Act. Demand surges past supply; costs inflate.</li>
+      <li><b>1970s.</b> ERISA (1974) protects participants' interests; the <b>HMO Act of 1973</b> pushes employers toward managed care with financial incentives.</li>
+      <li><b>2010.</b> The ACA converts health coverage from a discretionary benefit into a legal requirement for large employers.</li>
+    </ul>
+    <div class="callout">
+      <p><b>Why this history still matters.</b> Coverage is tied to your job for no medical reason whatsoever — it's a leftover from a 1940s wage-control workaround. Every hard question in American health policy (job lock, coverage gaps between jobs, why your plan changes when you change employers) traces back to that accident.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Coverage and cost today</h2>
+    <p>Here is the state of employer health coverage as of the most recent federal data. Compare these to the figures in your textbook as you read.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">72%</div>
+        <div class="lbl">of private industry workers have <b>access</b> to a medical plan</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat">
+        <div class="num">45%</div>
+        <div class="lbl">actually <b>participate</b> — a take-up rate of 63%</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">$26,993</div>
+        <div class="lbl">average annual <b>family premium</b>, up 6% in one year</div>
+        <div class="src">KFF, 2025</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;">Note the gap between the first two numbers. Access is not coverage. More than a quarter of workers who are offered a plan turn it down, and the reason is usually the price of their share.</p>
+
+    <table class="tbl">
+      <caption>Who gets covered — private industry access and participation, March 2025 <span class="upd">Updated</span></caption>
+      <thead>
+        <tr><th scope="col">Group</th><th scope="col">Access</th><th scope="col">Participation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Full-time</b></td><td>87%</td><td>57%</td></tr>
+        <tr><td><b>Part-time</b></td><td>25%</td><td>10%</td></tr>
+        <tr><td><b>Union</b></td><td>95%</td><td>75%</td></tr>
+        <tr><td><b>Nonunion</b></td><td>70%</td><td>43%</td></tr>
+        <tr><td><b>Lowest 25% of wages</b></td><td>41%</td><td>18%</td></tr>
+        <tr><td><b>Highest 25% of wages</b></td><td>93%</td><td>66%</td></tr>
+        <tr><td><b>Firms with 1–49 workers</b></td><td>54%</td><td>31%</td></tr>
+        <tr><td><b>Firms with 500+ workers</b></td><td>90%</td><td>63%</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:16px;">Your textbook says access is greater for management, full-time, unionized, and higher-paid workers. That pattern holds — but look at the size of the gap. A worker in the bottom wage quarter is less than half as likely to be <i>offered</i> a plan and less than a third as likely to be <i>in</i> one.</p>
+
+    <h3 class="sub">Who pays the premium</h3>
+    <p>Among private industry workers in medical plans, employers pay <b>80%</b> of the single-coverage premium and <b>69%</b> of the family premium. Employees pick up the rest — 20% and 31% respectively. In dollars, that averaged <b>$1,440 per year for single coverage and $6,850 for family coverage</b> in 2025.<span class="upd">Updated</span></p>
+    <p>The employer share is not distributed evenly. For family coverage, workers in the lowest 10% of wages pay <b>41%</b> of the premium themselves; workers in the highest 10% pay <b>27%</b>. The employees least able to afford coverage are charged the largest share of it.</p>
+
+    <div class="callout">
+      <p><b>The cost trend in one comparison.</b> Family premiums rose 6% in the most recent year, against general inflation of 2.7% and wage growth of 4%. Over five years, family premiums are up 26%. Health care does not merely get more expensive — it outruns both prices and paychecks, year after year, which is the pressure behind every plan-design change in the rest of this chapter.</p>
+    </div>
+
+    <h3 class="sub">Three kinds of medical expense benefits</h3>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Hospitalization benefits</h3><p><b>Inpatient</b> covers overnight stays: room and board plus related services such as nursing and meals. <b>Outpatient</b> covers treatment without an overnight stay — emergency room care, preadmission testing, same-day surgery.</p></div>
+      <div class="plan-card"><h3>Surgical benefits</h3><p>Pay for medically necessary procedures, not elective ones like cosmetic surgery. Paid on a schedule of <b>usual, customary, and reasonable</b> charges; anything above that level is the patient's to pay.</p></div>
+      <div class="plan-card"><h3>Physician benefits</h3><p>Cover physician fees tied to hospital stays or office visits. In extenuating circumstances — where travel would endanger the patient — a plan may cover home visits.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART TWO: REGULATION ============ -->
+  <section>
+    <div class="section-label">Part Two: The Rules</div>
+    <h2 class="section-title">Federal regulation of health plans</h2>
+
+    <h3 class="sub">HMO Act of 1973</h3>
+    <p>Promoted HMOs with federal incentives. Its <b>dual choice</b> requirement once forced employers with at least 25 employees to offer an HMO alongside a fee-for-service plan. Dual choice was eliminated in 1995, but a related protection survives: an employer may not financially penalize an employee for choosing the HMO option, and must contribute the same amount toward it as toward other plans.</p>
+
+    <h3 class="sub">ERISA (1974)</h3>
+    <p>Covers pension and <b>welfare plans</b>, which include medical, surgical, and hospital benefits. Four parts of Title I matter here: reporting and disclosure, fiduciary responsibilities, continuation coverage, and group health plan standards for portability, access, and renewability. COBRA (1985) and HIPAA (1996) are ERISA amendments you met in Chapter 3. So is the <b>Women's Health and Cancer Rights Act of 1998</b>, which requires plans covering mastectomies to also cover reconstruction for symmetrical appearance.</p>
+    <p>ERISA also <b>preempts</b> most state regulation of self-funded plans. That single word explains why a state mandate can cover your neighbor's plan and not yours.</p>
+
+    <h3 class="sub">ADA (1990)</h3>
+    <p>Prohibits discrimination based on disability, enforced by the EEOC. But Congress recognized that benefit plans rest on risk assessment, so the ADA permits disability-based distinctions in benefit design where they are grounded in <b>sound actuarial principles</b>.</p>
+
+    <h3 class="sub">The Affordable Care Act — current status</h3>
+    <p>Your textbook's ACA discussion ends with pending litigation and 2021 dollar figures. Here is where things actually stand.</p>
+
+    <table class="tbl">
+      <caption>ACA employer requirements for 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Provision</th><th scope="col">2026 figure</th></tr></thead>
+      <tbody>
+        <tr><td><b>Employer mandate applies to</b></td><td>Applicable large employers — 50 or more full-time equivalent employees</td></tr>
+        <tr><td><b>Minimum value</b></td><td>Plan must cover at least 60% of expected costs</td></tr>
+        <tr><td><b>Affordability</b></td><td>Employee's cost for lowest-cost self-only coverage may not exceed <b>9.96%</b> of household income (up from 9.02% in 2025)</td></tr>
+        <tr><td><b>§4980H(a) penalty</b> — failing to offer coverage to 95% of full-time employees</td><td><b>$3,340</b> per full-time employee per year ($278.33/month), excluding the first 30 employees</td></tr>
+        <tr><td><b>§4980H(b) penalty</b> — coverage offered but unaffordable or below minimum value</td><td><b>$5,010</b> per affected employee per year ($417.50/month)</td></tr>
+        <tr><td><b>Out-of-pocket maximum</b>, non-grandfathered plans</td><td><b>$10,600</b> self-only / <b>$21,200</b> family</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:16px;">Your book lists the 2021 penalties as $2,700 and $4,060. They are now $3,340 and $5,010 — roughly 24% higher. "Pay or play" is a real calculation for employers, and the price of "pay" keeps climbing.</p>
+
+    <div class="callout">
+      <p><b>Where the legal fights landed.</b> Congress zeroed out the individual mandate penalty effective 2019. In 2021 the Supreme Court disposed of <i>California v. Texas</i> on standing — the challengers could not show injury from a $0 penalty — leaving the ACA intact without resolving the underlying question.</p>
+      <p>The most recent challenge was decided <b>June 27, 2025</b>. In <i>Kennedy v. Braidwood Management</i>, the Court held 6–3 that the requirement to cover preventive services recommended by the U.S. Preventive Services Task Force <b>without cost-sharing is constitutional</b>. Task Force members are properly appointed and answer to the HHS Secretary, who may remove them and review their recommendations. Practical effect for your future employees: screenings and preventive medications stay free at the point of care.</p>
+      <p><b>Still prohibited under the ACA:</b> preexisting condition exclusions, and lifetime or annual dollar limits on essential health benefits. The book is right about those.</p>
+    </div>
+
+    <h3 class="sub">State regulation</h3>
+    <p>Every state regulates insurers' practices, generally reaching fully insured plans but not self-funded ones. State laws address four areas: which services and conditions must be covered, reimbursement of recognized providers, who must be covered, and how long coverage continues after employment ends. The <b>National Association of Insurance Commissioners (NAIC)</b> coordinates across states.</p>
+  </section>
+
+  <!-- ============ PART THREE: PLAN DESIGN ============ -->
+  <section>
+    <div class="section-label">Part Three: Plan Design Alternatives</div>
+    <h2 class="section-title">Four questions that sort every plan</h2>
+    <p>The Bureau of Labor Statistics distinguishes plan types with four questions. Learn these and you can classify a plan you have never seen before — including the one on your own future benefits enrollment form.</p>
+    <ul class="plain">
+      <li>Is the plan an <b>indemnity</b> plan (reimburses provider or patient) or a <b>prepaid</b> plan (pays providers a fixed amount per covered person)?</li>
+      <li>Does the plan have a <b>network</b>?</li>
+      <li>Does it allow <b>nonemergency care outside</b> the network?</li>
+      <li>Does it have <b>more than two levels</b> of coverage?</li>
+    </ul>
+
+    <div class="tool">
+      <h3>Try it: which plan type is this?</h3>
+      <p class="hint">Answer as you go. The plan type appears when enough is known to decide.</p>
+      <div class="q-step">
+        <p class="q" id="q1lbl">1. Does the plan use a provider network?</p>
+        <div class="opts" role="group" aria-labelledby="q1lbl">
+          <button type="button" class="opt" data-q="1" data-v="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="opt" data-q="1" data-v="no" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="q-step" id="step2" hidden>
+        <p class="q" id="q2lbl">2. Can a member get nonemergency care outside the network (at higher cost)?</p>
+        <div class="opts" role="group" aria-labelledby="q2lbl">
+          <button type="button" class="opt" data-q="2" data-v="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="opt" data-q="2" data-v="no" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="q-step" id="step3" hidden>
+        <p class="q" id="q3lbl">3. Does the plan require a primary care physician to coordinate and refer?</p>
+        <div class="opts" role="group" aria-labelledby="q3lbl">
+          <button type="button" class="opt" data-q="3" data-v="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="opt" data-q="3" data-v="no" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="result" id="matchResult" role="status" aria-live="polite">
+        <p>Answer question 1 to begin.</p>
+      </div>
+      <p style="margin-top:12px;"><button type="button" class="btn ghost" id="matchReset">Start over</button></p>
+    </div>
+
+    <h3 class="sub">Fee-for-service plans</h3>
+    <p>Protection against health expenses paid as cash to the employee or directly to the provider <b>after</b> services are rendered — a reimbursement basis. Three categories of eligible expense: hospital, surgical, physician. Participants may use any licensed provider. <b>No network at all.</b> Maximum freedom, minimum cost control. This is why these plans have nearly vanished.</p>
+
+    <h3 class="sub">Managed care plans</h3>
+    <p>Managed care controls cost by limiting the choice of doctors and hospitals. Three common forms:</p>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>HMO</h3><p>Prepaid: a fixed periodic fee covers members, but only for services delivered by network providers and approved by the HMO. Requires a <b>primary care physician</b> as gatekeeper. An <b>open-access HMO</b> adds coverage for out-of-network emergency care.</p></div>
+      <div class="plan-card"><h3>PPO</h3><p>A selected group of providers agrees to serve a population at reduced reimbursement. Providers qualify by meeting quality standards, following cost-containment procedures, and accepting the PPO's reimbursement structure. In exchange, the employer steers patients to them with financial incentives.</p></div>
+      <div class="plan-card"><h3>EPO</h3><p>A stricter PPO. Reimburses only for services inside the network, but does <b>not</b> require a primary care physician.</p></div>
+      <div class="plan-card"><h3>POS</h3><p>Combines fee-for-service and HMO features. Nearly identical to a PPO except that it <b>requires a primary care physician</b>. Nominal copayments in network; out-of-network care available at higher cost.</p></div>
+    </div>
+
+    <h3 class="sub">Types of HMO — how the doctors are organized</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Staff model.</b> The HMO owns the facilities and employs physicians on salary. Those physicians treat only HMO members. Specialists may be contracted under a capped fee schedule, with anything above the cap passed to the patient.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Group model.</b> Contracts with established multi-specialty practices rather than employing physicians directly. Pays through a preset fee schedule or a monthly amount per patient.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Network model.</b> Like the group model, but contracts with two or more independent practices, compensated on a capped fee schedule.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Individual practice associations (IPAs).</b> Partnerships of independent physicians and practices that charge lower fees to a designated population. These physicians see both HMO enrollees and non-enrollees.</p></div>
+    </div>
+
+    <div class="callout">
+      <p><b>What the market actually looks like now.</b> Among private industry workers in medical plans in 2024, <b>75% had two plan networks</b> available and 18% had one. Nonemergency out-of-network services were available to <b>78%</b> of participants — meaning for the other 22%, out-of-network care is entirely their own expense. PPOs remain the most common plan type overall.<span class="upd">Updated</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Features shared across plans</h2>
+    <p>Whatever the plan type, the same cost-sharing machinery appears: <b>deductible</b>, <b>coinsurance</b>, <b>out-of-pocket maximum</b>, <b>preadmission certification</b>, and <b>second surgical opinions</b>. Two features in your textbook's list are now illegal under the ACA: preexisting condition clauses, and lifetime or yearly dollar limits on essential benefits.</p>
+
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Deductible.</b> What you pay before the plan pays anything. May vary by whether care is in network, and some employers scale it to salary. The average single-coverage deductible reached <b>$1,886</b> in 2025 — $2,631 at small firms versus $1,670 at large ones.<span class="upd">Updated</span></p></div>
+      <div class="factor"><span class="dot"></span><p><b>Coinsurance.</b> The percentage of covered expenses you pay after the deductible. The classic split is 80/20: the plan pays 80%, you pay 20%.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Out-of-pocket maximum.</b> The annual ceiling on your cost-sharing, protecting against catastrophic expense. In 2025, 72% of covered workers faced a single-coverage maximum above $3,000, and one in five above $6,000.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Preadmission certification.</b> A nurse or physician employed by the insurer must approve nonemergency hospitalization in advance, and determines an appropriate length of stay. Unauthorized admissions may not be paid.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Second surgical opinions.</b> Reduce unnecessary procedures by having another physician weigh in; the plan covers the consultation. Some insurers require it, others merely offer it.</p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: who pays what?</h3>
+      <p class="hint">Enter a medical bill and a plan design. The defaults are the 2025 national average deductible and a typical 20% coinsurance rate. Change any number and watch where the money lands.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="billAmt">Total covered charges ($)</label>
+          <input type="number" id="billAmt" value="6000" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="dedAmt">Annual deductible ($)</label>
+          <input type="number" id="dedAmt" value="1886" min="0" step="50">
+          <div class="note">2025 average, single coverage</div>
+        </div>
+        <div class="field">
+          <label for="coinPct">Your coinsurance (%)</label>
+          <input type="number" id="coinPct" value="20" min="0" max="100" step="5">
+        </div>
+        <div class="field">
+          <label for="oopMax">Out-of-pocket maximum ($)</label>
+          <input type="number" id="oopMax" value="8500" min="0" step="100">
+          <div class="note">2026 HDHP limit, self-only</div>
+        </div>
+      </div>
+      <button type="button" class="btn" id="calcBtn">Calculate</button>
+      <div class="result" id="calcResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART FOUR: CDHP ============ -->
+  <section>
+    <div class="section-label">Part Four: Consumer-Driven Health Care</div>
+    <h2 class="section-title">Shifting the first dollars to the employee</h2>
+    <p>Managed care was supposed to control costs. It did not control them enough. So employers turned to a different lever: raise the deductible sharply, hand the employee a tax-advantaged account, and let the employee feel the price of care directly. That is a <b>consumer-driven health-care plan (CDHP)</b> — a <b>high-deductible health plan (HDHP)</b> paired with a pretax account.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">50%</div>
+        <div class="lbl">of private industry medical plan participants had an <b>HDHP available</b> in 2024, up from 38% in 2015</div>
+        <div class="src">BLS</div>
+      </div>
+      <div class="stat">
+        <div class="num">$2,750</div>
+        <div class="lbl">median annual <b>HDHP deductible</b>, private industry, 2024</div>
+        <div class="src">BLS</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">$4,400</div>
+        <div class="lbl">2026 <b>HSA contribution limit</b>, self-only coverage</div>
+        <div class="src">IRS Rev. Proc. 2025-19</div>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <caption>2026 HDHP and account limits — replace every figure in your textbook's version of this list <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Limit</th><th scope="col">Self-only</th><th scope="col">Family</th></tr></thead>
+      <tbody>
+        <tr><td><b>HDHP minimum deductible</b></td><td>$1,700</td><td>$3,400</td></tr>
+        <tr><td><b>HDHP maximum out-of-pocket</b></td><td>$8,500</td><td>$17,000</td></tr>
+        <tr><td><b>HSA contribution limit</b></td><td>$4,400</td><td>$8,750</td></tr>
+        <tr><td><b>HSA catch-up, age 55+</b></td><td colspan="2">$1,000 (set by statute, unchanged since 2009)</td></tr>
+        <tr><td><b>Health FSA salary reduction limit</b></td><td colspan="2">$3,400, with carryover of up to $680 into the next plan year</td></tr>
+        <tr><td><b>Excepted-benefit HRA</b></td><td colspan="2">$2,200</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px;">For comparison, the textbook lists a $1,400 minimum deductible and a $3,600 HSA limit. Both are four years stale. On this chapter's quiz, use the 2026 numbers above.</p>
+
+    <h3 class="sub">The three-tier structure</h3>
+    <p>A CDHP is often described as a three-tier payment system. <b>Tier 1:</b> the employee spends pretax account money. <b>Tier 2:</b> the <b>coverage gap</b> — the difference between the account balance and the deductible, paid out of pocket. <b>Tier 3:</b> the plan pays expenses above the deductible.</p>
+
+    <div class="tool">
+      <h3>Try it: walk the three tiers</h3>
+      <p class="hint">The textbook works two examples, John and Sally. Run them here, then change the numbers. Try setting expenses below the deductible and see what the plan pays.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="hsaBal">Pretax account balance ($)</label>
+          <input type="number" id="hsaBal" value="1000" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="cdDed">Plan deductible ($)</label>
+          <input type="number" id="cdDed" value="1500" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="cdExp">Total medical expenses ($)</label>
+          <input type="number" id="cdExp" value="4000" min="0" step="100">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="cdBtn">Run the tiers</button>
+        </div>
+      </div>
+      <div class="result" id="cdResult" role="status" aria-live="polite">
+        <p>Enter values and select Run the tiers.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Three accounts, three sets of rules</h3>
+    <table class="tbl">
+      <caption>HSA vs. HRA vs. FSA</caption>
+      <thead><tr><th scope="col"></th><th scope="col">HSA</th><th scope="col">HRA</th><th scope="col">Health FSA</th></tr></thead>
+      <tbody>
+        <tr><td><b>Who funds it</b></td><td>Employer and/or employee</td><td>Employer only</td><td>Employee salary reduction (employer may add)</td></tr>
+        <tr><td><b>Requires an HDHP</b></td><td>Yes</td><td>No</td><td>No</td></tr>
+        <tr><td><b>Annual limit (2026)</b></td><td>$4,400 / $8,750</td><td>No statutory maximum for general HRAs</td><td>$3,400</td></tr>
+        <tr><td><b>Unused balance</b></td><td>Rolls over; yours to keep, even if you leave</td><td>May roll over; employer's money</td><td><b>Use it or lose it</b>, beyond a $680 carryover</td></tr>
+        <tr><td><b>At age 65</b></td><td>May be used for retirement income</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><b>The FSA risk runs both ways.</b> Employees who overestimate their expenses forfeit the difference. But employers carry risk too: under the <b>uniform coverage requirement</b> (risk-of-loss rule), the full elected annual amount must be available to the employee from day one of the plan year, no matter how little has been contributed. An employee who elects $3,400, spends it in January, and quits in February leaves the employer holding the balance.</p>
+    </div>
+
+    <div class="callout">
+      <p><b>New in 2026 — the HSA rules just expanded.</b><span class="upd">Updated</span> The One Big Beautiful Bill Act (July 4, 2025) made three changes your textbook cannot contain, clarified by IRS Notice 2026-05:</p>
+      <p>· The <b>telehealth safe harbor is now permanent</b>. An HDHP may cover telehealth and remote care before the deductible without destroying HSA eligibility — retroactive to plan years beginning on or after January 1, 2025. The pandemic-era workaround your book describes as temporary is now law. The safe harbor does not extend to in-person services or drugs prescribed during a virtual visit.</p>
+      <p>· From January 1, 2026, <b>bronze and catastrophic exchange plans</b> count as HSA-compatible even if they don't meet the general HDHP definition.</p>
+      <p>· Certain <b>direct primary care arrangements</b> no longer disqualify a person from contributing to an HSA, and the periodic membership fee is now an HSA-eligible expense.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART FIVE: OTHER BENEFITS ============ -->
+  <section>
+    <div class="section-label">Part Five: The Rest of the Package</div>
+    <h2 class="section-title">Other health-related benefits</h2>
+
+    <h3 class="sub">Dental</h3>
+    <p>Covers routine preventive procedures and work necessary to the health of teeth and gums; cosmetic improvement generally excluded. Three delivery forms: <b>dental fee-for-service</b> (usual, customary, and reasonable charges, with deductibles, coinsurance, and lifetime maximums), <b>dental service corporations</b> (nonprofits owned by state dental associations, prepaid with 20–30% copayments), and <b>dental maintenance organizations</b> or dental HMOs (prepaid, approved providers, nominal copayments).</p>
+    <p>Access tracks employer size closely: <b>30%</b> of private industry workers at firms under 100 employees, <b>50%</b> at 100–499, and <b>70%</b> at 500 or more.</p>
+
+    <h3 class="sub">Vision</h3>
+    <p>Typically covers exams, lenses, frames, and fitting, delivered through indemnity or managed care arrangements, with limits on frequency and exclusions for specialty lenses, sunglasses, and contacts not medically necessary. Access by firm size: <b>21% / 34% / 44%</b> across the same three size bands.</p>
+
+    <h3 class="sub">Prescription drugs</h3>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Medical reimbursement plans</h3><p>Reimburse some or all of the drug cost, usually tied to self-funded or indemnity plans. Deductibles apply, coinsurance is typically 80%. Most expensive of the three, because pharmacies charge full retail and administration costs are high.</p></div>
+      <div class="plan-card"><h3>Prescription card programs</h3><p>Prepaid with nominal copayments at participating pharmacies, often built on <b>formularies</b> — lists of drugs judged clinically appropriate and cost effective. Less expensive because insurers negotiate volume pricing.</p></div>
+      <div class="plan-card"><h3>Mail order programs</h3><p>Dispense maintenance medications for chronic conditions such as hypertension or high cholesterol. Usually paired with a card program.</p></div>
+      <div class="plan-card"><h3>Multiple tiers</h3><p>Copayments scale by drug category: generic lowest, formulary brand-name higher, non-formulary brand-name highest. The intent is to steer patients toward cheaper equivalents. Research shows it also causes some patients to stop taking their medication altogether — a cost saving that isn't one.</p></div>
+    </div>
+
+    <h3 class="sub">Mental health and substance use</h3>
+    <p>Plans cover psychiatric medication, psychological testing, inpatient and outpatient care, with benefit amounts often varying by diagnosis under the <b>DSM-5</b>. <b>Employee assistance programs (EAPs)</b> serve as the entry point and help employers address problems interfering with work.</p>
+    <p>The <b>Mental Health Parity and Addiction Equity Act of 2008</b> requires that a group health plan offering mental health and substance use benefits alongside medical and surgical coverage treat them equally in out-of-pocket cost, benefit limits, prior authorization, and utilization review.</p>
+    <div class="callout">
+      <p><b>Parity enforcement is in flux.</b><span class="upd">Updated</span> Federal agencies issued a strengthened MHPAEA rule in September 2024. After an employer trade group sued, the Departments of Labor, HHS, and Treasury announced on <b>May 15, 2025</b> that they will not enforce the new portions of that 2024 rule while the litigation is resolved, plus 18 months afterward. The underlying statute, the 2013 regulation, and the requirement to prepare comparative analyses of nonquantitative treatment limitations all remain in force — and state regulators are not bound by the federal non-enforcement policy. A good illustration for this course: a rule on the books is not the same as a rule being enforced.</p>
+    </div>
+
+    <h3 class="sub">Maternity care</h3>
+    <p>No federal law requires employers to offer maternity benefits, but several shape them. The <b>Pregnancy Discrimination Act of 1978</b> forbids treating pregnancy less favorably than other medical conditions. The <b>FMLA (1993)</b> entitles eligible employees at companies with 50 or more employees to 12 unpaid weeks for the birth of a child. The <b>Newborns' and Mothers' Health Protection Act of 1996</b> sets minimum hospital stay lengths and bars financial incentives to shorten them. Some states mandate maternity benefits for all but self-funded plans.</p>
+
+    <h3 class="sub">Telemedicine</h3>
+    <p><b>Telemedicine</b> uses electronic and telecommunication technology to deliver care when patient and clinician are not in the same place. It expanded enormously during the pandemic and did not retreat: it removes exposure risk, reaches rural patients, and serves people with mobility limits. Two concerns persist — unequal access to devices and broadband, and HIPAA privacy risk in transmitting patient data. As noted above, the HSA-compatibility question that once complicated telehealth in HDHPs has now been settled permanently in its favor.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Retiree health-care benefits</h2>
+    <p>Employers face a strong financial disincentive to cover retirees, for two reasons. The first is obvious: medical costs rose. The second is an accounting change most students never think about.</p>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>FAS 106 (1990).</b> Changed how companies recognize the cost of non-pension retirement benefits. Those costs must be carried as an expense, which reduces reported net profit. The FASB's reasoning: post-retirement benefits are part of the compensation exchange, so they belong on the books.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>FAS 132 (2003).</b> Requires substantial disclosure about the economic value and cost of retiree health programs, including plan asset categories, allocation decisions, and concentrations of risk.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>FAS 158 (2005).</b> Pushed transparency further for other post-retirement employee benefits.</p></div>
+    </div>
+    <p style="margin-top:14px;">The pattern to take away: <b>an accounting rule changed a benefit.</b> Nothing about retirees' medical needs changed in 1990. What changed was that the obligation became visible on the balance sheet, and companies without the assets to sustain it began withdrawing the offer.</p>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section>
+    <h2 class="section-title">Key terms — check yourself</h2>
+    <p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p>
+    <div class="terms" id="termList">
+      <button type="button" class="term" aria-expanded="false" data-def="A contractual arrangement in which one or more insurance companies assume the risk of paying claims and administer the plan; the employer pays a premium.">Fully insured plan</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The employer decides what to cover, pays claims from its own assets, and assumes all the risk. About two-thirds of covered workers are in one.">Self-funded plan</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The process by which insurers set plan terms and premiums using mortality tables, morbidity tables, and experience ratings.">Underwriting</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Claims history for a specific group — incidence, type, and financial cost. Groups with more hospitalizations and surgeries face higher premiums.">Experience rating</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A system in which more than one party pays for health care: government, employers, employees, and individuals. The U.S. model.">Multiple-payer system</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A plan paying health-care providers a fixed amount according to the number of individuals covered, rather than per service rendered.">Prepaid plan</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A plan that reimburses either the provider or the patient after services are delivered.">Indemnity plan</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A charge that is no more than the physician's usual fee, within the customary range in that locality, and reasonable given the medical circumstances. Anything above it is the patient's responsibility.">Usual, customary, and reasonable</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An HMO physician who coordinates care and determines when a specialist is needed — the cost-control gatekeeper.">Primary care physician</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The percentage of covered expenses the insured pays after meeting the deductible. Commonly 20%.">Coinsurance</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The annual ceiling on a participant's cost-sharing, designed to protect against catastrophic expense. For 2026: $10,600 self-only in non-grandfathered plans, $8,500 in an HSA-qualified HDHP.">Out-of-pocket maximum</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Under a CDHP, the difference between the pretax account balance and the plan deductible — the stretch the employee pays out of pocket.">Coverage gap (tier 2)</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A list of drugs a plan has judged clinically appropriate and cost effective, used to steer patients toward lower-cost options.">Formulary</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The employer must make the full elected FSA amount available from day one of the plan year, regardless of how much the employee has contributed so far.">Uniform coverage requirement</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An ACA requirement that employers with 50 or more full-time equivalent employees offer affordable, minimum-value coverage or face a penalty.">Employer mandate</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Plans in existence before the ACA's March 23, 2010 enactment. They lose the status if the employer makes certain changes, such as cutting its premium share by more than 5%.">Grandfathered plan</button>
+    </div>
+    <div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div>
+  </section>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your five learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><div class="obj-num">1</div><p>Understand health-care plan concepts.</p></div>
+      <div class="obj-item"><div class="obj-num">2</div><p>Understand the federal and state laws influencing employer-sponsored health-care plan practices.</p></div>
+      <div class="obj-item"><div class="obj-num">3</div><p>Understand health-care plan design alternatives, including fee-for-service, managed care, and consumer-driven approaches.</p></div>
+      <div class="obj-item"><div class="obj-num">4</div><p>Understand other health-related benefits.</p></div>
+      <div class="obj-item"><div class="obj-num">5</div><p>Understand retiree health-care benefits.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section>
+    <h2 class="section-title">Check your understanding</h2>
+    <p>Five questions. Feedback appears as soon as you answer. This is practice, not graded — but the graded Chapter 5 quiz works the same way.</p>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>1. A plan pays providers a fixed amount per covered person rather than reimbursing after each service. Under the BLS framework, this is:</legend>
+        <label><input type="radio" name="q1" value="a"> An indemnity plan</label>
+        <label><input type="radio" name="q1" value="b"> A prepaid plan</label>
+        <label><input type="radio" name="q1" value="c"> A fee-for-service plan</label>
+        <label><input type="radio" name="q1" value="d"> A grandfathered plan</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Prepaid plans pay a fixed amount per covered individual — the defining feature of HMO-style managed care." data-wrong="Not quite. Indemnity and fee-for-service both reimburse after services are rendered. Paying a fixed amount per covered person is what makes a plan prepaid."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>2. In 2026, what is the minimum annual deductible for a self-only HSA-qualified high-deductible health plan?</legend>
+        <label><input type="radio" name="q2" value="a"> $1,400</label>
+        <label><input type="radio" name="q2" value="b"> $1,500</label>
+        <label><input type="radio" name="q2" value="c"> $1,700</label>
+        <label><input type="radio" name="q2" value="d"> $2,750</label>
+      </fieldset>
+      <div class="fb" data-right="Correct — $1,700 for self-only and $3,400 for family, per IRS Rev. Proc. 2025-19." data-wrong="The answer is $1,700. If you chose $1,400, that is the textbook's outdated figure. $2,750 is the median deductible workers actually face, which is a different thing from the legal minimum."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="a">
+      <fieldset>
+        <legend>3. An employee sees a specialist without a referral and the plan denies the claim entirely, though it would have covered an emergency room visit out of network. This plan is most likely:</legend>
+        <label><input type="radio" name="q3" value="a"> An HMO</label>
+        <label><input type="radio" name="q3" value="b"> A PPO</label>
+        <label><input type="radio" name="q3" value="c"> A fee-for-service plan</label>
+        <label><input type="radio" name="q3" value="d"> An EPO</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Requiring a primary care physician plus no out-of-network nonemergency coverage points to an HMO." data-wrong="Look at both clues. A PPO allows out-of-network care at higher cost; fee-for-service has no network at all; an EPO restricts to the network but does not require a primary care physician. Requiring a gatekeeper and refusing out-of-network nonemergency care means HMO."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="d">
+      <fieldset>
+        <legend>4. An employee elects $3,000 in a health FSA, spends all of it in January, and resigns in February having contributed only $250. What happens?</legend>
+        <label><input type="radio" name="q4" value="a"> The employee must repay the difference</label>
+        <label><input type="radio" name="q4" value="b"> The employee forfeits the balance under the use-it-or-lose-it rule</label>
+        <label><input type="radio" name="q4" value="c"> The insurer absorbs the loss</label>
+        <label><input type="radio" name="q4" value="d"> The employer absorbs the loss under the uniform coverage requirement</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The risk-of-loss or uniform coverage rule requires the full elected amount to be available from day one, so this risk lands on the employer." data-wrong="This is the employer's risk. The uniform coverage requirement makes the entire elected amount available from the first day of the plan year regardless of contributions to date. Use-it-or-lose-it is the mirror-image risk that falls on employees who overestimate."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>5. FAS 106 discouraged employers from offering retiree health benefits because it:</legend>
+        <label><input type="radio" name="q5" value="a"> Made retiree health coverage illegal for self-funded plans</label>
+        <label><input type="radio" name="q5" value="b"> Required the cost to be recognized as an expense, reducing reported net profit</label>
+        <label><input type="radio" name="q5" value="c"> Raised the premiums insurers could charge for retiree coverage</label>
+        <label><input type="radio" name="q5" value="d"> Required employers to prefund retiree benefits in a trust</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The obligation became a visible expense on the balance sheet, and the offer began disappearing — an accounting rule reshaping a benefit." data-wrong="FAS 106 changed accounting, not legality or pricing. It required the cost of non-pension retirement benefits to be recognized as an expense, which reduced reported net profit and made the benefit far less attractive to offer."></div>
+    </div>
+
+    <p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the plan types.</p>
+    <h2>Ask what each design takes away.</h2>
+    <div class="flow">
+      Costs rise <span class="arrow">→</span> Employer redesigns the plan <span class="arrow">→</span> Something is restricted<br>
+      choice of provider <span class="arrow">·</span> access without a referral <span class="arrow">·</span> first-dollar coverage<br>
+      <span class="arrow">→</span> Costs shift toward the employee <span class="arrow">→</span> Costs rise again
+    </div>
+    <p class="question">Fee-for-service gave up cost control for freedom. HMOs gave up freedom for cost control. Consumer-driven plans keep the freedom and move the cost onto you. Which trade would you accept — and would your answer change if you were sick?</p>
+  </div>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="refs" id="refs">
+    <h2>Sources</h2>
+    <p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. BLS benefits estimates for March 2026 are scheduled for release on September 25, 2026; this page will be updated after they publish.</p>
+    <ol>
+      <li>U.S. Bureau of Labor Statistics, <i>Employee Benefits in the United States — March 2025</i>, USDL-25-1464, released September 25, 2025. Access, participation, take-up, and premium shares. <a href="https://www.bls.gov/news.release/pdf/ebs2.pdf">bls.gov/news.release/pdf/ebs2.pdf</a></li>
+      <li>U.S. Bureau of Labor Statistics, <i>High deductible health plans and health savings accounts</i> factsheet. HDHP availability 2015–2024 and 2024 deductible percentiles. <a href="https://www.bls.gov/ebs/factsheets/high-deductible-health-plans-and-health-savings-accounts.htm">bls.gov/ebs/factsheets</a></li>
+      <li>U.S. Bureau of Labor Statistics, <i>The Economics Daily</i>, plan network provisions, 2024. <a href="https://www.bls.gov/opub/ted/2025/18-percent-of-private-workers-who-participated-in-medical-care-plans-had-one-plan-network-in-2024.htm">bls.gov/opub/ted</a></li>
+      <li>IRS Rev. Proc. 2025-19 — 2026 HSA contribution limits, HDHP minimum deductibles and out-of-pocket maximums, excepted-benefit HRA limit.</li>
+      <li>IRS Rev. Proc. 2025-25 and 2025-26 — 2026 ACA affordability percentage (9.96%) and §4980H(a)/(b) penalty amounts ($3,340 / $5,010).</li>
+      <li>IRS Rev. Proc. 2025-32 — 2026 health FSA salary reduction limit ($3,400) and carryover ($680).</li>
+      <li>IRS Notice 2026-05 and Treasury/IRS guidance on the One Big Beautiful Bill Act's HSA provisions: permanent telehealth safe harbor, bronze and catastrophic plans, direct primary care. <a href="https://www.irs.gov/newsroom/treasury-irs-provide-guidance-on-new-tax-benefits-for-health-savings-account-participants-under-the-one-big-beautiful-bill">irs.gov newsroom</a> · <a href="https://www.irs.gov/pub/irs-drop/n-26-05.pdf">Notice 2026-05 (PDF)</a></li>
+      <li>HHS final rule, June 25, 2025 — revised 2026 ACA maximum annual limitation on cost sharing ($10,600 / $21,200).</li>
+      <li>KFF, <i>2025 Employer Health Benefits Survey</i>. Premiums, worker contributions, deductibles, self-funding, plan type prevalence. <a href="https://www.kff.org/health-costs/2025-employer-health-benefits-survey/">kff.org</a></li>
+      <li><i>Kennedy v. Braidwood Management</i>, decided June 27, 2025. ACA preventive services coverage requirement upheld 6–3. <a href="https://www.kff.org/affordable-care-act/kennedy-v-braidwood-the-supreme-court-upheld-aca-preventive-services-but-thats-not-the-end-of-the-story/">KFF analysis</a></li>
+      <li>U.S. Departments of Labor, Health and Human Services, and the Treasury, statement of non-enforcement regarding the 2024 MHPAEA final rule, May 15, 2025.</li>
+      <li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 5. Conceptual framework and definitions; statistical content superseded by the sources above.</li>
+    </ol>
+  </section>
+
+  </main>
+
+  <footer>
+    INS 432 / INS 532 — Employee Benefits · Chapter 5: Employer-Sponsored Health-Care Plans
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var money = function(n){
+    return "$" + Math.round(n).toLocaleString("en-US");
+  };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+
+  /* ---------- plan matcher ---------- */
+  var answers = {};
+  var matchResult = document.getElementById("matchResult");
+  var step2 = document.getElementById("step2");
+  var step3 = document.getElementById("step3");
+
+  function say(html){ matchResult.innerHTML = html; }
+
+  function evaluateMatch(){
+    if(answers[1] === "no"){
+      step2.hidden = true; step3.hidden = true;
+      say('<p class="big">Fee-for-service plan</p><p>No network means the member may use any licensed provider, and the insurer reimburses after the fact. Maximum choice, minimal cost control — which is why these have all but disappeared from the market.</p>');
+      return;
+    }
+    if(answers[1] === "yes"){
+      step2.hidden = false;
+      if(!answers[2]){
+        say('<p>Network confirmed. Answer question 2.</p>');
+        return;
+      }
+      step3.hidden = false;
+      if(!answers[3]){
+        say('<p>Almost there. Answer question 3.</p>');
+        return;
+      }
+      if(answers[2] === "no" && answers[3] === "yes"){
+        say('<p class="big">HMO</p><p>A network with no nonemergency care outside it, plus a primary care physician acting as gatekeeper. Prepaid rather than reimbursed, with nominal copayments. The strictest cost control of the managed care family.</p>');
+      } else if(answers[2] === "no" && answers[3] === "no"){
+        say('<p class="big">EPO — exclusive provider organization</p><p>Reimburses only inside the network, like an HMO, but without requiring a primary care physician. A more restrictive cousin of the PPO.</p>');
+      } else if(answers[2] === "yes" && answers[3] === "yes"){
+        say('<p class="big">POS — point-of-service plan</p><p>Combines fee-for-service and HMO features: a primary care physician coordinates care, but the member may still go outside the network at higher cost.</p>');
+      } else {
+        say('<p class="big">PPO — preferred provider organization</p><p>A selected network at reduced reimbursement rates, no gatekeeper, and out-of-network care available at a higher price. The most common design in employer-sponsored coverage.</p>');
+      }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(btn){
+    btn.addEventListener("click", function(){
+      var q = btn.getAttribute("data-q");
+      var v = btn.getAttribute("data-v");
+      answers[q] = v;
+      if(q === "1"){ delete answers[2]; delete answers[3]; }
+      if(q === "2"){ delete answers[3]; }
+      Array.prototype.forEach.call(document.querySelectorAll('.opt[data-q="' + q + '"]'), function(sib){
+        sib.setAttribute("aria-pressed", sib === btn ? "true" : "false");
+      });
+      if(q === "1"){
+        Array.prototype.forEach.call(document.querySelectorAll('.opt[data-q="2"],.opt[data-q="3"]'), function(s){ s.setAttribute("aria-pressed","false"); });
+      }
+      if(q === "2"){
+        Array.prototype.forEach.call(document.querySelectorAll('.opt[data-q="3"]'), function(s){ s.setAttribute("aria-pressed","false"); });
+      }
+      evaluateMatch();
+    });
+  });
+
+  document.getElementById("matchReset").addEventListener("click", function(){
+    answers = {};
+    step2.hidden = true; step3.hidden = true;
+    Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){ b.setAttribute("aria-pressed","false"); });
+    say("<p>Answer question 1 to begin.</p>");
+  });
+
+  /* ---------- cost-sharing calculator ---------- */
+  document.getElementById("calcBtn").addEventListener("click", function(){
+    var bill = num(document.getElementById("billAmt"), 0);
+    var ded  = num(document.getElementById("dedAmt"), 0);
+    var coin = Math.min(100, num(document.getElementById("coinPct"), 0)) / 100;
+    var oop  = num(document.getElementById("oopMax"), 0);
+
+    var towardDed = Math.min(bill, ded);
+    var afterDed  = Math.max(0, bill - ded);
+    var coinShare = afterDed * coin;
+    var uncapped  = towardDed + coinShare;
+    var youPay    = Math.min(uncapped, oop);
+    var planPays  = bill - youPay;
+    var capped    = uncapped > oop;
+
+    var pct = bill > 0 ? Math.round((youPay / bill) * 100) : 0;
+
+    var html = '<p class="big">You pay ' + money(youPay) + ' · the plan pays ' + money(planPays) + '</p>';
+    html += '<div class="split"><div><b>Applied to deductible:</b> ' + money(towardDed) + '</div>';
+    html += '<div><b>Your coinsurance:</b> ' + money(coinShare) + ' (' + Math.round(coin*100) + '% of ' + money(afterDed) + ')</div></div>';
+    if(capped){
+      html += '<p><b>The out-of-pocket maximum kicked in.</b> Your share would have been ' + money(uncapped) + ', but the cap held it to ' + money(oop) + '. This is the provision that stands between a serious illness and financial ruin.</p>';
+    }
+    html += '<p>Your share is <b>' + pct + '%</b> of the total bill — before counting a single dollar of premium, which you also pay every month whether you use care or not.</p>';
+    document.getElementById("calcResult").innerHTML = html;
+  });
+
+  /* ---------- CDHP three tiers ---------- */
+  document.getElementById("cdBtn").addEventListener("click", function(){
+    var bal = num(document.getElementById("hsaBal"), 0);
+    var ded = num(document.getElementById("cdDed"), 0);
+    var exp = num(document.getElementById("cdExp"), 0);
+
+    var owedBeforePlan = Math.min(exp, ded);
+    var tier1 = Math.min(bal, owedBeforePlan);
+    var tier2 = Math.max(0, owedBeforePlan - bal);
+    var tier3 = Math.max(0, exp - ded);
+    var leftover = Math.max(0, bal - owedBeforePlan);
+
+    var html = '<p class="big">Tier 1: ' + money(tier1) + ' · Tier 2: ' + money(tier2) + ' · Tier 3: ' + money(tier3) + '</p>';
+    html += '<p><b>Tier 1 — pretax account.</b> ' + money(tier1) + ' of the account balance goes toward the deductible.';
+    if(leftover > 0){ html += ' ' + money(leftover) + ' stays in the account and rolls forward.'; }
+    html += '</p>';
+    html += '<p><b>Tier 2 — coverage gap.</b> ';
+    if(tier2 > 0){
+      html += 'The account ran ' + money(tier2) + ' short of what was owed before the plan pays. That comes out of pocket.';
+    } else {
+      html += 'None. The account covered everything owed before the plan starts paying.';
+    }
+    html += '</p>';
+    html += '<p><b>Tier 3 — the plan.</b> ';
+    if(tier3 > 0){
+      html += 'Expenses exceeded the deductible by ' + money(tier3) + ', and the plan pays that amount.';
+    } else {
+      html += 'Not reached. Total expenses of ' + money(exp) + ' never met the ' + money(ded) + ' deductible, so the plan pays nothing this year — even though the employee carried coverage all along.';
+    }
+    html += '</p>';
+    document.getElementById("cdResult").innerHTML = html;
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){
+        defBox.textContent = "Select a term above.";
+      } else {
+        btn.setAttribute("aria-expanded","true");
+        defBox.innerHTML = "<b>" + btn.textContent + ".</b> " + btn.getAttribute("data-def");
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+})();
+</script>
+</body>
+</html>
