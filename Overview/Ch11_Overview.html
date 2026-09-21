@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'none'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 11 — Contingent Workers and Remote Work Arrangements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+
+  /* ---------- critical-thinking block ---------- */
+  .think{margin-top:8px;background:var(--card);border:2px solid var(--plum);border-radius:12px;padding:24px;}
+  .think-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--plum);color:#fff;padding:3px 9px;border-radius:3px;margin-bottom:10px;}
+  .think h3{font-size:20px;color:var(--plum-deep);margin-bottom:10px;}
+  .think .scenario{font-size:15px;color:var(--ink-soft);}
+  .think ol.ask{margin:8px 0 16px;padding-left:22px;}
+  .think ol.ask li{font-size:15px;color:var(--ink);margin-bottom:8px;}
+  .think label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .think textarea{width:100%;padding:11px 12px;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);border:1px solid #8A8F96;border-radius:6px;background:#fff;resize:vertical;}
+  .think .hint{font-size:13px;color:#5A6169;}
+  .think .btn{background:#fff;color:var(--plum-deep);border-color:var(--plum);}
+  .think .btn:hover{background:var(--plum-tint);}
+  .think .guide{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);border-radius:4px;padding:16px 20px;}
+  .think .guide[hidden]{display:none;}
+  .think .guide p{color:var(--plum-deep);font-size:14.5px;margin:0 0 8px;}
+  .think .guide ul{margin:0;padding-left:20px;}
+  .think .guide li{font-size:14.5px;color:var(--plum-deep);margin-bottom:8px;}
+  .think .guide b{color:var(--plum-deep);}
+  @media print{ .think textarea{border-color:#999;} .think .guide[hidden]{display:block;} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<header class="top">
+<div class="eyebrow">INS 432 / INS 532</div>
+<h1 class="title">Chapter 11: Contingent Workers and Remote Work Arrangements</h1>
+<p class="subtitle">Not everyone who does a company's work is its employee. Who counts as an employee, who is responsible for each worker's benefits, and what changes when the workplace is a living room are legal questions with real money attached.</p>
+<div class="big-idea"><b>Big idea:</b> Benefits follow legal status. Whether a worker is an employee of the company, of a temp agency, of a lease company, or of no one, the label decides who owes workers' compensation, retirement-plan access, and health-plan obligations. So the central skill is not memorizing four categories. It is asking <b>who controls the work, who employs the worker for which purpose, and what happens if the label turns out to be wrong</b>.</div>
+<div class="notice" role="note"><h2>⚠ About the numbers on this page</h2><p>The textbook's Chapter 11 runs on <b>2020–2021 data and law</b>. Its March 2020 benefits access figures, its report that a court struck down California's Proposition 22, and its three-year test for long-term part-time employees have all been overtaken: the California Supreme Court upheld Proposition 22 in 2024, SECURE 2.0 shortened the part-time test to two years, BLS ran its first contingent-worker survey since 2017, and the Department of Labor is rewriting the federal contractor test. Remote work has also settled from a pandemic necessity into a stable share of the workforce.</p><p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (BLS, the Department of Labor, court decisions, and federal statutes) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker; where the textbook is wrong, you'll see <span class="upd">Corrected</span>. Use these numbers, not the book's, on quizzes and papers.</p></div>
+</header>
+<main id="main">
+<section><div class="section-label">Our roadmap for Chapter 11</div><div class="roadmap-grid"><div class="rm-card"><div class="rm-num">1</div><h3>Four kinds of contingent worker</h3><p>The BLS groups, and how big each is.</p></div><div class="rm-card"><div class="rm-num">2</div><h3>Part-time employees</h3><p>Legally employees, but with a different cost and benefits profile.</p></div><div class="rm-card"><div class="rm-num">3</div><h3>Temporary and leased workers</h3><p>Who is the employer when a third party is involved?</p></div><div class="rm-card"><div class="rm-num">4</div><h3>Independent contractors</h3><p>The tests for status, and what changed since the book.</p></div><div class="rm-card"><div class="rm-num">5</div><h3>Benefits for each group</h3><p>Who owes what, in one table.</p></div><div class="rm-card"><div class="rm-num">6</div><h3>Remote work</h3><p>Same benefits, new questions about workers' compensation.</p></div></div></section>
+<section><div class="section-label">Part One: Who counts as contingent?</div><h2 class="section-title">Workers without a promise of ongoing work</h2><p>An <b>employee</b> expects long-term or indefinite employment. A <b>contingent worker</b> has no implicit or explicit contract for ongoing employment. The Bureau of Labor Statistics (BLS) treats the difference as a matter of expectation, and the textbook sorts contingent workers into four groups:</p><div class="plan-grid"><div class="plan-card"><h3>Part-time employees</h3><p>Fewer than 35 hours a week, by choice or not.</p></div><div class="plan-card"><h3>Temporary and on-call employees</h3><p>Fill in for absent employees or cover busy periods.</p></div><div class="plan-card"><h3>Leased employees</h3><p>Placed by a lease company in a client firm, usually for a year or more.</p></div><div class="plan-card"><h3>Independent contractors, freelancers, and consultants</h3><p>Set up working relationships on their own.</p></div></div><h3 class="sub">How big is the contingent workforce?</h3><div class="stat-row"><div class="stat"><div class="num">6.9 million</div><div class="lbl">workers, or <b>4.3% of the employed</b>, held contingent jobs in July 2023, up from 3.8% in 2017. The textbook cites nearly 6 million</div><div class="src">BLS, Nov. 2024</div></div><div class="stat"><div class="num">11.9 million</div><div class="lbl">workers, <b>7.4% of all employment</b>, were independent contractors. Another 2.8 million (1.7%) were on-call workers</div><div class="src">BLS, July 2023</div></div><div class="stat alt"><div class="num">0.6%</div><div class="lbl">of workers were <b>temporary help agency</b> workers in 2023, down from 1.0% in 1995. Independent contracting held near 7%</div><div class="src">BLS</div></div></div><p style="margin-top:16px;"><span class="upd">Updated</span> Contingent work is concentrated among the young: the contingent rate was <b>12.9%</b> for workers ages 16 to 24 versus <b>3.1%</b> for workers 25 and older.</p><div class="callout"><p><b>Two BLS measures, not one.</b> BLS measures <i>contingent</i> work (a job the person does not expect to last) separately from <i>alternative arrangements</i> (independent contractor, on-call, temporary help agency, or contract firm). They overlap only partly: of 16.3 million workers in alternative arrangements, 1.6 million (9.8%) were also contingent. A long-term independent contractor is in an alternative arrangement but not contingent.</p></div></section>
+<section><div class="section-label">Part Two: Part-time employees</div><h2 class="section-title">Part-time work: legally an employee, practically a savings</h2><p>The BLS defines a <b>part-time worker</b> as someone who works fewer than 35 hours a week. A <b>voluntary</b> part-time employee chooses that schedule. An <b>involuntary</b> part-time employee works fewer than 35 hours because full-time work is unavailable. Companies that employ part-time workers are their <b>legal employers</b>, exactly as they are for full-time employees. Whether they award discretionary benefits is what suggests the worker's status.</p><div class="stat-row"><div class="stat"><div class="num">4.4 million</div><div class="lbl">people were part-time <b>for economic reasons</b> in August 2026, because hours were cut or full-time work was unavailable</div><div class="src">BLS Employment Situation, Aug. 2026</div></div><div class="stat"><div class="num">87% vs 25%</div><div class="lbl">of full-time versus part-time private industry workers had <b>access to medical care benefits</b> in March 2025</div><div class="src">BLS, March 2025</div></div><div class="stat alt"><div class="num">$17.03 vs $5.05</div><div class="lbl">employer cost per hour worked for <b>benefits</b>, full-time versus part-time private industry workers, in June 2026</div><div class="src">BLS ECEC, June 2026</div></div></div><p style="margin-top:16px;"><span class="upd">Updated</span> The textbook's 2020 figures were hourly pay of $14.98 for part-time and $28.54 for full-time workers, and hourly benefit costs of $4.00 versus $12.98. In June 2026, total compensation was <b>$54.00</b> an hour for full-time workers ($36.97 in wages and $17.03 in benefits) and <b>$25.20</b> for part-time workers ($20.15 and $5.05). Benefits are 31.5% of full-time compensation cost and 20.0% of part-time.</p>
+<p>Noneconomic reasons, such as school or family, explain nearly 80% of part-time work in the textbook's data, and I did not find a newer national figure for that share. Most employers do not provide discretionary benefits to part-time workers, though practices vary widely. Where part-timers do get paid time off, the annual cost is lower because they get fewer days or none.</p><div class="tool"><h3>Try it: the cost gap between full-time and part-time labor</h3><p class="hint">Enter the total hours of work you need covered in a year. The calculator prices those hours at the <b>national average</b> employer cost per hour worked for full-time and for part-time private industry workers. Use it to see the size of the benefits gap, not to price a real job: part-time jobs differ from full-time jobs, so these averages are not a like-for-like comparison.</p><div class="grid2"><div class="field"><label for="cpHours">Hours of work to be covered in a year</label><input type="number" id="cpHours" value="2080" min="0" step="40"></div></div><button type="button" class="btn" id="cpBtn">Calculate</button><div class="result" id="cpResult" role="status" aria-live="polite"><p>Enter hours and select Calculate.</p></div></div><h3 class="sub">The legal floor: three rules that reach part-timers</h3><div class="factor-list"><div class="factor"><span class="dot"></span><p><b>The Affordable Care Act.</b> An employer is not required to offer health coverage to workers under about <b>130 hours a month</b>. A part-time worker who does receive health insurance is entitled to <b>COBRA</b> continuation coverage.</p></div><div class="factor"><span class="dot"></span><p><b>Retirement plans.</b> Employers may have to include part-time employees who are at least 21 and complete 1,000 hours in a 12-month period.</p></div><div class="factor"><span class="dot"></span><p><b>The SECURE Acts.</b> Congress added a path for <b>long-term part-time employees</b>: those who work at least 500 but fewer than 1,000 hours in each of several consecutive years.</p></div></div><div class="callout"><p><span class="upd">Corrected</span> <b>The two-year rule.</b> The textbook says the SECURE Act requires <b>three</b> consecutive years of 500 hours. Since plan years beginning in 2025, <b>SECURE 2.0</b> requires only <b>two</b> consecutive 12-month periods. The employee must be at least 21, and the plan must allow <b>elective deferrals</b> (no employer contribution is required). Periods beginning before 2023 do not count toward the two-year test, and the rule now also reaches 403(b) plans covered by ERISA. Hours in each qualifying year count toward vesting if the plan makes employer contributions.</p></div><div class="tool"><h3>Try it: has this part-time employee earned the right to defer?</h3><p class="hint">Enter the employee's age and hours of service in each of the last three <b>12-month periods</b>, oldest first. Only periods beginning on or after January 1, 2023 count toward the two-year test.</p><div class="grid2"><div class="field"><label for="ltAge">Age</label><input type="number" id="ltAge" value="24" min="0" step="1"></div></div><div class="grid2"><div class="field"><label for="ltH1">Hours, period 1 (oldest)</label><input type="number" id="ltH1" value="620" min="0" step="10"></div><div class="field"><label for="ltH2">Hours, period 2</label><input type="number" id="ltH2" value="540" min="0" step="10"></div></div><div class="grid2"><div class="field"><label for="ltH3">Hours, period 3 (most recent)</label><input type="number" id="ltH3" value="480" min="0" step="10"></div></div><button type="button" class="btn" id="ltBtn">Check eligibility</button><div class="result" id="ltResult" role="status" aria-live="polite"><p>Enter the hours and select Check eligibility.</p></div></div></section>
+<section><div class="section-label">Part Three: Temporary, on-call, and leased workers</div><h2 class="section-title">Who is the employer when a third party is involved?</h2><p><b>Temporary and on-call</b> workers fill in for employees on approved leave and cover busy periods. A <b>temporary employment agency</b> is the most common source; it is the workers' legal employer for most purposes, screens them, pays them, evaluates their performance, and trains them. Employers have two other routes: <b>direct hire</b> arrangements, which typically keep the worker under 1,000 hours over 12 months (below the ERISA threshold for qualified retirement plan participation), and <b>on-call</b> arrangements, in which the hiring company employs the worker when called and takes responsibility for HR, including benefits.</p>
+<p><b>Leased employees</b> are placed with a client by a <b>lease company</b> under a contract that typically runs a year or longer. The lease company bills the client the direct costs of employing the worker plus a fixed fee, either a fixed percentage of the client's payroll or a fixed amount per employee. The law treats the lease company and the client as <b>co-employers</b>, which affects who provides benefits.</p><table class="tbl"><caption>Temporary agencies and lease companies compared</caption><thead><tr><th scope="col"></th><th scope="col">Temporary employment agency</th><th scope="col">Lease company</th></tr></thead><tbody><tr><td><b>Length of placement</b></td><td>Short-term, often days or weeks, possibly at many different companies</td><td>Lasts for the contract with the client, typically a year or more</td></tr><tr><td><b>Legal employer for required benefits</b></td><td>The agency (workers' compensation is more complex; see Part Five)</td><td>The lease company</td></tr><tr><td><b>Legal employer for discretionary benefits</b></td><td>Host companies typically provide none</td><td>The lease company <i>and</i> the client, which makes it more complicated</td></tr><tr><td><b>What happens at the end</b></td><td>The agency places the worker elsewhere</td><td>The worker may move to another client or become unemployed</td></tr></tbody></table><p style="margin-top:14px;">A lease company can also make sense for reasons beyond labor cost: it takes over W-2 forms, IRS reporting, payroll administration, and unemployment insurance administration, and it can pool many employers' workers to negotiate better benefits. The SECURE Act extended this idea to retirement with <b>pooled employer plans</b>, which let smaller employers join one plan to negotiate lower fees.</p></section>
+<section><div class="section-label">Part Four: Independent contractors</div><h2 class="section-title">Employee or contractor? The label is a legal conclusion</h2><p><b>Independent contractors, freelancers, and consultants</b> set up working relationships with companies on their own, not through an agency or lease company. They usually have specialized skills in short supply, and they take gigs when they choose to. Phone apps now link contractors to customers; drivers for Uber, or deliverers for DoorDash and Instacart, are the familiar examples.</p>
+<p>The stakes are high because companies owe <b>nothing</b> in workers' compensation premiums (unless a state requires it) and are not bound by ERISA, the FMLA, the NLRA, Title VII, the ADEA, the ADA, GINA, the ACA, or the SECURE Act for genuine contractors. That is why the test for status matters. Courts and agencies use three: the <b>common-law test</b>, the <b>economic realities test</b>, and a <b>hybrid</b>.</p><div class="two-col"><div class="col-card a"><h3>Common-law test (control)</h3><ul><li>Developed by judges, case by case</li><li>Asks whether the employer has the <b>right to control</b> the worker</li><li>The IRS sorts the evidence into <b>behavioral</b>, <b>financial</b>, and <b>type-of-relationship</b> categories</li></ul></div><div class="col-card b"><h3>Economic realities test</h3><ul><li>Applied mainly under the Fair Labor Standards Act (FLSA)</li><li>Asks whether the worker is <b>financially dependent</b> on the company for work</li><li>A worker who depends on someone else's business for continued work is classified as an employee</li></ul></div></div><div class="tool"><h3>Try it: which way does the evidence lean?</h3><p class="hint">The IRS groups the evidence of control and independence into three categories. Check every statement that is true of the working relationship. <b>This is a teaching tool, not legal advice.</b> Agencies and courts weigh all the facts, and some states use stricter tests.</p><div class="field"><fieldset style="border:0;padding:0;margin:0;"><legend style="font-weight:600;font-size:13.5px;margin-bottom:6px;">Behavioral</legend><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c1"> The company decides how, when, and where the work is done</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c2"> The company trains the worker in its methods</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c3"> The company gives instructions and evaluates how the work is done</label></fieldset></div><div class="field"><fieldset style="border:0;padding:0;margin:0;"><legend style="font-weight:600;font-size:13.5px;margin-bottom:6px;">Financial</legend><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c4"> The worker is paid by the hour or a set salary, not per project</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c5"> The company supplies tools and reimburses business expenses</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c6"> The worker has no real chance of profit or loss</label></fieldset></div><div class="field"><fieldset style="border:0;padding:0;margin:0;"><legend style="font-weight:600;font-size:13.5px;margin-bottom:6px;">Type of relationship</legend><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c7"> A written contract promises benefits or a continuing relationship</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c8"> The relationship is expected to continue indefinitely</label><label style="display:block;margin-bottom:6px;font-weight:400;"><input type="checkbox" id="c9"> The work is a key part of the company's regular business</label></fieldset></div><button type="button" class="btn" id="clBtn">Score it</button><div class="result" id="clResult" role="status" aria-live="polite"><p>Check the statements that apply and select Score it.</p></div></div><h3 class="sub">What changed since the textbook</h3><div class="factor-list"><div class="factor"><span class="dot"></span><p><span class="upd">Updated</span> <b>The federal test keeps moving.</b> A 2024 Department of Labor rule used a six-factor, totality-of-the-circumstances test. In May 2025 the DOL stopped enforcing it (Field Assistance Bulletin 2025-1), and on <b>February 26, 2026</b> it proposed replacing it with a five-factor test that weights two "core" factors most: the degree of <b>control</b> and the worker's <b>opportunity for profit or loss</b>. The proposal would also apply to FMLA coverage. Comments closed April 28, 2026. I did not find a final rule, so check dol.gov before relying on it.</p></div><div class="factor"><span class="dot"></span><p><span class="upd">Updated</span> <b>California's Proposition 22.</b> The textbook reports an August 2021 ruling striking it down. On <b>July 25, 2024</b>, the California Supreme Court <b>unanimously upheld</b> it in <i>Castellanos v. State of California</i>. App-based rideshare and delivery drivers may be classified as independent contractors, but companies must provide benefits such as a health care subsidy and occupational accident insurance.</p></div><div class="factor"><span class="dot"></span><p><b>State law can be stricter than federal law.</b> States such as California, Massachusetts, and New Jersey apply their own, tougher tests, so a worker who passes the federal test may still be an employee under state law.</p></div></div></section>
+<section><div class="section-label">Part Five: Benefits for each group</div><h2 class="section-title">Who owes what</h2><p>Whatever the label, every company that uses contingent workers has some liability under federal and state law: <b>overtime and minimum wage</b> under the FLSA, <b>workers' compensation</b> premiums, and <b>nondiscriminatory benefits practices</b> under ERISA, the NLRA, Title VII, the ADA, the ADEA, GINA, the ACA, and the SECURE Act. Temporary agencies and lease companies are liable under these laws, but the host or client can be legally responsible too.</p><table class="tbl"><caption>Legal employer and key benefit rules, by group</caption><thead><tr><th scope="col">Group</th><th scope="col">Who is the legal employer?</th><th scope="col">Benefit rules that matter</th></tr></thead><tbody><tr><td><b>Part-time</b></td><td>The company, as for full-time staff</td><td>Most companies do not offer discretionary benefits. ACA coverage is not required below about 130 hours a month. COBRA applies if health insurance is offered. SECURE 2.0's two-year rule reaches long-term part-timers.</td></tr><tr><td><b>Temporary</b></td><td>The agency, for most laws</td><td>The <b>dual employer common-law doctrine</b> makes temporary workers employees of both the agency and the client for workers' compensation. The written contract says whose policy applies. Host companies typically provide no discretionary benefits.</td></tr><tr><td><b>Leased</b></td><td>The lease company for required benefits; both lease company and client for discretionary benefits</td><td>Leased employees may join the client's qualified retirement plans, but the lease company becomes responsible for retirement benefits when the <b>safe harbor rule</b> is met. The client remains responsible for group medical and life insurance, educational assistance, and COBRA continuation.</td></tr><tr><td><b>Independent contractor</b></td><td>The worker, if genuinely independent</td><td>No workers' compensation premiums (unless a state requires) and no coverage under most federal employment and benefits laws. Misclassification is the main risk.</td></tr></tbody></table><div class="callout"><p><b>Why the label is a temptation.</b> The average gap in benefit cost between a full-time and a part-time hour is about $12 (June 2026: $17.03 versus $5.05). A company that saves that by choosing a label carries the risk that the label is wrong: back pay, unpaid payroll taxes, and benefits owed retroactively.</p></div></section>
+<section><div class="section-label">Part Six: Remote work</div><h2 class="section-title">Working from home: same law, new questions</h2><p><b>Remote work</b> and <b>telecommuting</b> are nearly the same. The term <i>remote work</i> gained currency as a pandemic necessity; <b>telecommuting</b> is a negotiated flexible arrangement in which employees work at home or another location. The potential benefits for employers are higher productivity, lower overhead for office space and supplies, and help with recruiting and retention. The concerns are the loss of direct contact, which makes performance appraisal harder, and employees who feel that remote work disrupts their lives or isolates them.</p><div class="stat-row"><div class="stat"><div class="num">22.6%</div><div class="lbl">of employed people <b>teleworked</b> in March 2026. Women (24.9%) were more likely than men (20.5%)</div><div class="src">BLS, The Economics Daily</div></div><div class="stat alt"><div class="num">19.5%</div><div class="lbl">was the telework rate in August 2023, and the rate stayed between 17.9% and 20.0% from October 2022 through August 2023</div><div class="src">BLS, telework highlights</div></div></div><p style="margin-top:14px;"><span class="upd">Updated</span> Remote work did not disappear after the pandemic; it settled near one worker in five. (The rate is not seasonally adjusted, so compare months with care.)</p><h3 class="sub">Benefits for a remote workforce</h3><p>Most companies offer the <b>same benefits regardless of work location</b>, and legally required benefits stay in force. Companies may emphasize benefits that help remote workers manage stress: telemedicine that includes counseling, financial education, and employee assistance programs. The unsettled question is <b>workers' compensation</b>, which was built around injuries on company premises.</p><div class="tool"><h3>Try it: would workers' compensation likely cover this?</h3><p class="hint">In general, workers' compensation applies to home-based incidents when they happen <b>because of and while performing job duties</b>. Pick a situation. State laws and court rulings vary, and some contradict each other.</p><div class="field"><label for="wcSel">Situation</label><select id="wcSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="">Select a situation…</option><option value="trip">A remote employee trips on a cord while walking to the printer during work hours</option><option value="rsi">A remote employee develops wrist strain from eight-hour days at a home workstation</option><option value="laundry">A remote employee slips on the stairs while carrying laundry during lunch</option><option value="errand">A remote employee is injured driving to a personal errand during the workday</option></select></div><div class="result" id="wcResult" role="status" aria-live="polite"><p>Choose a situation to begin.</p></div></div><h3 class="sub">How companies limit their risk</h3><div class="factor-list"><div class="factor"><span class="dot"></span><p>Write a <b>telecommuting policy</b> that states the employer's expectations for people who work from home.</p></div><div class="factor"><span class="dot"></span><p>Set <b>home office guidelines</b>: a designated work area and training on workstation setup, safety, and ergonomics.</p></div><div class="factor"><span class="dot"></span><p>Where possible, conduct <b>periodic checks</b> of home offices. The instructor's materials note that privacy laws and health concerns can make this impractical.</p></div><div class="factor"><span class="dot"></span><p>Set <b>fixed work hours</b> and meal and rest periods for telecommuters, so it is clear when an injury happened during work.</p></div></div><p style="margin-top:12px;">These steps sound straightforward, but the reality is not: workers' compensation laws vary by state, courts rule differently, and legal advice is often needed.</p></section>
+<section><h2 class="section-title">Key terms — check yourself</h2><p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p><div class="terms" id="termList"><button type="button" class="term" aria-expanded="false" data-def="A worker with no implicit or explicit contract for ongoing employment.">Contingent worker</button><button type="button" class="term" aria-expanded="false" data-def="By the BLS definition, a worker who performs job duties fewer than 35 hours a week.">Part-time employee</button><button type="button" class="term" aria-expanded="false" data-def="A worker who willingly works fewer than 35 hours in a regularly scheduled workweek.">Voluntary part-time employee</button><button type="button" class="term" aria-expanded="false" data-def="A worker who works fewer than 35 hours a week because full-time work is unavailable or hours were cut.">Involuntary part-time employee</button><button type="button" class="term" aria-expanded="false" data-def="Under SECURE 2.0, an employee at least 21 who completes at least 500 but fewer than 1,000 hours of service in each of two consecutive 12-month periods, and who must be allowed to make elective deferrals to the 401(k) plan.">Long-term part-time employee</button><button type="button" class="term" aria-expanded="false" data-def="A firm that supplies temporary workers, screens and pays them, and is their legal employer for most purposes.">Temporary employment agency</button><button type="button" class="term" aria-expanded="false" data-def="A way of hiring temporary workers directly, typically for fewer than 1,000 hours over 12 months, which stays under the ERISA retirement plan participation threshold.">Direct hire arrangement</button><button type="button" class="term" aria-expanded="false" data-def="A practice of engaging workers occasionally when the company needs them. When employed, on-call workers are employees of the hiring company.">On-call arrangement</button><button type="button" class="term" aria-expanded="false" data-def="A firm that employs workers and places them in client companies under a contract, typically for a year or longer, billing the client for direct costs plus a fixed fee.">Lease company</button><button type="button" class="term" aria-expanded="false" data-def="The legal arrangement in which a lease company and its client are both treated as employers, which affects who provides employee benefits.">Co-employment</button><button type="button" class="term" aria-expanded="false" data-def="A worker who sets up a working relationship with a company on his or her own, has specialized skills, and takes assignments when he or she chooses. Freelancers and consultants are included.">Independent contractor</button><button type="button" class="term" aria-expanded="false" data-def="A test developed by courts of whether the employer has the right to control the worker, using behavioral, financial, and type-of-relationship evidence.">Common-law test</button><button type="button" class="term" aria-expanded="false" data-def="A test applied mainly under the FLSA that asks whether a worker is financially dependent on the company for work.">Economic realities test</button><button type="button" class="term" aria-expanded="false" data-def="The rule that temporary workers are employees of both the temporary agency and the client company for workers&#x27; compensation. The written contract says whose policy applies.">Dual employer doctrine</button><button type="button" class="term" aria-expanded="false" data-def="The conditions under which a lease company, rather than the client, is responsible for a leased employee&#x27;s retirement benefits.">Safe harbor rule</button><button type="button" class="term" aria-expanded="false" data-def="A retirement plan created under the SECURE Act that lets smaller employers join together to negotiate lower fees.">Pooled employer plan</button><button type="button" class="term" aria-expanded="false" data-def="A negotiated flexible work arrangement in which employees work at home or another location besides the office.">Telecommuting</button></div><div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div></section>
+<section><div class="section-label">Learning objectives</div><h2 class="section-title">Four learning objectives</h2><div class="obj-list"><div class="obj-item"><div class="obj-num">1</div><p>Understand the four groups of contingent workers.</p></div><div class="obj-item"><div class="obj-num">2</div><p>Understand the benefits issues for contingent workers.</p></div><div class="obj-item"><div class="obj-num">3</div><p>Understand how remote work arrangements function.</p></div><div class="obj-item"><div class="obj-num">4</div><p>Understand the benefits issues for remote work arrangements.</p></div></div></section>
+<section><h2 class="section-title">Check your understanding</h2><p>Five questions. Feedback appears as soon as you answer. This is practice, not graded, but the graded quiz works the same way.</p><div class="quiz-q" data-answer="c"><fieldset><legend>1. Ana works 28 hours a week at a store because she cannot find a full-time job. The BLS would classify her as a:</legend><label><input type="radio" name="q1" value="a"> Voluntary part-time employee</label><label><input type="radio" name="q1" value="b"> Temporary employee</label><label><input type="radio" name="q1" value="c"> Involuntary part-time employee</label><label><input type="radio" name="q1" value="d"> Leased employee</label></fieldset><div class="fb" data-right="Correct. She works fewer than 35 hours because full-time work is unavailable, which is involuntary part-time work." data-wrong="A voluntary part-time employee chooses fewer than 35 hours. Ana works part-time because she cannot find full-time work, so she is involuntary part-time."></div></div><div class="quiz-q" data-answer="a"><fieldset><legend>2. Under SECURE 2.0, an employee must be allowed to make elective deferrals to a 401(k) plan after completing 500 or more hours in how many consecutive 12-month periods (age 21 or older)?</legend><label><input type="radio" name="q2" value="a"> Two</label><label><input type="radio" name="q2" value="b"> Three</label><label><input type="radio" name="q2" value="c"> Four</label><label><input type="radio" name="q2" value="d"> One</label></fieldset><div class="fb" data-right="Correct. SECURE 2.0 shortened the requirement from three consecutive years to two for plan years beginning in 2025." data-wrong="The original SECURE Act required three consecutive years, but SECURE 2.0 shortened that to two beginning with plan years in 2025."></div></div><div class="quiz-q" data-answer="d"><fieldset><legend>3. A temporary worker is hurt at a client company's site. Under the dual employer common-law doctrine, the worker is an employee of:</legend><label><input type="radio" name="q3" value="a"> The client company only</label><label><input type="radio" name="q3" value="b"> The temporary agency only</label><label><input type="radio" name="q3" value="c"> Neither, because the work was temporary</label><label><input type="radio" name="q3" value="d"> Both the agency and the client company</label></fieldset><div class="fb" data-right="Correct. The written contract between the agency and the client specifies whose workers&#x27; compensation policy applies." data-wrong="The doctrine treats a temporary worker as an employee of both the agency and the client for workers&#x27; compensation."></div></div><div class="quiz-q" data-answer="b"><fieldset><legend>4. Which of the following is NOT one of the IRS categories of evidence under the common-law test?</legend><label><input type="radio" name="q4" value="a"> Behavioral</label><label><input type="radio" name="q4" value="b"> Geographic</label><label><input type="radio" name="q4" value="c"> Financial</label><label><input type="radio" name="q4" value="d"> Type of relationship</label></fieldset><div class="fb" data-right="Correct. The three IRS categories are behavioral, financial, and type of relationship. Geography is not one of them." data-wrong="The three categories are behavioral, financial, and type of relationship."></div></div><div class="quiz-q" data-answer="c"><fieldset><legend>5. What did the California Supreme Court decide about Proposition 22 in 2024?</legend><label><input type="radio" name="q5" value="a"> It struck the law down as unconstitutional</label><label><input type="radio" name="q5" value="b"> It sent the case back for a new trial</label><label><input type="radio" name="q5" value="c"> It unanimously upheld the law, allowing app-based drivers to be classified as independent contractors</label><label><input type="radio" name="q5" value="d"> It ruled that drivers must be treated as employees</label></fieldset><div class="fb" data-right="Correct. In Castellanos v. State of California (July 25, 2024), the court upheld Proposition 22. The textbook&#x27;s 2021 ruling striking it down did not stand." data-wrong="The California Supreme Court unanimously upheld Proposition 22 in July 2024, reversing the direction the textbook reports."></div></div><p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p></section>
+<section><div class="think"><div class="think-tag">Critical thinking</div><h3>Three ways to add 40 workers: which one is really cheapest?</h3><p class="scenario"><b>The situation.</b> A 220-employee regional grocery distributor needs 40 more workers for its warehouse and delivery routes. The VP of operations has three proposals: <b>(A)</b> hire 40 part-timers at 28 hours a week with no benefits, <b>(B)</b> contract the work to a staffing agency, or <b>(C)</b> engage the 15 delivery drivers as independent contractors using their own vehicles. She wants whichever is cheapest. Ten office employees are also asking to work remotely three days a week.</p><ol class="ask"><li>For each of the three options, <b>who is the legal employer</b> and which obligations stay with your company?</li><li>Identify at least <b>two legal risks</b> across the options and say how you would reduce each.</li><li>What <b>information would you gather</b> before deciding, and what would show that the "cheapest" option is not cheap?</li></ol><label for="thinkText">Your response</label><textarea id="thinkText" rows="9" placeholder="Take a position, then defend it. Aim for 200 to 300 words."></textarea><p class="hint" style="margin-top:6px;">Your response stays in your browser. It is not saved or submitted. Copy it into your course platform when you are done.</p><p style="margin-top:12px;"><button type="button" class="btn ghost" id="thinkBtn" aria-expanded="false" aria-controls="thinkGuide">Show what a strong answer weighs</button></p><div class="guide" id="thinkGuide" hidden><p><b>There is no single right answer. A strong response takes a position and shows it has weighed these points:</b></p><ul><li><b>Option A: part-timers.</b> The company is the legal employer. Watch the ACA's 130-hours-a-month line (28 hours a week is about 121 a month, but hours drift), COBRA for any who get health coverage, and SECURE 2.0: employees who reach 500 hours in each of two consecutive years and are 21 or older must be allowed to defer into the 401(k). Hours must be tracked, which is a cost.</li><li><b>Option B: a staffing agency.</b> The agency is the legal employer for most laws, but workers' compensation depends on the dual employer doctrine and the contract, and the host can still be legally responsible. The agency's markup replaces the benefits savings. Ask what the contract says about workers' compensation and who directs the work.</li><li><b>Option C: contractors.</b> The riskiest. Drivers who follow company routes and schedules, are paid by the hour, drive under the company's name, and do work that is central to the business look like employees under the common-law and economic-realities tests. The federal test is in flux (a 2024 rule, then non-enforcement, then a 2026 proposal), and state tests may be stricter. Misclassification can mean back pay, unpaid payroll taxes, and retroactive benefits.</li><li><b>Count the true cost.</b> The national average benefits gap is about $12 an hour, but the full cost includes turnover, training, supervision, agency markup, legal exposure, and the risk that part-time and contract workers are less committed. Compare total cost per productive hour, not the wage.</li><li><b>Remote work.</b> The same benefits and laws apply. A telecommuting policy, home-office guidelines, fixed work hours, and clear meal and rest periods reduce workers' compensation exposure. Ask whether the ten office employees' jobs actually need on-site presence.</li><li><b>A test and a stop rule.</b> Try option A with one route or one shift first, and track hours, turnover, injuries, and cost per hour worked. Decide in advance what result, such as turnover above the current rate, would make you switch.</li></ul></div></div></section>
+<div class="big-picture"><p class="lead">Follow the label to the liability.</p><h2>Ask who is responsible if the label is wrong.</h2><div class="flow">Cheaper label <span class="arrow">→</span> Fewer benefit obligations<br>A worker, agency, or regulator challenges the label<br><span class="arrow">→</span> Back pay, taxes, and benefits owed <span class="arrow">→</span> The savings disappear</div><p class="question">If you could save about $12 an hour in benefits by changing a worker's label, what should stop you: the law, your values, or the math? Would your answer change for a genuine freelancer?</p></div>
+<section class="refs" id="refs"><h2>Sources</h2><p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. BLS is scheduled to publish its March 2026 benefits estimates on September 25, 2026; this page should be refreshed after they publish. The Department of Labor's independent contractor proposal was not final when this page was written.</p><ol><li>U.S. Bureau of Labor Statistics, <i>Contingent and Alternative Employment Arrangements — July 2023</i>, USDL-24-2267 (November 8, 2024). 6.9 million contingent workers (4.3%); 11.9 million independent contractors (7.4%); on-call, temporary help, and contract firm workers; ages 16 to 24 versus 25 and older; and the BLS blog "Contingent jobs and alternative work arrangements: what you need to know" (2024) for 1995–2023 trends.</li><li>U.S. Bureau of Labor Statistics, <i>Employer Costs for Employee Compensation — June 2026</i> (September 9, 2026), and The Economics Daily, "Compensation costs for private industry workers averaged $46.89 per hour worked in June 2026." Full-time $54.00, part-time $25.20.</li><li>U.S. Bureau of Labor Statistics, <i>Employee Benefits in the United States — March 2025</i>, USDL-25-1464 (September 25, 2025). Medical care access for private industry full-time (87%) and part-time (25%) workers.</li><li>U.S. Bureau of Labor Statistics, <i>The Employment Situation — August 2026</i>: 4.4 million people employed part time for economic reasons.</li><li>U.S. Bureau of Labor Statistics, The Economics Daily, "22.6 percent of workers teleworked in March 2026"; and BLS, Telework in the United States, highlights (August 2023, 19.5%).</li><li>SECURE 2.0 Act of 2022, Sections 125 and 401 (long-term part-time employees), as summarized by Sidley Austin (2025), Groom Law Group on IRS Notice 2024-73 (2024), Ascensus (2024), and Falcon Rappaport &amp; Berkman (2026).</li><li>U.S. Department of Labor, Wage and Hour Division, Field Assistance Bulletin 2025-1 (May 1, 2025), and proposed rule, <i>Employee or Independent Contractor Status Under the FLSA, FMLA, and MSPA</i> (announced February 26, 2026; comments due April 28, 2026), as summarized by DLA Piper, Mayer Brown, Butler Snow, and Jackson Lewis.</li><li><i>Castellanos v. State of California</i>, 552 P.3d 406 (Cal. 2024) (July 25, 2024), as summarized by Perkins Coie, Reed Smith, and DLA Piper.</li><li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 11 and Instructor's Manual. Conceptual framework and definitions; statistical and legal content superseded by the sources above.</li></ol></section>
+</main>
+<footer>INS 432 / INS 532 — Employee Benefits · Chapter 11: Contingent Workers and Remote Work Arrangements</footer>
+</div>
+<script>
+(function(){
+"use strict";
+
+  /* Safe renderer: builds DOM nodes from a small allow-list of tags, so no raw HTML is ever injected */
+  var esc = function(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+  var ALLOWED = {P:1,B:1,I:1,DIV:1,SPAN:1,STRONG:1,EM:1,BR:1,UL:1,LI:1};
+  function safeHtml(target, html){
+    var doc = new DOMParser().parseFromString("<body>" + html, "text/html");
+    function copy(src, dst){
+      Array.prototype.forEach.call(src.childNodes, function(n){
+        if(n.nodeType === 3){ dst.appendChild(document.createTextNode(n.nodeValue)); }
+        else if(n.nodeType === 1 && ALLOWED[n.tagName]){
+          var e = document.createElement(n.tagName.toLowerCase());
+          var c = n.getAttribute("class");
+          if(c){ e.className = c.replace(/[^\w\- ]/g, ""); }
+          copy(n, e); dst.appendChild(e);
+        }
+      });
+    }
+    while(target.firstChild){ target.removeChild(target.firstChild); }
+    copy(doc.body, target);
+  }
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- part-time vs full-time cost gap ---------- */
+  $("cpBtn").addEventListener("click", function(){
+    var h = num($("cpHours"), 0);
+    var ft = {tot:54.00, w:36.97, b:17.03}, pt = {tot:25.20, w:20.15, b:5.05};
+    if(h <= 0){ safeHtml($("cpResult"), "<p>Enter the hours you need covered.</p>"); return; }
+    var html = '<p class="big">Benefits gap: ' + money(h * (ft.b - pt.b)) + " a year</p>";
+    html += "<p>Priced at national averages, " + h.toLocaleString("en-US") + " hours cost about <b>" + money(h * ft.tot) + "</b> with full-time labor (" + money(h * ft.w) + " in wages, " + money(h * ft.b) + " in benefits) and <b>" + money(h * pt.tot) + "</b> with part-time labor (" + money(h * pt.w) + " in wages, " + money(h * pt.b) + " in benefits).</p>";
+    html += "<p>The benefits gap is $" + (ft.b - pt.b).toFixed(2) + " per hour. Benefits are 31.5% of full-time compensation cost and 20.0% of part-time.</p>";
+    html += "<p>These are private industry averages from June 2026. They mix very different jobs, so use them to see the size of the gap, not to price a specific position.</p>";
+    safeHtml($("cpResult"), html);
+  });
+
+  /* ---------- long-term part-time checker ---------- */
+  $("ltBtn").addEventListener("click", function(){
+    var age = num($("ltAge"), 0), h = [num($("ltH1"),0), num($("ltH2"),0), num($("ltH3"),0)], html, pair = -1, i;
+    for(i = 0; i < 2; i++){ if(h[i] >= 500 && h[i+1] >= 500){ pair = i; } }
+    var over = h.some(function(x){ return x >= 1000; });
+    if(age < 21){
+      html = '<p class="big">Not yet: under age 21</p><p>The long-term part-time rule applies only to employees who are at least 21. Hours still accumulate.</p>';
+    } else if(pair >= 0){
+      html = '<p class="big">Yes: must be allowed to defer</p><p>Periods ' + (pair+1) + " and " + (pair+2) + " each show 500 or more hours. Under SECURE 2.0's two-year rule, a 401(k) plan must let this employee make <b>elective deferrals</b>, starting no later than the plan's next entry date. The plan is <b>not required</b> to make employer contributions.</p>";
+      if(over){ html += "<p>At least one period is 1,000 hours or more. Under most plans that is full eligibility on the regular rules, so the long-term part-time rule may not be the one that applies.</p>"; }
+    } else {
+      html = '<p class="big">Not yet</p><p>The employee needs at least 500 hours in <b>two consecutive</b> 12-month periods. Here, no two consecutive periods both reach 500.</p>';
+    }
+    html += "<p>Only periods beginning on or after January 1, 2023 count toward the two-year test, and the plan's eligibility rules determine the exact entry date.</p>";
+    safeHtml($("ltResult"), html);
+  });
+
+  /* ---------- worker classification scorer ---------- */
+  $("clBtn").addEventListener("click", function(){
+    var ids = ["c1","c2","c3","c4","c5","c6","c7","c8","c9"], on = ids.map(function(id){ return $(id).checked ? 1 : 0; });
+    var beh = on[0]+on[1]+on[2], fin = on[3]+on[4]+on[5], rel = on[6]+on[7]+on[8], total = beh+fin+rel, lean, text;
+    if(total <= 2){ lean = "Leans independent contractor"; text = "Few of the signs of control and dependence are present."; }
+    else if(total <= 5){ lean = "Mixed: get advice"; text = "The evidence points both ways. This is exactly where classification disputes arise."; }
+    else { lean = "Leans employee"; text = "Many signs of control and dependence are present."; }
+    var html = '<p class="big">' + lean + " (" + total + " of 9)</p><p>" + text + "</p>";
+    html += "<p>Behavioral: " + beh + " of 3. Financial: " + fin + " of 3. Type of relationship: " + rel + " of 3.</p>";
+    html += "<p>This is a teaching tool, not a legal test. Courts and agencies weigh all the facts, the federal standard is changing, and some states, such as California, use a stricter test. A contract that calls someone a contractor does not decide the question.</p>";
+    safeHtml($("clResult"), html);
+  });
+
+  /* ---------- remote work workers' comp sorter ---------- */
+  var wc = {
+    trip:["Likely covered","The injury happened while performing job duties, and location may be immaterial. Slips and falls during work are among the textbook's examples of likely qualifying injuries."],
+    rsi:["Likely covered","Repetitive stress injuries from work performed at a home workstation are the kind of injury the textbook lists as likely to qualify."],
+    laundry:["Likely not covered","This is a personal activity, not a job duty. Rules about breaks and lunch differ by state, so the answer can change with the facts and the state."],
+    errand:["Likely not covered","An injury during a personal errand did not happen because of and while performing job duties. Fixed work hours and clear meal and rest periods make these distinctions easier to prove."]
+  };
+  $("wcSel").addEventListener("change", function(){
+    var v = this.value, box = $("wcResult");
+    if(!v){ safeHtml(box, "<p>Choose a situation to begin.</p>"); return; }
+    safeHtml(box, '<p class="big">' + wc[v][0] + "</p><p>" + wc[v][1] + "</p><p>Workers' compensation laws vary by state, and courts sometimes disagree. Employers should consult legal experts.</p>");
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){ defBox.textContent = "Select a term above."; }
+      else {
+        btn.setAttribute("aria-expanded","true");
+        safeHtml(defBox, "<b>" + esc(btn.textContent) + ".</b> " + esc(btn.getAttribute("data-def")));
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+
+  /* ---------- critical thinking reveal ---------- */
+  var tBtn = document.getElementById("thinkBtn"), tGuide = document.getElementById("thinkGuide");
+  tBtn.addEventListener("click", function(){
+    var open = tBtn.getAttribute("aria-expanded") === "true";
+    tBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    tGuide.hidden = open;
+    tBtn.textContent = open ? "Show what a strong answer weighs" : "Hide the guide";
+  });
+})();
+</script>
+</body>
+</html>

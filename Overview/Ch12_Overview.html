@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'none'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 12 — Nonqualified Deferred Compensation Plans for Executives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+
+  /* ---------- critical-thinking block ---------- */
+  .think{margin-top:8px;background:var(--card);border:2px solid var(--plum);border-radius:12px;padding:24px;}
+  .think-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--plum);color:#fff;padding:3px 9px;border-radius:3px;margin-bottom:10px;}
+  .think h3{font-size:20px;color:var(--plum-deep);margin-bottom:10px;}
+  .think .scenario{font-size:15px;color:var(--ink-soft);}
+  .think ol.ask{margin:8px 0 16px;padding-left:22px;}
+  .think ol.ask li{font-size:15px;color:var(--ink);margin-bottom:8px;}
+  .think label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .think textarea{width:100%;padding:11px 12px;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);border:1px solid #8A8F96;border-radius:6px;background:#fff;resize:vertical;}
+  .think .hint{font-size:13px;color:#5A6169;}
+  .think .btn{background:#fff;color:var(--plum-deep);border-color:var(--plum);}
+  .think .btn:hover{background:var(--plum-tint);}
+  .think .guide{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);border-radius:4px;padding:16px 20px;}
+  .think .guide[hidden]{display:none;}
+  .think .guide p{color:var(--plum-deep);font-size:14.5px;margin:0 0 8px;}
+  .think .guide ul{margin:0;padding-left:20px;}
+  .think .guide li{font-size:14.5px;color:var(--plum-deep);margin-bottom:8px;}
+  .think .guide b{color:var(--plum-deep);}
+  @media print{ .think textarea{border-color:#999;} .think .guide[hidden]{display:block;} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<header class="top">
+<div class="eyebrow">INS 432 / INS 532</div>
+<h1 class="title">Chapter 12: Nonqualified Deferred Compensation Plans for Executives</h1>
+<p class="subtitle">Executives are paid in ways the rest of the workforce is not, because the tax code's limits and fairness rules for ordinary retirement plans do not fit their pay. The trade: more money set aside, in exchange for more risk, more scrutiny, and one very unforgiving tax law.</p>
+<div class="big-idea"><b>Big idea:</b> Every feature of executive compensation answers one question: <b>who bears the risk?</b> An unfunded promise leaves the executive exposed to the company's creditors. A stock option puts the executive at the mercy of the share price. A clawback or a parachute moves risk between the board, the executive, and shareholders. When you meet a plan, ask who is exposed if things go wrong, and who is watching.</div>
+<div class="notice" role="note"><h2>⚠ About the numbers on this page</h2><p>The textbook's Chapter 12 runs on <b>2021 tax limits and several outdated descriptions</b>. Its retirement-plan pay limits ($290,000, $230,000, and $58,000) are now $360,000, $290,000, and $72,000, and its $185,000 officer threshold is now $235,000. More important, its description of how stock options and phantom stock are taxed is wrong in ways that matter, it never mentions Section 409A (the tax law that governs nearly every deferral plan), and the SEC's clawback rule now forces public companies to recover pay after certain restatements, whether or not the executive did anything wrong. The SEC has also proposed reducing pay disclosure for most public companies.</p><p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (the IRS, the SEC, court and agency actions, and published pay studies) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker; where the textbook is wrong, you'll see <span class="upd">Corrected</span>. Use these numbers, not the book's, on quizzes and papers.</p></div>
+</header>
+<main id="main">
+<section><div class="section-label">Our roadmap for Chapter 12</div><div class="roadmap-grid"><div class="rm-card"><div class="rm-num">1</div><h3>Who is an executive?</h3><p>Key employees, highly compensated employees, and what NQDC is for.</p></div><div class="rm-card"><div class="rm-num">2</div><h3>Why nonqualified?</h3><p>Three differences from qualified plans, and Section 409A.</p></div><div class="rm-card"><div class="rm-num">3</div><h3>Excess plans and SERPs</h3><p>The two main executive retirement plans, and top hat plans.</p></div><div class="rm-card"><div class="rm-num">4</div><h3>How the promise is backed</h3><p>Six funding mechanisms, from least to most secure.</p></div><div class="rm-card"><div class="rm-num">5</div><h3>Stock-based pay</h3><p>Options, restricted stock, appreciation rights, and phantom stock.</p></div><div class="rm-card"><div class="rm-num">6</div><h3>Leaving and disclosure</h3><p>Parachutes, clawbacks, and how executive pay becomes public.</p></div></div></section>
+<section><div class="section-label">Part One: Who is an executive?</div><h2 class="section-title">Two tax categories: key employees and highly compensated employees</h2><p>The Internal Revenue Service recognizes two groups of employees who play a central role in a company's competitive strategy. It uses <b>key employee</b> to decide whether a qualified retirement plan needs <b>top-heavy</b> provisions, and <b>highly compensated employee</b> for the nondiscrimination rules that govern employer-sponsored benefits.</p><div class="two-col"><div class="col-card a"><h3>Key employee (any time during the year)</h3><ul><li>An <b>officer</b> paid more than <b>$235,000</b> (2026)</li><li>A <b>5% owner</b></li><li>A <b>1% owner</b> paid more than $150,000, a threshold set by statute and not indexed</li><li><b>Officer</b> means an administrative executive in regular and continued service. A title without authority is not an officer; authority without a title is. A partner is not treated as an officer merely because of a partnership interest.</li></ul></div><div class="col-card b"><h3>Highly compensated employee</h3><ul><li>A <b>5% owner</b> at any time during the year or the preceding year</li><li>Or, for the preceding year, an employee paid more than <b>$160,000</b></li><li>Or, if the employer chooses, one of the <b>top-paid group</b>: the top 20% most highly compensated employees</li></ul></div></div><h3 class="sub">The dollar limits in the textbook are out of date</h3><table class="tbl"><caption>Selected tax-limit figures: textbook (2021) versus 2026</caption><thead><tr><th scope="col">Limit</th><th scope="col">Textbook (2021)</th><th scope="col">2026</th></tr></thead><tbody><tr><td><b>Annual pay that can be counted by a qualified plan (Sec. 401(a)(17))</b></td><td>$290,000</td><td>$360,000</td></tr><tr><td><b>Annual benefit limit, defined benefit plans (Sec. 415(b))</b></td><td>$230,000</td><td>$290,000</td></tr><tr><td><b>Annual additions limit, defined contribution plans (Sec. 415(c))</b></td><td>$58,000</td><td>$72,000</td></tr><tr><td><b>Key employee: officer pay above</b></td><td>$185,000</td><td>$235,000</td></tr><tr><td><b>Highly compensated employee: prior-year pay above</b></td><td>$130,000</td><td>$160,000</td></tr></tbody></table><p style="margin-top:10px;"><span class="upd">Updated</span> Figures from IRS Notice 2025-67. Each limit is indexed to inflation, which is why an executive's pay can outrun them every year.</p><h3 class="sub">Nonqualified deferred compensation: the basic idea</h3><p>A <b>nonqualified deferred compensation (NQDC)</b> plan is an agreement between an employer and an employee to pay compensation in the future. NQDC plans are the hallmark of executive pay. Companies use them for one of two objectives:</p><div class="plan-grid"><div class="plan-card"><h3>Restoration</h3><p>Fills the gap between the maximum retirement benefit the IRS allows a qualified plan and the larger benefit that a very high salary would otherwise earn.</p></div><div class="plan-card"><h3>Supplemental benefits</h3><p>Goes beyond restoration to raise total retirement benefits well above what a restoration plan would pay. Supplemental executive retirement plans (SERPs) do this.</p></div></div><div class="tool"><h3>Try it: how big is the gap a restoration plan must fill?</h3><p class="hint">A qualified defined benefit plan can only count pay up to the 2026 compensation limit of <b>$360,000</b>, and it can pay no more than <b>$290,000</b> a year. Enter an executive's pay and a simple benefit formula to see the gap a nonqualified <b>excess benefit plan</b> would restore. This is a simplified model.</p><div class="grid2"><div class="field"><label for="rgPay">Annual pay ($)</label><input type="number" id="rgPay" value="800000" min="0" step="10000"></div><div class="field"><label for="rgPct">Benefit per year of service (% of pay)</label><input type="number" id="rgPct" value="2" min="0" step="0.1"></div></div><div class="grid2"><div class="field"><label for="rgYears">Years of service</label><input type="number" id="rgYears" value="25" min="0" step="1"></div></div><button type="button" class="btn" id="rgBtn">Calculate</button><div class="result" id="rgResult" role="status" aria-live="polite"><p>Enter pay and select Calculate.</p></div></div></section>
+<section><div class="section-label">Part Two: Why these plans are "nonqualified"</div><h2 class="section-title">Three ways nonqualified plans differ from qualified ones</h2><p>Nonqualified plans differ from qualified plans in three ways: <b>ERISA qualification criteria</b>, <b>funding status</b>, and <b>mandatory retirement age</b>.</p><h3 class="sub">1. They fail at least one ERISA criterion</h3><p>Plans that meet all of ERISA's minimum standards are <b>qualified</b> and get favorable tax treatment. Executive plans fail at least one, usually for three reasons:</p><div class="factor-list"><div class="factor"><span class="dot"></span><p><b>Pay above the limits.</b> Executives' pay often exceeds the Code's limits, so confining them to qualified plans would leave much of their compensation uncovered.</p></div><div class="factor"><span class="dot"></span><p><b>Coverage.</b> Executive plans will invariably fail ERISA's coverage requirements, which prohibit favoring highly compensated employees disproportionately.</p></div><div class="factor"><span class="dot"></span><p><b>Nondiscrimination.</b> Executive plans violate rules that bar discrimination in favor of highly compensated employees in contributions, benefits, availability, rights, or plan features.</p></div></div><h3 class="sub">2. Funded or unfunded</h3><div class="two-col"><div class="col-card a"><h3>Funded plan</h3><ul><li>Places money or property (for example, company stock) in a trust or buys insurance contracts in the executive's name, without risk of forfeiture</li><li>Secures the promised payments</li><li>Neither the company nor its creditors can withdraw the money</li></ul></div><div class="col-card b"><h3>Unfunded plan</h3><ul><li>Contains only a <b>promise</b> to pay in the future</li><li>No designated funds stand behind the promise</li><li>The executive is an unsecured creditor if the company fails</li></ul></div></div><p style="margin-top:12px;">Three factors push companies toward funding: <b>managing liabilities</b> (funding forces resources to be set aside), <b>cost</b> (funding is a significant expense, so it must promote longer-term returns such as profit or reputation), and <b>shareholder sensitivity</b> (shareholders may view funding an executive plan as a detrimental cost during public debate about excessive pay).</p><h3 class="sub">3. Mandatory retirement age</h3><p><b>Normal retirement age</b> is the lowest age at which an employee who retires may begin receiving benefits. The Age Discrimination in Employment Act forbids mandatory retirement for virtually all employees. The exception, per the textbook, covers an employee 65 or older who, for the two years before retiring, was a <b>bona fide executive</b> (primarily manages the company and directs two or more people) or in a <b>high policymaking position</b> (plays a significant role in policy but lacks direct line control), and who is entitled to an immediate nonforfeitable annual retirement benefit of at least $44,000.</p><div class="callout"><p><span class="upd">Corrected</span> <b>The tax law the textbook leaves out: Section 409A.</b> Since 2004, Internal Revenue Code Section 409A has governed almost every deferral arrangement, including SERPs, deferral plans, executive employment and severance agreements, and many equity awards. The main rules: an election to defer generally must be made <b>before the year in which the pay is earned</b> (30 days after first becoming eligible, or six months before the end of a performance period of at least 12 months); payment may occur only on six events (<b>separation from service, disability, death, a change in control, an unforeseeable emergency, or a fixed date</b>); and certain "specified employees" of public companies must wait six months after leaving. The penalty for violating it falls on the <b>executive</b>: income tax on all vested amounts at once, a <b>20% additional tax</b>, and interest.</p></div></section>
+<section><div class="section-label">Part Three: The two main executive retirement plans</div><h2 class="section-title">Excess benefit plans and SERPs</h2><div class="two-col"><div class="col-card a"><h3>Excess benefit plan</h3><ul><li>Increases retirement benefits by the amount lost to IRS limits</li><li>Designed as an extension of a qualified defined benefit or defined contribution plan</li><li>May be funded or unfunded. A <b>funded</b> plan is subject to ERISA's reporting, disclosure, fiduciary, and enforcement rules; an unfunded plan is not</li><li>Vesting schedules tend to be shorter</li></ul></div><div class="col-card b"><h3>Supplemental executive retirement plan (SERP)</h3><ul><li>Provides benefits well above restoration</li><li>Can count more than base pay, such as bonuses and incentive pay</li><li>Can be a succession-planning tool: full benefits at an earlier age or with fewer years of service</li><li>Can use richer formulas (for example, the highest three years of salary instead of career average) and offset provisions</li><li>Vesting schedules tend to be longer, which promotes retention</li></ul></div></div><h3 class="sub">The top hat plan</h3><p>A well-known unfunded SERP is the <b>top hat plan</b>, maintained "primarily for the purpose of providing deferred compensation for a select group of management or highly compensated employees." By design, it is exempt from three parts of ERISA's Title I: minimum standards for participation and vesting, funding, and fiduciary responsibilities. Practitioners coined the term; no statute or regulation defines it. To keep the exemption, the plan must stay unfunded and limited to a select group, but ERISA defines neither <i>unfunded</i> nor <i>select group</i>. Companies rely on Department of Labor advisory opinions and on often-conflicting court rulings.</p></section>
+<section><div class="section-label">Part Four: How the promise is backed</div><h2 class="section-title">Funding mechanisms: from least to most secure</h2><p>Do not confuse a <b>funding mechanism</b> with a <b>funded plan</b>. A funding mechanism provides the financial resources behind a plan, and a plan can be funded or unfunded. The six mechanisms below are listed from the <b>least secure for the executive to the most secure</b>.</p><table class="tbl"><caption>Funding mechanisms for nonqualified deferred compensation</caption><thead><tr><th scope="col">Mechanism</th><th scope="col">Funded?</th><th scope="col">How it works</th><th scope="col">The catch</th></tr></thead><tbody><tr><td><b>1. General assets</b></td><td>Unfunded</td><td>The plan is paid from the company's cash or stock.</td><td>Assets go to creditors in bankruptcy. The promise is not protected by ERISA.</td></tr><tr><td><b>2. Corporate-owned life insurance</b></td><td>Unfunded</td><td>The employer buys whole life policies on executives and names itself beneficiary, to recover the cost of the deferred pay.</td><td>Hard to size: the company cannot predict terminations or the timing of deaths. The company still relies on general assets to pay.</td></tr><tr><td><b>3. Split-dollar life insurance</b></td><td>Unfunded</td><td>Employer and executive share premiums. Under the <b>collateral approach</b> the executive owns the policy; under the <b>endorsement approach</b> the employer does.</td><td>Complex, and the split depends on the agreement.</td></tr><tr><td><b>4. Rabbi trust</b></td><td>Unfunded</td><td>An irrevocable grantor trust owned by the employer, usually with a bank as trustee, that pays the executive on retirement, termination without cause, or death.</td><td>In bankruptcy the company must release the assets to creditors.</td></tr><tr><td><b>5. Secular trust</b></td><td>Funded</td><td>Similar, but not subject to the company's creditors in bankruptcy or insolvency. Meets ERISA's provisions.</td><td>The executive may owe tax earlier, because the money is out of the company's reach.</td></tr><tr><td><b>6. Employee-owned annuity</b></td><td>Funded</td><td>The executive sets up an annuity with an insurer or fund company, and the employer pays the premium. The vested benefit usually determines the amount.</td><td>Greatest security. ERISA generally does not apply, because the executive, not the company, sets up the contract.</td></tr></tbody></table><div class="callout"><p><b>Constructive receipt.</b> Whether an executive owes income tax now or later turns on the doctrine of <b>constructive receipt</b>: if the money is available without substantial restriction, limitation, or risk of forfeiture, it is taxed now. For unfunded plans, executives generally pay income tax when payments start. The employer usually deducts its cost when it pays. Section 409A adds its own rules on top.</p></div><div class="tool"><h3>Try it: what protects the executive if the company fails?</h3><p class="hint">Pick a funding mechanism. The answer places it on the security ladder and says what happens in bankruptcy.</p><div class="field"><label for="fmSel">Funding mechanism</label><select id="fmSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="">Select a mechanism…</option><option value="gen">General assets of the company (cash, company stock)</option><option value="coli">Corporate-owned life insurance</option><option value="split">Split-dollar life insurance</option><option value="rabbi">Rabbi trust</option><option value="secular">Secular trust</option><option value="annuity">Employee-owned annuity</option></select></div><div class="result" id="fmResult" role="status" aria-live="polite"><p>Choose a mechanism to begin.</p></div></div></section>
+<section><div class="section-label">Part Five: Stock-based pay</div><h2 class="section-title">Options, restricted stock, appreciation rights, and phantom stock</h2><p><b>Company stock</b> represents equity, an ownership interest. A <b>stock option</b> is a right to buy shares at a set price within a set time. A <b>stock grant</b> is an offering of stock. <b>Exercise</b> is the purchase of stock using options; <b>disposition</b> is the sale of stock; and <b>fair market value</b> is the average of the highest and lowest reported sales prices on a given date.</p><div class="callout"><p><span class="upd">Corrected</span> <b>How options are taxed.</b> The textbook says nonstatutory options are taxed at the <b>time of grant</b>, at ordinary rates, with no tax at exercise. The IRS describes it differently. For a typical employee option, <b>nothing is taxed at grant</b>. When a <b>nonstatutory</b> option is exercised, the spread between the exercise price and the market value is taxed as <b>ordinary income</b>, treated as wages. For an <b>incentive stock option</b>, nothing is taxed at grant or (under the regular tax) at exercise; the alternative minimum tax may apply at exercise; and the gain is taxed as <b>capital gain</b> at sale if the shares are held at least two years from grant and one year from exercise. Otherwise the spread is ordinary income.</p></div><table class="tbl"><caption>Taxation of stock options (IRS Topic 427)</caption><thead><tr><th scope="col">When</th><th scope="col">Incentive stock option (ISO)</th><th scope="col">Nonstatutory stock option (NSO)</th></tr></thead><tbody><tr><td><b>At grant</b></td><td>No tax</td><td>Generally no tax, for options whose value cannot be readily determined</td></tr><tr><td><b>At exercise</b></td><td>No regular income tax; alternative minimum tax may apply</td><td>The <b>spread</b> is ordinary income, treated as wages</td></tr><tr><td><b>At sale</b></td><td>Capital gain if held 2 years from grant and 1 year from exercise; otherwise ordinary income on the spread</td><td>Capital gain or loss on the change since exercise</td></tr></tbody></table><div class="tool"><h3>Try it: what does the same option cost in tax under each type?</h3><p class="hint">Compare a <b>nonstatutory stock option (NSO)</b>, an <b>incentive stock option (ISO)</b> sold in a qualifying disposition, and an ISO sold too soon. This model is simplified: it ignores the alternative minimum tax, payroll taxes, state taxes, and the net investment income tax.</p><div class="grid2"><div class="field"><label for="soN">Number of shares</label><input type="number" id="soN" value="1000" min="0" step="100"></div><div class="field"><label for="soStrike">Exercise price per share ($)</label><input type="number" id="soStrike" value="20" min="0" step="1"></div></div><div class="grid2"><div class="field"><label for="soFmv">Share price when exercised ($)</label><input type="number" id="soFmv" value="50" min="0" step="1"></div><div class="field"><label for="soSale">Share price when sold ($)</label><input type="number" id="soSale" value="60" min="0" step="1"></div></div><div class="grid2"><div class="field"><label for="soOrd">Ordinary income tax rate (%)</label><input type="number" id="soOrd" value="35" min="0" step="1"></div><div class="field"><label for="soCg">Long-term capital gains rate (%)</label><input type="number" id="soCg" value="15" min="0" step="1"></div></div><button type="button" class="btn" id="soBtn">Calculate</button><div class="result" id="soResult" role="status" aria-live="polite"><p>Enter your numbers and select Calculate.</p></div></div><h3 class="sub">Three other stock-based plans</h3><div class="plan-grid"><div class="plan-card"><h3>Restricted stock and restricted stock units</h3><p>The company grants stock (or options) at market or discounted value, and the executive has no control over disposing of it during the <b>vesting period</b>, often many years. Restricted stock units are shares awarded at the end of the restriction. A performance criterion added to the vesting period makes it a <b>performance plan</b>.</p></div><div class="plan-card"><h3>Stock appreciation rights</h3><p>Provide income at the end of a designated period, based on the rise in stock price from the grant date. Executives never have to buy the stock to receive the income, and no one pays tax at grant. The executive pays tax when rights are exercised, and the employer gets a matching deduction.</p></div><div class="plan-card"><h3>Phantom stock</h3><p>A promise by the board to pay a bonus equal to the value, or the increase in value, of company shares. The executive must generally stay employed for several years and then retire. No real shares are ever issued.</p></div></div><div class="callout"><p><span class="upd">Corrected</span> <b>Phantom stock is ordinary income.</b> The textbook says executives pay tax on "capital gains" after converting phantom shares to real ones. Phantom stock payouts are generally taxed as <b>ordinary compensation income when paid</b>, unlike actual stock, whose gains may qualify for capital gains rates. Because phantom stock is deferred compensation, it must also follow Section 409A.</p></div><h3 class="sub">Employee stock purchase plans</h3><p>A company may offer a formal <b>employee stock purchase plan</b> that lets employees buy stock after a set period. Employees set money aside through payroll deduction during an <b>offering period</b>. A plan can be qualified or nonqualified; to qualify for favorable tax treatment it must meet several criteria, such as allowing all full-time employees with two or more years of service to participate.</p></section>
+<section><div class="section-label">Part Six: Leaving the company</div><h2 class="section-title">Separation agreements: golden parachutes, platinum parachutes, and clawbacks</h2><p>A <b>separation agreement</b> sets the pay and benefits an executive will receive if the board ends the relationship. It is negotiated during hiring, approved by the board, and put in a written contract.</p><h3 class="sub">Golden parachutes</h3><p><b>Golden parachutes</b> pay executives after termination caused by a change in ownership or takeover. Boards include them for three reasons: they limit executives' risk in unforeseeable events, they help recruit and retain talent, and they reduce the chance that a CEO will fight a takeover that would benefit the company just to save his or her job. Companies once treated the payments as deductible business expenses, and total values grew far past executives' annual pay, which led to government action.</p><div class="callout"><p><span class="upd">Updated</span> <b>The tax penalty.</b> Under Sections 280G and 4999, if a change-in-control payment package equals or exceeds <b>three times</b> the executive's base amount, the company <b>loses its deduction</b> for the amount above <b>one times</b> the base amount, and the executive owes a <b>20% excise tax</b> on the same amount, on top of ordinary income tax. It is a cliff: one dollar over the line puts the whole excess at stake. Some executives negotiate a "gross-up" that has the company pay the excise tax.</p></div><div class="tool"><h3>Try it: does this severance package trigger the golden parachute tax?</h3><p class="hint">Enter the executive's <b>base amount</b> (roughly the average annual taxable pay over the prior five years) and the total change-in-control payments. Payments of <b>three times the base amount or more</b> trigger the tax, and it applies to everything above <b>one</b> times the base amount.</p><div class="grid2"><div class="field"><label for="pgBase">Base amount ($)</label><input type="number" id="pgBase" value="500000" min="0" step="10000"></div><div class="field"><label for="pgPay">Total parachute payments ($)</label><input type="number" id="pgPay" value="1600000" min="0" step="10000"></div></div><div class="grid2"><div class="field"><label for="pgCorp">Company's federal tax rate (%)</label><input type="number" id="pgCorp" value="21" min="0" step="1"></div></div><button type="button" class="btn" id="pgBtn">Calculate</button><div class="result" id="pgResult" role="status" aria-live="polite"><p>Enter both amounts and select Calculate.</p></div></div><h3 class="sub">Platinum parachutes</h3><p>CEOs are often terminated before their contracts end after poor performance. <b>Platinum parachutes</b> are lucrative awards, including severance pay, continued benefits, and even stock options, that companies use to avoid long legal battles and negative publicity by paying a CEO to step aside.</p><h3 class="sub">Clawbacks</h3><p><b>Clawback provisions</b> let a board take back performance-based compensation if the goals were not really achieved. They became common because of public and shareholder scrutiny of CEO pay. The textbook's example is McDonald's effort to recover a $40 million severance payment from CEO Stephen Easterbrook.</p><div class="callout"><p><span class="upd">Updated</span> <b>How that example ended, and the new rule.</b> In December 2021 Easterbrook settled by returning cash and equity worth more than <b>$105 million</b>, and in 2023 the SEC fined him $400,000 and barred him from serving as an officer or director of an SEC-reporting company. More broadly, the SEC's <b>Rule 10D-1</b>, carried out through NYSE and Nasdaq listing standards effective October 2, 2023, now <b>requires every listed company to adopt a clawback policy</b>. After an accounting restatement, the company must recover incentive pay that current or former executive officers received in the <b>three fiscal years</b> before the restatement, to the extent it exceeds what they would have received on the corrected numbers. Recovery is <b>no-fault</b>: it applies whether or not the executive did anything wrong. It covers pay tied to financial-reporting measures, not pay based only on staying employed.</p></div></section>
+<section><div class="section-label">Part Seven: Sunlight</div><h2 class="section-title">Reporting and disclosure</h2><p>Executive pay is unusual because the public can see it. Two laws create the requirements: the <b>Securities Exchange Act of 1934</b> and the <b>Wall Street Reform and Consumer Protection Act of 2010</b> (Dodd-Frank).</p><h3 class="sub">The Securities Exchange Act of 1934</h3><p>Companies that sell or exchange securities on public exchanges must file information with the <b>Securities and Exchange Commission (SEC)</b>, including executive compensation and benefits. For pay, the vehicle is the <b>Definitive Proxy Statement</b>, called a <b>DEF 14A</b>, which reveals compensation for the CEO and the <b>named executive officers (NEOs)</b>. The narrative is the <b>Compensation Discussion and Analysis (CD&amp;A)</b>. The key table is the <b>Summary Compensation Table</b>, which shows pay over three years: annual compensation (salary, bonus, other), long-term compensation (restricted stock awards, stock appreciation rights, long-term incentive payouts), and an "All Other Compensation" column. Since 2008 and 2009, the SEC has required totals, changes in pension value and nonqualified deferred pay, the present value of accumulated pension benefits, and details of severance and change-in-control agreements.</p><h3 class="sub">Dodd-Frank: three provisions</h3><div class="plan-grid"><div class="plan-card"><h3>Say-on-pay</h3><p>Shareholders vote yes or no on executive pay, including golden parachute agreements. The vote is <b>nonbinding</b> but signals concerns to the board.</p></div><div class="plan-card"><h3>Independent compensation committees</h3><p>Independence requirements apply to committee members and their advisors, such as compensation consultants and legal counsel.</p></div><div class="plan-card"><h3>Golden parachute disclosure</h3><p>Companies must disclose the circumstances in which an executive would benefit from a golden parachute, including agreements between an acquirer and the target's executives.</p></div></div><h3 class="sub">How much are executives paid now?</h3><div class="stat-row"><div class="stat"><div class="num">$17.7M</div><div class="lbl">median total pay for <b>S&amp;P 500 CEOs</b> for 2025, up 5.9%, the smallest increase since 2022</div><div class="src">Equilar / AP, 2026</div></div><div class="stat"><div class="num">200 : 1</div><div class="lbl">median <b>CEO-to-median-employee pay ratio</b> among S&amp;P 500 companies in 2025, up from 189 : 1. The median employee earned $89,744</div><div class="src">Equilar / AP, 2026</div></div><div class="stat alt"><div class="num">71.6%</div><div class="lbl">of the median CEO package was <b>stock awards</b> in the 2024 data, the largest single component</div><div class="src">Equilar / AP, 2025</div></div></div><p style="margin-top:14px;"><span class="upd">Updated</span> At companies with at least $1 billion in revenue, Equilar's early look at 2025 found median CEO pay of <b>$29.4 million</b>, up 23.2%. The pay ratio and pay-versus-performance tables are disclosure requirements added after the textbook was written.</p><div class="callout"><p><span class="upd">Updated</span> <b>Disclosure may be about to shrink.</b> On May 19, 2026 the SEC proposed extending scaled executive-pay disclosure to all <b>non-accelerated filers</b>, about 81% of public companies. They would skip the CD&amp;A, report three NEOs instead of five and two years of the Summary Compensation Table instead of three, skip the pay ratio, and be exempt from say-on-pay votes. Comments closed July 20, 2026. A broader overhaul of Item 402 went to the White House for review on August 26, 2026. <b>Nothing changes until final rules are adopted</b>, and current rules remain in force.</p></div><h3 class="sub">Where the specialists are</h3><p>The rules are extremely complex. Expertise usually comes from executive compensation and benefits consulting firms, public accounting firms, and specialized law firms. The textbook names Frederic W. Cook &amp; Company, Korn Ferry, Pearl Meyer, Towers Watson, and William M. Mercer. Towers Watson is now part of WTW, and Mercer is part of Marsh McLennan.</p></section>
+<section><h2 class="section-title">Key terms — check yourself</h2><p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p><div class="terms" id="termList"><button type="button" class="term" aria-expanded="false" data-def="For 2026, an officer paid more than $235,000, a 5% owner, or a 1% owner paid more than $150,000. The IRS uses the term to decide whether a qualified plan needs top-heavy provisions.">Key employee</button><button type="button" class="term" aria-expanded="false" data-def="A 5% owner, or an employee paid more than $160,000 in the preceding year (or, if the employer chooses, one of the top-paid 20%). Used for nondiscrimination rules.">Highly compensated employee</button><button type="button" class="term" aria-expanded="false" data-def="An agreement between an employer and an employee to pay compensation in the future, outside the tax-qualified retirement system.">Nonqualified deferred compensation</button><button type="button" class="term" aria-expanded="false" data-def="The use of a nonqualified plan to replace retirement income lost because of IRS limits on qualified plans.">Restoration</button><button type="button" class="term" aria-expanded="false" data-def="A nonqualified plan that increases retirement benefits by the amount lost to IRS limits. It is an extension of a qualified plan.">Excess benefit plan</button><button type="button" class="term" aria-expanded="false" data-def="A nonqualified plan that provides retirement benefits well above restoration levels and can be used for succession planning, bonuses in the formula, and older new hires.">Supplemental executive retirement plan (SERP)</button><button type="button" class="term" aria-expanded="false" data-def="An unfunded plan maintained primarily for a select group of management or highly compensated employees. It is exempt from three parts of ERISA&#x27;s Title I.">Top hat plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan that places money or property in a trust or buys insurance contracts in the executive&#x27;s name, without risk of forfeiture.">Funded plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan that contains only a promise to pay deferred compensation in the future, with no designated funds.">Unfunded plan</button><button type="button" class="term" aria-expanded="false" data-def="The doctrine that income is taxable when it is available to the employee without substantial restrictions, limitations, or risk of forfeiture.">Constructive receipt</button><button type="button" class="term" aria-expanded="false" data-def="The Internal Revenue Code section that governs deferral elections and distribution events for nonqualified deferred compensation. Violations bring immediate tax, a 20% additional tax, and interest.">Section 409A</button><button type="button" class="term" aria-expanded="false" data-def="An irrevocable grantor trust, owned by the employer, that holds assets to pay deferred compensation. Assets remain available to creditors in bankruptcy, so it is unfunded.">Rabbi trust</button><button type="button" class="term" aria-expanded="false" data-def="A trust whose assets are not subject to the company&#x27;s creditors. It is a funded arrangement that meets ERISA&#x27;s provisions.">Secular trust</button><button type="button" class="term" aria-expanded="false" data-def="A statutory option that is not taxed at grant or (for regular tax) at exercise. If shares are held two years from grant and one year from exercise, the gain is capital gain.">Incentive stock option</button><button type="button" class="term" aria-expanded="false" data-def="An option that does not qualify for favorable treatment. For a typical employee option, the spread at exercise is ordinary income treated as wages.">Nonstatutory stock option</button><button type="button" class="term" aria-expanded="false" data-def="A share of company stock awarded to an executive at the end of a restriction period.">Restricted stock unit</button><button type="button" class="term" aria-expanded="false" data-def="A right to income based on the increase in stock price over a designated period. The executive does not have to buy stock to receive it.">Stock appreciation right</button><button type="button" class="term" aria-expanded="false" data-def="A promise to pay a bonus equal to the value, or the increase in value, of company shares. Payouts are generally ordinary income when paid.">Phantom stock</button><button type="button" class="term" aria-expanded="false" data-def="Pay and benefits to an executive after a termination that results from a change in ownership or takeover. Payments of three times the base amount or more trigger a loss of deduction and a 20% excise tax.">Golden parachute</button><button type="button" class="term" aria-expanded="false" data-def="A provision that lets a company recover incentive pay. Under SEC Rule 10D-1, listed companies must recover erroneously awarded incentive pay after a restatement, whether or not anyone was at fault.">Clawback provision</button><button type="button" class="term" aria-expanded="false" data-def="A Dodd-Frank provision that gives shareholders a nonbinding yes-or-no vote on executive compensation.">Say-on-pay</button><button type="button" class="term" aria-expanded="false" data-def="The key table in a DEF 14A, showing pay for the CEO and named executive officers over three years.">Summary Compensation Table</button></div><div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div></section>
+<section><div class="section-label">Learning objectives</div><h2 class="section-title">Six learning objectives</h2><div class="obj-list"><div class="obj-item"><div class="obj-num">1</div><p>Understand who executive employees are and the characteristics of nonqualified deferred compensation plans.</p></div><div class="obj-item"><div class="obj-num">2</div><p>Understand examples of nonqualified plans used for executives' retirement.</p></div><div class="obj-item"><div class="obj-num">3</div><p>Understand funding mechanisms for nonqualified deferred compensation plans.</p></div><div class="obj-item"><div class="obj-num">4</div><p>Understand stock-based compensation plans.</p></div><div class="obj-item"><div class="obj-num">5</div><p>Understand separation agreements for executives.</p></div><div class="obj-item"><div class="obj-num">6</div><p>Understand reporting and disclosure requirements.</p></div></div></section>
+<section><h2 class="section-title">Check your understanding</h2><p>Five questions. Feedback appears as soon as you answer. This is practice, not graded, but the graded quiz works the same way.</p><div class="quiz-q" data-answer="b"><fieldset><legend>1. An executive earns $500,000, but a qualified plan can count only $360,000 of pay in 2026. A nonqualified plan that makes up the difference is serving which objective?</legend><label><input type="radio" name="q1" value="a"> Supplemental retirement benefits above restoration</label><label><input type="radio" name="q1" value="b"> Restoration</label><label><input type="radio" name="q1" value="c"> Funding through a rabbi trust</label><label><input type="radio" name="q1" value="d"> Compliance with the top-heavy rules</label></fieldset><div class="fb" data-right="Correct. Restoration fills the gap between what the IRS allows a qualified plan and the larger benefit that a very high salary would earn." data-wrong="Making up for the amount lost to IRS limits is restoration. Supplemental benefits go beyond that gap."></div></div><div class="quiz-q" data-answer="d"><fieldset><legend>2. Which funding mechanism gives an executive the greatest financial security?</legend><label><input type="radio" name="q2" value="a"> General assets of the company</label><label><input type="radio" name="q2" value="b"> A rabbi trust</label><label><input type="radio" name="q2" value="c"> Corporate-owned life insurance</label><label><input type="radio" name="q2" value="d"> An employee-owned annuity</label></fieldset><div class="fb" data-right="Correct. The executive owns the annuity, so it is out of the company&#x27;s reach, and because the executive sets it up ERISA generally does not apply." data-wrong="General assets, corporate-owned life insurance, and rabbi trusts all remain reachable by the company&#x27;s creditors. The employee-owned annuity is the most secure."></div></div><div class="quiz-q" data-answer="a"><fieldset><legend>3. For a typical employee, when is a nonstatutory stock option taxed, according to IRS guidance?</legend><label><input type="radio" name="q3" value="a"> When it is exercised, on the spread as ordinary income</label><label><input type="radio" name="q3" value="b"> When it is granted, at ordinary rates</label><label><input type="radio" name="q3" value="c"> Only when the shares are sold, at capital gains rates</label><label><input type="radio" name="q3" value="d"> Never, if the executive holds the shares</label></fieldset><div class="fb" data-right="Correct. The spread at exercise is ordinary income treated as wages. The textbook&#x27;s statement that tax is due at grant does not match the IRS." data-wrong="For a typical NSO, nothing is taxed at grant. The spread between the exercise price and market value is ordinary income at exercise."></div></div><div class="quiz-q" data-answer="c"><fieldset><legend>4. An executive's base amount is $400,000 and her change-in-control payments total $1.5 million. What is the result?</legend><label><input type="radio" name="q4" value="a"> No penalty, because payments are under $2 million</label><label><input type="radio" name="q4" value="b"> Excise tax on the full $1.5 million</label><label><input type="radio" name="q4" value="c"> The 3-times threshold ($1.2 million) is exceeded, so the excess over $400,000 ($1.1 million) loses its deduction and bears a 20% excise tax</label><label><input type="radio" name="q4" value="d"> Only the amount over $1.2 million is affected</label></fieldset><div class="fb" data-right="Correct. Payments over three times the base amount trigger the rule, and the penalty applies to everything above one times the base amount." data-wrong="Three times $400,000 is $1.2 million. The payments exceed it, so the excess over one times the base amount, $1.1 million, is nondeductible and subject to the 20% excise tax."></div></div><div class="quiz-q" data-answer="b"><fieldset><legend>5. Under SEC Rule 10D-1 and the exchange listing standards effective in 2023, a listed company must recover incentive pay after a restatement:</legend><label><input type="radio" name="q5" value="a"> Only if the executive committed fraud</label><label><input type="radio" name="q5" value="b"> Whether or not the executive was at fault</label><label><input type="radio" name="q5" value="c"> Only if the board votes to do so</label><label><input type="radio" name="q5" value="d"> Only for the CEO</label></fieldset><div class="fb" data-right="Correct. The rule is no-fault. It covers current and former executive officers and the three fiscal years before the restatement." data-wrong="Rule 10D-1 requires recovery on a no-fault basis, for current and former executive officers, covering the three fiscal years before the restatement."></div></div><p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p></section>
+<section><div class="think"><div class="think-tag">Critical thinking</div><h3>A new CEO's ask: three promises and a trust</h3><p class="scenario"><b>The situation.</b> A NYSE-listed company's compensation committee is hiring an outside CEO. The candidate's term sheet asks for: <b>(1)</b> a SERP paying 60% of her highest three-year average pay after only five years of service; <b>(2)</b> a golden parachute of three times salary and bonus, with a <b>gross-up</b> so she owes no excise tax; <b>(3)</b> the SERP funded through a <b>rabbi trust</b>, "so I can't lose it if we're acquired"; <b>(4)</b> $6 million a year in restricted stock units and options; and <b>(5)</b> no clawback beyond what the law requires.</p><ol class="ask"><li>Which parts of the package <b>shift risk</b> from the executive to the shareholders, and which shift it the other way?</li><li>Identify at least <b>two legal or tax problems</b> in the term sheet and say how you would address them.</li><li>What <b>information would you gather</b> before the board approves the package, and what result, such as a poor say-on-pay vote, would make you revisit it?</li></ol><label for="thinkText">Your response</label><textarea id="thinkText" rows="9" placeholder="Take a position, then defend it. Aim for 200 to 300 words."></textarea><p class="hint" style="margin-top:6px;">Your response stays in your browser. It is not saved or submitted. Copy it into your course platform when you are done.</p><p style="margin-top:12px;"><button type="button" class="btn ghost" id="thinkBtn" aria-expanded="false" aria-controls="thinkGuide">Show what a strong answer weighs</button></p><div class="guide" id="thinkGuide" hidden><p><b>There is no single right answer. A strong response takes a position and shows it has weighed these points:</b></p><ul><li><b>The rabbi trust does not do what she thinks.</b> A rabbi trust is an unfunded arrangement: in bankruptcy the company must release its assets to creditors. It provides comfort, not security. Only funded arrangements, such as a secular trust or an executive-owned annuity, are out of the company's creditors' reach, and they can create earlier tax for her.</li><li><b>Section 409A.</b> The SERP, the parachute, and any equity award that defers pay must follow strict rules on elections and payment events. A violation puts income tax, a 20% additional tax, and interest on <b>her</b>. A strong answer says counsel must review the documents.</li><li><b>Sections 280G and 4999.</b> A parachute of three times pay could cross the three-times-base-amount line. If it does, the company loses its deduction on the excess and she owes a 20% excise tax. A gross-up makes the <b>company</b> pay the tax, compounding the cost and the optics.</li><li><b>Clawbacks.</b> Under SEC Rule 10D-1 the company must have a no-fault recovery policy for incentive pay after a restatement. She cannot bargain her way out of it. A stronger answer might add a discretionary clawback for misconduct as well, so a board is not left to sue after the fact, as McDonald's had to.</li><li><b>Who bears the risk?</b> The SERP after five years pays a lifetime benefit for short service, which shifts risk to shareholders. RSUs and options tie some of her pay to the share price, which shifts some risk to her. Performance conditions on the equity align it with results.</li><li><b>Shareholder reaction.</b> Say-on-pay is nonbinding but public. Executive pay is a topic shareholders react to, and disclosure of the package will be in the proxy. Benchmark against peers and consider what the company's disclosure would say.</li><li><b>What would change your mind.</b> Name a result in advance: for example, peer benchmarking showing the package above the 75th percentile without performance conditions, or advice from counsel that a term violates 409A.</li></ul></div></div></section>
+<div class="big-picture"><p class="lead">Don't just memorize the plan names.</p><h2>Ask who bears the risk when things go wrong.</h2><div class="flow">An unfunded promise <span class="arrow">→</span> The executive is exposed if the company fails<br>A stock option <span class="arrow">→</span> The executive is exposed to the share price<br><span class="arrow">→</span> A parachute or clawback <span class="arrow">→</span> Risk shifts between the executive, the board, and shareholders</div><p class="question">Which forms of executive pay would you defend as fair risk-sharing, and which look like insurance against failure that ordinary employees never get?</p></div>
+<section class="refs" id="refs"><h2>Sources</h2><p class="asof">All figures verified September 2026. Where a statistic or a tax description differs from the textbook, the source below governs. The SEC's May 2026 disclosure proposal and the draft Item 402 proposal were not final when this page was written. Tax examples are simplified and are not tax advice.</p><ol><li>Internal Revenue Service, Notice 2025-67 (November 13, 2025): 2026 limits of $360,000 (Sec. 401(a)(17)), $290,000 (Sec. 415(b)), $72,000 (Sec. 415(c)), $160,000 (highly compensated employee), and $235,000 (key employee officer), as summarized by Ascensus, Mercer, Schechter Benefits Law Group, and Current Federal Tax Developments.</li><li>Internal Revenue Service, Topic No. 427, <i>Stock options</i>, and Publication 525. Tax treatment of statutory and nonstatutory options; supported by RSM US, "Frequently asked questions about stock options and tax implications."</li><li>26 U.S.C. § 409A (Cornell Legal Information Institute); Thompson Coburn LLP, "Section 409A: Top 10 rules for compliant non-qualified deferred compensation" (2024); Meridian Compensation Partners, "Taxation of Deferred Compensation under IRC Section 409A" (2025).</li><li>RSM US, "Top 10 frequently asked questions about phantom stock plans." Phantom stock payouts are taxed at ordinary income rates.</li><li>26 U.S.C. §§ 280G and 4999; 26 CFR § 1.280G-1 (Cornell LII); American Bar Association, <i>Business Law Today</i> (September 2021), "Code Section 280G Issues in Private and Public Company Deals."</li><li>U.S. Securities and Exchange Commission, <i>Listing Standards for Recovery of Erroneously Awarded Compensation</i> (Exchange Act Rule 10D-1); Thompson Coburn (2022); Dorsey (2023); Buchanan Ingersoll &amp; Rooney (2022). NYSE and Nasdaq standards effective October 2, 2023.</li><li>McDonald's Corporation, "McDonald's successfully resolves lawsuit against Steve Easterbrook" (December 2021); CNN Business and Fortune, SEC settlement with Easterbrook (January 9, 2023).</li><li>Equilar and The Associated Press, <i>2026 CEO Pay Study</i> (May 2026) and <i>2025 CEO Pay Study</i> (May 2025); Equilar, <i>Equilar 100</i> (April 2026).</li><li>U.S. Securities and Exchange Commission, proposed Release No. 33-11419 (May 19, 2026), as summarized by Latham &amp; Watkins and Morrison Foerster; Thomson Reuters Tax &amp; Accounting on the August 26, 2026 submission of a draft Item 402 proposal to OMB; and Chairman Paul Atkins, Statement on Reforming Regulation S-K (January 13, 2026).</li><li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 12 and Instructor's Manual. Conceptual framework and definitions; dollar limits and several tax descriptions superseded or corrected by the sources above.</li></ol></section>
+</main>
+<footer>INS 432 / INS 532 — Employee Benefits · Chapter 12: Nonqualified Deferred Compensation Plans for Executives</footer>
+</div>
+<script>
+(function(){
+"use strict";
+
+  /* Safe renderer: builds DOM nodes from a small allow-list of tags, so no raw HTML is ever injected */
+  var esc = function(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+  var ALLOWED = {P:1,B:1,I:1,DIV:1,SPAN:1,STRONG:1,EM:1,BR:1,UL:1,LI:1};
+  function safeHtml(target, html){
+    var doc = new DOMParser().parseFromString("<body>" + html, "text/html");
+    function copy(src, dst){
+      Array.prototype.forEach.call(src.childNodes, function(n){
+        if(n.nodeType === 3){ dst.appendChild(document.createTextNode(n.nodeValue)); }
+        else if(n.nodeType === 1 && ALLOWED[n.tagName]){
+          var e = document.createElement(n.tagName.toLowerCase());
+          var c = n.getAttribute("class");
+          if(c){ e.className = c.replace(/[^\w\- ]/g, ""); }
+          copy(n, e); dst.appendChild(e);
+        }
+      });
+    }
+    while(target.firstChild){ target.removeChild(target.firstChild); }
+    copy(doc.body, target);
+  }
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- restoration gap ---------- */
+  $("rgBtn").addEventListener("click", function(){
+    var CAP = 360000, DBMAX = 290000;
+    var pay = num($("rgPay"), 0), pct = num($("rgPct"), 0) / 100, yrs = num($("rgYears"), 0);
+    if(pay <= 0 || pct <= 0 || yrs <= 0){ safeHtml($("rgResult"), "<p>Enter pay, a benefit percentage, and years of service.</p>"); return; }
+    var repl = Math.min(1, pct * yrs);
+    var full = repl * pay;
+    var counted = Math.min(pay, CAP);
+    var qualified = Math.min(DBMAX, repl * counted);
+    var gap = Math.max(0, full - qualified);
+    var html = '<p class="big">Gap to restore: ' + money(gap) + " a year</p>";
+    html += "<p>The formula pays " + (repl * 100).toFixed(0) + "% of pay, so on the executive's full pay of " + money(pay) + " the promised benefit is <b>" + money(full) + "</b> a year.</p>";
+    html += "<p>A qualified plan counts only " + money(counted) + " of pay" + (pay > CAP ? " (the 2026 limit is " + money(CAP) + ")" : "") + ", so it can pay <b>" + money(qualified) + "</b>" + (repl * counted > DBMAX ? ", capped by the " + money(DBMAX) + " annual benefit limit" : "") + ".</p>";
+    if(gap > 0){ html += "<p>An <b>excess benefit plan</b> restores the difference. A <b>SERP</b> could go further, for example by counting bonuses or adding years of service.</p>"; }
+    else { html += "<p>The qualified plan can pay the whole benefit, so there is nothing to restore.</p>"; }
+    html += "<p>This model is simplified. It ignores early retirement reductions, plan-specific formulas, and service-based limits.</p>";
+    safeHtml($("rgResult"), html);
+  });
+
+  /* ---------- funding mechanism ladder ---------- */
+  var fm = {
+    gen:["Rung 1 of 6: least secure (unfunded)","The plan is paid from the company's cash or stock. If the company goes bankrupt, the assets are turned over to creditors, and the agreement is not protected by ERISA. The executive is an unsecured creditor."],
+    coli:["Rung 2 of 6 (unfunded)","The employer owns whole life policies on the executive and is the beneficiary, so the insurance recovers the cost of the promise. But the company still pays the executive from general assets, so the executive has no special claim on the policy."],
+    split:["Rung 3 of 6 (generally unfunded)","Employer and executive share premiums under an agreement. The collateral approach gives the executive ownership; the endorsement approach makes the employer the owner. Security depends on who owns the policy and the terms of the agreement."],
+    rabbi:["Rung 4 of 6 (unfunded)","An irrevocable grantor trust owned by the employer, with a bank as trustee. It gives comfort against management changes of heart, but in bankruptcy the company must release the assets to creditors, so it is unfunded and does not offer the greatest security."],
+    secular:["Rung 5 of 6 (funded)","The trust's assets are not subject to the company's creditors in bankruptcy or insolvency. That makes it a funded plan that must meet ERISA's provisions. The trade-off is that the executive may face tax sooner."],
+    annuity:["Rung 6 of 6: most secure (funded)","The executive owns the annuity, so it is beyond the company's reach. It is technically funded, but ERISA generally does not apply because the executive, not the company, sets up the contract. This gives executives the greatest financial security."]
+  };
+  $("fmSel").addEventListener("change", function(){
+    var v = this.value, box = $("fmResult");
+    if(!v){ safeHtml(box, "<p>Choose a mechanism to begin.</p>"); return; }
+    safeHtml(box, '<p class="big">' + fm[v][0] + "</p><p>" + fm[v][1] + "</p>");
+  });
+
+  /* ---------- stock option tax comparison ---------- */
+  $("soBtn").addEventListener("click", function(){
+    var n = num($("soN"), 0), k = num($("soStrike"), 0), fmv = num($("soFmv"), 0), sale = num($("soSale"), 0);
+    var ord = Math.min(60, num($("soOrd"), 0)) / 100, cg = Math.min(40, num($("soCg"), 0)) / 100;
+    if(n <= 0){ safeHtml($("soResult"), "<p>Enter the number of shares.</p>"); return; }
+    var spread = Math.max(0, (fmv - k) * n);
+    var totalGain = (sale - k) * n;
+    // NSO
+    var nsoEx = spread * ord, nsoSale = Math.max(0, (sale - fmv) * n) * cg, nso = nsoEx + nsoSale;
+    // ISO qualifying disposition
+    var isoQ = Math.max(0, totalGain) * cg;
+    // ISO disqualifying disposition
+    var ordPart = Math.max(0, Math.min(spread, totalGain));
+    var isoD = ordPart * ord + Math.max(0, totalGain - ordPart) * cg;
+    var html = '<p class="big">Pretax gain: ' + money(totalGain) + "</p>";
+    html += "<p><b>Nonstatutory option:</b> " + money(nsoEx) + " in tax at exercise (the " + money(spread) + " spread as ordinary income) plus " + money(nsoSale) + " at sale = <b>" + money(nso) + "</b> in total tax.</p>";
+    html += "<p><b>Incentive option, qualifying disposition</b> (held 2 years from grant and 1 year from exercise): no regular tax at exercise; " + money(isoQ) + " at capital gains rates on the whole gain = <b>" + money(isoQ) + "</b>.</p>";
+    html += "<p><b>Incentive option, sold too soon</b> (a disqualifying disposition): " + money(ordPart) + " taxed as ordinary income plus the rest at capital gains rates = <b>" + money(isoD) + "</b>.</p>";
+    html += "<p>The textbook's account, tax at grant with none at exercise, matches none of these. This model ignores the alternative minimum tax (which can apply when an ISO is exercised), payroll taxes on the NSO spread, state taxes, the net investment income tax, and the $100,000 annual ISO limit.</p>";
+    safeHtml($("soResult"), html);
+  });
+
+  /* ---------- golden parachute test ---------- */
+  $("pgBtn").addEventListener("click", function(){
+    var base = num($("pgBase"), 0), pay = num($("pgPay"), 0), corp = Math.min(60, num($("pgCorp"), 0)) / 100;
+    if(base <= 0){ safeHtml($("pgResult"), "<p>Enter the executive's base amount.</p>"); return; }
+    var line = 3 * base, html;
+    if(pay < line){
+      html = '<p class="big">Below the line: no penalty</p>';
+      html += "<p>Three times the base amount is <b>" + money(line) + "</b>. The payments are " + money(pay) + ", which is " + money(line - pay) + " under it, so the company keeps its deduction and the executive owes no excise tax.</p>";
+      html += "<p>Careful planning often keeps a package just under the line, because crossing it by even a dollar puts the whole excess at stake.</p>";
+    } else {
+      var excess = pay - base, excise = excess * 0.20, lost = excess * corp;
+      html = '<p class="big">Triggered: ' + money(excess) + " is an excess parachute payment</p>";
+      html += "<p>The payments (" + money(pay) + ") reach three times the base amount (" + money(line) + "). The excess is everything above one times the base amount: " + money(pay) + " minus " + money(base) + " = <b>" + money(excess) + "</b>.</p>";
+      html += "<p>The executive owes a 20% excise tax of <b>" + money(excise) + "</b>, on top of ordinary income tax. The company loses the deduction for " + money(excess) + ", which costs about <b>" + money(lost) + "</b> at a " + (corp * 100).toFixed(0) + "% tax rate.</p>";
+      html += "<p>If the company promised a gross-up, it would also pay the excise tax and the tax on the gross-up itself.</p>";
+    }
+    safeHtml($("pgResult"), html);
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){ defBox.textContent = "Select a term above."; }
+      else {
+        btn.setAttribute("aria-expanded","true");
+        safeHtml(defBox, "<b>" + esc(btn.textContent) + ".</b> " + esc(btn.getAttribute("data-def")));
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+
+  /* ---------- critical thinking reveal ---------- */
+  var tBtn = document.getElementById("thinkBtn"), tGuide = document.getElementById("thinkGuide");
+  tBtn.addEventListener("click", function(){
+    var open = tBtn.getAttribute("aria-expanded") === "true";
+    tBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    tGuide.hidden = open;
+    tBtn.textContent = open ? "Show what a strong answer weighs" : "Hide the guide";
+  });
+})();
+</script>
+</body>
+</html>

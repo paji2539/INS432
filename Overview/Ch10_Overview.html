@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'none'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10 — Managing the Employee-Benefits System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+
+  /* ---------- critical-thinking block ---------- */
+  .think{margin-top:8px;background:var(--card);border:2px solid var(--plum);border-radius:12px;padding:24px;}
+  .think-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--plum);color:#fff;padding:3px 9px;border-radius:3px;margin-bottom:10px;}
+  .think h3{font-size:20px;color:var(--plum-deep);margin-bottom:10px;}
+  .think .scenario{font-size:15px;color:var(--ink-soft);}
+  .think ol.ask{margin:8px 0 16px;padding-left:22px;}
+  .think ol.ask li{font-size:15px;color:var(--ink);margin-bottom:8px;}
+  .think label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .think textarea{width:100%;padding:11px 12px;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);border:1px solid #8A8F96;border-radius:6px;background:#fff;resize:vertical;}
+  .think .hint{font-size:13px;color:#5A6169;}
+  .think .btn{background:#fff;color:var(--plum-deep);border-color:var(--plum);}
+  .think .btn:hover{background:var(--plum-tint);}
+  .think .guide{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);border-radius:4px;padding:16px 20px;}
+  .think .guide[hidden]{display:none;}
+  .think .guide p{color:var(--plum-deep);font-size:14.5px;margin:0 0 8px;}
+  .think .guide ul{margin:0;padding-left:20px;}
+  .think .guide li{font-size:14.5px;color:var(--plum-deep);margin-bottom:8px;}
+  .think .guide b{color:var(--plum-deep);}
+  @media print{ .think textarea{border-color:#999;} .think .guide[hidden]{display:block;} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<header class="top">
+<div class="eyebrow">INS 432 / INS 532</div>
+<h1 class="title">Chapter 10: Managing the Employee-Benefits System</h1>
+<p class="subtitle">Choosing what to offer is only half of benefits management. The other half is who gets to choose, how employees learn what they have, how to keep the bill from running away, and who does the administrative work.</p>
+<div class="big-idea"><b>Big idea:</b> Every design decision in this chapter trades three things against each other: <b>choice</b> (does each employee get what he or she needs?), <b>cost</b> (who pays, and how much?), and <b>complexity</b> (how hard is it to run, explain, and keep legal?). A cafeteria plan buys choice with complexity. Cost-control tools buy lower spending by shifting risk or friction onto employees or providers. For every tool, ask <b>what it trades away</b>, and who bears it.</div>
+<div class="notice" role="note"><h2>⚠ About the numbers on this page</h2><p>The textbook's Chapter 10 runs on <b>pre-2021 data and tax limits</b>. Health-plan costs, flexible spending and savings account limits, and the way employers deliver required plan documents have all changed. A 2025 tax law raised the dependent care limit and widened HSA eligibility, and in July 2026 the Department of Labor proposed letting health plans deliver many required notices electronically by default. The textbook's statement on how often an SPD must be refreshed also does not match the regulation.</p><p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (KFF, the IRS, the Department of Labor, and federal regulations) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker; where the textbook is wrong, you'll see <span class="upd">Corrected</span>. Use these numbers, not the book's, on quizzes and papers.</p></div>
+</header>
+<main id="main">
+<section><div class="section-label">Our roadmap for Chapter 10</div><div class="roadmap-grid"><div class="rm-card"><div class="rm-num">1</div><h3>Fixed or flexible?</h3><p>One package for all, or a menu, and what each costs.</p></div><div class="rm-card"><div class="rm-num">2</div><h3>Section 125</h3><p>The tax rule, the guidelines, and the 25% concentration test.</p></div><div class="rm-card"><div class="rm-num">3</div><h3>Four flexible designs</h3><p>Salary reduction, modular, core-plus-option, and mix-and-match.</p></div><div class="rm-card"><div class="rm-num">4</div><h3>Communicating benefits</h3><p>ERISA disclosure, open enrollment, and helping employees choose.</p></div><div class="rm-card"><div class="rm-num">5</div><h3>Controlling costs</h3><p>Eight tools, from waiting periods to capitation.</p></div><div class="rm-card"><div class="rm-num">6</div><h3>Outsourcing</h3><p>What employers hand to third parties, and why.</p></div></div></section>
+<section><div class="section-label">Part One: Fixed or flexible?</div><h2 class="section-title">One package for everyone, or a menu?</h2><p>A <b>traditional benefits plan</b> gives every employee the same set of benefits at the same level. It is simple to run and simple to explain, and it is how most employers began: the employer picks a package, largely on cost, and everyone gets it. Its weakness is fit. A 26-year-old with no dependents and a 55-year-old with tuition bills and an aging parent value the same package very differently.</p>
+<p>A <b>cafeteria (flexible) benefits plan</b> lets employees choose among designated benefits and levels of benefits. Companies increasingly replace fixed plans with flexible ones to meet the needs of a diverse workforce and, they hope, to see a return through recruiting and retention.</p><div class="two-col"><div class="col-card a"><h3>Traditional (fixed) plan</h3><ul><li>Same benefits for every employee</li><li>Administrative ease: one package to price, explain, and audit</li><li>Cheap to run, but poor fit when employees' needs differ</li></ul></div><div class="col-card b"><h3>Cafeteria (flexible) plan</h3><ul><li>Employees choose benefits and levels within limits the employer sets</li><li>Aims to raise the value employees see in every benefit dollar</li><li>Costs more to administer, communicate, and keep legal</li></ul></div></div><p style="margin-top:14px;">The textbook reports <b>limited evidence</b> that employees react well to flexible plans: higher satisfaction with benefits, with the job overall, and with pay, and a better understanding of their benefits after the plan is introduced. The word to notice is <i>limited</i>. It is a reason to expect a payoff, not proof of one.</p><div class="callout"><p><b>Beyond the textbook: adverse selection.</b> When employees choose, those who expect high medical bills tend to pick the richest coverage and healthy employees pick less. If too many healthy people leave the richest option, its price rises, which pushes out even more of them. Employers manage the risk with pricing rules, employer credits, and limits on what can be chosen.</p></div></section>
+<section><div class="section-label">Part Two: The tax rule behind cafeteria plans</div><h2 class="section-title">Section 125: the price of choice</h2><p>Internal Revenue Code <b>Section 125</b> lets participants pay for certain benefits with pretax dollars, but only if the plan follows a strict rule: participants must be able to choose between <b>at least one taxable benefit</b> (such as cash) and <b>at least one qualified benefit</b>. A plan that offers a choice only among taxable benefits is not a Section 125 plan. A <b>qualified benefit</b> is an employer-sponsored benefit whose cost the employee may exclude from federal income tax.</p><div class="two-col"><div class="col-card a"><h3>Allowable qualified benefits (textbook Exhibit 10.3)</h3><ul><li>Employer-provided accident and health plan</li><li>Group term life insurance</li><li>Health savings accounts</li><li>Dependent care assistance</li><li>Adoption assistance</li></ul></div><div class="col-card b"><h3>Prohibited (textbook Exhibit 10.3)</h3><ul><li>Medical savings accounts (Archer MSAs)</li><li>Scholarships</li><li>Educational assistance programs</li><li>Fringe benefits such as employer-sponsored transportation services</li></ul></div></div><div class="callout"><p>The textbook's exhibit is a summary. Whether a specific benefit can run through a cafeteria plan turns on the Code and the plan document, so employers check with counsel before adding one.</p></div><h3 class="sub">Guidelines every Section 125 plan must follow</h3><div class="factor-list"><div class="factor"><span class="dot"></span><p><b>In writing.</b> The plan must be a written document.</p></div><div class="factor"><span class="dot"></span><p><b>A real choice.</b> Employees choose between two or more benefits, one nontaxable and one taxable.</p></div><div class="factor"><span class="dot"></span><p><b>Current and former employees only</b> may participate.</p></div><div class="factor"><span class="dot"></span><p><b>Yearly elections</b> made before the plan year begins, changeable mid-year only for qualifying life events such as the birth of a child.</p></div><div class="factor"><span class="dot"></span><p><b>No deferral of pay from year to year.</b> A benefit that defers an employee's receipt of compensation is prohibited.</p></div><div class="factor"><span class="dot"></span><p><b>Nondiscrimination.</b> The plan cannot give preferential treatment to highly compensated participants and key employees.</p></div></div><h3 class="sub">Three ways to violate the nondiscrimination rules</h3><div class="plan-grid"><div class="plan-card"><h3>Eligibility</h3><p>The plan must include at least some non-key employees.</p></div><div class="plan-card"><h3>Benefits</h3><p>All employees must get the same employer contribution, the same eligibility rules, and the same benefits available.</p></div><div class="plan-card"><h3>Concentration</h3><p>The value of nontaxable benefits provided to key employees cannot exceed 25% of the total nontaxable benefits under the plan.</p></div></div><p style="margin-top:14px;"><b>Which group pays for a violation depends on the violation.</b> Failing the tests eliminates the tax benefits for one or both groups: highly compensated or key employees, or everyone else. A concentration failure costs the key employees, who lose the exclusion.</p><div class="callout"><p><span class="upd">Updated</span> <b>Who counts as "key" or "highly compensated."</b> Chapter 12 defines both. For 2026 an officer is a key employee at pay above <b>$235,000</b> (up from $230,000 in 2025), and a highly compensated employee is anyone whose prior-year pay was above <b>$160,000</b>. A 5% owner is always both.</p></div><div class="tool"><h3>Try it: the 25% concentration test</h3><p class="hint">A Section 125 plan fails the <b>concentration test</b> if key employees receive more than 25% of the total value of nontaxable benefits provided under the plan. Enter your plan's numbers.</p><div class="grid2"><div class="field"><label for="ccTotal">Total nontaxable benefits provided under the plan ($)</label><input type="number" id="ccTotal" value="600000" min="0" step="1000"></div><div class="field"><label for="ccKey">Portion provided to key employees ($)</label><input type="number" id="ccKey" value="132000" min="0" step="1000"></div></div><button type="button" class="btn" id="ccBtn">Calculate</button><div class="result" id="ccResult" role="status" aria-live="polite"><p>Enter both amounts and select Calculate.</p></div></div></section>
+<section><div class="section-label">Part Three: Four ways to build a flexible plan</div><h2 class="section-title">Salary reduction, modular, core-plus, and mix-and-match</h2><p>Employers use four common designs. They differ mainly in how much choice the employee has and who carries the cost of that choice.</p><table class="tbl"><caption>The four common flexible plan designs</caption><thead><tr><th scope="col">Design</th><th scope="col">How it works</th><th scope="col">Who covers extra cost</th><th scope="col">How much choice</th></tr></thead><tbody><tr><td><b>Pretax salary reduction</b></td><td>Employees set aside part of pay each year, before tax, for qualified expenses. Two versions: <b>flexible spending accounts</b> and <b>premium-only plans</b>.</td><td>The employee, through pay reduction. The employer saves payroll tax on the redirected pay.</td><td>Redirect pay only</td></tr><tr><td><b>Modular</b></td><td>The employer offers several fixed packages built for life-cycle groups: single, single parent, married with dependents, near retirement.</td><td>The employee pays the difference between a fuller package and the lowest-cost package.</td><td>Pick a package</td></tr><tr><td><b>Core-plus-option</b></td><td>A mandatory core (such as health and retirement) plus optional benefits up to a limit the employer sets. Unused credits may be traded for cash.</td><td>The employer, up to the credit limit.</td><td>Core plus extras</td></tr><tr><td><b>Mix-and-match</b></td><td>The employer sets an annual amount per employee and awards flexible credits worth $1.00 each. Employees buy any benefit at any level, with every cost shown.</td><td>The employer, up to the allotment.</td><td>Anything, within the budget</td></tr></tbody></table><div class="callout"><p><b>An illustration (not from the textbook).</b> An employer allots an employee 8,000 credits. She buys single medical coverage (5,400), dental (500), long-term disability (450), and five extra vacation days (900). That uses 7,250 credits and leaves 750, which she can spend on vision coverage (150) or, if the plan allows, take as taxable cash.</p></div><h3 class="sub">Flexible spending accounts and the 2026 limits</h3><p>Before each plan year, employees elect the amount of salary reduction to send to an FSA. FSAs usually cover expenses beyond the plan's regular limits. Elections are made up front and the account is <b>use-it-or-lose-it</b>: a plan may offer either a limited carryover or a short grace period, not both.</p><div class="stat-row"><div class="stat"><div class="num">$3,400</div><div class="lbl">the <b>health FSA</b> salary-reduction limit for 2026, with a carryover of up to <b>$680</b> if the plan allows one</div><div class="src">IRS Rev. Proc. 2025-32</div></div><div class="stat"><div class="num">$7,500</div><div class="lbl">the <b>dependent care FSA</b> limit per household in 2026, up from $5,000. A 2025 law made this the first increase since 1986</div><div class="src">One Big Beautiful Bill Act</div></div><div class="stat alt"><div class="num">$4,400 / $8,750</div><div class="lbl">the 2026 <b>HSA</b> contribution limits for self-only and family high-deductible coverage. Bronze and catastrophic marketplace plans now qualify</div><div class="src">IRS Rev. Proc. 2025-19; OBBBA</div></div></div><p style="margin-top:14px;"><span class="upd">Updated</span> The textbook predates these limits. It also predates the 2025 law's other HSA changes: certain direct primary care memberships no longer disqualify a person from contributing, and the first-dollar telehealth safe harbor became permanent.</p><div class="tool"><h3>Try it: what is a flexible spending account really worth?</h3><p class="hint">An FSA saves income tax and payroll tax on every dollar you spend on eligible expenses. But money left unspent at year end is forfeited, except for a limited health FSA carryover. Enter your own numbers to see the trade.</p><div class="grid2"><div class="field"><label for="fxType">Account type</label><select id="fxType" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="h">Health FSA (2026 limit $3,400)</option><option value="d">Dependent care FSA (2026 limit $7,500 per household)</option></select></div><div class="field"><label for="fxCarry">Does the health FSA allow a carryover?</label><select id="fxCarry" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="y">Yes, up to $680</option><option value="n">No carryover</option></select></div></div><div class="grid2"><div class="field"><label for="fxElect">Amount you elect for the year ($)</label><input type="number" id="fxElect" value="2400" min="0" step="50"></div><div class="field"><label for="fxSpend">Amount you actually expect to spend ($)</label><input type="number" id="fxSpend" value="2000" min="0" step="50"></div></div><div class="field"><label for="fxRate">Your federal + state income tax rate (%)</label><input type="number" id="fxRate" value="22" min="0" step="1"></div><button type="button" class="btn" id="fxBtn">Calculate</button><div class="result" id="fxResult" role="status" aria-live="polite"><p>Enter your numbers and select Calculate.</p></div></div><div class="tool"><h3>Try it: which flexible plan is this?</h3><p class="hint">Pick a description. The answer names the design and the trade-off it makes.</p><div class="field"><label for="pdSel">Description</label><select id="pdSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="">Select a description…</option><option value="a">Employees set aside pay before taxes for medical or child-care expenses they choose at the start of the year</option><option value="b">Employees pay their share of the health insurance premium with pretax pay, and nothing else is offered</option><option value="c">The employer offers several complete packages built for single workers, single parents, and people near retirement</option><option value="d">Health and retirement coverage are mandatory for all; employees pick extras and can trade unused credits for cash</option><option value="e">The employer gives each employee 8,000 credits worth $1.00 each to spend on any benefit at any level</option></select></div><div class="result" id="pdResult" role="status" aria-live="polite"><p>Choose a description to begin.</p></div></div></section>
+<section><div class="section-label">Part Four: Making sure employees understand what they have</div><h2 class="section-title">Communicating the benefits program</h2><p>Benefits communication is not a courtesy; it is half the value of the program. Two sets of considerations shape it: what the law <b>requires</b>, and what makes <b>good business sense</b>.</p><h3 class="sub">What the law requires: ERISA disclosure</h3><p>The Employee Retirement Income Security Act (ERISA) requires employers to give employees written notices, in language the <b>average participant</b> can understand. Two documents carry most of the load.</p><div class="two-col"><div class="col-card a"><h3>Summary plan description (SPD)</h3><ul><li>Who administers the plan, with names and addresses</li><li>A description and explanation of the benefits</li><li>Employees' rights under ERISA</li><li>Eligibility criteria and conditions for disqualification or suspension</li><li>Claims procedures, including how to appeal a denial</li><li>Whether the Pension Benefit Guaranty Corporation insures the retirement plan</li></ul></div><div class="col-card b"><h3>Summary of material modifications (SMM)</h3><ul><li>Describes important changes: plan administrators, claims procedures, eligibility rules, vesting</li><li>Due within 210 days after the end of the plan year in which the change occurred</li><li>Goes to employees and the Department of Labor</li></ul></div></div><div class="factor-list"><div class="factor"><span class="dot"></span><p><b>Timing (textbook):</b> the SPD goes to employees and the Department of Labor within 120 days of a plan becoming subject to ERISA's reporting rules, and to each new participant within 90 days of joining.</p></div></div><div class="callout"><p><span class="upd">Corrected</span> <b>How often must the SPD be refreshed?</b> The textbook says an updated SPD is due every fifth plan year <i>even when nothing changed</i>. The Department of Labor's regulation says <b>five years if the plan was amended, ten years if it was not</b>, each measured to 210 days after the end of the relevant plan year.</p></div><div class="callout"><p><span class="upd">Updated</span> <b>Delivering documents electronically.</b> Since 2020, retirement plans have had a "notice-and-access" safe harbor that makes electronic delivery the default. On <b>July 23, 2026</b>, the Department of Labor proposed a similar safe harbor for <b>group health plans</b>. Today, health plans must generally rely on a 2002 rule that permits electronic delivery only to employees who are "wired at work" or who consent. The proposal is not final, and comments were due September 21, 2026.</p></div><h3 class="sub">What makes good business sense</h3><p>An effective communication program has <b>four objectives</b>: to promote recruitment and retention; to help employees understand what is available so they choose wisely at open enrollment; to build awareness and appreciation of how benefits improve employees' financial security and physical and mental well-being; and to tell employees what costs the employer covers to make benefits affordable. <i>The textbook's slides and its discussion questions say "three" objectives but list four. Learn the four.</i></p>
+<p>Candidates read the careers section of a company's website and social media to learn what benefits it offers. New hires get group meetings during onboarding, where the key message is that some elections, such as medical plans, are locked in until the next enrollment. Communication then continues for three reasons: reminders keep choices in mind and raise use; employees decide each year whether to keep or change elections; and an annual benefits statement shows the value of benefits and each side's share of the cost.</p><h3 class="sub">Open enrollment and benefits choice</h3><p><b>Open enrollment</b> is the period when employees may change, elect, or drop benefits. It usually runs two weeks to a month, at the same time each year, a month or two before the <b>benefits plan year</b>, the 12-month period elections stay in effect. A plan year can follow the calendar year or the fiscal year.</p><div class="tool"><h3>Try it: can this employee change an election mid-year?</h3><p class="hint">Elections normally last the full plan year. The IRS allows exceptions for qualifying life events, and the change must be <b>consistent with the event</b>. Pick a situation.</p><div class="field"><label for="qeSel">Situation</label><select id="qeSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);"><option value="">Select a situation…</option><option value="birth">An employee's baby is born three months into the plan year</option><option value="div">An employee covered as a dependent under her spouse's plan divorces, and the spouse's coverage ends</option><option value="loss">An employee's spouse loses job-based health coverage in July</option><option value="mind">An employee decides in June that the plan he chose costs more than he expected</option><option value="raise">An employee gets a raise in April and wants to add more coverage</option></select></div><div class="result" id="qeResult" role="status" aria-live="polite"><p>Choose a situation to begin.</p></div></div><h3 class="sub">Helping employees choose well</h3><p>Poorly informed choices lead to unused benefits and a belief that benefits are not worth much. Employers offer online and printed materials, benefits counselors, live seminars, and sometimes access to a financial adviser. Even so, many employees ignore the resources.</p>
+<p>Larger employers are increasingly using <b>artificial intelligence</b> to recommend a plan. The tool asks questions, sometimes including income, and compares the answers with data from many earlier employees. It can point two employees with the same income toward the same high-deductible plan even though their debts differ. It can also raise legal problems: saving answers about health conditions in a database may violate privacy laws such as HIPAA or equal-employment laws such as GINA.</p></section>
+<section><div class="section-label">Part Five: Keeping the bill under control</div><h2 class="section-title">Managing the costs of employee benefits</h2><p>Benefits costs are high and keep rising, so employers use eight families of tools. Almost all of them work the same way: they <b>shift some cost, risk, or friction</b> from the employer onto employees or providers.</p><div class="stat-row"><div class="stat"><div class="num">$26,993</div><div class="lbl">average annual <b>family</b> health premium in 2025, up 6%. The average single premium was $9,325</div><div class="src">KFF, 2025 Employer Health Benefits Survey</div></div><div class="stat"><div class="num">26%</div><div class="lbl">share of the family premium paid by covered workers, about <b>$6,850</b>. For single coverage the share was 16%, or $1,440</div><div class="src">KFF, 2025</div></div><div class="stat alt"><div class="num">33%</div><div class="lbl">of covered workers are in a <b>high-deductible plan with a savings option</b>. Among workers with a deductible, the average single deductible was $1,886</div><div class="src">KFF, 2025</div></div></div><p style="margin-top:14px;"><span class="upd">Updated</span> These replace the textbook's older cost figures.</p><h3 class="sub">Employee contributions and waiting periods</h3><div class="factor-list"><div class="factor"><span class="dot"></span><p><b>Pretax contributions</b> let employees exclude the amount from income before federal and state income tax. <b>After-tax contributions</b> do not reduce taxable income.</p></div><div class="factor"><span class="dot"></span><p><b>Waiting periods</b> set a minimum time before an employee becomes eligible and often match the probationary period. The Affordable Care Act limits waiting periods for health coverage to <b>90 days</b>.</p></div></div><h3 class="sub">High-deductible plans and employee education</h3><p>A high-deductible plan shifts spending from the employer to the employee through a larger annual deductible, and it lowers premiums immediately. In 2026 a plan qualifies for an HSA only if its deductible is at least <b>$1,700</b> (single) or <b>$3,400</b> (family). Some employers use the same idea for workers' compensation: a much lower premium in exchange for agreeing to pay claims up to a deductible.</p>
+<p>Education matters because overuse has causes. Tax breaks made employer coverage feel standard, and older fee-for-service plans let people see costly specialists freely. Teaching employees what care costs, together with higher contributions, is meant to reduce unnecessary use.</p><h3 class="sub">Utilization reviews and case management</h3><div class="plan-grid"><div class="plan-card"><h3>Prospective (precertification)</h3><p>Before treatment: verifies coverage, checks whether the plan covers it, and judges medical appropriateness. May require a second surgical opinion.</p></div><div class="plan-card"><h3>Concurrent</h3><p>During a hospital stay: judges whether more inpatient days are medically necessary, often the day before discharge.</p></div><div class="plan-card"><h3>Retrospective</h3><p>After care but before the insurer pays: confirms coverage and that the treatment was given and appropriate, which also screens for fraud.</p></div></div><p style="margin-top:14px;"><b>Case management</b> companies help participants with serious injuries or illnesses, whether <b>acute</b> (possibly life threatening) or <b>chronic</b> (ongoing), get essential care cost-effectively. Nurses or social workers work with physicians to balance medical need and cost.</p><h3 class="sub">Provider payment systems</h3><p>Managed care plans negotiate how they pay doctors, hospitals, and pharmacies. The four arrangements differ sharply in how well they control total cost.</p><table class="tbl"><caption>How managed care plans pay providers</caption><thead><tr><th scope="col">System</th><th scope="col">How it works</th><th scope="col">Does it control total cost?</th></tr></thead><tbody><tr><td><b>Percentage discount</b></td><td>Reduces providers' usual charges by a percentage</td><td>Weakly. There is no limit on the number of services, and providers can raise their regular fees.</td></tr><tr><td><b>Capped fee schedule</b></td><td>Sets a maximum dollar amount for each service, usually a percentage of usual, customary, and reasonable fees</td><td>Weakly. It caps price but not volume.</td></tr><tr><td><b>Partial capitation</b></td><td>Pays a primary care physician a fixed monthly amount for each assigned patient</td><td>Better. Costs are easier to predict because pay follows the number of patients.</td></tr><tr><td><b>Full capitation</b></td><td>Pays a fixed amount per assigned patient, and holds the physician accountable for the cost of services</td><td>Strongly. Total outlay does not rise with volume.</td></tr></tbody></table><div class="callout"><p><b>The catch with capitation.</b> Because the physician keeps what is not spent, full capitation creates a financial incentive <i>not</i> to authorize treatments and specialist referrals. It controls cost by design, and that is also the reason it worries patients and regulators.</p></div><h3 class="sub">Lifestyle interventions</h3><p>A <b>lifestyle intervention</b> is any activity that changes how a person lives, such as quitting smoking. Most wellness programs are voluntary. Some employers go further. Scotts Miracle-Gro adopted a policy of terminating employees who would not quit smoking on or off the job; a new hire, Scott Rodrigues, was fired after a drug test found nicotine, and the judge ruled against his ERISA claim on all counts. The ruling does not reach states that prohibit firing workers for off-duty smoking. Chapter 9 covers the legal limits on wellness incentives.</p></section>
+<section><div class="section-label">Part Six: Who does the work?</div><h2 class="section-title">Outsourcing the benefits function</h2><p><b>Outsourcing</b> is a contract under which an employer transfers responsibility for a function to a third-party provider: an independent company with expertise in benefits design and administration. The textbook reports that companies outsource on average about <b>two-fifths</b> of their benefits functions, and that the top reason is <b>expertise</b>. Administration of <b>employee assistance programs</b>, <b>flexible spending accounts</b>, and <b>COBRA continuation coverage</b> are among the most commonly outsourced services.</p>
+<p>Outsourcing can be expensive at first because most or all fees are due up front. Over time, an efficient arrangement can cost less than employing several people to administer benefits, and it frees the company to spend its own effort on work that cannot be outsourced well, such as product design.</p><div class="callout"><p><b>A gap in the data.</b> The two-fifths figure is the textbook's and I did not find a current national statistic to replace it. Treat it as a rough benchmark and ask what share of <i>your</i> employer's functions would be worth outsourcing, and why.</p></div></section>
+<section><h2 class="section-title">Key terms — check yourself</h2><p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p><div class="terms" id="termList"><button type="button" class="term" aria-expanded="false" data-def="A plan that gives every employee the same set of benefits at the same level.">Traditional benefits plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan that lets employees choose among designated benefits and levels of benefits.">Cafeteria (flexible) plan</button><button type="button" class="term" aria-expanded="false" data-def="The Internal Revenue Code section that lets participants pay for qualified benefits with pretax dollars, if they can choose between at least one taxable benefit and one qualified benefit.">Section 125</button><button type="button" class="term" aria-expanded="false" data-def="An employer-sponsored benefit whose cost an employee may exclude from federal income tax.">Qualified benefit</button><button type="button" class="term" aria-expanded="false" data-def="Rules that prohibit preferential treatment of highly compensated participants and key employees. Violations concern eligibility, benefits, and concentration.">Nondiscrimination rules</button><button type="button" class="term" aria-expanded="false" data-def="A Section 125 test that fails a plan if key employees receive more than 25% of the total nontaxable benefits under the plan.">Concentration test</button><button type="button" class="term" aria-expanded="false" data-def="A plan that lets employees set aside part of their pay each year, before tax, for qualified benefit expenses. Flexible spending accounts and premium-only plans are the two versions.">Pretax salary reduction plan</button><button type="button" class="term" aria-expanded="false" data-def="An account funded by pretax salary reduction that pays for eligible expenses such as medical, dental, vision, or day care. Unused money is generally forfeited, apart from a limited health FSA carryover.">Flexible spending account</button><button type="button" class="term" aria-expanded="false" data-def="A plan that lets employees pay their share of health, dental, and similar premiums with pretax pay.">Premium-only plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan offering several fixed benefit packages built for the life-cycle needs of different employee groups. Employees pay the cost difference between a fuller package and the lowest-cost package.">Modular plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan with a mandatory core of benefits plus optional benefits up to a limit. Unused credits may be traded for cash.">Core-plus-option plan</button><button type="button" class="term" aria-expanded="false" data-def="A plan in which the employer sets an annual amount and awards flexible credits worth $1.00 each. Employees buy any benefit at any level.">Mix-and-match plan</button><button type="button" class="term" aria-expanded="false" data-def="The written ERISA document that explains a plan in language the average participant can understand.">Summary plan description</button><button type="button" class="term" aria-expanded="false" data-def="A document describing important changes to a plan. Due within 210 days after the end of the plan year in which the change occurred.">Summary of material modification</button><button type="button" class="term" aria-expanded="false" data-def="The period, usually a month or two before the plan year, when employees may change, elect, or drop benefits.">Open enrollment</button><button type="button" class="term" aria-expanded="false" data-def="An IRS-recognized event, such as a birth or divorce, that allows a mid-year change in benefit elections consistent with the event.">Qualifying life event</button><button type="button" class="term" aria-expanded="false" data-def="The minimum time an employee must be employed before becoming eligible for a benefit. The ACA caps waiting periods for health coverage at 90 days.">Waiting period</button><button type="button" class="term" aria-expanded="false" data-def="An evaluation of the quality and medical appropriateness of health services. It can be prospective, concurrent, or retrospective.">Utilization review</button><button type="button" class="term" aria-expanded="false" data-def="Coordination of care for participants with serious acute or chronic conditions, done by nurses or social workers working with physicians.">Case management</button><button type="button" class="term" aria-expanded="false" data-def="A payment system in which a physician receives a fixed amount for each assigned patient. Partial and full capitation differ in how much cost responsibility the physician bears.">Capitation</button><button type="button" class="term" aria-expanded="false" data-def="A contract that transfers responsibility for a function, such as benefits administration, to an independent third-party provider.">Outsourcing</button></div><div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div></section>
+<section><div class="section-label">Learning objectives</div><h2 class="section-title">Four learning objectives</h2><div class="obj-list"><div class="obj-item"><div class="obj-num">1</div><p>Understand the differences between the traditional and flexible approaches to benefits design.</p></div><div class="obj-item"><div class="obj-num">2</div><p>Understand the essentials of communicating the benefits program.</p></div><div class="obj-item"><div class="obj-num">3</div><p>Understand methods for managing benefits costs.</p></div><div class="obj-item"><div class="obj-num">4</div><p>Understand outsourcing employee benefits.</p></div></div></section>
+<section><h2 class="section-title">Check your understanding</h2><p>Five questions. Feedback appears as soon as you answer. This is practice, not graded, but the graded quiz works the same way.</p><div class="quiz-q" data-answer="b"><fieldset><legend>1. To be a Section 125 cafeteria plan, participants must be able to choose between:</legend><label><input type="radio" name="q1" value="a"> Two qualified benefits of equal value</label><label><input type="radio" name="q1" value="b"> At least one taxable benefit (such as cash) and one qualified benefit</label><label><input type="radio" name="q1" value="c"> Two or more taxable benefits</label><label><input type="radio" name="q1" value="d"> A qualified benefit and a benefit the employer selects for them</label></fieldset><div class="fb" data-right="Correct. A plan that offers a choice only among taxable benefits is not a Section 125 plan." data-wrong="Section 125 requires a choice between at least one taxable benefit, such as cash, and at least one qualified benefit."></div></div><div class="quiz-q" data-answer="c"><fieldset><legend>2. A cafeteria plan's total nontaxable benefits are $800,000, and key employees receive $230,000 of them. What is the result of the concentration test?</legend><label><input type="radio" name="q2" value="a"> It passes, because key employees receive less than half</label><label><input type="radio" name="q2" value="b"> It passes, because $230,000 is below the plan's average benefit</label><label><input type="radio" name="q2" value="c"> It fails, because key employees receive more than 25% of the total</label><label><input type="radio" name="q2" value="d"> It cannot be determined without knowing the number of key employees</label></fieldset><div class="fb" data-right="Correct. 25% of $800,000 is $200,000. At $230,000 (28.75%), key employees exceed the limit, so they lose the tax exclusion." data-wrong="The test compares key employees&#x27; share to 25% of total nontaxable benefits. 25% of $800,000 is $200,000, and $230,000 is over that."></div></div><div class="quiz-q" data-answer="d"><fieldset><legend>3. An employer awards each employee 6,000 credits worth $1.00 each and lets employees buy any benefit at any level. This is a:</legend><label><input type="radio" name="q3" value="a"> Modular plan</label><label><input type="radio" name="q3" value="b"> Core-plus-option plan</label><label><input type="radio" name="q3" value="c"> Premium-only plan</label><label><input type="radio" name="q3" value="d"> Mix-and-match plan</label></fieldset><div class="fb" data-right="Correct. Flexible credits worth $1.00 each, spent on any benefit at any level, define a mix-and-match plan." data-wrong="Modular plans offer fixed packages, and core-plus-option plans start from a mandatory core. Credits worth $1.00 each spent on anything describe mix-and-match."></div></div><div class="quiz-q" data-answer="a"><fieldset><legend>4. A physician is paid a fixed amount for each assigned patient and is held accountable for the cost of services. This payment system is:</legend><label><input type="radio" name="q4" value="a"> Full capitation</label><label><input type="radio" name="q4" value="b"> A capped fee schedule</label><label><input type="radio" name="q4" value="c"> A percentage discount</label><label><input type="radio" name="q4" value="d"> Retrospective review</label></fieldset><div class="fb" data-right="Correct. Full capitation ties the physician&#x27;s pay to per-patient amounts and cost responsibility, which is why it controls total cost but can discourage referrals." data-wrong="Percentage discounts and capped fee schedules do not limit volume. Fixed payment per assigned patient with cost accountability is full capitation."></div></div><div class="quiz-q" data-answer="b"><fieldset><legend>5. Which type of utilization review focuses on patients who are currently in the hospital?</legend><label><input type="radio" name="q5" value="a"> Prospective review</label><label><input type="radio" name="q5" value="b"> Concurrent review</label><label><input type="radio" name="q5" value="c"> Retrospective review</label><label><input type="radio" name="q5" value="d"> Precertification review</label></fieldset><div class="fb" data-right="Correct. Concurrent reviews judge whether additional inpatient days are medically necessary." data-wrong="Prospective (precertification) reviews come before treatment and retrospective reviews come after care but before payment. Concurrent reviews cover current inpatients."></div></div><p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p></section>
+<section><div class="think"><div class="think-tag">Critical thinking</div><h3>Choice or chaos? A menu for 400 employees</h3><p class="scenario"><b>The situation.</b> A 400-employee regional distributor offers one fixed benefits package. About 40% of employees are under 35, about a quarter are 55 or older, and the mix is hourly and salaried. The CFO worries that a flexible plan will raise costs. Employees say they do not understand what they already have. The vendor is pitching a <b>mix-and-match plan</b> with an <b>AI enrollment assistant</b> that asks about income, family, and health to recommend a plan. Two people in HR would administer it.</p><ol class="ask"><li>Which flexible design would you recommend, if any (salary reduction only, modular, core-plus-option, or mix-and-match), and what are you trading away by choosing it?</li><li>Identify at least <b>two legal or design risks</b> in the vendor's proposal, and say how you would reduce each.</li><li>Say how you would <b>measure whether it worked</b> after two open enrollments, and what result would make you go back to the fixed plan.</li></ol><label for="thinkText">Your response</label><textarea id="thinkText" rows="9" placeholder="Take a position, then defend it. Aim for 200 to 300 words."></textarea><p class="hint" style="margin-top:6px;">Your response stays in your browser. It is not saved or submitted. Copy it into your course platform when you are done.</p><p style="margin-top:12px;"><button type="button" class="btn ghost" id="thinkBtn" aria-expanded="false" aria-controls="thinkGuide">Show what a strong answer weighs</button></p><div class="guide" id="thinkGuide" hidden><p><b>There is no single right answer. A strong response takes a position and shows it has weighed these points:</b></p><ul><li><b>Match the design to capacity.</b> With two HR staff, a simpler design (salary reduction plus a small core-plus-option menu) may beat full mix-and-match. The trade is less fit for less administrative and communication burden. A strong answer names the trade.</li><li><b>Adverse selection.</b> If employees choose freely, healthier workers may leave the richest medical option and raise its price. Pricing rules, employer credits, and limits on what can be chosen are the usual controls.</li><li><b>Nondiscrimination.</b> Any Section 125 plan must pass the eligibility, benefits, and 25% concentration tests, and the employer must know who its key and highly compensated employees are. A plan design that lets a few highly paid employees take most of the nontaxable benefits fails.</li><li><b>Privacy.</b> The textbook warns that saving specific health answers in a database may violate HIPAA or GINA. A strong answer limits what the tool asks for, keeps health data out of employment decisions, and reviews the vendor's data handling in writing.</li><li><b>Do employees understand it?</b> The problem the employees report is understanding. Choice without understanding produces underused benefits and a perception of little value. Test comprehension, such as whether employees can say what their plan covers, before and after.</li><li><b>A real measure and a stop rule.</b> Pick measures in advance: satisfaction and understanding, enrollment errors and mid-year change requests, turnover among new hires, cost trend by plan, and administrative hours. State the result that would send you back, for example administrative hours rising past capacity without a gain in understanding.</li><li><b>Pilot first.</b> Roll out to one site or one employee group and compare before committing all 400.</li></ul></div></div></section>
+<div class="big-picture"><p class="lead">Choice is not the same as understanding.</p><h2>Ask what employees actually do with a choice.</h2><div class="flow">Employer offers a menu <span class="arrow">→</span> Employees choose without reading the material<br>Mismatched or unused benefits <span class="arrow">→</span> A perception that benefits have little value<br><span class="arrow">→</span> More menu, or better explanation?</div><p class="question">If many employees ignore the resources, is offering more choices a benefit or a burden? What would you change first: the plan design, or how it is explained?</p></div>
+<section class="refs" id="refs"><h2>Sources</h2><p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. The Department of Labor's electronic disclosure proposal was open for comment through September 21, 2026 and is not final; check for the final rule.</p><ol><li>KFF, <i>2025 Employer Health Benefits Survey</i> (October 22, 2025), and Claxton, Rae, Damico, Winger, and Wager, "Health Benefits in 2025: Family Premiums Rise 6 Percent," <i>Health Affairs</i> (2025). Family premium $26,993; single $9,325; worker shares of 26% and 16%; 33% of covered workers in high-deductible plans with a savings option; average single deductible $1,886.</li><li>Internal Revenue Service, Revenue Procedure 2025-32 (2026 health FSA limit of $3,400 and $680 carryover) and Revenue Procedure 2025-19 (2026 HSA limits of $4,400 and $8,750; minimum high-deductible plan deductibles of $1,700 and $3,400), as summarized by Newfront (October 2025), HSA Bank, and others.</li><li>One Big Beautiful Bill Act, Pub. L. 119-21 (July 4, 2025), Sections 70404 (dependent care FSA limit of $7,500) and HSA provisions on bronze and catastrophic plans, direct primary care arrangements, and telehealth.</li><li>Internal Revenue Service, Notice 2025-67 (November 13, 2025): 2026 key employee (officer) threshold of $235,000 and highly compensated employee threshold of $160,000, as summarized by Ascensus and Current Federal Tax Developments.</li><li>29 CFR 2520.104b-2, Summary plan description: timing of initial and updated SPDs (five years if amended, ten years if not), as published at law.cornell.edu and ecfr.gov.</li><li>U.S. Department of Labor, Employee Benefits Security Administration, <i>Electronic Disclosure by Group Health Plans Under ERISA</i>, proposed rule, 91 Fed. Reg. 46602 (July 23, 2026), as summarized by Lockton, NFP, Ropes &amp; Gray, and Proskauer; and the DOL's 2020 electronic disclosure rule for retirement plans.</li><li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 10 and Instructor's Manual. Conceptual framework, definitions, and the Scotts Miracle-Gro example; statistical content superseded by the sources above.</li></ol></section>
+</main>
+<footer>INS 432 / INS 532 — Employee Benefits · Chapter 10: Managing the Employee-Benefits System</footer>
+</div>
+<script>
+(function(){
+"use strict";
+
+  /* Safe renderer: builds DOM nodes from a small allow-list of tags, so no raw HTML is ever injected */
+  var esc = function(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+  var ALLOWED = {P:1,B:1,I:1,DIV:1,SPAN:1,STRONG:1,EM:1,BR:1,UL:1,LI:1};
+  function safeHtml(target, html){
+    var doc = new DOMParser().parseFromString("<body>" + html, "text/html");
+    function copy(src, dst){
+      Array.prototype.forEach.call(src.childNodes, function(n){
+        if(n.nodeType === 3){ dst.appendChild(document.createTextNode(n.nodeValue)); }
+        else if(n.nodeType === 1 && ALLOWED[n.tagName]){
+          var e = document.createElement(n.tagName.toLowerCase());
+          var c = n.getAttribute("class");
+          if(c){ e.className = c.replace(/[^\w\- ]/g, ""); }
+          copy(n, e); dst.appendChild(e);
+        }
+      });
+    }
+    while(target.firstChild){ target.removeChild(target.firstChild); }
+    copy(doc.body, target);
+  }
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ---------- Section 125 concentration test ---------- */
+  $("ccBtn").addEventListener("click", function(){
+    var total = num($("ccTotal"), 0), key = num($("ccKey"), 0), html;
+    if(total <= 0){ html = "<p>Enter the total value of nontaxable benefits provided under the plan.</p>"; }
+    else if(key > total){ html = "<p>Key employees cannot receive more than the plan total. Check your entries.</p>"; }
+    else {
+      var pct = key / total * 100, pass = pct <= 25, limit = total * 0.25, shown = Math.round(key * 10000 / total) / 100;
+      html = '<p class="big">' + shown + "% to key employees: " + (pass ? "passes" : "fails") + "</p>";
+      html += "<p>" + (pass ? "Key employees receive no more than 25% of the nontaxable benefits, so the concentration test is met." : "Key employees receive more than 25% of the nontaxable benefits. The plan fails the concentration test, and key employees generally lose the tax exclusion: the benefits they received become taxable to them.") + "</p>";
+      html += "<p>The 25% ceiling on this plan is " + money(limit) + ". " + (pass ? "There is " + money(limit - key) + " of room." : "The plan is over by " + money(key - limit) + ".") + "</p>";
+      html += "<p>This is one of three tests. A plan must also pass the eligibility and benefits tests.</p>";
+    }
+    safeHtml($("ccResult"), html);
+  });
+
+  /* ---------- FSA estimator ---------- */
+  $("fxBtn").addEventListener("click", function(){
+    var type = $("fxType").value, carry = $("fxCarry").value === "y";
+    var limit = type === "h" ? 3400 : 7500;
+    var elect = num($("fxElect"), 0), spend = num($("fxSpend"), 0), rate = Math.min(50, num($("fxRate"), 0)) / 100;
+    var html = "", capped = false;
+    if(elect > limit){ elect = limit; capped = true; }
+    var spent = Math.min(spend, elect), unused = elect - spent;
+    var forfeited = (type === "h" && carry) ? Math.max(0, unused - 680) : unused;
+    var combined = rate + 0.0765;
+    var saved = spent * combined;
+    var lost = forfeited * (1 - combined);
+    var net = saved - lost;
+    html += '<p class="big">' + (net >= 0 ? "Net gain: " : "Net loss: ") + money(Math.abs(net)) + "</p>";
+    if(capped){ html += "<p>Your election was capped at the 2026 limit of " + money(limit) + ".</p>"; }
+    html += "<p>You elect " + money(elect) + " and spend " + money(spent) + ". At your income tax rate plus 7.65% payroll tax (a combined " + (combined * 100).toFixed(1) + "%), paying those expenses with pretax dollars saves about <b>" + money(saved) + "</b>.</p>";
+    if(unused > 0){
+      if(type === "h" && carry){ html += "<p>You have " + money(unused) + " unused. Up to $680 can carry over to next year, so about <b>" + money(forfeited) + "</b> is forfeited, costing you roughly " + money(lost) + " in after-tax terms.</p>"; }
+      else { html += "<p>You have " + money(unused) + " unused, and it is <b>forfeited</b>. That costs you roughly " + money(lost) + " in after-tax terms.</p>"; }
+    } else { html += "<p>You spend everything you elected, so nothing is forfeited.</p>"; }
+    html += "<p>Rule of thumb: elect only what you are confident you will spend.</p>";
+    safeHtml($("fxResult"), html);
+  });
+
+  /* ---------- flexible plan sorter ---------- */
+  var pd = {
+    a:["Pretax salary reduction plan (a flexible spending account)","Employees redirect their own pay before tax and choose the expenses. The employer bears little cost beyond administration, and the employee bears the forfeiture risk. It is the least flexible design because it changes how employees pay, not what the employer offers."],
+    b:["Premium-only plan (a form of salary reduction)","Employees pay their share of premiums with pretax pay. It is the simplest cafeteria plan, and the only choice is cash or premium payment. It gives almost no benefit choice."],
+    c:["Modular plan","The employer builds a few complete packages for different life stages. Choice is limited to picking a package, which is easy to administer, but employees pay the difference between a fuller package and the lowest-cost one."],
+    d:["Core-plus-option plan","A mandatory core protects everyone, and employees choose extras up to a credit limit set by the employer. Unused credits can be traded for cash. It balances protection and choice."],
+    e:["Mix-and-match plan","The employer sets the amount and employees build the package with credits worth $1.00 each, seeing every price. It is the most flexible design, and it takes the most administration and communication."]
+  };
+  $("pdSel").addEventListener("change", function(){
+    var v = this.value, box = $("pdResult");
+    if(!v){ safeHtml(box, "<p>Choose a description to begin.</p>"); return; }
+    safeHtml(box, '<p class="big">' + pd[v][0] + "</p><p>" + pd[v][1] + "</p>");
+  });
+
+  /* ---------- qualifying life event sorter ---------- */
+  var qe = {
+    birth:["Yes","A birth or adoption is a qualifying life event. The change must be <b>consistent with the event</b>, such as adding the child to coverage."],
+    div:["Yes","Divorce is the textbook's own example. Losing eligibility as a dependent lets the employee elect coverage of her own, consistent with the event."],
+    loss:["Yes","Loss of the spouse's other coverage is a qualifying event. The employee may add the spouse to her plan, which is consistent with what happened."],
+    mind:["No","Changing your mind, or finding the plan costs more than you expected, is not a qualifying life event. Elections are locked until the next open enrollment."],
+    raise:["No","A raise is not a qualifying life event. The employee waits for open enrollment to change how much coverage to buy."]
+  };
+  $("qeSel").addEventListener("change", function(){
+    var v = this.value, box = $("qeResult");
+    if(!v){ safeHtml(box, "<p>Choose a situation to begin.</p>"); return; }
+    safeHtml(box, '<p class="big">' + qe[v][0] + "</p><p>" + qe[v][1] + "</p>");
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){ defBox.textContent = "Select a term above."; }
+      else {
+        btn.setAttribute("aria-expanded","true");
+        safeHtml(defBox, "<b>" + esc(btn.textContent) + ".</b> " + esc(btn.getAttribute("data-def")));
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+
+  /* ---------- critical thinking reveal ---------- */
+  var tBtn = document.getElementById("thinkBtn"), tGuide = document.getElementById("thinkGuide");
+  tBtn.addEventListener("click", function(){
+    var open = tBtn.getAttribute("aria-expanded") === "true";
+    tBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    tGuide.hidden = open;
+    tBtn.textContent = open ? "Show what a strong answer weighs" : "Hide the guide";
+  });
+})();
+</script>
+</body>
+</html>
