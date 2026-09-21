@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'none'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 8 — Paid Time-Off Benefits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+
+  /* ---------- critical-thinking block ---------- */
+  .think{margin-top:8px;background:var(--card);border:2px solid var(--plum);border-radius:12px;padding:24px;}
+  .think-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--plum);color:#fff;padding:3px 9px;border-radius:3px;margin-bottom:10px;}
+  .think h3{font-size:20px;color:var(--plum-deep);margin-bottom:10px;}
+  .think .scenario{font-size:15px;color:var(--ink-soft);}
+  .think ol.ask{margin:8px 0 16px;padding-left:22px;}
+  .think ol.ask li{font-size:15px;color:var(--ink);margin-bottom:8px;}
+  .think label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .think textarea{width:100%;padding:11px 12px;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);border:1px solid #8A8F96;border-radius:6px;background:#fff;resize:vertical;}
+  .think .hint{font-size:13px;color:#5A6169;}
+  .think .btn{background:#fff;color:var(--plum-deep);border-color:var(--plum);}
+  .think .btn:hover{background:var(--plum-tint);}
+  .think .guide{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);border-radius:4px;padding:16px 20px;}
+  .think .guide[hidden]{display:none;}
+  .think .guide p{color:var(--plum-deep);font-size:14.5px;margin:0 0 8px;}
+  .think .guide ul{margin:0;padding-left:20px;}
+  .think .guide li{font-size:14.5px;color:var(--plum-deep);margin-bottom:8px;}
+  .think .guide b{color:var(--plum-deep);}
+  @media print{ .think textarea{border-color:#999;} .think .guide[hidden]{display:block;} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532</div>
+    <h1 class="title">Chapter 8: Paid Time-Off Benefits</h1>
+    <p class="subtitle">The benefit with the fewest federal rules and, increasingly, the most state rules. Federal law protects your job while you are away. Who pays you while you are gone is mostly left to the employer, and now to the states.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Sort every kind of time off with two questions. Is it <b>paid or unpaid</b>? Is it <b>discretionary or mandated</b>? Most paid leave is discretionary. Most mandated leave is unpaid. The gap between those two facts is where state paid-leave laws, and most of the legal risk in this chapter, live.
+    </div>
+
+    <div class="notice" role="note">
+      <h2>⚠ About the numbers on this page</h2>
+      <p>The textbook's Chapter 8 runs on <b>March 2020 access data and September 2020 cost data</b>. Its state paid-leave examples (Massachusetts at $850 a week, New York at $840.70) are years out of date, and its count of federal holidays has changed.</p>
+      <p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (U.S. Bureau of Labor Statistics, the Department of Labor, OPM, and state-program data compiled by New America) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker. Use these numbers, not the book's, on quizzes and papers.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 8</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>What paid time off is, and who has it</h3><p>Access by worker type, and what employers actually spend.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Everyday leave</h3><p>Holidays, vacation, sick leave, and the paid time-off bank that folds them together.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>The FMLA</h3><p>Twelve weeks, unpaid, with your job and your health insurance protected.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>State paid family and medical leave</h3><p>Twelve states and D.C. now pay benefits. The federal government does not.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Leave the law shapes</h3><p>Jury duty, witness duty, military service, and bereavement.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>What counts as work time</h3><p>Nonproduction time, on-call time, sabbaticals, and paid volunteering.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART ONE ============ -->
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">Paid time off: what it is and who gets it</h2>
+    <p><b>Paid time-off</b> policies compensate employees when they are not performing their primary duties. Private employers offer most of them on a <b>discretionary</b> basis. In nonunion workplaces many, holidays especially, exist as a matter of custom. In union workplaces they are written into the collective bargaining agreement. The one large exception is unpaid family leave, which federal law guarantees. Employees value paid time off for rest, leisure, and family obligations. Employers value it for recruiting, retention, and the chance to "recharge" a workforce. It is part of the psychological contract you met in Chapter 2.</p>
+
+    <table class="tbl">
+      <caption>Access to paid leave, private industry, March 2025 (textbook figures are March 2020) <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Group</th><th scope="col">Paid holidays<br>2020 → 2025</th><th scope="col">Paid vacation<br>2020 → 2025</th><th scope="col">Paid sick leave<br>2025</th></tr></thead>
+      <tbody>
+        <tr><td><b>All workers</b></td><td>80% → 81%</td><td>79% → 80%</td><td>80%</td></tr>
+        <tr><td><b>Full-time</b></td><td>90% → 92%</td><td>91% → 93%</td><td>88%</td></tr>
+        <tr><td><b>Part-time</b></td><td>49% → 50%</td><td>41% → 40%</td><td>56%</td></tr>
+        <tr><td><b>Union</b></td><td>91% → 94%</td><td>91% → 91%</td><td>86%</td></tr>
+        <tr><td><b>Nonunion</b></td><td>79% → 80%</td><td>78% → 79%</td><td>80%</td></tr>
+        <tr><td><b>Lowest 25% of wages</b></td><td>—</td><td>—</td><td>58%</td></tr>
+        <tr><td><b>Highest 25% of wages</b></td><td>—</td><td>—</td><td>94%</td></tr>
+        <tr><td><b>Fewer than 100 workers</b></td><td>—</td><td>—</td><td>73%</td></tr>
+        <tr><td><b>500 or more workers</b></td><td>—</td><td>—</td><td>90%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px;">Two patterns from the book still hold: full-timers have roughly twice the access of part-timers, and union workers do better than nonunion workers. What has changed is <b>sick leave</b>. Access to paid sick leave for private industry workers was 75% in 2020 and is 80% now, and state and local mandates (covered below) are a likely contributor. Even so, a worker in the bottom wage quarter is far less likely to have it (58% vs. 94%), and those are the workers least able to afford an unpaid day.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">80%</div>
+        <div class="lbl">of private industry workers have <b>paid sick leave</b>, up from 75% in 2020</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat">
+        <div class="num">27%</div>
+        <div class="lbl">of workers have <b>paid family leave</b> through their jobs, absent a state program. Low-wage workers are about 10 times less likely to have it</div>
+        <div class="src">BLS 2023 data, via New America</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">7.5%</div>
+        <div class="lbl">of private employer compensation cost goes to <b>paid leave</b>, or $3.54 per hour worked</div>
+        <div class="src">BLS ECEC, June 2026</div>
+      </div>
+    </div>
+
+    <h3 class="sub">What it costs employers</h3>
+    <table class="tbl">
+      <caption>Employer cost of paid leave per hour worked, private industry <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col"></th><th scope="col">Textbook (Sept. 2020)</th><th scope="col">June 2026</th></tr></thead>
+      <tbody>
+        <tr><td><b>All paid leave</b></td><td>$2.63 (7.3% of compensation)</td><td><b>$3.54</b> (7.5%)</td></tr>
+        <tr><td><b>Vacation</b></td><td>$1.35 (3.8%)</td><td>$1.76 (3.8%)</td></tr>
+        <tr><td><b>Holiday</b></td><td>$0.78 (2.2%)</td><td>$1.05 (2.2%)</td></tr>
+        <tr><td><b>Sick leave</b></td><td>$0.36 (1.0%)</td><td>$0.50 (1.1%)</td></tr>
+        <tr><td><b>Management and professional occupations</b></td><td>$5.67 (9.1%)</td><td>$7.37 (9.3%)</td></tr>
+        <tr><td><b>Service occupations</b></td><td>$0.78 (2.2%)</td><td>$1.03 (4.3%)</td></tr>
+        <tr><td><b>Goods-producing industries</b></td><td>$2.60 (6.4%)</td><td>$3.25 (6.5%)</td></tr>
+        <tr><td><b>Service-providing industries</b></td><td>$2.64 (7.5%)</td><td>$3.59 (7.8%)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">The dollar cost rose by about a third since 2020, but paid leave as a share of compensation barely moved. That is the point of the book's remark that paid leave costs are <b>directly linked to wages</b>: a paid day off is valued at what the worker would have earned, so wage growth lifts the cost automatically. It also explains why the highest costs sit in the best-paid occupations even though a manager and a clerk may get the same number of days.</p>
+  </section>
+
+  <!-- ============ PART TWO ============ -->
+  <section>
+    <div class="section-label">Part Two: Everyday Leave</div>
+    <h2 class="section-title">Holidays, vacation, sick leave, and the PTO bank</h2>
+
+    <h3 class="sub">Holidays</h3>
+    <p>Private employers generally follow the federal government's lead. Federal law now names <b>11 legal public holidays</b>, after Juneteenth (June 19) was added in 2021.<span class="upd">Updated</span> The book counts 12, apparently because Inauguration Day is also a legal holiday, but it applies only to federal employees in the Washington, D.C., area, and only every fourth year. When a holiday falls on a Saturday or Sunday, federal employees usually get the nearest weekday off: in 2026 the Fourth of July is observed on Friday, July 3. Many private employers add one or two <b>floating holidays</b>, so employees can observe any day that is not on the employer's list.</p>
+    <div class="callout">
+      <p><b>Holidays can be changed by the stroke of a pen, but only for those who work for the government.</b> In December 2025 an executive order gave federal employees December 24 and 26 off. It applied to 2025 only and did not add permanent holidays. The lesson for HR: a private employer follows the federal calendar by custom, not by law, and custom can be revised.</p>
+    </div>
+    <p>Religious holidays need care. Christmas is the only religious holiday on the federal list, but Title VII prohibits religious discrimination. EEOC guidelines require employers to allow employees to observe a religious day unless it causes <b>undue hardship</b>, and the observance of religious holidays must be treated uniformly as paid or unpaid time off.</p>
+
+    <h3 class="sub">Vacation: five design choices</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Eligibility.</b> Employees usually qualify after six months to a year of full-time work. Part-timers may be excluded or paid in proportion to their hours.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Single or multiple policies.</b> Separate policies usually give managers, professionals, and executives more time, in recognition of their greater effect on results.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>How much time.</b> A fixed number of days, days that grow with seniority (most common), or hours-based accrual for nonexempt workers under the FLSA.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Scheduling conflicts.</b> Approval requirements, with seniority breaking ties when two employees want the same days.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Unused time.</b> Three answers. <b>Carryover</b> lets you use it later. <b>Use it or lose it</b> forfeits it at year's end. A <b>cash-out</b> pays the daily value of the unused days. Federal law does not require private employers to pay for accrued, unused vacation, but some states require it when employment ends.</p></div>
+    </div>
+
+    <h3 class="sub">Sick leave</h3>
+    <p><b>Sick leave</b> pays for a set number of days of absence for personal illness, and it is separate from disability leave (Chapter 6). Employers that offer it commonly grant five to nine days, and some require evidence of illness. The tension is real. <b>Unscheduled absences</b> disrupt work, and illness is the most socially acceptable reason for them. But workers who cannot afford unpaid time, or fear being fired, come to work sick, and then healthy coworkers get ill.</p>
+    <p>State and local governments are now setting minimums. The textbook's examples: <b>Nevada</b> requires 0.01923 hour of paid leave for each hour worked, and <b>Colorado</b> requires at least 1 hour of paid sick leave for every 30 hours worked, up to 48 hours a year. Federal contractors may fall under Executive Order 13706 (2015), which requires up to seven days of paid sick leave for covered employees. DOL's fact sheet on the order was last issued in January 2025. Check the current status before relying on it for any contract you manage.<span class="upd">Updated</span> The practical rule for HR: <b>find out every jurisdiction where you have employees, and apply the most generous rule</b>.</p>
+
+    <h3 class="sub">The paid time-off bank</h3>
+    <p>An <b>integrated paid time-off policy</b>, or PTO bank, folds holidays, vacation, sick days, and personal days into one pool that employees use without giving a reason. The pitch is that it reduces <b>unscheduled absences</b>, since nobody has to fake an illness to take a day, and it eliminates the administrative burden of tracking reasons and processing medical certifications. Good designs share three features:</p>
+    <ul class="plain">
+      <li><b>Slow growth.</b> For example, one day a month in the first year (up to 12 days), rising to about 16 days in years two through five.</li>
+      <li><b>Carryover</b> instead of use-it-or-lose-it, so there is no flood of absences in December.</li>
+      <li><b>Carve-outs.</b> Bereavement, jury duty, military leave, and sabbaticals stay separate, because they are driven by events outside the employee's control, by law, or by long service.</li>
+    </ul>
+    <p>The downside gets less attention. A single bank can cost the conscientious employee: someone who used to keep five sick days in reserve now spends the pool on a long weekend, and then has nothing left when she is really ill.</p>
+
+    <h3 class="sub">Bereavement leave</h3>
+    <p><b>Bereavement or funeral leave</b> gives paid time off after a death, usually a relative's, and often scales by relationship: longer for a parent or spouse, shorter for a cousin or friend. No federal law requires it, which is why the leave sorter below sends a grandparent's funeral to "employer policy."</p>
+  </section>
+
+  <!-- ============ PART THREE: FMLA ============ -->
+  <section>
+    <div class="section-label">Part Three: The FMLA</div>
+    <h2 class="section-title">Job protection, not pay</h2>
+    <p>Before the <b>Family and Medical Leave Act of 1993</b>, most workers who needed extended time for a serious illness or a new child had to quit. The FMLA gives eligible employees up to <b>12 weeks of unpaid, job-protected leave</b> in a 12-month period. It does not require pay. It does require the employer to <b>maintain group health coverage</b> on the same terms as if the employee were working. Employees may substitute paid vacation or personal leave for unpaid FMLA leave in certain circumstances. The Department of Labor's current fact sheets show the core rules unchanged.<span class="upd">Updated</span></p>
+
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Which employers are covered</h3>
+        <ul>
+          <li><b>Private-sector</b> employers with 50 or more employees in 20 or more workweeks of the current or previous calendar year</li>
+          <li><b>Public agencies</b> (federal, state, and local) regardless of size</li>
+          <li><b>Schools</b> (public and private elementary and secondary) regardless of size</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Which employees are eligible</h3>
+        <ul>
+          <li>At least <b>12 months</b> with the employer (not necessarily consecutive)</li>
+          <li>At least <b>1,250 hours</b> of service in the 12 months before leave starts</li>
+          <li>Works where the employer has at least <b>50 employees within 75 miles</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: is this employee eligible for FMLA leave?</h3>
+      <p class="hint">Enter the facts. Each requirement is checked separately, because failing any one of them ends eligibility.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="fmEmp">Employer type</label>
+          <select id="fmEmp" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="big">Private employer with 50 or more employees</option>
+            <option value="small">Private employer with fewer than 50 employees</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fmMonths">Months with the employer</label>
+          <input type="number" id="fmMonths" value="14" min="0" step="1">
+        </div>
+        <div class="field">
+          <label for="fmHours">Hours worked in the last 12 months</label>
+          <input type="number" id="fmHours" value="1100" min="0" step="10">
+        </div>
+        <div class="field">
+          <label for="fmSite">Employees within 75 miles of the worksite</label>
+          <input type="number" id="fmSite" value="80" min="0" step="1">
+        </div>
+      </div>
+      <button type="button" class="btn" id="fmBtn">Check eligibility</button>
+      <div class="result" id="fmResult" role="status" aria-live="polite">
+        <p>Enter the facts and select Check eligibility.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Reasons for leave</h3>
+    <ul class="plain">
+      <li>The <b>birth</b> and care of a newborn, or <b>placement</b> for adoption or foster care.</li>
+      <li>Care for a spouse, child, or parent with a <b>serious health condition</b>.</li>
+      <li>The employee's own <b>serious health condition</b>.</li>
+      <li>Two military-related forms added later: <b>qualifying exigency leave</b> (up to 12 weeks for families of National Guard and Reserve members called to active duty) and <b>military caregiver leave</b> (up to <b>26 weeks</b> in a single 12-month period to care for a service member with a serious injury or illness).</li>
+    </ul>
+    <p>Employees generally give 30 days' notice when the need is foreseeable. Leave may be taken all at once or intermittently. Spouses who work for the same employer share a combined 12 weeks for birth, adoption, or a parent's care. Since March 27, 2015, employees in legal same-sex marriages have the same rights to care for a spouse.</p>
+
+    <h3 class="sub">Coming back</h3>
+    <p>On return, the employee must be restored to the <b>original job or an equivalent one</b> with equal pay, benefits, and terms, and keeps benefits earned before leave. There is one narrow exception: an employer may refuse to restore <b>the highest-paid 10 percent</b> of employees if reinstatement would cause substantial economic injury, and only if it notifies the employee of ineligibility, tells the employee as soon as it decides, offers a reasonable chance to return, and makes a final decision at the end of leave if the employee asks to return.</p>
+    <div class="callout">
+      <p><b>What the FMLA does not do.</b> It doesn't pay anyone. Where paid family leave exists, it comes from the employer or, in a growing number of states, from a state program (California's began paying in 2004). A worker at a 30-person company, or one with 1,100 hours instead of 1,250, or one at a small satellite office, has no FMLA rights at all. The tool above lets you find out where that line sits.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART FOUR: STATE LEAVE ============ -->
+  <section>
+    <div class="section-label">Part Four: State Paid Family and Medical Leave</div>
+    <h2 class="section-title">Where the pay comes from now</h2>
+    <p>There is still no federal paid family and medical leave program. States have filled the gap.<span class="upd">Updated</span> As of May 2026, <b>12 states plus D.C.</b> pay benefits: California, Colorado, Connecticut, Delaware, Maine, Massachusetts, Minnesota, New Jersey, New York, Oregon, Rhode Island, and Washington. <b>Maryland</b> begins paying in January 2028 after several delays, and <b>Virginia</b>, which enacted its program in April 2026, begins in December 2028. The book's Massachusetts example is a good measure of how far the programs have moved: it describes an $850 weekly maximum, and the 2026 maximum is $1,230.39.</p>
+
+    <table class="tbl">
+      <caption>State paid family and medical leave, maximum weekly benefit, 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">State</th><th scope="col">Wage replacement</th><th scope="col">Maximum weekly benefit</th></tr></thead>
+      <tbody>
+        <tr><td><b>California</b></td><td>90% for lower earners, 70% for others</td><td>$1,765</td></tr>
+        <tr><td><b>Colorado</b></td><td>Sliding scale, 90% for lower earners</td><td>$1,381.45</td></tr>
+        <tr><td><b>Connecticut</b></td><td>Sliding scale</td><td>$1,016.40</td></tr>
+        <tr><td><b>Delaware</b></td><td>Flat 80%</td><td>$900</td></tr>
+        <tr><td><b>District of Columbia</b></td><td>Sliding scale, 90% for lower earners</td><td>$1,190</td></tr>
+        <tr><td><b>Maine</b></td><td>Sliding scale, 90% for lower earners</td><td>$1,198.84</td></tr>
+        <tr><td><b>Massachusetts</b></td><td>Sliding scale, 80% for lower earners</td><td>$1,230.39</td></tr>
+        <tr><td><b>Minnesota</b></td><td>Sliding scale, 90% for lower earners</td><td>$1,423</td></tr>
+        <tr><td><b>New Jersey</b></td><td>Flat 85%</td><td>$1,119</td></tr>
+        <tr><td><b>New York</b></td><td>Flat 67%</td><td>$1,228.53 (temporary disability: $170)</td></tr>
+        <tr><td><b>Oregon</b></td><td>Sliding scale, 100% for lower earners</td><td>$1,636.56</td></tr>
+        <tr><td><b>Rhode Island</b></td><td>4.62% of highest-quarter wages</td><td>$1,103</td></tr>
+        <tr><td><b>Washington</b></td><td>Sliding scale, 90% for lower earners</td><td>$1,647</td></tr>
+      </tbody>
+    </table>
+
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Leave criteria.</b> Every program covers bonding with a new child, family caregiving, and the worker's own serious health condition. Some add military exigency and "safe" leave for survivors of domestic violence. Massachusetts allows up to <b>12 weeks of family leave and 20 weeks of medical leave</b>, capped at 26 weeks a year in total.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Pay amount.</b> The book describes flat percentages. Most newer programs use a <b>sliding scale</b> that replaces a higher share of low wages, because a flat 60% is not enough for someone who lives paycheck to paycheck. California's benefit rose to 90% for lower earners in January 2025.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Funding.</b> Small, mandatory payroll contributions from employers, employees, or both, pooled in a state fund. No state's rate exceeds <b>1.3%</b> in 2026, and most are 1% or less. New York uses private insurers alongside a state fund, and Delaware has employers administer the program with state reimbursement.</p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: what does a 12-week leave actually pay?</h3>
+      <p class="hint">Uses the flat-rate programs from the table above. Pick a state, enter your weekly pay, and see how much of it you keep. With no state program, only the FMLA's unpaid protection applies.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="slState">State</label>
+          <select id="slState" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="ny">New York (67%, cap $1,228.53)</option>
+            <option value="nj">New Jersey (85%, cap $1,119)</option>
+            <option value="de">Delaware (80%, cap $900)</option>
+            <option value="none">No state program</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="slPay">Weekly pay ($)</label>
+          <input type="number" id="slPay" value="1500" min="0" step="50">
+        </div>
+        <div class="field">
+          <label for="slWeeks">Weeks of leave</label>
+          <input type="number" id="slWeeks" value="12" min="1" max="26" step="1">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="slBtn">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="slResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART FIVE: LEAVE THE LAW SHAPES ============ -->
+  <section>
+    <div class="section-label">Part Five: Leave the Law Shapes</div>
+    <h2 class="section-title">Jury duty, witness duty, and military service</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Jury duty</h3><p>The <b>Jury Systems Improvement Act of 1978</b> makes federal jury service a protected right: employers may not prohibit it or treat those who serve less favorably. State laws are similar. Most employers pay nonexempt employees while they serve. The <b>FLSA</b> bars employers from docking exempt employees' salaries for jury service, apart from narrow exceptions (offsetting the court's payment for a service of less than a workweek, or when no work is performed for a week or more).</p></div>
+      <div class="plan-card"><h3>Witness duty</h3><p>Governed by state law, and the textbook counts about 20 states plus Puerto Rico and D.C. Statutes usually define who counts (a crime victim, or someone under subpoena), prohibit retaliation, require reasonable notice, and set penalties.</p></div>
+      <div class="plan-card"><h3>Military leave: USERRA</h3><p>The <b>Uniformed Services Employment and Reemployment Rights Act of 1994</b> protects reemployment for voluntary or involuntary service, if cumulative service with the employer does not exceed <b>five years</b>. It bars discrimination in hiring, retention, promotion, and benefits. Employees may continue employer health coverage for up to <b>24 months</b>, and the employer must restore benefits they would have earned, such as seniority.</p></div>
+      <div class="plan-card"><h3>Military families: FMLA</h3><p>Two FMLA provisions cover families: <b>qualifying exigency</b> leave when a Guard or Reserve member is called up, and <b>military caregiver</b> leave of up to 26 weeks for a seriously injured service member.</p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: which leave applies?</h3>
+      <p class="hint">Pick a situation to see which law, if any, governs it, and who pays.</p>
+      <div class="field">
+        <label for="lvSel">Situation</label>
+        <select id="lvSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+          <option value="">Select a situation…</option>
+          <option value="own">Employee needs surgery and eight weeks of recovery</option>
+          <option value="birth">Employee's baby is born</option>
+          <option value="parent">Employee must care for a parent with a serious illness</option>
+          <option value="guard">Employee is called up by the National Guard</option>
+          <option value="caregiver">Employee's spouse, a service member, is seriously injured</option>
+          <option value="jury">Employee receives a jury summons</option>
+          <option value="funeral">Employee's grandmother dies</option>
+          <option value="volunteer">Employee wants a day to volunteer at a food bank</option>
+        </select>
+      </div>
+      <div class="result" id="lvResult" role="status" aria-live="polite">
+        <p>Choose a situation to begin.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART SIX ============ -->
+  <section>
+    <div class="section-label">Part Six: What Counts as Work Time</div>
+    <h2 class="section-title">Nonproduction time, on-call time, and extended leave</h2>
+
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Nonproduction time</h3>
+        <ul>
+          <li>Time related to the job but not the job itself (cleanup, preparation, travel between sites) or nonwork periods within a shift (rest and meal breaks)</li>
+          <li>The FLSA requires pay for principal activities and for activities <b>integral and indispensable</b> to them</li>
+          <li>The Supreme Court held that Amazon warehouse security screenings were <b>not</b> compensable (<i>Integrity Staffing Solutions v. Busk</i>). The California Supreme Court reached the opposite result for mandatory exit searches at Apple stores (<i>Frlekin v. Apple</i>), reasoning that the employer controlled employees during the searches.</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>On-call time</h3>
+        <ul>
+          <li>Time on or near the premises, where the employee cannot use it for personal purposes</li>
+          <li>Employers can require nonexempt employees to be available and must pay at least the FLSA minimum wage for that time</li>
+          <li>Exempt employees may be required to be on call with no extra pay</li>
+          <li>Courts look at how much the on-call duty restricts personal life. Wearing a beeper was not enough in <i>Owens v. Local 169</i></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px;">The lesson of the two cases is that <b>the same fact can be compensable in one jurisdiction and not in another</b>. Multistate employers should not assume that a federal ruling ends the question.</p>
+
+    <h3 class="sub">Sabbaticals</h3>
+    <p><b>Sabbatical leave</b> is common in universities, where faculty who meet service requirements (usually three years of full-time work) receive partial or full pay for up to an academic year. Other employers use sabbaticals for rejuvenation and development. The textbook says about 18% of companies offer one, roughly half paid. Employers typically require a minimum period of employment after return, or repayment of part of the pay. Five types exist:</p>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Traditional sabbaticals</b> to renew or retool work skills.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Personal growth leaves</b> for education or new competencies.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Social service leaves</b> for significant public service, which also builds the company's image.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Extended personal leaves</b>: unpaid leave of two or more years with a return-to-work guarantee, often for caregiving.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Voluntary leaves to meet business needs</b>: extended unpaid time off during downsizing or slack demand.</p></div>
+    </div>
+
+    <h3 class="sub">Paid time off to volunteer</h3>
+    <p><b>Volunteerism</b> leave arrangements vary widely (some employers allow up to two weeks a year, or add a donation to the employee's charity). Employers offer it for five reasons: work-life balance, corporate social responsibility and public image, skills-based volunteering as professional development, the "helper's high" that lowers stress, and retention.</p>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section>
+    <h2 class="section-title">Key terms — check yourself</h2>
+    <p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p>
+    <div class="terms" id="termList">
+      <button type="button" class="term" aria-expanded="false" data-def="Policies that compensate employees for time when they are not performing their primary work duties. Mostly discretionary in the private sector.">Paid time off</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An extra paid day that lets an employee observe any holiday not on the employer’s regular list. Employers commonly add one or two.">Floating holiday</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A vacation provision allowing employees to use unused days at a later time.">Carryover</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A vacation provision that forfeits unused days at the end of the designated year. Can cause a rush of absences late in the year.">Use it or lose it</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A vacation provision that pays employees the value of unused days at regular daily earnings. Federal law does not require payout of unused vacation, but some states do when employment ends.">Cash-out provision</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An integrated policy that pools holidays, vacation, sick, and personal leave into a single bank, without distinguishing among reasons for absence.">Paid time-off bank</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An employee’s absence without advance scheduling. Illness is the most socially acceptable reason. Integrated PTO banks aim to reduce them.">Unscheduled absence</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Paid time off following the death of a relative, often scaled to how close the relationship was. No federal law requires it.">Bereavement leave</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The 1994 federal law protecting reemployment rights of people who leave for military service, up to five years cumulative with an employer, with health coverage continuation up to 24 months.">USERRA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Time related to, but not part of, the main job duties (cleanup, preparation, travel between sites), or nonwork periods during a shift such as meal breaks.">Nonproduction time</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Time an employee spends on or near the employer’s premises, unable to use the time effectively for personal purposes. Nonexempt employees must be paid at least minimum wage for it.">On-call time</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Extended leave, usually paid in part or in full, common in universities. Employers may require a period of continued employment afterward.">Sabbatical leave</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The 1993 federal law giving eligible employees up to 12 weeks of unpaid, job-protected leave for family and medical reasons, with group health coverage maintained.">FMLA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The FMLA requirement that an employee return to the original job or an equivalent one with equal pay, benefits, and other terms of employment.">Job restoration</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Up to 26 weeks of FMLA leave in a single 12-month period to care for a family member who is a service member with a serious injury or illness.">Military caregiver leave</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Programs in 12 states and D.C. that pay a share of wages during family and medical leave, funded by small payroll contributions. The maximum weekly benefit ranges from $900 (Delaware) to $1,765 (California) in 2026.">State paid family and medical leave</button>
+    </div>
+    <div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div>
+  </section>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Three learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><div class="obj-num">1</div><p>Understand the various types of paid time-off practices.</p></div>
+      <div class="obj-item"><div class="obj-num">2</div><p>Understand the design elements of paid time-off practices.</p></div>
+      <div class="obj-item"><div class="obj-num">3</div><p>Understand leave under the Family and Medical Leave Act of 1993.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section>
+    <h2 class="section-title">Check your understanding</h2>
+    <p>Five questions. Feedback appears as soon as you answer. This is practice, not graded — but the graded Chapter 8 quiz works the same way.</p>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>1. Maria has worked for her employer for 14 months and 1,100 hours in the last 12 months. Her worksite has 80 employees within 75 miles. Is she eligible for FMLA leave?</legend>
+        <label><input type="radio" name="q1" value="a"> Yes, she meets every requirement</label>
+        <label><input type="radio" name="q1" value="b"> No, she has fewer than 1,250 hours of service</label>
+        <label><input type="radio" name="q1" value="c"> No, her worksite is too small</label>
+        <label><input type="radio" name="q1" value="d"> No, she has not worked 12 months</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. She satisfies tenure (14 months) and worksite size (80 within 75 miles), but 1,100 hours falls short of the 1,250-hour requirement." data-wrong="Check each requirement separately: 12 months (she has 14), 1,250 hours (she has 1,100), and 50 employees within 75 miles (she has 80). The hours test is the one she fails."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>2. Why do paid leave costs run highest ($7.37 per hour) in management and professional occupations, even when they receive similar numbers of days?</legend>
+        <label><input type="radio" name="q2" value="a"> Federal law requires more leave for managers</label>
+        <label><input type="radio" name="q2" value="b"> Managers are never eligible for unpaid leave</label>
+        <label><input type="radio" name="q2" value="c"> Paid leave costs are linked to wages, so a day off costs more when the worker earns more</label>
+        <label><input type="radio" name="q2" value="d"> Managers take fewer sick days, which raises the average</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. A paid day off is valued at the worker’s pay, so higher-paid occupations cost more per hour worked even at the same number of days." data-wrong="Paid leave costs are directly linked to wages. The same number of days costs more for an employee who earns more, so the highest costs are in the best-paid occupations."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>3. Which vacation provision pays employees the value of their unused days at regular daily earnings?</legend>
+        <label><input type="radio" name="q3" value="a"> A carryover provision</label>
+        <label><input type="radio" name="q3" value="b"> A use-it-or-lose-it provision</label>
+        <label><input type="radio" name="q3" value="c"> A cash-out provision</label>
+        <label><input type="radio" name="q3" value="d"> A floating holiday</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. A cash-out provision converts unused vacation into pay. Federal law does not require it, though some states require payout when employment ends." data-wrong="Carryover lets employees use the days later, use-it-or-lose-it forfeits them, and a floating holiday is an extra day off. Only a cash-out provision pays for unused days."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>4. How are the state paid family and medical leave programs in 2026 typically funded?</legend>
+        <label><input type="radio" name="q4" value="a"> By the federal government through general tax revenue</label>
+        <label><input type="radio" name="q4" value="b"> By small mandatory payroll contributions from employers, employees, or both, pooled in a state fund</label>
+        <label><input type="radio" name="q4" value="c"> Entirely by each employee’s own savings</label>
+        <label><input type="radio" name="q4" value="d"> By employers directly, out of each worker’s vacation bank</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Payroll contributions (no state above 1.3% in 2026) go into pooled funds. There is no federal paid leave program." data-wrong="There is no federal paid family and medical leave program. States fund theirs through small mandatory payroll contributions from employers, employees, or both, pooled in a state fund."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="d">
+      <fieldset>
+        <legend>5. In <i>Integrity Staffing Solutions v. Busk</i>, the Supreme Court held that time warehouse workers spent in mandatory security screenings was:</legend>
+        <label><input type="radio" name="q5" value="a"> Compensable, because the employer controlled the workers during the screenings</label>
+        <label><input type="radio" name="q5" value="b"> Compensable only for exempt employees</label>
+        <label><input type="radio" name="q5" value="c"> Protected leave under the FMLA</label>
+        <label><input type="radio" name="q5" value="d"> Not compensable, because it was not integral and indispensable to their principal work</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The Court found the screenings were not the principal activity and were not integral and indispensable to warehouse work. California’s Supreme Court reached the opposite conclusion for exit searches at Apple under state law." data-wrong="The Court held the screenings were not compensable under the FLSA, because they were neither the principal activity nor integral and indispensable to it. The control-based reasoning in option A belongs to the California Supreme Court’s decision in Frlekin v. Apple."></div>
+    </div>
+
+    <p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p>
+  </section>
+
+  <!-- ============ CRITICAL THINKING ============ -->
+  <section>
+    <div class="think">
+      <div class="think-tag">Critical thinking</div>
+      <h3>One pool of days, two very different states</h3>
+      <p class="scenario"><b>The situation.</b> A distribution company has 120 employees: 70 in Massachusetts and 50 in Texas. It offers 12 vacation days, 5 sick days, and 2 personal days, plus paid holidays. HR sees a spike of unscheduled absences on Mondays and Fridays and a rush of vacation requests every December. The HR director proposes replacing the three policies with a single <b>PTO bank of 19 days</b>, with carryover of up to 5 days, and telling employees they do not need to give a reason. The CFO likes the proposal because it will simplify administration, and asks what could go wrong.</p>
+      <ol class="ask">
+        <li>Who is <b>better off</b> and who is <b>worse off</b> under the bank? Name at least one employee type in each group.</li>
+        <li>Two employees, one in Massachusetts and one in Texas, each need eight weeks off for surgery in March, having already used their bank on a January trip. What does each one get? Is that fair, and what, if anything, should the company do?</li>
+        <li>What <b>evidence</b> would you collect before deciding, and what result would make you reject the proposal?</li>
+      </ol>
+      <label for="thinkText">Your response</label>
+      <textarea id="thinkText" rows="9" placeholder="Take a position, then defend it. Aim for 200 to 300 words."></textarea>
+      <p class="hint" style="margin-top:6px;">Your response stays in your browser. It is not saved or submitted. Copy it into your course platform when you are done.</p>
+      <p style="margin-top:12px;"><button type="button" class="btn ghost" id="thinkBtn" aria-expanded="false" aria-controls="thinkGuide">Show what a strong answer weighs</button></p>
+      <div class="guide" id="thinkGuide" hidden>
+        <p><b>There is no single right answer. A strong response takes a position and shows it has weighed these points:</b></p>
+        <ul>
+          <li><b>Winners and losers.</b> Employees who rarely use sick days gain flexibility. Frequently ill employees, and those with chronic conditions or young children, may lose the protected sick days they had and burn the bank early. Consolidation can also shrink total time off if the new bank is smaller than the sum of the old policies.</li>
+          <li><b>The bank does not change the law.</b> The Massachusetts employee can draw on <b>state paid medical leave</b> (up to 20 weeks, at up to $1,230.39 a week, before any employer top-up) and is covered by the FMLA if eligible. The Texas employee has only the <b>FMLA's unpaid protection</b>, if eligible, plus whatever the employer chooses to provide. The same policy therefore produces a very different outcome by state.</li>
+          <li><b>Compliance floor.</b> Any single bank has to meet the strictest state sick-leave and accrual rule in each place the company has employees. A design that works in Texas may not satisfy a mandated-sick-leave state.</li>
+          <li><b>Fairness and retention.</b> The company could add a small separate medical-leave reserve, allow advance borrowing, or top up state benefits for long absences. Each costs money and sets precedent. A strong answer prices at least one of them.</li>
+          <li><b>Evidence.</b> The absenteeism pattern itself needs diagnosis. Are Monday and Friday absences illness, burnout, or scheduling? Useful data: absence by day and department, pre-policy usage of each leave type, how many employees exhaust sick days, December request volume, and exit interviews. Reject or redesign the proposal if the data show that the current problem is workload or scheduling rather than the policy structure.</li>
+          <li><b>The textbook's claim to test.</b> The book says integrated banks control unscheduled absenteeism better than separate policies. Ask what evidence supports that, and whether any of it is specific to your workforce.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the leave types.</p>
+    <h2>Ask who protects the job, and who pays the wage.</h2>
+    <div class="flow">
+      An employee needs time away <span class="arrow">→</span> Is the job protected?<br>
+      FMLA <span class="arrow">·</span> USERRA <span class="arrow">·</span> jury laws <span class="arrow">·</span> nothing at all<br>
+      <span class="arrow">→</span> Is the time paid? <span class="arrow">→</span> Employer policy <span class="arrow">·</span> State program <span class="arrow">·</span> Unpaid
+    </div>
+    <p class="question">A worker's rights can differ by employer size, by hours worked, and by which side of a state line the worksite falls on. Is that acceptable for a benefit that touches health and family? What would you change first, and who would pay for it?</p>
+  </div>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="refs" id="refs">
+    <h2>Sources</h2>
+    <p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. BLS is scheduled to publish its March 2026 benefits estimates on September 25, 2026; this page should be refreshed after they publish.</p>
+    <ol>
+      <li>U.S. Bureau of Labor Statistics, <i>Employee Benefits in the United States — March 2025</i>, USDL-25-1464 (September 25, 2025), Table 6, Selected paid leave benefits: access. Also BLS, <i>Employee Benefits in the United States — March 2020</i> (USDL-20-1792) for paid sick leave access of 75% and the textbook's comparison figures.</li>
+      <li>U.S. Bureau of Labor Statistics, <i>Employer Costs for Employee Compensation — June 2026</i>, USDL-26-1494 (September 9, 2026), Tables 1 and 4.</li>
+      <li>New America, <i>Explainer: Paid Leave Benefits and Funding in the United States</i> (May 19, 2026, updated June 18, 2026). State program status, wage replacement, 2026 maximum weekly benefits, contribution rates, and the 27% paid family leave access figure (BLS 2023 data).</li>
+      <li>U.S. Department of Labor, Wage and Hour Division, Fact Sheet #28M(a), <i>Military Caregiver Leave for a Current Servicemember under the FMLA</i> (March 2025). FMLA employer coverage, employee eligibility, and military leave.</li>
+      <li>U.S. Department of Labor, Wage and Hour Division, Fact Sheet #84, <i>Paid Sick Leave for Federal Contractors</i> (January 2025), on Executive Order 13706.</li>
+      <li>U.S. Office of Personnel Management, <i>Federal Holidays</i>, and 5 U.S.C. § 6103. Legal public holidays, including Juneteenth and Inauguration Day. USA TODAY (December 2025 and January 2026 reporting) on the one-time December 24 and 26, 2025 executive order.</li>
+      <li><i>Integrity Staffing Solutions, Inc. v. Busk</i>, 574 U.S. 27 (2014); <i>Frlekin v. Apple Inc.</i>, 8 Cal. 5th 1038 (2020); <i>Owens v. Local No. 169</i>, 971 F.2d 347 (9th Cir. 1992). Cited as described in the instructor's manual.</li>
+      <li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 8. Conceptual framework and definitions; statistical content superseded by the sources above.</li>
+    </ol>
+  </section>
+
+  </main>
+
+  <footer>
+    INS 432 / INS 532 — Employee Benefits · Chapter 8: Paid Time-Off Benefits
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  /* Safe renderer: builds DOM nodes from a small allow-list of tags, so no raw HTML is ever injected */
+  var esc = function(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+  var ALLOWED = {P:1,B:1,I:1,DIV:1,SPAN:1,STRONG:1,EM:1,BR:1,UL:1,LI:1};
+  function safeHtml(target, html){
+    var doc = new DOMParser().parseFromString("<body>" + html, "text/html");
+    function copy(src, dst){
+      Array.prototype.forEach.call(src.childNodes, function(n){
+        if(n.nodeType === 3){ dst.appendChild(document.createTextNode(n.nodeValue)); }
+        else if(n.nodeType === 1 && ALLOWED[n.tagName]){
+          var e = document.createElement(n.tagName.toLowerCase());
+          var c = n.getAttribute("class");
+          if(c){ e.className = c.replace(/[^\w\- ]/g, ""); }
+          copy(n, e); dst.appendChild(e);
+        }
+      });
+    }
+    while(target.firstChild){ target.removeChild(target.firstChild); }
+    copy(doc.body, target);
+  }
+
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+
+  /* ---------- FMLA eligibility checker ---------- */
+  document.getElementById("fmBtn").addEventListener("click", function(){
+    var emp = document.getElementById("fmEmp").value;
+    var months = num(document.getElementById("fmMonths"), 0);
+    var hours = num(document.getElementById("fmHours"), 0);
+    var site = num(document.getElementById("fmSite"), 0);
+    var c1 = emp === "big", c2 = months >= 12, c3 = hours >= 1250, c4 = site >= 50;
+    var ok = c1 && c2 && c3 && c4;
+    var mark = function(b){ return b ? "✓" : "✗"; };
+    var html = '<p class="big">' + (ok ? 'Eligible for FMLA leave' : 'Not eligible for FMLA leave') + '</p>';
+    html += '<p><b>' + mark(c1) + ' Covered employer</b> — ' + (c1 ? 'a private employer with 50 or more employees.' : 'a private employer with fewer than 50 employees is not covered (public agencies and schools are covered at any size).') + '</p>';
+    html += '<p><b>' + mark(c2) + ' 12 months of employment</b> — ' + months + ' months.</p>';
+    html += '<p><b>' + mark(c3) + ' 1,250 hours in the last 12 months</b> — ' + Math.round(hours).toLocaleString("en-US") + ' hours' + (c3 ? '.' : ', ' + Math.round(1250 - hours).toLocaleString("en-US") + ' short.') + '</p>';
+    html += '<p><b>' + mark(c4) + ' 50 employees within 75 miles</b> — ' + Math.round(site) + ' employees.</p>';
+    if(ok){
+      html += '<p>If the reason qualifies, up to 12 weeks of <b>unpaid</b> leave with job restoration and continued group health coverage. The employee may be able to substitute paid vacation or personal leave.</p>';
+    } else {
+      html += '<p>Without FMLA protection, whether leave is available at all depends on the employer’s own policy and on state law.</p>';
+    }
+    safeHtml(document.getElementById("fmResult"), html);
+  });
+
+  /* ---------- state paid leave estimator (flat-rate programs) ---------- */
+  var programs = {
+    ny:{name:"New York", rate:0.67, cap:1228.53},
+    nj:{name:"New Jersey", rate:0.85, cap:1119},
+    de:{name:"Delaware", rate:0.80, cap:900}
+  };
+  document.getElementById("slBtn").addEventListener("click", function(){
+    var key = document.getElementById("slState").value;
+    var pay = num(document.getElementById("slPay"), 0);
+    var wks = Math.min(26, Math.max(1, num(document.getElementById("slWeeks"), 12)));
+    var lost = pay * wks;
+    var html;
+    if(key === "none"){
+      html = '<p class="big">$0 in state benefits</p>';
+      html += '<p>With no state program, the FMLA (if the employee is eligible) protects the job and health coverage, but the ' + wks + ' weeks are <b>unpaid</b>: ' + money(lost) + ' of ordinary earnings, unless the employer offers paid leave, or the employee uses banked vacation or sick time.</p>';
+    } else {
+      var p = programs[key];
+      var raw = pay * p.rate;
+      var wk = Math.min(raw, p.cap);
+      var total = wk * wks;
+      var capped = raw > p.cap;
+      html = '<p class="big">' + money2(wk) + ' a week from ' + p.name + '</p>';
+      html += '<div class="split"><div><b>Formula (' + Math.round(p.rate*100) + '% of pay):</b> ' + money2(raw) + '</div><div><b>Weekly cap:</b> ' + money2(p.cap) + '</div></div>';
+      html += capped ? '<p><b>The cap applies.</b> It holds the benefit ' + money2(raw - wk) + ' a week below the formula.</p>' : '<p>The cap is not reached, so the formula amount is paid.</p>';
+      html += '<p>Over ' + wks + ' weeks the state pays <b>' + money(total) + '</b> of the ' + money(lost) + ' the worker would have earned. The gap is <b>' + money(lost - total) + '</b>, about ' + Math.round((lost - total) / lost * 100) + '% of normal pay. The state benefit is the floor. Some employers top it up with vacation or sick time.</p>';
+    }
+    safeHtml(document.getElementById("slResult"), html);
+  });
+
+  /* ---------- which leave applies ---------- */
+  var leaves = {
+    own:["FMLA, plus disability coverage","<b>FMLA</b> covers the employee’s own serious health condition: up to 12 weeks, <b>unpaid</b>, with job restoration and continued health coverage (if the employee and employer meet the eligibility rules). Pay may come from <b>short-term disability</b> (Chapter 6), a state temporary disability or paid leave program where one exists, or banked sick and vacation time."],
+    birth:["FMLA, plus state or employer paid leave","<b>FMLA</b> covers bonding with a newborn or newly placed child: 12 weeks, <b>unpaid</b>. Pay comes only from an employer’s voluntary paid parental leave or a state paid family leave program. Spouses working for the same employer share a combined 12 weeks."],
+    parent:["FMLA, plus state paid leave where available","<b>FMLA</b> covers care for a parent with a serious health condition: up to 12 weeks, <b>unpaid</b>. A state paid family leave program may replace part of the wage. Coverage of other relatives (siblings, in-laws) is a matter of state law, not the FMLA."],
+    guard:["USERRA, plus FMLA for the family","<b>USERRA</b> guarantees reemployment for service up to five years cumulative, protects seniority and benefits, and lets the employee continue employer health coverage for up to 24 months. Pay during service is set by the employer’s policy. The employee’s family may qualify for FMLA <b>qualifying exigency</b> leave."],
+    caregiver:["FMLA military caregiver leave","<b>FMLA military caregiver leave</b>: up to <b>26 weeks</b> in a single 12-month period to care for a covered service member with a serious injury or illness, <b>unpaid</b>. This is the longest FMLA entitlement."],
+    jury:["Federal and state jury laws","The <b>Jury Systems Improvement Act</b> and state laws protect the employee’s right to serve and bar retaliation. Pay is usually set by employer policy (most pay nonexempt employees), and the <b>FLSA</b> restricts docking an exempt employee’s salary."],
+    funeral:["Employer policy only","No federal law requires <b>bereavement leave</b>. Whether it is paid, and for how long, is the employer’s choice. Many employers scale it to the relationship, which usually means less time for a grandparent than for a parent or spouse."],
+    volunteer:["Employer policy only","<b>Paid volunteer time</b> is entirely discretionary. Employers offer it for work-life balance, corporate social responsibility, skills development, the stress-reducing “helper’s high,” and retention."]
+  };
+  document.getElementById("lvSel").addEventListener("change", function(){
+    var v = this.value, box = document.getElementById("lvResult");
+    if(!v){ safeHtml(box, "<p>Choose a situation to begin.</p>"); return; }
+    safeHtml(box, '<p class="big">' + leaves[v][0] + '</p><p>' + leaves[v][1] + '</p>');
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){ defBox.textContent = "Select a term above."; }
+      else {
+        btn.setAttribute("aria-expanded","true");
+        safeHtml(defBox, "<b>" + esc(btn.textContent) + ".</b> " + esc(btn.getAttribute("data-def")));
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+
+  /* ---------- critical thinking reveal ---------- */
+  var tBtn = document.getElementById("thinkBtn"), tGuide = document.getElementById("thinkGuide");
+  tBtn.addEventListener("click", function(){
+    var open = tBtn.getAttribute("aria-expanded") === "true";
+    tBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    tGuide.hidden = open;
+    tBtn.textContent = open ? "Show what a strong answer weighs" : "Hide the guide";
+  });
+})();
+</script>
+</body>
+</html>
