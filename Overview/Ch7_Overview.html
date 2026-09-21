@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 7 — Government-Mandated Social Security Programs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532</div>
+    <h1 class="title">Chapter 7: Government-Mandated Social Security Programs</h1>
+    <p class="subtitle">Four programs from one 1935 law, and a financing problem that the textbook calls a projection and the Trustees now give a date.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Social Security is not a savings account. It is a <b>pay-as-you-go</b> promise: today's payroll taxes pay today's beneficiaries. Nearly every rule in this chapter is an answer to one of two questions. Who is paying whom, right now? And what happens when the money coming in does not cover the money going out? Learn to ask those two questions and the chapter organizes itself.
+    </div>
+
+    <div class="notice" role="note">
+      <h2>⚠ About the numbers on this page</h2>
+      <p>Your textbook's Chapter 7 runs on <b>2020–2021 figures</b>, and this is the chapter where that hurts most. Trust fund dates, benefit amounts, Medicare premiums, the taxable wage base, and the whole Medicare Part D drug benefit have changed. A 2025 law rewrote the rules for some public employees, and the pandemic unemployment programs the book describes are gone.</p>
+      <p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (SSA, CMS, the Social Security and Medicare Trustees, the U.S. Department of Labor, and KFF) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker. Use these numbers, not the book's, on quizzes and papers.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 7</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>Where it came from, what it includes</h3><p>A Depression-era law, four programs, and the agencies that run them.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>OASDI: retirement, survivors, disability</h3><p>Credits, the benefit formula, full retirement age, and what claiming early or late really does.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>Medicare</h3><p>Parts A through D, Original vs. Advantage, and a drug benefit the book describes as it no longer exists.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>Paying for it</h3><p>FICA, the taxable wage base, and the Trustees' dates for when the reserves run out.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Unemployment insurance</h3><p>A federal-state partnership: eligibility, benefit amounts, and the FUTA and SUTA taxes employers pay.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>What changed since the book</h3><p>The WEP/GPO repeal, a rebuilt Part D, new trust fund dates, and the end of pandemic unemployment aid.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART ONE ============ -->
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">A Depression-era law, still running</h2>
+    <p>The government created these programs to promote the <b>social good</b>: a strong economy, low unemployment, decent wages and benefits, and safe workplaces. The Great Depression showed what happens without them. Long spells of unemployment caused <b>income discontinuity</b> and pushed families toward destitution. Protecting worker income also protected the economy, and kept some companies in business.</p>
+
+    <ul class="plain">
+      <li><b>1935.</b> The Social Security Act sets up two programs: a federal system of retirement income and a system of unemployment insurance run jointly by the federal government and the states.</li>
+      <li><b>1939.</b> Amendments add <b>survivors' insurance</b>.</li>
+      <li><b>1965.</b> Amendments add <b>disability insurance</b> and <b>Medicare</b>, providing health protection for people 65 and older.</li>
+      <li><b>Nine-digit numbers.</b> The Act also authorized a wage-recordkeeping system, which produced the Social Security number in the late 1930s. SSA issues numbers to citizens, resident aliens, and foreign students.</li>
+    </ul>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>OASDI</h3><p>Old-Age, Survivors, and Disability Insurance: retirement income, income for the survivors of deceased workers, and income for disabled workers and their families. "Old-age" simply means retirement.</p></div>
+      <div class="plan-card"><h3>Medicare</h3><p>Health insurance for nearly all citizens 65 and older, and for disabled Social Security beneficiaries.</p></div>
+      <div class="plan-card"><h3>Unemployment insurance</h3><p>Weekly income for workers who lose jobs through no fault of their own. Run by the states within federal rules.</p></div>
+      <div class="plan-card"><h3>Supplemental Security Income</h3><p>A cash program for aged, blind, and disabled people with little income, funded from general tax revenue, not payroll taxes. The book sets it aside as unrelated to employee benefits. The 2026 federal payment is $994 a month for an individual.</p></div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">~71M</div>
+        <div class="lbl">people receive <b>Social Security</b> benefits (75 million counting SSI), up from 62 million in the book's 2020 figure</div>
+        <div class="src">SSA, 2026 COLA release</div>
+      </div>
+      <div class="stat">
+        <div class="num">2.8%</div>
+        <div class="lbl">the <b>cost-of-living adjustment</b> applied to benefits in January 2026</div>
+        <div class="src">SSA, 2026 COLA fact sheet</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">$2,071</div>
+        <div class="lbl">average monthly benefit for all <b>retired workers</b> after the 2026 COLA (the book: $1,514 in 2020)</div>
+        <div class="src">SSA, 2026 COLA fact sheet</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Who must participate, and who runs it</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Exempt groups (OASDI and Medicare).</b> Federal civilian and railroad employees with 10 years of service are exempt from the retirement program but not from Medicare. State and local government employees already covered by another retirement plan are exempt from Social Security contributions unless the organization opts in. Children under 21 are exempt, except those 18 and older working in a parent's business.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>OASDI and Medicare administrators.</b> The <b>Social Security Administration</b> runs retirement, survivors, and disability insurance, and SSI. The <b>Centers for Medicare &amp; Medicaid Services</b> runs Medicare.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Unemployment insurance administrators.</b> Titles III and IX of the Act let the federal government grant money to states to administer benefits and created a federal trust fund. The Federal Unemployment Tax Act (FUTA) governs the payroll tax: the federal share pays administration costs and the state share may be used only for benefits. The Department of Labor's Employment and Training Administration oversees the program federally. Each state agency keeps records, collects taxes, decides eligibility, and pays claims.</p></div>
+    </div>
+    <div class="callout">
+      <p><b>New since the book: WEP and GPO are gone.</b><span class="upd">Updated</span> Many state and local government employees, including teachers, firefighters, and police officers in many states, never paid Social Security tax and earned a pension instead. Two rules, the Windfall Elimination Provision and the Government Pension Offset, cut the Social Security benefits they or their spouses could collect. The <b>Social Security Fairness Act</b>, signed January 5, 2025, repealed both, retroactive to January 2024. SSA said the two rules had reduced benefits for more than 2.8 million people, and by July 2025 it had sent more than 3.1 million payments totaling $17 billion. If a public-sector worker in your family looks at the textbook's exemptions, the exemption still exists. The penalty attached to it does not.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART TWO: OASDI ============ -->
+  <section>
+    <div class="section-label">Part Two: OASDI</div>
+    <h2 class="section-title">Retirement, survivors, and disability</h2>
+
+    <h3 class="sub">Qualifying: the credit system</h3>
+    <p>Eligibility runs on <b>Social Security credits</b>, also called quarters of coverage. You earn one credit for a set amount of covered earnings in a calendar quarter, up to four credits a year. You need <b>40 credits</b> (about ten years of work) to qualify for retirement benefits, and you never lose credits when you change jobs or become unemployed. Anyone born in 1929 or later needs 40 credits; once you have them you are <b>fully insured</b> for life.</p>
+    <table class="tbl">
+      <caption>What it takes to earn credits <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col"></th><th scope="col">Textbook (2021)</th><th scope="col">2026</th></tr></thead>
+      <tbody>
+        <tr><td><b>Earnings needed for one credit</b></td><td>$1,420</td><td><b>$1,890</b></td></tr>
+        <tr><td><b>Earnings needed for all four credits in a year</b></td><td>$5,680</td><td><b>$7,560</b></td></tr>
+        <tr><td><b>Credits needed for retirement benefits</b></td><td>40</td><td>40 (unchanged)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">How the benefit is calculated</h3>
+    <p>SSA pays set monthly benefits. Three ideas do the work:</p>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>AIME</b> (average indexed monthly earnings) summarizes your indexed lifetime earnings before age 62, disability, or death.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>PIA</b> (primary insurance amount) is the monthly benefit at full retirement age, or paid to a disabled worker. It comes from your AIME through a <b>progressive</b> formula: it replaces a larger share of a low earner's past pay than of a high earner's. The textbook says the formula gives every beneficiary about the same proportion of income. It does not.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>COLA</b> (cost-of-living adjustment) is applied each January to protect against inflation. It follows the rise in the Consumer Price Index for Urban Wage Earners (CPI-W) from the third quarter of one year to the next. The 2027 COLA will be announced in October 2026.</p></div>
+    </div>
+
+    <table class="tbl">
+      <caption>Average monthly benefits, then and now <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Beneficiary</th><th scope="col">Textbook (2020)</th><th scope="col">January 2026</th></tr></thead>
+      <tbody>
+        <tr><td><b>All retired workers</b></td><td>$1,514</td><td>$2,071</td></tr>
+        <tr><td><b>Aged widow(er) alone</b></td><td>$1,428</td><td>$1,919</td></tr>
+        <tr><td><b>Widowed mother and two children</b></td><td>$2,910</td><td>$3,898</td></tr>
+        <tr><td><b>All disabled workers</b></td><td>$1,259</td><td>$1,630</td></tr>
+        <tr><td><b>Disabled worker, spouse, and children</b></td><td>$2,182</td><td>$2,937</td></tr>
+        <tr><td><b>Maximum at full retirement age</b></td><td>—</td><td>$4,152</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Retirement: when you claim matters</h3>
+    <p><b>Full retirement age (FRA)</b> depends on your birth year. The phase-in from 65 to 67 that the book describes as ending in 2022 is finished: <b>anyone born in 1960 or later has an FRA of 67</b>.<span class="upd">Updated</span> You can claim as early as 62, but the benefit is permanently reduced, by up to 30% when FRA is 67. Waiting beyond FRA earns delayed retirement credits of 8% a year until age 70. Family benefits generally equal 50% of the worker's PIA.</p>
+
+    <div class="tool">
+      <h3>Try it: what does claiming age do to a monthly benefit?</h3>
+      <p class="hint">Assumes a full retirement age of 67 (born 1960 or later). The 2026 maximum benefit at full retirement age is $4,152.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="pia">Monthly benefit at full retirement age ($)</label>
+          <input type="number" id="pia" value="3000" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="claimAge">Age you claim</label>
+          <select id="claimAge" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="62">62</option>
+            <option value="63">63</option>
+            <option value="64">64</option>
+            <option value="65">65</option>
+            <option value="66">66</option>
+            <option value="67" selected>67 (full retirement age)</option>
+            <option value="68">68</option>
+            <option value="69">69</option>
+            <option value="70">70</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn" id="claimBtn">Calculate</button>
+      <div class="result" id="claimResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <caption>Working while collecting: the retirement earnings test, 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Situation</th><th scope="col">Earnings limit</th><th scope="col">What is withheld</th></tr></thead>
+      <tbody>
+        <tr><td><b>Under full retirement age all year</b></td><td>$24,480</td><td>$1 of benefits for every $2 above the limit</td></tr>
+        <tr><td><b>The year you reach full retirement age</b></td><td>$65,160</td><td>$1 for every $3 above the limit, on earnings before the month you reach FRA</td></tr>
+        <tr><td><b>From the month you reach FRA</b></td><td>None</td><td>Nothing</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Survivor benefits</h3>
+    <p>A worker generally needs 40 credits to qualify family members. Eligible survivors include:</p>
+    <ul class="plain">
+      <li>A nondisabled widow(er) at full retirement age, or a disabled widow(er) as early as 50</li>
+      <li>A widow(er) of any age caring for the worker's children</li>
+      <li>A divorced spouse as early as 60</li>
+      <li>Unmarried children under 18 (19 if in high school full-time), and disabled children of any age if the disability began before 22</li>
+      <li>Stepchildren, grandchildren, or adopted children in most cases, and dependent parents 62 or older</li>
+    </ul>
+    <p>Monthly survivor benefits range from <b>71.5% to 100% of the PIA</b>. A lump-sum payment goes to a surviving spouse or child who meets the requirements.</p>
+
+    <h3 class="sub">Disability benefits</h3>
+    <p>SSA pays only for <b>total</b> disability: inability to engage in <b>substantial gainful activity (SGA)</b> because of a medically determinable impairment expected to result in death or to last at least 12 months. The worker must pass two tests: the <b>recent work test</b>, which considers age at disability, and the <b>duration of work test</b>, which asks whether you worked and paid in long enough. The benefit equals the full PIA, and family members usually get half. Payments begin after a five-month waiting period.</p>
+    <div class="callout">
+      <p><b>SGA in 2026.</b><span class="upd">Updated</span> Earning more than <b>$1,690 a month</b> generally counts as substantial gainful activity ($2,830 for people who are statutorily blind). A <b>trial work period</b> month is any month with earnings over $1,210. These thresholds rise each year with wages, so a paper that cites the book's numbers is out of date.</p>
+      <p>Compare this program with workers' compensation from Chapter 6. Workers' comp pays for <b>work-related</b> injury with a waiting period of days. Social Security pays for long-term, total disability from <b>any cause</b>, after five months.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART THREE: MEDICARE ============ -->
+  <section>
+    <div class="section-label">Part Three: Medicare</div>
+    <h2 class="section-title">Five pieces, two ways to enroll</h2>
+    <p>Medicare serves nearly everyone 65 or older who has 40 credits, automatically covering spouses. It also covers people with a disability who have received Social Security disability benefits for 24 months, and people with permanent kidney failure. Approximately <b>99% of beneficiaries pay no Part A premium</b> because they have at least 40 quarters of covered work.<span class="upd">Updated</span></p>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Part A: hospital</h3><p>Inpatient hospital care, skilled nursing facility care (up to 100 days), home health, and hospice. The 2026 inpatient deductible is <b>$1,736</b> per benefit period.</p></div>
+      <div class="plan-card"><h3>Part B: medical</h3><p>Voluntary. Doctors' services, outpatient care, lab work, some preventive services, and ambulance transport. After a <b>$283</b> annual deductible, the plan pays 80% of approved amounts.</p></div>
+      <div class="plan-card"><h3>Medigap</h3><p>Voluntary private insurance that fills gaps in Parts A and B, such as deductibles and coinsurance. Plans are standardized by letter. A subset called <b>Medicare Select</b> lowers premiums by limiting your choice of providers.</p></div>
+      <div class="plan-card"><h3>Part C: Medicare Advantage</h3><p>Private plans that replace Original Medicare: HMOs, PPOs, special needs plans, and medical savings account plans (see Chapter 5). Created as Medicare+Choice in 1997, renamed in 2004.</p></div>
+      <div class="plan-card"><h3>Part D: drugs</h3><p>Prescription drug coverage through private plans, first offered in 2006 under the Medicare Modernization Act. Completely redesigned in 2025 (see below).</p></div>
+    </div>
+
+    <h3 class="sub">Original Medicare or Medicare Advantage?</h3>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Original Medicare</h3>
+        <ul>
+          <li>Fee-for-service, run by the federal government</li>
+          <li>Use virtually any licensed provider or facility</li>
+          <li>No out-of-pocket maximum unless you add supplemental coverage such as a Medigap plan</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Medicare Advantage</h3>
+        <ul>
+          <li>Run by private companies under strict Medicare rules</li>
+          <li>Managed care networks (HMOs, PPOs), with extra benefits such as dental and vision</li>
+          <li>Includes an annual out-of-pocket limit, which Original Medicare lacks</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:16px;"><b>55% of eligible Medicare beneficiaries, 35.2 million of 64.2 million, were in a Medicare Advantage plan in 2026</b>, up from 19% in 2007. Enrollment growth has slowed, and nearly a quarter of Advantage enrollees are now in special needs plans.<span class="upd">Updated</span> Managed care, the tool employers used in Chapter 5, has become the majority choice in Medicare too.</p>
+
+    <table class="tbl">
+      <caption>Medicare costs, then and now <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col"></th><th scope="col">Textbook (2021)</th><th scope="col">2026</th></tr></thead>
+      <tbody>
+        <tr><td><b>Part A premium, 30–39 credits</b> (buy-in)</td><td>$259 a month</td><td>$311 a month</td></tr>
+        <tr><td><b>Part A premium, fewer than 30 credits</b></td><td>$471 a month</td><td>$565 a month</td></tr>
+        <tr><td><b>Part B standard premium</b></td><td>$148.50 a month</td><td><b>$202.90</b> a month</td></tr>
+        <tr><td><b>Part D: initial coverage limit and "coverage gap"</b></td><td>$4,130, then a 25% gap</td><td><b>Eliminated</b> in 2025</td></tr>
+        <tr><td><b>Part D: out-of-pocket threshold</b></td><td>$6,550, then 5% catastrophic</td><td><b>$2,100 cap</b>, then $0</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">Higher-income beneficiaries pay more under income-related adjustments (IRMAA), which affect about 8% of Part B enrollees. The top Part B premium in 2026 is $689.90 a month, for individuals with income of $500,000 or more.</p>
+
+    <div class="callout">
+      <p><b>Medigap needs two corrections.</b><span class="upd">Updated</span> First, the textbook says Massachusetts, Minnesota, and Wisconsin do not offer Medigap. They do, under their <b>own standardization systems</b>. Second, the "up to 10 standardized plans" no longer all apply: Plans C and F cannot be sold to anyone who became eligible for Medicare on or after January 1, 2020.</p>
+    </div>
+
+    <h3 class="sub">Part D: from four stages to three</h3>
+    <p>The textbook walks through four stages: deductible, initial coverage, coverage gap, and catastrophic. Under the Inflation Reduction Act, the <b>coverage gap ("donut hole") disappeared on January 1, 2025</b>.<span class="upd">Updated</span> In 2026 the standard benefit is:</p>
+    <ul class="plain">
+      <li><b>Deductible:</b> up to $615. Some plans have less or none.</li>
+      <li><b>Initial coverage:</b> you pay 25% of the cost of covered drugs.</li>
+      <li><b>Catastrophic:</b> once your out-of-pocket spending hits <b>$2,100</b>, you pay $0 for covered drugs for the rest of the year.</li>
+    </ul>
+
+    <div class="tool">
+      <h3>Try it: walk through Part D</h3>
+      <p class="hint">Enter a year's total cost of covered drugs. This uses the 2026 standard benefit and ignores premiums. Actual plans vary, and some have lower deductibles.</p>
+      <div class="field">
+        <label for="drugCost">Total annual cost of covered drugs ($)</label>
+        <input type="number" id="drugCost" value="10000" min="0" step="500">
+      </div>
+      <button type="button" class="btn" id="drugBtn">Calculate</button>
+      <div class="result" id="drugResult" role="status" aria-live="polite">
+        <p>Enter a cost and select Calculate.</p>
+      </div>
+    </div>
+    <p style="margin-top:14px;">One more rule from the book still applies: when a person has Medicare and other health insurance, <b>coordination of benefits</b> rules decide which insurer pays first (the primary payer) and which pays second.</p>
+  </section>
+
+  <!-- ============ PART FOUR: FINANCING ============ -->
+  <section>
+    <div class="section-label">Part Four: Paying for It</div>
+    <h2 class="section-title">FICA, the wage base, and the running-out date</h2>
+    <p>OASDI and Medicare are funded through equal employer and employee contributions under the <b>Federal Insurance Contributions Act (FICA)</b>. Self-employed people pay the whole thing under the <b>Self-Employment Contributions Act (SECA)</b>. The biggest slice funds OASDI, and OASDI tax applies only up to a <b>taxable wage base</b>. The Medicare (hospital insurance) tax has no cap.</p>
+
+    <table class="tbl">
+      <caption>Payroll tax rates and limits, 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col"></th><th scope="col">Employee</th><th scope="col">Employer</th><th scope="col">Self-employed</th></tr></thead>
+      <tbody>
+        <tr><td><b>Social Security (OASDI)</b></td><td>6.2%</td><td>6.2%</td><td>12.4%</td></tr>
+        <tr><td><b>Medicare (HI)</b></td><td>1.45%</td><td>1.45%</td><td>2.9%</td></tr>
+        <tr><td><b>Combined</b></td><td>7.65%</td><td>7.65%</td><td>15.3%</td></tr>
+        <tr><td><b>Wage base for OASDI</b></td><td colspan="3">$184,500 (textbook, 2021: $142,800). No cap for Medicare.</td></tr>
+        <tr><td><b>Additional Medicare tax</b></td><td colspan="3">A further 0.9% on earned income above $200,000 ($250,000 for married couples filing jointly). The textbook does not mention it.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">Because of the wage base, the most OASDI tax any employee pays in 2026 is 6.2% × $184,500 = <b>$11,439</b>. A high earner's payroll tax rate therefore falls as income rises above the cap.</p>
+
+    <div class="tool">
+      <h3>Try it: what does one employee cost in payroll taxes?</h3>
+      <p class="hint">Adds the employer's FICA, the federal unemployment tax (Part Five), and a state unemployment tax. The defaults are a $60,000 salary, a $9,000 state wage base, and a 2.7% state rate, a common new-employer rate.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="ptWages">Annual wages ($)</label>
+          <input type="number" id="ptWages" value="60000" min="0" step="1000">
+        </div>
+        <div class="field">
+          <label for="ptBase">State unemployment wage base ($)</label>
+          <input type="number" id="ptBase" value="9000" min="0" step="500">
+          <div class="note">Ranges from $7,000 to $78,200 in 2026</div>
+        </div>
+        <div class="field">
+          <label for="ptRate">State unemployment tax rate (%)</label>
+          <input type="number" id="ptRate" value="2.7" min="0" max="20" step="0.1">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="ptBtn">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="ptResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">The running-out dates</h3>
+    <p>Social Security is a pay-as-you-go system. Money deposited today pays today's benefits, and nothing guarantees that the same benefits will be there for today's workers. The Trustees report each year on how long the reserves will last. The textbook quotes the 2020 report. Here is the 2026 report, released June 9, 2026.</p>
+
+    <table class="tbl">
+      <caption>Trust fund projections <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Fund</th><th scope="col">Textbook (2020 report)</th><th scope="col">2026 Trustees Report</th></tr></thead>
+      <tbody>
+        <tr><td><b>OASI</b> (retirement and survivors)</td><td>Depleted 2034</td><td><b>Fourth quarter of 2032</b>. Income would then cover about <b>78%</b> of scheduled benefits</td></tr>
+        <tr><td><b>DI</b> (disability)</td><td>Depleted 2052</td><td>Not depleted through 2100</td></tr>
+        <tr><td><b>OASDI combined</b> (hypothetical)</td><td>—</td><td>2034, with about <b>83%</b> payable</td></tr>
+        <tr><td><b>Medicare HI</b> (Part A)</td><td>Depleted 2026</td><td><b>Second quarter of 2033</b>. About <b>89%</b> payable</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p><b>What "depletion" does and does not mean.</b> When a trust fund's reserves hit zero, benefits do not stop. They are limited to what continuing payroll tax income can pay, which the Trustees estimate at about 78% of scheduled OASI benefits. For a retiree at the 2026 average benefit of $2,071 a month, a 22% cut would be roughly $450 a month. The 2026 report moved the OASI date one quarter earlier than the 2025 report.</p>
+      <p>The textbook offers three pressures behind these numbers: people live longer, immigrant workers' lower wages produce less tax, and unemployment leaves millions not contributing. The demographic pressure is the one that has not gone away.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART FIVE: UI ============ -->
+  <section>
+    <div class="section-label">Part Five: Unemployment Insurance</div>
+    <h2 class="section-title">A federal-state partnership</h2>
+    <p>Unemployment insurance (UI) provides weekly income to workers unemployed <b>through no fault of their own</b>. Each state runs its own program within federal rules, and the states' tax collections go into trust funds held by the federal government. Being unemployed does not by itself qualify you. Generally you must:</p>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Have lost your job for an acceptable reason.</b> Quitting usually disqualifies you unless you had <b>reasonable cause</b>, meaning working conditions no sensible person could tolerate. Being fired does not guarantee eligibility either. Misconduct, refusing suitable work, certain labor disputes, and misrepresentation disqualify you.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Meet earnings and employment minimums</b> during a <b>base period</b>. States use one of four methods: high-quarter (HQ), multiple-quarter (MQ), annual-wage (AW), or weekly-wage (WW).</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Serve a waiting period.</b> Most states impose a one-week wait after filing.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Be able and available to work</b> (capacity is ability, availability is motivation) and <b>actively seek suitable work</b>. Suitable work uses skills similar to your customary work and does not violate labor laws.</p></div>
+    </div>
+
+    <h3 class="sub">How much, and for how long</h3>
+    <p>Most states pay 50% to 67% of prior earnings, within a minimum and a maximum. Benefits usually run up to 26 weeks. But "usually" hides a wide spread, as the Department of Labor's January 2026 summary of state laws shows.<span class="upd">Updated</span></p>
+
+    <table class="tbl">
+      <caption>Unemployment insurance across states, effective January 2026</caption>
+      <thead><tr><th scope="col">State</th><th scope="col">Maximum weekly benefit</th><th scope="col">Weeks payable</th><th scope="col">Taxable wage base</th></tr></thead>
+      <tbody>
+        <tr><td><b>Mississippi</b></td><td>$235</td><td>13 to 26</td><td>$14,000</td></tr>
+        <tr><td><b>Florida</b></td><td>$275</td><td>9 to 12</td><td>$7,000</td></tr>
+        <tr><td><b>North Carolina</b></td><td>$350</td><td>12 to 20</td><td>$34,200</td></tr>
+        <tr><td><b>Texas</b></td><td>$605</td><td>10 to 26</td><td>$9,000</td></tr>
+        <tr><td><b>New York</b></td><td>$869</td><td>26</td><td>$17,600</td></tr>
+        <tr><td><b>Massachusetts</b></td><td>$1,105, plus dependents' allowance</td><td>10 to 30</td><td>$15,000</td></tr>
+        <tr><td><b>Washington</b></td><td>$1,152</td><td>Up to 26</td><td>$78,200</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">The book's 2020–21 examples were Arizona's $240 minimum benefit, Massachusetts's $1,234 maximum with dependents, and a top wage base of $56,500 in Washington. Today the lowest maximum benefit is Mississippi's $235 and the highest wage base is Washington's $78,200. Several states index their benefits each January or July, so these figures move.</p>
+
+    <div class="tool">
+      <h3>Try it: what would a laid-off worker receive?</h3>
+      <p class="hint">Uses the high-quarter method from the textbook. The defaults are the book's example ($9,100 in the highest quarter, half of average weekly earnings) with Texas's 2026 maximum. States apply further limits on total benefits, so treat the total as an upper bound.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="uiHQ">Wages in the highest base-period quarter ($)</label>
+          <input type="number" id="uiHQ" value="9100" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="uiPct">State replaces (% of average weekly wage)</label>
+          <input type="number" id="uiPct" value="50" min="0" max="100" step="1">
+        </div>
+        <div class="field">
+          <label for="uiMax">State maximum weekly benefit ($)</label>
+          <input type="number" id="uiMax" value="605" min="0" step="5">
+        </div>
+        <div class="field">
+          <label for="uiWks">Weeks the state pays</label>
+          <input type="number" id="uiWks" value="26" min="0" max="52" step="1">
+        </div>
+      </div>
+      <button type="button" class="btn" id="uiBtn">Calculate</button>
+      <div class="result" id="uiResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">The pandemic programs are gone</h3>
+    <p>The book describes the CARES Act's $600 weekly supplement, longer duration, and coverage of contingent workers, then the $300 weekly supplement extended through September 6, 2021. All of those programs <b>ended on September 6, 2021</b>, and no federal supplement is active today.<span class="upd">Updated</span> As of the Department of Labor's September 17, 2026 report, about <b>1.58 million people</b> were collecting regular state benefits (an insured unemployment rate of 1.0%, down from 1.2% a year earlier), and <b>no state</b> had triggered the Extended Benefits program that adds weeks when state unemployment is high.</p>
+
+    <h3 class="sub">Who pays: FUTA and SUTA</h3>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>FUTA (federal)</h3>
+        <ul>
+          <li>Employer tax of <b>6.0%</b> on the first <b>$7,000</b> of each employee's wages</li>
+          <li>Employers who pay state tax on time get a credit of up to <b>5.4%</b>, so the effective rate is <b>0.6%</b>, or $42 per employee</li>
+          <li>The federal share pays administration costs</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>SUTA (state)</h3>
+        <ul>
+          <li>Each state sets its own <b>wage base</b> (at least $7,000) and rates</li>
+          <li>Rates are <b>experience rated</b>: an employer that lays off many workers pays more than one that lays off few</li>
+          <li>Paid only by employers in nearly all states. The state share may be used only for benefits</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>When a state can't pay, its employers pay more.</b><span class="upd">Updated</span> A state that borrows from the federal government and cannot repay loses part of the FUTA credit for its employers. For 2025, <b>California</b> had a 1.2% credit reduction (raising its effective FUTA rate to 1.8%, or up to $126 per employee) and the Virgin Islands had 4.5%. Connecticut and New York repaid in time and avoided it. State maximum SUTA rates for experience-rated employers now run as high as 14.37% in Massachusetts, compared with the book's 2021 high of 12% in Wisconsin.</p>
+    </div>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section>
+    <h2 class="section-title">Key terms — check yourself</h2>
+    <p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p>
+    <div class="terms" id="termList">
+      <button type="button" class="term" aria-expanded="false" data-def="Old-Age, Survivors, and Disability Insurance: the Social Security programs providing retirement income, income to survivors of deceased workers, and income to disabled workers and their families.">OASDI</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A Social Security credit, earned for a set amount of covered earnings in a calendar quarter. In 2026 that amount is $1,890, with up to four credits a year. Retirement benefits require 40.">Quarter of coverage</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A person who has earned the minimum number of credits (40 for anyone born in 1929 or later). Once fully insured, always fully insured, even after changing jobs or becoming unemployed.">Fully insured</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Average indexed monthly earnings: a summary of a worker’s indexed earnings before age 62, disability, or death, used to compute the primary insurance amount.">AIME</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Primary insurance amount: the monthly benefit paid at full retirement age or to a disabled worker. Other family benefits are set as percentages of it.">PIA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Cost-of-living adjustment: an automatic annual increase in benefits, based on the CPI-W. The 2026 COLA was 2.8%.">COLA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The age at which unreduced retirement benefits are payable, set by birth year. It is 67 for anyone born in 1960 or later.">Full retirement age</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Substantial gainful activity: work that involves significant physical or mental activity for pay or profit. Earning above the SGA threshold ($1,690 a month in 2026 for non-blind workers) generally disqualifies a person from disability benefits.">Substantial gainful activity</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The private-plan alternative to Original Medicare (Part C), including HMOs, PPOs, special needs plans, and medical savings account plans. About 55% of eligible beneficiaries were enrolled in 2026.">Medicare Advantage</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Standardized private insurance sold to people in Original Medicare to cover deductibles, coinsurance, and copayments. Plans C and F are closed to people newly eligible since 2020.">Medigap</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Federal Insurance Contributions Act: the payroll tax funding OASDI and Medicare, paid in equal shares (7.65% each) by employers and employees.">FICA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The annual earnings limit above which no OASDI tax is owed. In 2026 it is $184,500. The Medicare tax has no such limit.">Taxable wage base</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A pay-as-you-go system uses current taxes to pay current benefits rather than accumulating each worker’s own contributions. Social Security and Medicare Part A work this way, with trust fund reserves as a cushion.">Pay-as-you-go</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Federal Unemployment Tax Act: an employer-paid tax of 6.0% on the first $7,000 of wages, reduced by a credit of up to 5.4% for timely state tax payments, for an effective rate of 0.6%.">FUTA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="State unemployment tax: employer-paid tax whose wage base and rates each state sets. Rates are experience rated, so employers with more layoffs pay more.">SUTA</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The period used to measure a claimant’s earnings and employment for UI eligibility. States use the high-quarter, multiple-quarter, annual-wage, or weekly-wage method to compute the weekly benefit amount.">Base period</button>
+    </div>
+    <div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div>
+  </section>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your five learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><div class="obj-num">1</div><p>Understand the origins and introduction of Social Security programs.</p></div>
+      <div class="obj-item"><div class="obj-num">2</div><p>Understand the structure of the OASDI program.</p></div>
+      <div class="obj-item"><div class="obj-num">3</div><p>Understand the structure of the Medicare programs.</p></div>
+      <div class="obj-item"><div class="obj-num">4</div><p>Understand the financing of OASDI and Medicare programs.</p></div>
+      <div class="obj-item"><div class="obj-num">5</div><p>Understand unemployment insurance programs.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section>
+    <h2 class="section-title">Check your understanding</h2>
+    <p>Five questions. Feedback appears as soon as you answer. This is practice, not graded — but the graded Chapter 7 quiz works the same way.</p>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>1. In 2026, how much covered earnings does a worker need in a year to earn all four Social Security credits?</legend>
+        <label><input type="radio" name="q1" value="a"> $1,890</label>
+        <label><input type="radio" name="q1" value="b"> $5,680</label>
+        <label><input type="radio" name="q1" value="c"> $7,560</label>
+        <label><input type="radio" name="q1" value="d"> $184,500</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. One credit takes $1,890 of earnings, and four credits a year is the maximum: 4 × $1,890 = $7,560." data-wrong="One credit requires $1,890 of covered earnings in 2026, and the yearly maximum is four credits, so 4 × $1,890 = $7,560. $5,680 is the book’s 2021 figure, and $184,500 is the taxable wage base, a different concept."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>2. According to the 2026 Trustees Report, what happens if Congress does nothing when the OASI trust fund reserves are depleted in late 2032?</legend>
+        <label><input type="radio" name="q2" value="a"> Retirement and survivor benefits stop</label>
+        <label><input type="radio" name="q2" value="b"> Continuing payroll tax income would pay about 78% of scheduled benefits</label>
+        <label><input type="radio" name="q2" value="c"> Benefits are automatically cut in half</label>
+        <label><input type="radio" name="q2" value="d"> General tax revenue automatically refills the fund</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Depletion is not the end of benefits. Ongoing payroll taxes would cover about 78% of scheduled OASI benefits, and only legislation could change that." data-wrong="Depletion does not stop benefits. Continuing payroll tax income would fund about 78% of scheduled OASI benefits. There is no automatic refill from general revenue, so restoring the rest would take an act of Congress."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>3. Under the standard 2026 Part D benefit, a beneficiary's covered drugs cost $10,000. About how much does she pay out of pocket, excluding premiums?</legend>
+        <label><input type="radio" name="q3" value="a"> $615</label>
+        <label><input type="radio" name="q3" value="b"> $2,100</label>
+        <label><input type="radio" name="q3" value="c"> $6,550</label>
+        <label><input type="radio" name="q3" value="d"> $10,000</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. She pays the $615 deductible and 25% of costs after that, reaching the $2,100 cap at about $6,555 of total drug costs. After that, covered drugs cost her $0." data-wrong="Under the 2025 redesign, out-of-pocket spending is capped at $2,100 in 2026. $6,550 was the book’s 2021 out-of-pocket threshold, before the cap and before the coverage gap was eliminated."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>4. An employee earns $250,000 in 2026 (single filer). Which statement about her payroll taxes is correct?</legend>
+        <label><input type="radio" name="q4" value="a"> She pays 6.2% Social Security tax on all $250,000</label>
+        <label><input type="radio" name="q4" value="b"> She pays 6.2% Social Security tax on the first $184,500 only, and Medicare tax on all earnings</label>
+        <label><input type="radio" name="q4" value="c"> She pays no Medicare tax above $184,500</label>
+        <label><input type="radio" name="q4" value="d"> Her employer pays all of the tax</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. OASDI tax stops at the $184,500 wage base. Medicare tax has no cap, and earnings above $200,000 also owe an additional 0.9% Medicare tax." data-wrong="OASDI tax applies only up to the $184,500 taxable wage base, but Medicare tax applies to all earnings (plus an extra 0.9% above $200,000 for a single filer). The employer matches the regular rates, and the employee pays her share through withholding."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>5. In a state with no FUTA credit reduction, what is the maximum federal unemployment tax an employer pays per employee per year?</legend>
+        <label><input type="radio" name="q5" value="a"> $420</label>
+        <label><input type="radio" name="q5" value="b"> $42</label>
+        <label><input type="radio" name="q5" value="c"> $378</label>
+        <label><input type="radio" name="q5" value="d"> $0</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. FUTA is 6.0% of the first $7,000, minus the 5.4% credit for timely state payments. The net 0.6% × $7,000 = $42." data-wrong="The gross rate is 6.0% on the first $7,000 ($420), but employers who pay state tax on time get a credit of up to 5.4% ($378), leaving 0.6% × $7,000 = $42. In credit reduction states like California the amount is higher."></div>
+    </div>
+
+    <p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the programs.</p>
+    <h2>Ask who is paying whom, and when.</h2>
+    <div class="flow">
+      Workers and employers pay payroll taxes <span class="arrow">→</span> Taxes pay today's beneficiaries<br>
+      Reserves cover any gap <span class="arrow">→</span> Reserves run down<br>
+      <span class="arrow">→</span> Benefits fall to what income can pay <span class="arrow">·</span> or Congress changes the rules
+    </div>
+    <p class="question">A worker starting a career today will reach retirement age after the Trustees' projected depletion dates. If you were designing the employer benefits package for that worker, how much would you assume Social Security replaces, and how much would you ask the employer plan to cover?</p>
+  </div>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="refs" id="refs">
+    <h2>Sources</h2>
+    <p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. The 2027 COLA and taxable maximum will be announced in October 2026, and CMS announces 2027 Medicare premiums in the fall; this page should be refreshed after they publish.</p>
+    <ol>
+      <li>Social Security Administration, <i>2026 Cost-of-Living Adjustment (COLA) Fact Sheet</i> (October 24, 2025). COLA, taxable maximum, quarter of coverage, earnings test, SGA and trial work thresholds, maximum benefit, SSI standard, and average benefits. Also SSA, COLA information page (about 71 million Social Security beneficiaries).</li>
+      <li>Social Security and Medicare Boards of Trustees, <i>2026 Annual Reports</i> (June 9, 2026), and SSA Office of the Chief Actuary, <i>Trustees Report Summary</i>. Depletion dates and payable percentages.</li>
+      <li>Centers for Medicare &amp; Medicaid Services, <i>2026 Medicare Parts A &amp; B Premiums and Deductibles</i> (November 14, 2025). Premiums, deductibles, coinsurance, and income-related adjustments.</li>
+      <li>CMS, <i>Final CY 2026 Part D Redesign Program Instructions</i>. $615 maximum deductible, $2,100 out-of-pocket cap, 25% initial-coverage coinsurance, and elimination of the coverage gap under the Inflation Reduction Act.</li>
+      <li>KFF, <i>Medicare Advantage in 2026: Enrollment Update and Key Trends</i> (June 2026).</li>
+      <li>Medicare.gov, <i>Choosing a Medigap Policy</i> (2026 edition). Standardized plans, closure of Plans C and F to those newly eligible after 2019, and Massachusetts, Minnesota, and Wisconsin systems.</li>
+      <li>Social Security Administration, <i>Social Security Fairness Act: WEP and GPO update</i>. Signed January 5, 2025; repeal effective for benefits from January 2024.</li>
+      <li>U.S. Department of Labor, Employment and Training Administration, <i>Significant Provisions of State Unemployment Insurance Laws, Effective January 2026</i>. Maximum weekly benefits, weeks payable, taxable wage bases, and rate ranges.</li>
+      <li>U.S. Department of Labor, <i>Unemployment Insurance Weekly Claims</i> news release, September 17, 2026 (USDL 26-1529-NAT). Insured unemployment and Extended Benefits status.</li>
+      <li>U.S. Department of Labor, <i>Final 2025 FUTA Credit Reductions</i> (November 10, 2025). California 1.2% and Virgin Islands 4.5%.</li>
+      <li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 7. Conceptual framework and definitions; statistical content superseded by the sources above.</li>
+    </ol>
+  </section>
+
+  </main>
+
+  <footer>
+    INS 432 / INS 532 — Employee Benefits · Chapter 7: Government-Mandated Social Security Programs
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+
+  /* ---------- claiming age adjuster (FRA = 67) ---------- */
+  var factors = {62:0.70, 63:0.75, 64:0.80, 65:0.86667, 66:0.93333, 67:1.00, 68:1.08, 69:1.16, 70:1.24};
+  document.getElementById("claimBtn").addEventListener("click", function(){
+    var pia = num(document.getElementById("pia"), 0);
+    var age = parseInt(document.getElementById("claimAge").value, 10);
+    var f = factors[age];
+    var monthly = pia * f;
+    var pct = Math.round((f - 1) * 1000) / 10;
+    var html = '<p class="big">' + money(monthly) + ' a month at ' + age + '</p>';
+    var relation;
+    if(age < 67){
+      relation = 'a permanent <b>' + Math.abs(pct) + '% reduction</b> from the full-retirement-age amount of ' + money(pia);
+    } else if(age === 67){
+      relation = 'the full-retirement-age amount, with no reduction and no delayed retirement credit';
+    } else {
+      relation = 'a <b>' + pct + '% increase</b> over the full-retirement-age amount of ' + money(pia) + ', from delayed retirement credits (8% for each year past 67)';
+    }
+    html += '<p>That is ' + relation + '.</p>';
+    var at62 = pia * 0.70, at70 = pia * 1.24;
+    html += '<div class="split"><div><b>Claim at 62:</b> ' + money(at62) + ' a month</div><div><b>Claim at 70:</b> ' + money(at70) + ' a month</div></div>';
+    html += '<p>The gap between claiming at 62 and 70 is <b>' + money(at70 - at62) + ' a month</b>, for life, adjusted for inflation each year. The later benefit is paid for fewer years, so the right choice depends on health, other income, and marital status.</p>';
+    document.getElementById("claimResult").innerHTML = html;
+  });
+
+  /* ---------- Part D walkthrough (2026 standard benefit) ---------- */
+  document.getElementById("drugBtn").addEventListener("click", function(){
+    var cost = num(document.getElementById("drugCost"), 0);
+    var ded = 615, cap = 2100, coin = 0.25;
+    var oop, phase;
+    if(cost <= ded){
+      oop = cost; phase = 1;
+    } else {
+      oop = ded + coin * (cost - ded);
+      phase = 2;
+      if(oop >= cap){ oop = cap; phase = 3; }
+    }
+    var other = cost - oop;
+    var threshold = ded + (cap - ded) / coin;
+    var html = '<p class="big">You pay ' + money(oop) + ' · the plan pays ' + money(other) + '</p>';
+    if(phase === 1){
+      html += '<p><b>Deductible phase.</b> Total costs of ' + money(cost) + ' never exceed the $615 deductible, so you pay everything.</p>';
+    } else if(phase === 2){
+      html += '<p><b>Initial coverage phase.</b> You paid the $615 deductible, then 25% of the ' + money(cost - ded) + ' above it (' + money(coin * (cost - ded)) + '). You have not reached the $2,100 cap.</p>';
+    } else {
+      html += '<p><b>Catastrophic phase.</b> You paid the $615 deductible and 25% of costs until your spending reached the <b>$2,100 cap</b>, which happens at about ' + money(threshold) + ' of total drug costs. Covered drugs cost you $0 for the rest of the year.</p>';
+    }
+    html += '<p>Under the book’s 2021 design, the same drug bill would have run through a coverage gap before catastrophic coverage began at $6,550 out of pocket. The 2026 cap is about one-third of that threshold.</p>';
+    document.getElementById("drugResult").innerHTML = html;
+  });
+
+  /* ---------- payroll tax calculator ---------- */
+  document.getElementById("ptBtn").addEventListener("click", function(){
+    var w = num(document.getElementById("ptWages"), 0);
+    var base = num(document.getElementById("ptBase"), 0);
+    var rate = num(document.getElementById("ptRate"), 0) / 100;
+    var wb = 184500;
+    var oasdi = 0.062 * Math.min(w, wb);
+    var med = 0.0145 * w;
+    var futa = 0.006 * Math.min(w, 7000);
+    var suta = rate * Math.min(w, base);
+    var er = oasdi + med + futa + suta;
+    var addl = 0.009 * Math.max(0, w - 200000);
+    var ee = oasdi + med + addl;
+    var pct = w > 0 ? (er / w * 100).toFixed(1) : "0.0";
+
+    var html = '<p class="big">The employer pays ' + money(er) + ' in payroll taxes (' + pct + '% of wages)</p>';
+    html += '<div class="split"><div><b>Social Security (6.2%):</b> ' + money(oasdi) + '</div>';
+    html += '<div><b>Medicare (1.45%):</b> ' + money(med) + '</div></div>';
+    html += '<div class="split"><div><b>FUTA (0.6% of first $7,000):</b> ' + money(futa) + '</div>';
+    html += '<div><b>State unemployment:</b> ' + money(suta) + '</div></div>';
+    html += '<p>The employee pays ' + money(ee) + ' through withholding (6.2% Social Security and 1.45% Medicare' + (addl > 0 ? ', plus ' + money(addl) + ' in additional Medicare tax above $200,000' : '') + '). Unemployment taxes are the employer’s alone in nearly all states.</p>';
+    if(w > wb){
+      html += '<p>Wages above the $184,500 wage base owe no Social Security tax, which caps that piece at ' + money(0.062 * wb) + ' each for employer and employee.</p>';
+    }
+    document.getElementById("ptResult").innerHTML = html;
+  });
+
+  /* ---------- unemployment benefit (high-quarter method) ---------- */
+  document.getElementById("uiBtn").addEventListener("click", function(){
+    var hq = num(document.getElementById("uiHQ"), 0);
+    var pct = Math.min(100, num(document.getElementById("uiPct"), 0)) / 100;
+    var mx = num(document.getElementById("uiMax"), 0);
+    var wks = Math.min(52, num(document.getElementById("uiWks"), 0));
+    var aww = hq / 13;
+    var raw = aww * pct;
+    var wba = Math.min(raw, mx);
+    var capped = raw > mx;
+    var rr = aww > 0 ? Math.round(wba / aww * 100) : 0;
+    var html = '<p class="big">Weekly benefit: ' + money(wba) + '</p>';
+    html += '<div class="split"><div><b>Average weekly wage:</b> ' + money2(aww) + ' (' + money(hq) + ' ÷ 13)</div>';
+    html += '<div><b>Formula amount:</b> ' + money2(raw) + '</div></div>';
+    if(capped){
+      html += '<p><b>The state maximum applies.</b> The cap holds the benefit to ' + money(mx) + ', which replaces ' + rr + '% of the worker’s average pay instead of ' + Math.round(pct * 100) + '%.</p>';
+    } else {
+      html += '<p>The state maximum is not reached, so the worker receives the formula amount, replacing ' + rr + '% of average weekly pay.</p>';
+    }
+    html += '<p>Over ' + wks + ' weeks the most this worker could collect is <b>' + money(wba * wks) + '</b>. Most states also limit total benefits to a fraction of base-period wages, so the real total may be lower.</p>';
+    document.getElementById("uiResult").innerHTML = html;
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){
+        defBox.textContent = "Select a term above.";
+      } else {
+        btn.setAttribute("aria-expanded","true");
+        defBox.innerHTML = "<b>" + btn.innerHTML + ".</b> " + btn.getAttribute("data-def");
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+})();
+</script>
+</body>
+</html>

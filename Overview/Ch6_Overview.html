@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 6 — Employer-Sponsored Disability Insurance, Life Insurance, and Workers’ Compensation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532</div>
+    <h1 class="title">Chapter 6: Employer-Sponsored Disability Insurance, Life Insurance, and Workers' Compensation</h1>
+    <p class="subtitle">Three ways to protect a paycheck when the worker can't earn it. Two are choices the employer makes. One is a bargain the law forces.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> Every benefit in this chapter answers the same question: who pays when a worker can't work, or dies? The answer turns on two facts. Was the harm work-related? Does the law require the benefit? Workers' compensation is mandatory and covers only work-related harm. Disability and life insurance are voluntary and cover nearly everything else. Offset provisions keep the layers from adding up to more than the paycheck.
+    </div>
+
+    <div class="notice" role="note">
+      <h2>⚠ About the numbers on this page</h2>
+      <p>Your textbook's Chapter 6 runs on <b>2020 figures</b>: access rates, per-employee costs, and a pandemic section describing COVID-19 rules that have since expired. Several of those figures have moved, and one of the government data series behind them is changing.</p>
+      <p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (U.S. Bureau of Labor Statistics, the National Academy of Social Insurance, NCCI, the IRS, SSA, and the Texas Department of Insurance) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker. Use these numbers, not the book's, on quizzes and papers.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 6</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>Three benefits, one question</h3><p>What each benefit covers, how workers' comp came first, and what the coverage costs employers today.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Disability plan design</h3><p>Short-term vs. long-term, waiting periods, the two-stage definition, and how employers fund it.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>The laws and the offsets</h3><p>ADEA, ADA, ERISA, and the offset rules that keep total disability income below the paycheck.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>Life insurance</h3><p>Term, whole, universal, and AD&amp;D. Why the first $50,000 is tax-free and the rest is not.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Workers' compensation</h3><p>The no-fault bargain: who is covered, what it costs, four kinds of benefits, and when employers can still be sued.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>After the pandemic</h3><p>What became of the COVID-19 rules in the book, and what is quietly replacing them.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART ONE ============ -->
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">Three benefits, one question</h2>
+    <p>Two of these benefits are <b>discretionary</b>: the employer decides whether to offer them. The third is required by law in every state but one. Keeping the three straight is most of the chapter.</p>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Disability insurance</h3><p>Replaces income when illness or injury keeps an employee from working. Covers <b>work-related and nonwork-related</b> causes, so it is broader than workers' comp. The employer buys a policy, pays the insurer a negotiated <b>premium</b>, or self-funds. Voluntary.</p></div>
+      <div class="plan-card"><h3>Life insurance</h3><p>Pays a specified amount to the employee's <b>beneficiaries</b> at death. Usually a multiple of salary, with the option to buy more. Group coverage lets more people join at a lower cost per person. Voluntary.</p></div>
+      <div class="plan-card"><h3>Workers' compensation</h3><p>Medical care and income for <b>work-related</b> injury, illness, or death, regardless of fault. Run by each state. Mandatory everywhere except Texas.</p></div>
+      <div class="plan-card"><h3>What they are not</h3><p><b>Sick leave</b> (Chapter 8) is a different thing. It pays for occasional minor absences out of the regular payroll, not from an insurance policy or a self-insured disability fund.</p></div>
+    </div>
+
+    <p style="margin-top:16px;">The need is real. SSA reports that a 20-year-old worker has a <b>1-in-4 chance</b> of developing a disability before reaching full retirement age.<span class="upd">Updated</span> The textbook's version puts the odds of a 90-day disability at one in three. Both numbers make the same point: disability is not a rare event.</p>
+
+    <h3 class="sub">Where these benefits came from</h3>
+    <ul class="plain">
+      <li><b>Late 1800s.</b> The U.S. shifts from farming to factories. Companies pay little attention to safety, and an injured worker's only remedy is a lawsuit few could afford.</li>
+      <li><b>The three common-law defenses.</b> Employers who were sued could argue <b>assumption of risk</b> (the hazard was ordinary to the job), the <b>fellow worker rule</b> (a coworker caused it), or <b>contributory negligence</b> (the worker's own carelessness contributed). Workers lost most of the time.</li>
+      <li><b>1911.</b> The first workers' compensation law passes. By 1948 every state has one. The states, not Washington, built this system.</li>
+      <li><b>Before the 1960s.</b> Disability coverage is primitive: establishment funds, individual policies, and early group policies that pay a <b>lump sum</b> that ignores age and severity.</li>
+      <li><b>1960s.</b> Insurers begin paying disability benefits as <b>income replacement</b>, the model still used today.</li>
+      <li><b>Life insurance.</b> The same forces that drove workers' comp drove group life: industrialization, WWII wage freezes (the same accident behind employer health coverage in Chapter 5), and favorable tax rules.</li>
+    </ul>
+    <div class="callout">
+      <p><b>The two principles behind workers' compensation.</b> First, the employer is <b>absolutely liable</b> for occupational injuries, whoever was at fault. Second, the employer should bear the cost of those injuries. In exchange, the employer gets protection from most lawsuits. Hold on to that trade. It comes back in Part Four.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Coverage and cost today</h2>
+    <p>Here is what the latest federal data say. Compare them with the book's 2020 figures (42% access to short-term disability, 34% to long-term, and life insurance for 70% of full-timers) as you read.</p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">59%</div>
+        <div class="lbl">of private industry workers have <b>access to employer life insurance</b>, and 98% of those offered it take it</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat">
+        <div class="num">68%</div>
+        <div class="lbl">of workers at establishments with 500 or more employees have <b>short-term disability access</b>, vs. 31% under 100</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">$106.6B</div>
+        <div class="lbl">total <b>employer cost of workers' compensation</b> in 2023, up 3.5% in a year</div>
+        <div class="src">NASI, 2026 report</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;">Notice the 98% take-up rate for life insurance. When the employer pays, almost everyone enrolls. Compare that with health insurance in Chapter 5, where employees pay a large share and more than a quarter of those offered a plan decline it.</p>
+
+    <table class="tbl">
+      <caption>Who has access, private industry, March 2025 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Group</th><th scope="col">Short-term disability</th><th scope="col">Life insurance</th></tr></thead>
+      <tbody>
+        <tr><td><b>Establishments with fewer than 100 workers</b></td><td>31%</td><td>42%</td></tr>
+        <tr><td><b>100 to 499 workers</b></td><td>53%</td><td>72%</td></tr>
+        <tr><td><b>500 or more workers</b></td><td>68%</td><td>87%</td></tr>
+        <tr><td><b>Full-time workers</b></td><td colspan="1">—</td><td>73%</td></tr>
+        <tr><td><b>Part-time workers</b></td><td colspan="1">—</td><td>15%</td></tr>
+        <tr><td><b>Lowest 25% of wages</b></td><td>—</td><td>28%</td></tr>
+        <tr><td><b>Highest 25% of wages</b></td><td>—</td><td>85%</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">The book lists 70% of full-time employees with life insurance in 2020. The current BLS figure for full-time private industry workers is 73%. Size and pay still matter far more than the benefit itself: a worker in the bottom wage quarter is about a third as likely to be offered life insurance as one in the top quarter (28% vs. 85%).</p>
+
+    <table class="tbl">
+      <caption>Employer cost per hour worked, private industry, June 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Benefit</th><th scope="col">Cost per hour</th><th scope="col">Rough full-time year (2,080 hrs)</th><th scope="col">Textbook (2020, per year)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Life insurance</b></td><td>$0.05</td><td>≈ $104</td><td>$145</td></tr>
+        <tr><td><b>Short-term disability</b></td><td>$0.10</td><td>≈ $208</td><td>$166</td></tr>
+        <tr><td><b>Long-term disability</b></td><td>$0.05</td><td>≈ $104</td><td>$83</td></tr>
+        <tr><td><b>Workers' compensation</b></td><td>$0.43</td><td>≈ $894</td><td>$940</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">Read these as orders of magnitude, not exact comparisons. BLS averages the cost over all workers, including those who have no access to the benefit, and rounds to the cent per hour. What holds up: workers' comp costs employers about four times what short-term disability does, and life and disability coverage each cost only pennies per hour.</p>
+    <div class="callout">
+      <p><b>A data source is changing.</b> BLS has announced that, starting with December 2026 data (published March 2027), its Employer Costs for Employee Compensation series will <b>stop reporting workers' compensation costs</b>.<span class="upd">Updated</span> If you cite a "cost of workers' comp per hour" in a paper, note the release date. Future editions of this page will rely on the NASI and NCCI data in Part Four.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART TWO ============ -->
+  <section>
+    <div class="section-label">Part Two: Disability Plan Design</div>
+    <h2 class="section-title">Short-term and long-term disability</h2>
+
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Short-term disability (STD)</h3>
+        <ul>
+          <li>Covers disabilities lasting <b>less than a year</b>, with benefits usually paid for no more than a year</li>
+          <li>Definition: unable to perform <b>any and every duty</b> of your regular job</li>
+          <li>Covers recovery from injury or surgery, illness requiring hospitalization, and pregnancy or childbirth</li>
+          <li>Typically pays <b>50% to 66⅔%</b> of pay, weekly or monthly. Some plans pay 100%</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Long-term disability (LTD)</h3>
+        <ul>
+          <li>Picks up where short-term ends, lasting from <b>six months to life</b></li>
+          <li>Two-stage definition (below)</li>
+          <li>Pays <b>50% to 60%</b> of monthly pay, subject to a dollar maximum that may be as high as $10,000</li>
+          <li>Elimination period of six months to a year. Usually starts only after sick leave and STD run out</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px;">Both types may <b>overlap</b> with Social Security disability and workers' compensation rather than replace them. Employer plans supplement the legally required benefits. That overlap is the reason offset provisions exist.</p>
+
+    <h3 class="sub">Three features that decide whether a claim pays</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Preexisting condition clause.</b> Excludes any condition for which you received advice, diagnosis, care, or treatment during a designated period before coverage began. The period is usually any time before you enrolled. Insurers use it to avoid paying for problems that predate their coverage.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Waiting periods.</b> The <b>pre-eligibility period</b> runs from your hire date until you may join the plan. The <b>elimination period</b> is the minimum time you must be disabled before payments start. Employers like long elimination periods because premiums are lower. STD elimination periods commonly run about three months, but can range from one month to a year.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Exclusions.</b> Self-inflicted injuries are almost always excluded. Mental illness and chemical dependency are generally excluded too, though an employee assistance program may fill the gap.</p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: what does the monthly cap do to your benefit?</h3>
+      <p class="hint">The textbook's example is a $130,000 earner in a plan that pays 66.67% up to a $5,000 monthly maximum. Change any number to see how the cap punishes higher earners.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="stdSal">Annual salary ($)</label>
+          <input type="number" id="stdSal" value="130000" min="0" step="1000">
+        </div>
+        <div class="field">
+          <label for="stdPct">Plan pays (% of pay)</label>
+          <input type="number" id="stdPct" value="66.67" min="0" max="100" step="0.01">
+        </div>
+        <div class="field">
+          <label for="stdCap">Monthly maximum benefit ($)</label>
+          <input type="number" id="stdCap" value="5000" min="0" step="100">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="stdBtn">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="stdResult" role="status" aria-live="polite">
+        <p>Enter your numbers and select Calculate.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>New since the book: state disability and paid leave programs.</b><span class="upd">Updated</span> California, Hawaii, New Jersey, New York, and Rhode Island run <b>temporary disability insurance</b> programs. Paid family and medical leave programs, which typically include a personal medical leave component, were paying benefits in 12 states plus D.C. as of May 2026. Minnesota and Delaware started in January 2026, and Maine in May 2026. Maryland (January 2028) and Virginia (December 2028) are scheduled. In those states an employer's STD plan often coordinates with the state program instead of standing alone.</p>
+    </div>
+
+    <h3 class="sub">Long-term disability: the two-stage definition</h3>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Stage one: "own occupation"</h3><p>For a designated period, often up to two years, you qualify if the illness or accident prevents you from doing <b>your own job</b>. A surgeon who loses fine motor control qualifies, even if she could work as a teacher.</p></div>
+      <div class="plan-card"><h3>Stage two: "any occupation"</h3><p>After that period, the test tightens. You qualify only if you cannot perform <b>any occupation</b> for which your training, education, or experience suits you. Many claims end at this transition.</p></div>
+    </div>
+    <p style="margin-top:14px;">LTD traditionally covered only <b>total</b> disability. Carriers have added <b>partial disability</b> coverage: while you work part-time in any job, the insurer covers part of the lost income. The plan may kick in when part-time earnings fall below a set share of prior income, say 75% to 80%. That helps employees ease back into work and helps employers retain them.</p>
+
+    <h3 class="sub">How employers fund disability coverage</h3>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Buy insurance</h3>
+        <ul>
+          <li>Pay premiums to an independent insurer, which takes on the risk</li>
+          <li>Predictable cost, minimal claims administration</li>
+          <li>Makes sense for small groups, where claims are hard to predict</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Self-fund, fully or partly</h3>
+        <ul>
+          <li><b>Partial</b> (mainly LTD): pay claims from a trust for 2–3 years or up to a maximum, and buy <b>stop-loss insurance</b> for the excess</li>
+          <li><b>Full:</b> pay from company assets, or hire an insurer through an <b>administrative-services-only (ASO)</b> contract to run the plan</li>
+          <li>Depends on group size and tolerance for <b>exposure</b>, the expected annual claims</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px;">The logic echoes Chapter 5: larger groups make disability incidence predictable, and predictability makes self-funding attractive.</p>
+  </section>
+
+  <!-- ============ PART THREE ============ -->
+  <section>
+    <div class="section-label">Part Three: The Laws and the Offsets</div>
+    <h2 class="section-title">What shapes a disability plan</h2>
+
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>ADEA (1967) and OWBPA (1990).</b> The Older Workers Benefit Protection Act generally bans terminating LTD benefits for active employees because of age. Employers may charge older workers more for benefits that cost more for them, but may not make it a condition of employment. The employee must be offered choices: withdraw, keep the premium the same with reduced coverage, or pay more to keep full coverage.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>ADA (1990).</b> Prohibits discrimination against a <b>qualified individual with a disability</b>, meaning a person who can perform a job's essential functions with or without reasonable accommodation. The EEOC enforces it. Employers violate the ADA by excluding eligible employees from a plan or by imposing a longer pre-eligibility period on them. But it is lawful to omit cost-of-living adjustments from disability retirement benefits, or to reduce benefits for other insured income.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>ERISA (1974).</b> Regulates how company-sponsored disability and life plans are established and run.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>State workers' comp and Social Security disability rules.</b> These interact with employer plans through <b>offset provisions</b>.</p></div>
+    </div>
+
+    <div class="callout">
+      <p><b>Offset provisions: the arithmetic of not being paid twice.</b> An offset provision reduces the company-sponsored benefit by a percentage of what you receive from workers' comp and Social Security. Without one, a disabled worker could collect as much as, or more than, his paycheck, and the incentive to return to work would vanish. The textbook cites a combined limit: Social Security disability plus workers' compensation may not exceed <b>80% of average current earnings</b> before the disability.</p>
+      <p>The public layer is not large. In January 2026 the <b>average disabled worker</b> on Social Security received about <b>$1,630 a month</b>, and a beneficiary who earns more than <b>$1,690 a month</b> from work generally loses eligibility.<span class="upd">Updated</span> That thin public floor is why an employer plan matters to a higher earner.</p>
+    </div>
+  </section>
+
+  <!-- ============ PART FOUR: LIFE ============ -->
+  <section>
+    <div class="section-label">Part Four: Life Insurance</div>
+    <h2 class="section-title">Group life insurance</h2>
+    <p>Individuals can buy life insurance from an agent, or get <b>group</b> coverage through an employer. Group coverage is usually issued to a group of at least 10 full-time employees. It lets a larger pool join at a lower cost per person, with the employer financing all or part of it. Most plans also include accidental death and dismemberment coverage.</p>
+
+    <h3 class="sub">Three plan designs, plus AD&amp;D</h3>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Term life</h3><p>The most common employer plan. Protects beneficiaries only for a set period or up to a maximum age (often 65 or 70). It has <b>no cash value</b>. Nobody receives anything when it expires. To continue, you renew and keep paying premiums.</p></div>
+      <div class="plan-card"><h3>Whole life</h3><p>Pays at death whenever it occurs. It <b>never expires</b> before payout, and combines insurance with a savings feature. Substantially more expensive than term, and uncommon in employer plans.</p></div>
+      <div class="plan-card"><h3>Universal life</h3><p>Term protection plus a <b>flexible</b> savings account. The owner can shift money between the insurance and savings components. The cash value grows at a variable rate tied to markets, so premiums, benefits, and schedules can change.</p></div>
+      <div class="plan-card"><h3>Accidental death &amp; dismemberment (AD&amp;D)</h3><p>Pays for death or dismemberment (loss of two limbs, or of sight) caused by an <b>accident</b>, not by illness. Premiums are lower because accidental deaths are rarer. Many employers now offer it as voluntary, employee-paid coverage.</p></div>
+    </div>
+
+    <h3 class="sub">Who pays: contributory vs. noncontributory</h3>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Contributory plans</h3>
+        <ul>
+          <li>Employees pay all of the premium, or share it with the employer</li>
+          <li>Less common in group term coverage</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Noncontributory plans</h3>
+        <ul>
+          <li>The employer pays the entire premium for coverage up to set limits</li>
+          <li>Most group plans work this way, because the employer enjoys substantially larger tax benefits than with contributory plans</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>How an insurer prices it.</b> <b>Underwriting</b> is the process of deciding whether to issue a policy, on what terms, and at what premium. It relies on <b>mortality tables</b> that give yearly probabilities of death by age and sex, established by the Society of Actuaries. That is the same logic you met in Chapter 5, applied to death instead of illness.</p>
+    </div>
+
+    <h3 class="sub">The tax rule the textbook barely mentions: imputed income</h3>
+    <p>Employer-paid group term life is tax-free up to <b>$50,000</b> of coverage. Above that, the IRS treats the value of the excess as income to you, even though you never receive cash. The value is <b>not</b> your employer's real premium. It comes from a fixed IRS table (the textbook's Exhibit 6.1) based on your age on December 31.<span class="upd">Updated</span> The imputed amount is also subject to Social Security and Medicare tax.</p>
+
+    <table class="tbl">
+      <caption>IRS Table I: monthly cost per $1,000 of group term life above $50,000, 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Age on Dec. 31</th><th scope="col">Cost per $1,000 per month</th><th scope="col">Age on Dec. 31</th><th scope="col">Cost per $1,000 per month</th></tr></thead>
+      <tbody>
+        <tr><td><b>Under 25</b></td><td>$0.05</td><td><b>50–54</b></td><td>$0.23</td></tr>
+        <tr><td><b>25–29</b></td><td>$0.06</td><td><b>55–59</b></td><td>$0.43</td></tr>
+        <tr><td><b>30–34</b></td><td>$0.08</td><td><b>60–64</b></td><td>$0.66</td></tr>
+        <tr><td><b>35–39</b></td><td>$0.09</td><td><b>65–69</b></td><td>$1.27</td></tr>
+        <tr><td><b>40–44</b></td><td>$0.10</td><td><b>70 and older</b></td><td>$2.06</td></tr>
+        <tr><td><b>45–49</b></td><td>$0.15</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="tool">
+      <h3>Try it: how much income does the extra coverage create?</h3>
+      <p class="hint">Enter the employer-paid coverage and the employee's age. The result shows the amount added to taxable wages. If the employee pays part of the cost with after-tax dollars, that amount reduces the taxable figure.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="gtlCov">Employer-paid group term coverage ($)</label>
+          <input type="number" id="gtlCov" value="150000" min="0" step="10000">
+        </div>
+        <div class="field">
+          <label for="gtlAge">Age on December 31</label>
+          <select id="gtlAge" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="0.05">Under 25</option>
+            <option value="0.06">25–29</option>
+            <option value="0.08">30–34</option>
+            <option value="0.09">35–39</option>
+            <option value="0.10">40–44</option>
+            <option value="0.15" selected>45–49</option>
+            <option value="0.23">50–54</option>
+            <option value="0.43">55–59</option>
+            <option value="0.66">60–64</option>
+            <option value="1.27">65–69</option>
+            <option value="2.06">70 and older</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gtlPaid">Employee's own after-tax premium ($ per month)</label>
+          <input type="number" id="gtlPaid" value="0" min="0" step="1">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="gtlBtn">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="gtlResult" role="status" aria-live="polite">
+        <p>Enter values and select Calculate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART FIVE: WORKERS' COMP ============ -->
+  <section>
+    <div class="section-label">Part Five: Workers' Compensation</div>
+    <h2 class="section-title">The no-fault bargain</h2>
+    <p>State workers' compensation laws replaced the old lottery of lawsuits with a trade. The worker gets prompt medical care and income benefits <b>whoever was at fault</b>. The employer gets protection from most lawsuits over the injury. The textbook lists six objectives behind that trade. The ones worth remembering:</p>
+    <ul class="plain">
+      <li>Sure, prompt, reasonable benefits for accident victims or their dependents, regardless of fault.</li>
+      <li>A <b>single remedy</b>, which cuts court delays, legal fees, and litigation costs.</li>
+      <li>Employer interest in <b>safety</b> and rehabilitation, encouraged through experience-rated premiums.</li>
+      <li>Open study of accident causes rather than concealment of fault.</li>
+    </ul>
+
+    <table class="tbl">
+      <caption>Three layers of protection, side by side</caption>
+      <thead><tr><th scope="col"></th><th scope="col">Workers' compensation</th><th scope="col">Employer disability plan</th><th scope="col">Social Security disability (Ch. 7)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Covers</b></td><td>Work-related injury, illness, death only</td><td>Work-related and nonwork-related</td><td>Long-term disability from any cause, if total</td></tr>
+        <tr><td><b>Waiting period</b></td><td>Medical care from day one. Income benefits after 3 to 7 days</td><td>Set by the plan (elimination period)</td><td>Five months</td></tr>
+        <tr><td><b>Required by law?</b></td><td>Yes, in every state but Texas</td><td>No</td><td>Yes, through payroll taxes</td></tr>
+        <tr><td><b>Who pays</b></td><td>Employer</td><td>Usually the employer</td><td>Workers and employers, through FICA</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub">Who is covered</h3>
+    <p>Workers' comp laws cover virtually every employee, except domestic workers, some agricultural workers, and workers at very small businesses in some states. Maritime workers and federal civilian employees have their own programs (the Longshore and Harbor Workers' Compensation Act and the Federal Employees' Compensation Act). A <b>compulsory</b> law requires employers to accept the state system. An <b>elective</b> law lets them reject it, at the price of losing the common-law defenses described earlier.</p>
+    <div class="callout">
+      <p><b>The exception: Texas.</b><span class="upd">Updated</span> Texas has allowed private employers to opt out since 1913. Employers that do are <b>non-subscribers</b>: they lose the protection of statutory liability limits and can be sued by injured employees. In 2024, <b>24% of Texas private employers</b> were non-subscribers, and they employed <b>13% of the state's workers</b>, the lowest share in a decade. Workers' comp insurance rates in Texas have fallen 81% since 2003.</p>
+    </div>
+
+    <h3 class="sub">What it costs, and who pays</h3>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">~150M</div>
+        <div class="lbl">jobs covered by workers' compensation in 2023, with close to <b>$11 trillion</b> in covered wages</div>
+        <div class="src">NASI, 2026 report</div>
+      </div>
+      <div class="stat">
+        <div class="num">$64.1B</div>
+        <div class="lbl">in <b>benefits paid</b> in 2023. More than 47% went to medical care</div>
+        <div class="src">NASI, 2026 report</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">≈ $0.98</div>
+        <div class="lbl">employer cost per <b>$100 of covered payroll</b>, and 43 jurisdictions saw it fall in 2023</div>
+        <div class="src">NASI, 2026 report</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">The textbook's $940-per-worker figure and its construction ($2,750) and leisure-and-hospitality ($686) comparisons are 2020 numbers. The pattern still holds: costs follow risk, so industries with more injuries pay more. What has changed is the direction. Workers' comp has been getting cheaper relative to payroll for years.</p>
+
+    <table class="tbl">
+      <caption>Who pays the benefits: share of 2023 workers' compensation benefits <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col">Funding method</th><th scope="col">Share of benefits paid</th></tr></thead>
+      <tbody>
+        <tr><td><b>Private insurance carriers</b></td><td>55.6%</td></tr>
+        <tr><td><b>Self-insured employers</b> (must post surety bonds to pay claims directly)</td><td>25.6%</td></tr>
+        <tr><td><b>State funds</b> (22 states)</td><td>13.3%</td></tr>
+        <tr><td><b>Federal programs</b></td><td>5.5%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Ratemaking.</b> Rates are set per $100 of payroll. <b>Ratemaking service organizations</b> collect accident data and publish <b>rating manuals</b> with rates by business classification. Many employers are then <b>experience rated</b>, so a bad claims history costs more.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Second-injury funds.</b> Some workers arrive with a disability from a previous job. These funds let employers hire them without fearing liability for the earlier injury.</p></div>
+    </div>
+
+    <div class="callout">
+      <p><b>The insurance market, in one paragraph.</b><span class="upd">Updated</span> NCCI's 2026 report shows private carriers posted a <b>91% combined ratio in 2025</b> (they paid out 91 cents in losses and expenses for every premium dollar), the 12th consecutive year of underwriting profit. Net written premium slipped 0.2% to $41.6 billion, and approved NCCI loss cost filings were expected to lower written premiums by about 5% from 2025 to 2026. But lost-time claim <b>frequency</b> fell only 2%, while claim <b>severity</b> rose about 4% for both medical and indemnity. Fewer claims, each more expensive: the trend to watch.</p>
+    </div>
+
+    <h3 class="sub">Claims and the four kinds of benefits</h3>
+    <p>Employees file with the state commission that administers the program. There are three kinds of claims. An <b>injury claim</b> covers a disability from a workplace accident, including repetitive strain. An <b>occupational disease claim</b> covers an ailment tied to a trade or process (silicosis, asbestosis, radiation illness). A <b>death claim</b> covers a death in the course of employment or from a compensable injury or disease. Which injuries and illnesses count varies by state.</p>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Unlimited medical care</h3><p>Usually paid without limit on amount or time, though state <b>fee schedules</b> cap what is paid for particular procedures.</p></div>
+      <div class="plan-card"><h3>Disability income</h3><p>Four types by <b>duration</b> and <b>extent</b> (see the tool below). Permanent partial disability is either <b>scheduled</b> (loss of a specific body part) or <b>nonscheduled</b> (general injuries such as back or head damage).</p></div>
+      <div class="plan-card"><h3>Death benefits</h3><p>A <b>burial allowance</b> plus <b>survivors' benefits</b> for the spouse and dependent children. Amounts and durations vary widely by state, and spousal benefits often end after a set number of weeks or on remarriage.</p></div>
+      <div class="plan-card"><h3>Rehabilitative services</h3><p>Physical and vocational rehabilitation, available in all states. Claims must usually be made within six months to two years, and in most states the employer pays.</p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: which type of disability is this?</h3>
+      <p class="hint">Two questions sort every workers' compensation disability. The type appears once you answer both.</p>
+      <div class="q-step">
+        <p class="q" id="w1lbl">1. Is the worker expected to make a full recovery?</p>
+        <div class="opts" role="group" aria-labelledby="w1lbl">
+          <button type="button" class="opt" data-w="1" data-v="temp" aria-pressed="false">Yes: temporary</button>
+          <button type="button" class="opt" data-w="1" data-v="perm" aria-pressed="false">No: permanent</button>
+        </div>
+      </div>
+      <div class="q-step" id="wstep2" hidden>
+        <p class="q" id="w2lbl">2. During the disability, can the worker do any meaningful work?</p>
+        <div class="opts" role="group" aria-labelledby="w2lbl">
+          <button type="button" class="opt" data-w="2" data-v="partial" aria-pressed="false">Yes: limited work</button>
+          <button type="button" class="opt" data-w="2" data-v="total" aria-pressed="false">No: none</button>
+        </div>
+      </div>
+      <div class="result" id="wResult" role="status" aria-live="polite">
+        <p>Answer question 1 to begin.</p>
+      </div>
+      <p style="margin-top:12px;"><button type="button" class="btn ghost" id="wReset">Start over</button></p>
+    </div>
+
+    <h3 class="sub">Employer rights: immunity, and its four exceptions</h3>
+    <p>Complying with workers' comp protects the employer from lawsuits based on the no-fault principle. That immunity has four exceptions:</p>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Intentional acts</h3><p><b>Deliberate and knowing torts</b> (intent to harm), or violating an <b>affirmative duty</b>, such as failing to tell workers about exposure to a harmful substance.</p></div>
+      <div class="plan-card"><h3>Retaliation</h3><p>In most states an employee may sue for demotion, pay cuts, or firing after filing a claim. The <b>employer</b> carries the burden of proving a legitimate business necessity.</p></div>
+      <div class="plan-card"><h3>Noncompliance</h3><p>An employer that skips the required coverage can lose immunity and face fines, criminal penalties, or liability for the full claim. Most states still pay the injured worker.</p></div>
+      <div class="plan-card"><h3>Dual capacity</h3><p>When the employer plays a second role toward the employee, such as manufacturer of a product that injures him, common-law suits may survive.</p></div>
+    </div>
+    <p style="margin-top:14px;">Employers can defend by showing the harm was unrelated to work: a <b>preexisting condition</b> (unless work made it worse), employee <b>negligence</b> or <b>misconduct</b>, or <b>safety violations</b>. Even so, comp payments generally continue if an employee is fired for violating work rules.</p>
+  </section>
+
+  <!-- ============ PART SIX ============ -->
+  <section>
+    <div class="section-label">Part Six: After the Pandemic</div>
+    <h2 class="section-title">What became of the COVID-19 rules</h2>
+    <p>The textbook asks whether serious COVID-19 illness is a compensable workers' comp claim and answers that it depends on the state. It describes laws in California, Illinois, New Jersey, Utah, Wisconsin, and Wyoming, and executive orders in Connecticut, Kentucky, and New Hampshire. That was accurate for 2020–2021. It is now history.<span class="upd">Updated</span></p>
+
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>The presumptions ended.</b> Texas's COVID-19 presumption for first responders stopped applying to injuries on or after June 15, 2023, when the state disaster declaration expired. California's presumptions, including the "outbreak" rules the book describes, were repealed effective January 1, 2024.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Ordinary rules apply again.</b> An employee who contracts COVID-19 today must generally prove it is <b>more likely than not</b> that the exposure was work-related. The book's warning that pinning down where a person caught the illness is difficult remains the whole problem.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Presumptions live on elsewhere.</b> The lasting legacy is the expansion of presumption laws in general. At least 34 states now provide some coverage for <b>mental-only injuries</b>, and a growing number have PTSD presumptions for first responders.</p></div>
+    </div>
+    <div class="callout">
+      <p><b>The lesson for this course:</b> emergency rules are written for the emergency. When the emergency ends, benefits law tends to snap back to its baseline, and the baseline (state by state, employer by employer) is what an HR professional actually administers.</p>
+    </div>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section>
+    <h2 class="section-title">Key terms — check yourself</h2>
+    <p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p>
+    <div class="terms" id="termList">
+      <button type="button" class="term" aria-expanded="false" data-def="Insurance that replaces income for an employee unable to work on a regular basis because of illness or injury, whether or not it is work-related. Broader than workers’ compensation.">Disability insurance</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Coverage for disabilities lasting less than a year. Defines disability as inability to perform any and every duty of one’s own occupation.">Short-term disability</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Coverage for disabilities lasting from six months to life. Uses a two-stage definition: own occupation first, then any occupation.">Long-term disability</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The minimum time an employee must be disabled before benefit payments begin. Longer periods mean lower premiums for the employer.">Elimination period</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A mental or physical condition for which advice, diagnosis, care, or treatment was received during a designated period before coverage began. Plans commonly exclude it.">Preexisting condition</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A plan provision that reduces the company-sponsored disability benefit by a percentage of what the employee receives from workers’ compensation and Social Security, so total income does not exceed the paycheck.">Offset provision</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An arrangement in which the employer pays disability claims from a trust for a limited period or amount, and buys insurance for claims above that limit.">Partial self-funding</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Life insurance that protects beneficiaries only for a set period or up to a maximum age. No cash value, and nothing is paid at expiration. The most common employer plan.">Term life insurance</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Life insurance combining term protection with a flexible savings account whose cash value grows at a variable rate. The owner can shift money between the two components.">Universal life insurance</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A plan in which the employer pays the whole premium for coverage within set limits. Most group term life plans are set up this way for tax reasons.">Noncontributory plan</button>
+      <button type="button" class="term" aria-expanded="false" data-def="The taxable value of employer-paid group term life coverage above $50,000, calculated from the IRS Table I rate for the employee’s age rather than from the actual premium.">Imputed income</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Coverage for death or dismemberment (loss of two limbs, or of sight) resulting from an accident. It generally does not pay for death by illness.">AD&amp;D</button>
+      <button type="button" class="term" aria-expanded="false" data-def="State-run insurance providing medical care and income benefits for work-related injury, illness, or death regardless of fault, in exchange for limiting the employer’s exposure to lawsuits.">Workers’ compensation</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A workers’ comp permanent partial disability involving loss of a specific body part, such as an arm, leg, finger, hand, or eye, paid from a listed schedule.">Scheduled injury</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A fund that lets an employer hire a worker with a disability from an earlier job without being liable for the consequences of the prior injury.">Second-injury fund</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A legal doctrine: an employer that plays a second, separate role toward an employee (such as manufacturer of the product that injured him) may face a common-law suit despite complying with workers’ comp.">Dual capacity</button>
+    </div>
+    <div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div>
+  </section>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your four learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><div class="obj-num">1</div><p>Understand employer-sponsored disability plans.</p></div>
+      <div class="obj-item"><div class="obj-num">2</div><p>Understand employer-sponsored life insurance plans.</p></div>
+      <div class="obj-item"><div class="obj-num">3</div><p>Understand state compulsory disability laws (workers' compensation).</p></div>
+      <div class="obj-item"><div class="obj-num">4</div><p>Understand the pandemic's effect on workers' compensation insurance and what has replaced it.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section>
+    <h2 class="section-title">Check your understanding</h2>
+    <p>Five questions. Feedback appears as soon as you answer. This is practice, not graded — but the graded Chapter 6 quiz works the same way.</p>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>1. An employee earns $10,833 a month. The short-term disability plan pays 66.67% of pay with a $5,000 monthly maximum. What does the employee receive each month?</legend>
+        <label><input type="radio" name="q1" value="a"> About $7,200</label>
+        <label><input type="radio" name="q1" value="b"> $5,000</label>
+        <label><input type="radio" name="q1" value="c"> About $5,833</label>
+        <label><input type="radio" name="q1" value="d"> About $3,600</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The formula produces about $7,200, but the monthly maximum caps the benefit at $5,000. The cap costs this employee more than $2,200 a month." data-wrong="The formula alone gives about $7,200, but the plan’s monthly maximum limits the benefit to $5,000. The higher the salary, the more the cap bites."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>2. An employee breaks a leg skiing on vacation and cannot work for eight weeks. Which benefit is most likely to replace income?</legend>
+        <label><input type="radio" name="q2" value="a"> State workers’ compensation</label>
+        <label><input type="radio" name="q2" value="b"> The employer’s short-term disability plan</label>
+        <label><input type="radio" name="q2" value="c"> Accidental death and dismemberment insurance</label>
+        <label><input type="radio" name="q2" value="d"> Group term life insurance</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The injury is not work-related, so workers’ comp does not apply. Short-term disability covers work-related and nonwork-related causes." data-wrong="Workers’ comp covers only work-related injury. AD&amp;D pays for death or dismemberment (loss of limbs or sight), not a temporary injury, and life insurance pays at death. Short-term disability covers a nonwork injury like this."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>3. A 47-year-old employee has $150,000 of employer-paid group term life insurance and pays nothing toward it. Using the 2026 IRS Table I, how much imputed income is added to her wages each month?</legend>
+        <label><input type="radio" name="q3" value="a"> $0</label>
+        <label><input type="radio" name="q3" value="b"> $15.00</label>
+        <label><input type="radio" name="q3" value="c"> $22.50</label>
+        <label><input type="radio" name="q3" value="d"> $75.00</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Coverage above $50,000 is $100,000, or 100 units of $1,000. At $0.15 per unit for ages 45–49, that is $15 a month." data-wrong="The first $50,000 is excluded. That leaves $100,000 of taxable coverage, or 100 units of $1,000. At the $0.15 rate for ages 45–49, that is $15 a month. $22.50 comes from forgetting to subtract the $50,000."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>4. Which statement about workers' compensation coverage is correct?</legend>
+        <label><input type="radio" name="q4" value="a"> Every state requires all private employers to carry it</label>
+        <label><input type="radio" name="q4" value="b"> The federal government administers one national program for all employees</label>
+        <label><input type="radio" name="q4" value="c"> Texas lets most private employers opt out, but non-subscribers lose liability protection and can be sued</label>
+        <label><input type="radio" name="q4" value="d"> Employees of non-subscribing employers have no remedy at all</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Texas is the only state where most private employers may go without coverage. Non-subscribers give up the statutory limits on liability, so injured employees can sue them." data-wrong="Workers’ comp is state-run, with separate federal programs only for maritime and federal civilian workers. Texas is the exception to mandatory coverage: non-subscribers lose their liability limits and may be sued by injured employees."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="a">
+      <fieldset>
+        <legend>5. In the first stage of a long-term disability plan's two-stage definition, an employee qualifies if the illness or accident prevents him from performing:</legend>
+        <label><input type="radio" name="q5" value="a"> His own occupation</label>
+        <label><input type="radio" name="q5" value="b"> Any occupation for which he is qualified</label>
+        <label><input type="radio" name="q5" value="c"> Any paid employment at all</label>
+        <label><input type="radio" name="q5" value="d"> Only physical labor</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Stage one is “own occupation,” typically for up to two years. Stage two, after that period, requires inability to perform any occupation." data-wrong="Stage one uses the narrower “own occupation” test, typically for up to two years. The “any occupation” test applies only in stage two, which is why many claims end at that transition."></div>
+    </div>
+
+    <p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the benefit types.</p>
+    <h2>Ask who pays, and why.</h2>
+    <div class="flow">
+      Worker can't work <span class="arrow">→</span> Was it work-related?<br>
+      Yes <span class="arrow">→</span> Workers' comp (the law requires it, the employer pays)<br>
+      No <span class="arrow">→</span> Employer disability plan <span class="arrow">·</span> Social Security disability<br>
+      <span class="arrow">→</span> Offsets keep the total below the paycheck
+    </div>
+    <p class="question">Workers' comp trades certainty for immunity. Disability plans trade generosity for cost control through waiting periods, exclusions, and caps. Every design choice shifts risk between the employee, the employer, and the insurer. Where would you want the risk to sit if you were the one injured?</p>
+  </div>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="refs" id="refs">
+    <h2>Sources</h2>
+    <p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. BLS estimates for March 2026 are due in late September 2026; this page should be refreshed after they publish.</p>
+    <ol>
+      <li>U.S. Bureau of Labor Statistics, <i>Employee Benefits in the United States — March 2025</i>, USDL-25-1464, released September 25, 2025, including Table 5 (life insurance access) and short-term disability access by establishment size.</li>
+      <li>U.S. Bureau of Labor Statistics, <i>Employer Costs for Employee Compensation — June 2026</i>, USDL-26-1494, released September 9, 2026, Table 1 (hourly cost of life, short-term disability, long-term disability, and workers' compensation), and BLS notice on removing workers' compensation costs from ECEC beginning with December 2026 data.</li>
+      <li>National Academy of Social Insurance, <i>Workers' Compensation: Benefits, Costs, and Coverage, 2023 Data</i> (28th annual report), August 11, 2026. Covered jobs and wages, benefits paid, employer costs, and funding shares.</li>
+      <li>NCCI, <i>2026 State of the Line</i> (May 2026). Combined ratio, premium, frequency and severity trends.</li>
+      <li>Texas Department of Insurance, Division of Workers' Compensation, <i>2024 Biennial Report to the 89th Texas Legislature</i> (November 2024). Non-subscriber shares and rate trend. Also TDI, First Responder FAQ, on expiration of the COVID-19 presumption (June 15, 2023).</li>
+      <li>Laughlin, Falbo, Levy &amp; Moresi LLP, "The Covid-19 Presumptions: Are They Truly Gone?" (November 2024). California COVID-19 presumptions repealed January 1, 2024.</li>
+      <li>Travelers, "The Rise of Presumption Laws in Workers Comp" (January 2026). Mental-only injury coverage and PTSD presumptions.</li>
+      <li>Internal Revenue Service, Publication 15-B (2026), <i>Employer's Tax Guide to Fringe Benefits</i>, and IRS, "Group-term life insurance." The $50,000 exclusion and Table I rates.</li>
+      <li>Social Security Administration, <i>Disability Benefits</i>, Publication No. 05-10029 (1-in-4 disability risk), and <i>2026 Cost-of-Living Adjustment Fact Sheet</i> (average disabled-worker benefit, substantial gainful activity threshold).</li>
+      <li>New America, <i>Explainer: Paid and Unpaid Leave Policies in the United States</i> (May 2026), and Lockton, <i>2026 State PFML Guide</i> (March 2026). State temporary disability and paid leave programs.</li>
+      <li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 6. Conceptual framework and definitions; statistical content superseded by the sources above.</li>
+    </ol>
+  </section>
+
+  </main>
+
+  <footer>
+    INS 432 / INS 532 — Employee Benefits · Chapter 6: Employer-Sponsored Disability Insurance, Life Insurance, and Workers' Compensation
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+
+  /* ---------- short-term disability cap calculator ---------- */
+  document.getElementById("stdBtn").addEventListener("click", function(){
+    var sal = num(document.getElementById("stdSal"), 0);
+    var pct = Math.min(100, num(document.getElementById("stdPct"), 0)) / 100;
+    var cap = num(document.getElementById("stdCap"), 0);
+    var monthly = sal / 12;
+    var formula = monthly * pct;
+    var benefit = Math.min(formula, cap);
+    var capped = formula > cap;
+    var gap = monthly - benefit;
+    var eff = monthly > 0 ? Math.round((benefit / monthly) * 100) : 0;
+
+    var html = '<p class="big">You receive ' + money(benefit) + ' a month</p>';
+    html += '<div class="split"><div><b>Monthly pay:</b> ' + money(monthly) + '</div>';
+    html += '<div><b>Formula alone would pay:</b> ' + money(formula) + '</div></div>';
+    if(capped){
+      html += '<p><b>The monthly maximum applies.</b> The cap cuts your benefit by ' + money(formula - benefit) + ' a month compared with the formula.</p>';
+    } else {
+      html += '<p>The cap is not reached, so the plan pays the full formula amount.</p>';
+    }
+    html += '<p>Your effective replacement rate is <b>' + eff + '%</b> of pay, leaving a gap of ' + money(gap) + ' a month. Higher earners lose the most, which is one reason they buy supplemental coverage or rely on a long-term plan.</p>';
+    document.getElementById("stdResult").innerHTML = html;
+  });
+
+  /* ---------- group term life imputed income ---------- */
+  document.getElementById("gtlBtn").addEventListener("click", function(){
+    var cov = num(document.getElementById("gtlCov"), 0);
+    var rate = parseFloat(document.getElementById("gtlAge").value);
+    var paid = num(document.getElementById("gtlPaid"), 0);
+    var excess = Math.max(0, cov - 50000);
+    var units = excess / 1000;
+    var monthlyValue = units * rate;
+    var monthlyTaxable = Math.max(0, monthlyValue - paid);
+    var annual = monthlyTaxable * 12;
+    var fica = annual * 0.0765;
+
+    var html = '<p class="big">' + money2(annual) + ' added to taxable wages this year</p>';
+    if(excess === 0){
+      html = '<p class="big">$0.00 added to taxable wages</p><p>Coverage of $50,000 or less is excluded entirely. No imputed income arises.</p>';
+    } else {
+      html += '<div class="split"><div><b>Coverage above $50,000:</b> ' + money(excess) + ' (' + units.toLocaleString("en-US") + ' units of $1,000)</div>';
+      html += '<div><b>Table I value:</b> ' + money2(monthlyValue) + ' a month</div></div>';
+      if(paid > 0){
+        html += '<p>Your after-tax premium of ' + money2(paid) + ' a month reduces the taxable amount to ' + money2(monthlyTaxable) + ' a month.</p>';
+      }
+      html += '<p>The imputed amount is also subject to Social Security and Medicare tax. At the combined 7.65% employee rate, that is about <b>' + money2(fica) + '</b> more in payroll tax for the year.</p>';
+      html += '<p>Notice that the value depends on age, not on what the employer actually pays. The same $150,000 of coverage is worth about ' + money2(units * 0.15 * 12) + ' a year at ages 45–49 but ' + money2(units * 0.66 * 12) + ' at ages 60–64.</p>';
+    }
+    document.getElementById("gtlResult").innerHTML = html;
+  });
+
+  /* ---------- workers' comp disability type matcher ---------- */
+  var wAns = {};
+  var wRes = document.getElementById("wResult");
+  var wStep2 = document.getElementById("wstep2");
+  function wSay(h){ wRes.innerHTML = h; }
+  function wEval(){
+    if(!wAns[1]){ wStep2.hidden = true; return; }
+    wStep2.hidden = false;
+    if(!wAns[2]){ wSay('<p>Recovery answered. Now answer question 2.</p>'); return; }
+    var t = wAns[1], e = wAns[2];
+    if(t === "temp" && e === "total"){
+      wSay('<p class="big">Temporary total disability</p><p>The worker cannot perform meaningful work for a limited time and will eventually recover fully. Income benefits replace part of lost wages until recovery, after the waiting period of 3 to 7 days.</p>');
+    } else if(t === "temp" && e === "partial"){
+      wSay('<p class="big">Temporary partial disability</p><p>The worker can do limited amounts of work while recovering. Benefits make up part of the difference between prior earnings and reduced earnings until full recovery.</p>');
+    } else if(t === "perm" && e === "total"){
+      wSay('<p class="big">Permanent total disability</p><p>The worker can never again perform any work. This is the most severe category and carries the largest income benefits.</p>');
+    } else {
+      wSay('<p class="big">Permanent partial disability</p><p>The worker’s lasting impairment limits the kind of work he can do. It splits further: a <b>scheduled</b> injury (loss of an arm, leg, finger, hand, or eye) is paid from a list. A <b>nonscheduled</b> injury (back or head damage) is paid by an <b>impairment</b>, <b>wage-loss</b>, or <b>loss of wage earning capacity</b> approach, depending on the state. The last is the most subjective.</p>');
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".opt[data-w]"), function(btn){
+    btn.addEventListener("click", function(){
+      var q = btn.getAttribute("data-w");
+      wAns[q] = btn.getAttribute("data-v");
+      if(q === "1"){ delete wAns[2]; }
+      Array.prototype.forEach.call(document.querySelectorAll('.opt[data-w="' + q + '"]'), function(s){
+        s.setAttribute("aria-pressed", s === btn ? "true" : "false");
+      });
+      if(q === "1"){
+        Array.prototype.forEach.call(document.querySelectorAll('.opt[data-w="2"]'), function(s){ s.setAttribute("aria-pressed","false"); });
+      }
+      wEval();
+    });
+  });
+  document.getElementById("wReset").addEventListener("click", function(){
+    wAns = {};
+    wStep2.hidden = true;
+    Array.prototype.forEach.call(document.querySelectorAll(".opt[data-w]"), function(b){ b.setAttribute("aria-pressed","false"); });
+    wSay("<p>Answer question 1 to begin.</p>");
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){
+        defBox.textContent = "Select a term above.";
+      } else {
+        btn.setAttribute("aria-expanded","true");
+        defBox.innerHTML = "<b>" + btn.innerHTML + ".</b> " + btn.getAttribute("data-def");
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+})();
+</script>
+</body>
+</html>
