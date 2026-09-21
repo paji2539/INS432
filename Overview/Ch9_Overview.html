@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 9 — Accommodation and Enhancement Benefits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     INS 432 overview palette — high-contrast (WCAG AAA) variant of the
+     warm-paper system. Every text color below clears
+     7:1 against its own background.
+     indigo #1B3A6B  10.8:1 on paper
+     indigo-deep #10243F  15.8:1
+     rust  #8E2C1E   7.9:1
+     plum  #5B2A78   9.8:1
+     ink   #14181C  16.9:1
+     ink-soft #3A4249  9.4:1
+     ============================================================ */
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --ink:#14181C; --ink-soft:#3A4249; --line:#D8D4C8;
+    --indigo:#1B3A6B; --indigo-deep:#10243F; --indigo-tint:#E7EDF6;
+    --rust:#8E2C1E; --rust-deep:#6E2015; --rust-tint:#F9E9E4;
+    --plum:#5B2A78; --plum-deep:#43205A; --plum-tint:#EFE7F6;
+    --focus:#8E2C1E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;font-size:16px;}
+  h1,h2,h3{font-family:'Lora',serif;font-weight:600;margin:0;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+  a{color:var(--indigo);text-underline-offset:2px;}
+  a:hover{color:var(--rust);}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px;}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--indigo-deep);color:#fff;padding:10px 16px;z-index:10;}
+  .skip:focus{left:8px;top:8px;}
+
+  header.top{padding:48px 0 36px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:13px;color:var(--indigo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  h1.title{font-size:34px;line-height:1.25;margin-top:10px;color:var(--indigo-deep);}
+  .subtitle{font-size:16.5px;color:var(--ink-soft);margin-top:14px;max-width:620px;}
+  .big-idea{margin-top:26px;background:var(--indigo-tint);border-left:4px solid var(--indigo);padding:16px 20px;font-size:15.5px;color:var(--indigo-deep);}
+  .big-idea b{font-family:'Lora',serif;font-weight:600;}
+
+  /* data-currency notice */
+  .notice{margin-top:22px;background:var(--rust-tint);border:1px solid var(--rust);border-left:4px solid var(--rust);padding:16px 20px;border-radius:4px;}
+  .notice h2{font-size:16px;color:var(--rust-deep);margin-bottom:6px;font-family:'Inter',sans-serif;font-weight:700;}
+  .notice p{color:var(--rust-deep);font-size:14.5px;margin:0 0 8px;}
+  .notice p:last-child{margin-bottom:0;}
+  .notice a{color:var(--rust-deep);}
+
+  section{margin-top:52px;}
+  .section-label{font-size:13px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+  h2.section-title{font-size:24px;color:var(--indigo-deep);margin-bottom:16px;line-height:1.3;}
+  h3.sub{font-size:18px;color:var(--indigo-deep);margin:28px 0 10px;}
+  p{color:var(--ink-soft);font-size:15.5px;margin:0 0 12px;}
+  ul.plain{margin:0 0 14px;padding-left:20px;}
+  ul.plain li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;}
+  b,strong{color:var(--ink);}
+
+  /* updated-figure badge */
+  .upd{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+       background:var(--rust);color:#fff;padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:6px;}
+
+  .roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .rm-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .rm-num{font-family:'Lora',serif;font-size:22px;color:var(--rust);font-weight:600;margin-bottom:6px;}
+  .rm-card h3{font-size:16px;color:var(--ink);margin-bottom:5px;}
+  .rm-card p{font-size:13.5px;margin:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+  .col-card{border-radius:10px;padding:18px 20px;border:1px solid transparent;}
+  .col-card.a{background:var(--indigo-tint);border-color:#C9D8EC;}
+  .col-card.b{background:var(--rust-tint);border-color:#EBC9BF;}
+  .col-card h3{font-size:16px;margin-bottom:8px;}
+  .col-card.a h3{color:var(--indigo-deep);}
+  .col-card.b h3{color:var(--rust-deep);}
+  .col-card ul{margin:0;padding-left:18px;}
+  .col-card.a li{font-size:14px;color:#1B2C43;margin-bottom:6px;}
+  .col-card.b li{font-size:14px;color:#5A1C12;margin-bottom:6px;}
+
+  .stat-row{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+  .stat{flex:1 1 30%;min-width:180px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--indigo);border-radius:8px;padding:16px 18px;}
+  .stat .num{font-family:'Lora',serif;font-size:27px;color:var(--indigo-deep);font-weight:600;line-height:1.15;}
+  .stat .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .stat .src{font-size:11.5px;color:#5A6169;margin-top:8px;}
+  .stat.alt{border-top-color:var(--rust);}
+  .stat.alt .num{color:var(--rust-deep);}
+
+  .factor-list{margin-top:16px;display:grid;gap:10px;}
+  .factor{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:13px 16px;}
+  .factor .dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--indigo);margin-top:8px;}
+  .factor p{margin:0;font-size:14.5px;}
+  .factor b{color:var(--ink);}
+
+  .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .plan-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .plan-card h3{font-size:15px;color:var(--indigo-deep);margin-bottom:5px;}
+  .plan-card p{font-size:13.5px;margin:0;}
+
+  .callout{margin-top:20px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:16px 20px;border-radius:4px;}
+  .callout p{color:var(--plum-deep);margin:0 0 8px;font-size:14.5px;}
+  .callout p:last-child{margin:0;}
+  .callout b{color:var(--plum-deep);}
+
+  table.tbl{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px;}
+  table.tbl caption{text-align:left;font-size:13px;color:var(--ink-soft);padding-bottom:8px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  table.tbl th{background:var(--indigo-tint);color:var(--indigo-deep);font-weight:700;font-size:13.5px;}
+  table.tbl td{color:var(--ink-soft);background:var(--card);}
+  table.tbl td b{color:var(--ink);}
+
+  /* ---------- interactive blocks ---------- */
+  .tool{margin-top:24px;background:var(--card);border:2px solid var(--indigo);border-radius:12px;padding:22px;}
+  .tool h3{font-size:17px;color:var(--indigo-deep);margin-bottom:4px;}
+  .tool .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .field input[type=number]{width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    border:1px solid #8A8F96;border-radius:6px;background:#fff;}
+  .field .note{font-size:12.5px;color:#5A6169;margin-top:4px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:6px;cursor:pointer;
+    background:var(--indigo);color:#fff;border:2px solid var(--indigo);}
+  .btn:hover{background:var(--indigo-deep);border-color:var(--indigo-deep);}
+  .btn.ghost{background:#fff;color:var(--indigo-deep);}
+  .btn.ghost:hover{background:var(--indigo-tint);}
+  .result{margin-top:16px;background:var(--indigo-tint);border-radius:8px;padding:16px 18px;}
+  .result p{color:var(--indigo-deep);font-size:14.5px;margin:0 0 8px;}
+  .result p:last-child{margin:0;}
+  .result .big{font-family:'Lora',serif;font-size:21px;font-weight:600;color:var(--indigo-deep);}
+  .result .split{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;}
+  .result .split div{flex:1 1 40%;min-width:150px;}
+
+  /* plan matcher */
+  .q-step{margin-bottom:14px;}
+  .q-step p.q{font-size:15px;font-weight:600;color:var(--ink);margin:0 0 8px;}
+  .opts{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;
+    background:#fff;color:var(--indigo-deep);border:2px solid var(--indigo);}
+  .opt:hover{background:var(--indigo-tint);}
+  .opt[aria-pressed="true"]{background:var(--indigo);color:#fff;}
+
+  /* glossary */
+  .terms{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .term{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:7px 13px;border-radius:6px;cursor:pointer;
+    background:#fff;color:var(--plum-deep);border:2px solid var(--plum);}
+  .term:hover{background:var(--plum-tint);}
+  .term[aria-expanded="true"]{background:var(--plum);color:#fff;}
+  .term-def{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);padding:14px 18px;border-radius:4px;
+    font-size:14.5px;color:var(--plum-deep);min-height:44px;}
+
+  /* quiz */
+  .quiz-q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;}
+  .quiz-q fieldset{border:0;margin:0;padding:0;}
+  .quiz-q legend{font-size:15px;font-weight:600;color:var(--ink);padding:0 0 10px;}
+  .quiz-q label{display:block;font-size:14.5px;color:var(--ink-soft);padding:7px 0 7px 4px;cursor:pointer;}
+  .quiz-q input[type=radio]{margin-right:9px;}
+  .fb{margin-top:10px;padding:11px 14px;border-radius:6px;font-size:14px;display:none;}
+  .fb.show{display:block;}
+  .fb.right{background:var(--indigo-tint);color:var(--indigo-deep);border-left:4px solid var(--indigo);}
+  .fb.wrong{background:var(--rust-tint);color:var(--rust-deep);border-left:4px solid var(--rust);}
+
+  .obj-list{margin-top:18px;display:grid;gap:2px;}
+  .obj-item{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-num{font-family:'Lora',serif;color:var(--rust);font-weight:600;font-size:16px;width:20px;flex-shrink:0;}
+  .obj-item p{margin:0;font-size:15px;color:var(--ink);}
+
+  .big-picture{margin-top:52px;text-align:center;padding:42px 30px;background:var(--indigo-tint);border-radius:14px;}
+  .big-picture p.lead{font-size:15px;color:var(--indigo);margin-bottom:6px;font-weight:600;}
+  .big-picture h2{font-size:23px;color:var(--indigo-deep);margin-bottom:18px;}
+  .flow{font-size:14.5px;color:var(--indigo-deep);font-weight:500;line-height:2.1;}
+  .flow .arrow{color:var(--rust);padding:0 7px;font-weight:700;}
+  .big-picture .question{margin-top:18px;font-size:15px;color:var(--indigo-deep);font-style:italic;}
+
+  .refs{margin-top:52px;padding-top:26px;border-top:1px solid var(--line);}
+  .refs h2{font-size:19px;color:var(--indigo-deep);margin-bottom:6px;}
+  .refs p.asof{font-size:13.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .refs ol{padding-left:20px;margin:0;}
+  .refs li{font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55;}
+
+  footer{margin-top:50px;text-align:center;font-size:12.5px;color:var(--ink-soft);padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:620px){
+    .roadmap-grid,.two-col,.plan-grid,.grid2{grid-template-columns:1fr;}
+    .stat-row{flex-direction:column;}
+    h1.title{font-size:27px;}
+    .wrap{padding:0 18px 70px;}
+    table.tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  }
+  @media print{
+    body{background:#fff;}
+    .tool,.terms,.term-def,.quiz-q .fb{border-color:#999;}
+    .btn,.opt,.term{display:none;}
+  }
+
+  /* ---------- critical-thinking block ---------- */
+  .think{margin-top:8px;background:var(--card);border:2px solid var(--plum);border-radius:12px;padding:24px;}
+  .think-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--plum);color:#fff;padding:3px 9px;border-radius:3px;margin-bottom:10px;}
+  .think h3{font-size:20px;color:var(--plum-deep);margin-bottom:10px;}
+  .think .scenario{font-size:15px;color:var(--ink-soft);}
+  .think ol.ask{margin:8px 0 16px;padding-left:22px;}
+  .think ol.ask li{font-size:15px;color:var(--ink);margin-bottom:8px;}
+  .think label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+  .think textarea{width:100%;padding:11px 12px;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;color:var(--ink);border:1px solid #8A8F96;border-radius:6px;background:#fff;resize:vertical;}
+  .think .hint{font-size:13px;color:#5A6169;}
+  .think .btn{background:#fff;color:var(--plum-deep);border-color:var(--plum);}
+  .think .btn:hover{background:var(--plum-tint);}
+  .think .guide{margin-top:14px;background:var(--plum-tint);border-left:4px solid var(--plum);border-radius:4px;padding:16px 20px;}
+  .think .guide[hidden]{display:none;}
+  .think .guide p{color:var(--plum-deep);font-size:14.5px;margin:0 0 8px;}
+  .think .guide ul{margin:0;padding-left:20px;}
+  .think .guide li{font-size:14.5px;color:var(--plum-deep);margin-bottom:8px;}
+  .think .guide b{color:var(--plum-deep);}
+  @media print{ .think textarea{border-color:#999;} .think .guide[hidden]{display:block;} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">INS 432 / INS 532</div>
+    <h1 class="title">Chapter 9: Accommodation and Enhancement Benefits</h1>
+    <p class="subtitle">Benefits that neither insure you nor pay you for time away. They help you cope, care for your family, learn, and get to work. The hardest question about them is whether they pay for themselves.</p>
+    <div class="big-idea">
+      <b>Big idea:</b> These benefits attack one problem from four directions: anything that pulls an employee's attention or attendance away from work. That means health, family, skills, and daily logistics. Because the payoff is indirect (less absence, better focus, longer tenure), the central skill in this chapter is asking <b>what evidence shows this pays off</b>, and how good that evidence is.
+    </div>
+
+    <div class="notice" role="note">
+      <h2>⚠ About the numbers on this page</h2>
+      <p>Your textbook's Chapter 9 runs on <b>2019–2020 data and 2020 tax limits</b>. Its transit exclusion ($270 a month), its note that student loan assistance is tax-free only "through 2025," and its picture of the EEOC's wellness rules have all changed. A 2025 tax law altered several of these benefits, and the research behind the textbook's wellness figures has since been tested in randomized trials.</p>
+      <p><b>Every statistic and dollar amount on this page has been updated</b> from primary sources (IRS, the Bureau of Labor Statistics, peer-reviewed studies, and court and agency actions) and is cited in the Sources list at the bottom. Where a figure has moved far enough to matter, you'll see an <span class="upd">Updated</span> marker. Use these numbers, not the book's, on quizzes and papers.</p>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section>
+    <div class="section-label">Our roadmap for Chapter 9</div>
+    <div class="roadmap-grid">
+      <div class="rm-card"><div class="rm-num">1</div><h3>Why employers offer them</h3><p>Four objectives, three business reasons, and an origin story that starts with alcohol.</p></div>
+      <div class="rm-card"><div class="rm-num">2</div><h3>Employee assistance programs</h3><p>Counseling, referral, confidentiality, and the liability that comes with them.</p></div>
+      <div class="rm-card"><div class="rm-num">3</div><h3>Wellness programs</h3><p>What they include, what the law allows, and what the best evidence says they achieve.</p></div>
+      <div class="rm-card"><div class="rm-num">4</div><h3>Family assistance</h3><p>Child care, elder care, and adoption, with new tax rules for 2026.</p></div>
+      <div class="rm-card"><div class="rm-num">5</div><h3>Education and money</h3><p>Tuition, scholarships, financial education, and student loan repayment help.</p></div>
+      <div class="rm-card"><div class="rm-num">6</div><h3>Daily living</h3><p>Commuting and fitness benefits, and the tax limits that govern them.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ PART ONE ============ -->
+  <section>
+    <div class="section-label">Part One: The Big Picture</div>
+    <h2 class="section-title">Why an employer would pay for any of this</h2>
+    <p>As <b>discretionary</b> benefits, accommodation and enhancement benefits promote one or more of four objectives:</p>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Well-being</h3><p>The mental and physical health of employees and their family members: employee assistance and wellness programs.</p></div>
+      <div class="plan-card"><h3>Family assistance</h3><p>Help caring for young children and dependent older relatives, and adoption support.</p></div>
+      <div class="plan-card"><h3>Education</h3><p>Tuition help, scholarships, financial education, and student loan repayment.</p></div>
+      <div class="plan-card"><h3>Daily living</h3><p>Support for the practical logistics of a working life: commuting and fitness.</p></div>
+    </div>
+
+    <h3 class="sub">Three reasons the business case is made</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>Absenteeism and tardiness cost less</b> when employees' health, family, and transportation problems are handled.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Many employees are not fully productive</b> for health-related reasons. Employers sponsor smoking cessation, alcohol treatment, and weight-control programs to help.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>Education pays twice.</b> Tuition benefits help employees compete for better jobs, and employers gain staffing flexibility and fewer obsolete skills.</p></div>
+    </div>
+
+    <h3 class="sub">Where it came from</h3>
+    <p>Drinking on the job was widely tolerated early in the 20th century, and industrialization made the costs visible: low productivity, inefficiency, and accidents. In the 1940s companies shifted from a <b>punitive</b> to a <b>rehabilitative</b> stance, for three reasons. Wartime production required hiring people who would not otherwise have been employed. Stressful conditions pushed some workers to drink. And returning veterans, many affected by the stress of war, were reemployed. Those early alcohol intervention programs became the foundation of modern <b>employee assistance programs</b>. Wellness benefits have grown since, as the stigma around mental health has eased and employers have tied good health to lower health care and workers' compensation costs. The pandemic pushed the same benefits (mental health, family assistance, financial education) into more workplaces, all aimed at helping employees cope with stress and uncertainty.</p>
+
+    <h3 class="sub">How common are they?</h3>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">13%</div>
+        <div class="lbl">of private industry workers have <b>access to childcare benefits</b>: 8% at establishments under 100 workers, 30% at 500 or more</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat">
+        <div class="num">40%</div>
+        <div class="lbl">of workers at establishments with fewer than 100 employees have <b>access to an employee assistance program</b></div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+      <div class="stat alt">
+        <div class="num">3% to 13%</div>
+        <div class="lbl">access to <b>student loan repayment help</b>, from the lowest-paid quarter of workers to the highest-paid quarter</div>
+        <div class="src">BLS, March 2025</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">The pattern repeats what you saw in Chapters 5 through 8: access rises sharply with employer size and with pay. Other March 2025 figures: 28% of workers at small establishments have wellness programs, and 6% have subsidized commuting. The textbook's 2020 figures were 51% of private workers with EAP access (57% full-time, 33% part-time) and about 5% with student loan help. The March 2023 BLS data showed EAP access of 75% for union and 52% for nonunion workers.<span class="upd">Updated</span> BLS's March 2026 estimates are scheduled for publication on September 25, 2026.</p>
+  </section>
+
+  <!-- ============ PART TWO: EAP ============ -->
+  <section>
+    <div class="section-label">Part Two: Employee Assistance Programs</div>
+    <h2 class="section-title">Help before a problem becomes a termination</h2>
+    <p><b>Employee assistance programs (EAPs)</b> help employees cope with personal problems that can impair their lives or job performance: alcohol or drug abuse, domestic violence, depression, eating disorders, and the emotional effects of serious illness. The textbook's case for them rests on an estimate that about 20% of employees face difficulties that interfere with their work, costing over $575 billion a year in lost productivity. It also points to the offsetting benefits: lower turnover, absenteeism, health premiums, workers' compensation rates, accident costs, and disability costs. Treat those figures as the book's estimates. It does not give a current primary source for them.</p>
+
+    <div class="callout">
+      <p><b>The federal push: the Drug-Free Workplace Act of 1988.</b> It requires federal contractors and grantees to maintain a drug-free workplace as a condition of the award. The textbook gives a $100,000 contract threshold, which is outdated: the Act's trigger follows the federal simplified acquisition threshold, which has been raised well above that. Workplace drug positivity has not fallen the way the book implies. The Quest Diagnostics Drug Testing Index reported <b>4.4%</b> urine positivity in 2024 (down from 4.6% in 2023), and it has stayed at or above 4% for a decade. Marijuana is the most commonly detected drug.<span class="upd">Updated</span></p>
+    </div>
+
+    <h3 class="sub">What an EAP does</h3>
+    <ul class="plain">
+      <li><b>Orientation</b> for managers and employees on services and referral procedures.</li>
+      <li><b>Problem identification and assessment</b> through an interview.</li>
+      <li><b>Short-term counseling</b> instead of long-term therapy.</li>
+      <li><b>Referrals</b> to professionals and community resources when short-term help is not enough.</li>
+      <li><b>Follow-up</b> meetings, and <b>crisis hotlines</b> for urgent needs.</li>
+      <li><b>Outplacement assistance</b> for laid-off or terminated employees: counseling, career assessment, job-search training, and résumé help. It also protects the company's image among departing workers and their families.</li>
+    </ul>
+
+    <h3 class="sub">Two delivery models</h3>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Referral EAPs</h3>
+        <ul>
+          <li>A list of professional help services, from crisis lines to treatment programs</li>
+          <li>Usually no contract with providers, so cheapest and simplest</li>
+          <li>Large employers may negotiate a reduced rate from volume referrals</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Full-service EAPs</h3>
+        <ul>
+          <li><b>In-house:</b> company staff, often placed outside the workplace to encourage use</li>
+          <li><b>Third-party:</b> an independent provider under a contract that sets services and costs</li>
+          <li><b>Consortium:</b> smaller employers pool resources to contract with a provider</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">Getting employees to use it</h3>
+    <p>Employees join by <b>self-referral</b> or on someone else's <b>referral</b>. Barriers are real: employees may not see how problems affect their work, may distrust employer sponsorship, may think personal problems should stay private, or may feel deep shame. Before referring an employee, a supervisor should use <b>constructive confrontation</b>: discuss specific incidents of poor performance and state that performance must improve within a set period. Supervisors describe the <b>signs of trouble but never diagnose</b>. The EEOC advises that a formal referral should be made only when an employee appears suicidal or has threatened workplace violence, and should otherwise be a matter of agreement with the employee.</p>
+
+    <h3 class="sub">Confidentiality: the make-or-break rule</h3>
+    <p>Employees will not use an EAP that they think reports to their boss. Their greatest fears are job loss, lost promotions or raises, and reputational damage. That does not mean the EAP can never disclose anything. It must obtain <b>written consent</b> before releasing information to supervisors, treatment facilities, or family members. Every state, however, requires disclosure to the proper authorities without consent in certain cases, including suspected child abuse or neglect and evidence that someone poses a risk to their own health or safety or that of others.</p>
+
+    <div class="tool">
+      <h3>Try it: may the EAP release this?</h3>
+      <p class="hint">Pick a situation. The answer follows the textbook's rules on consent and mandatory disclosure.</p>
+      <div class="field">
+        <label for="epSel">Situation</label>
+        <select id="epSel" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+          <option value="">Select a situation…</option>
+          <option value="consent">The employee signs a written release so the EAP can confirm to her supervisor that she is attending sessions</option>
+          <option value="sup">A supervisor phones and asks whether an employee has been to the EAP</option>
+          <option value="abuse">A counselor learns of suspected child abuse</option>
+          <option value="threat">An employee tells his counselor he intends to seriously harm a coworker</option>
+          <option value="family">An employee’s spouse calls the EAP asking about the employee’s sessions</option>
+        </select>
+      </div>
+      <div class="result" id="epResult" role="status" aria-live="polite">
+        <p>Choose a situation to begin.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Employer liability</h3>
+    <p>Employers can be legally responsible for an EAP's mistakes, just as health professionals can be. The trouble spots are <b>misdiagnosis</b> that sends an employee to the wrong facility, <b>negligent referral</b> to a provider without proper credentials, <b>abandonment</b> (treatment stops early, or the employee's termination cuts off further treatment), <b>inappropriate relationships</b> between provider and client, and <b>defamation</b> from statements made because of EAP participation.</p>
+
+    <h3 class="sub">Which benefits laws apply?</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>ERISA.</b> Not every EAP is subject to its reporting and disclosure rules. A referral-only EAP, where the employer neither funds services directly nor buys insurance for them, is exempt.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>COBRA.</b> Applies if the EAP is an ERISA welfare plan or a health care plan, for example because it provides counseling for a medical condition.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>The Affordable Care Act.</b> A comprehensive EAP that provides medical care is health coverage, subject to the ACA's group health plan rules, unless it qualifies as an <b>excepted benefit</b>. To qualify, an EAP must (1) provide no significant medical care, (2) not be coordinated with the group health plan (no requirement to exhaust the EAP first, or to enroll in the health plan to use it), (3) charge no employee premium, and (4) impose no cost sharing.</p></div>
+    </div>
+    <p style="margin-top:12px;">Programs are evaluated by asking whether troubled employees know the EAP exists, whether supervisors know how to refer, whether benefits outweigh costs, and whether to modify, keep, or drop it. The <b>Employee Assistance Professionals Association</b> offers an evaluation system based on interviews, peer review, and case analysis. The textbook notes it is hard to put a dollar value on helping people, which is one reason the evidence problem in the next section matters.</p>
+  </section>
+
+  <!-- ============ PART THREE: WELLNESS ============ -->
+  <section>
+    <div class="section-label">Part Three: Wellness Programs</div>
+    <h2 class="section-title">Promoting health: does it work?</h2>
+    <p><b>Wellness programs</b> promote the physical and psychological health of employees, on site or off. The textbook's list:</p>
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Back care</h3><p>Worker training, exercise programs, ergonomic evaluations, and relaxation techniques, aimed at the shoulder and back injuries that drive absence.</p></div>
+      <div class="plan-card"><h3>Smoking cessation</h3><p>From information campaigns to intensive programs, usually on a reimbursement basis. The employer deducts its contributions as a business expense.</p></div>
+      <div class="plan-card"><h3>Stress management</h3><p>Helps employees cope with stressors at work and outside it. Gains: productivity, attendance, and lower health costs. Its importance grew sharply during the pandemic.</p></div>
+      <div class="plan-card"><h3>Weight control and nutrition</h3><p>Program memberships, support groups, healthier vending options, and on-site screenings for diabetes, blood pressure, and cholesterol.</p></div>
+      <div class="plan-card"><h3>Health risk appraisals</h3><p>Questionnaires and exams that flag potential health risks. When integrated with an EAP, results can steer employees to confidential help.</p></div>
+    </div>
+
+    <h3 class="sub">The evidence, then and now</h3>
+    <p>The textbook reports that medical costs fall by about <b>$3.27</b> and absenteeism costs by <b>$2.73</b> for every dollar spent on wellness programs, and that employers spent $762 per employee on them in 2019. Those figures trace to a 2010 review of earlier studies that found roughly a three-to-one return. Most of those studies compared people who chose to join a program with people who did not, which is a problem: the healthy are more likely to sign up. Randomized trials have since tested the question directly.<span class="upd">Updated</span></p>
+
+    <table class="tbl">
+      <caption>Two large randomized trials of comprehensive workplace wellness programs</caption>
+      <thead><tr><th scope="col"></th><th scope="col">Song and Baicker (<i>JAMA</i>, 2019)</th><th scope="col">Jones, Molitor, and Reif (<i>QJE</i>, 2019)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Design</b></td><td>160 worksites of a retailer, randomized by worksite</td><td>About 5,000 university employees, randomized individually, with financial incentives</td></tr>
+        <tr><td><b>Length</b></td><td>18 months</td><td>More than two years</td></tr>
+        <tr><td><b>What improved</b></td><td>Some health behaviors, such as exercise and weight management</td><td>Health screening rates</td></tr>
+        <tr><td><b>What did not</b></td><td>No significant effect on health outcomes, spending, or employment outcomes</td><td>No significant effect on medical spending, other health behaviors, productivity, or self-reported health</td></tr>
+        <tr><td><b>Other finding</b></td><td>—</td><td>Participants were healthier and cheaper to insure <i>before</i> the program began</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p><b>What the trials do and do not show.</b> They do not prove that wellness programs are useless. They show that, in these two settings and time frames, a comprehensive program did not produce the savings that the earlier, nonrandomized studies suggested. Employees who join voluntarily are often the ones who need the program least, so simple comparisons overstate the effect. The Illinois authors report that their results rule out 84% of earlier estimates. The authors also stress that some questions remain open, such as effects over longer periods.</p>
+    </div>
+
+    <h3 class="sub">The law: what incentives are allowed?</h3>
+    <div class="factor-list">
+      <div class="factor"><span class="dot"></span><p><b>ACA and HIPAA.</b> Wellness programs that are part of a group health plan may offer incentives of up to <b>30%</b> of the total cost of coverage, and up to <b>50%</b> for programs aimed at reducing or preventing tobacco use, for health-contingent programs.</p></div>
+      <div class="factor"><span class="dot"></span><p><b>ADA and GINA.</b> Programs that ask medical questions or require exams, or that involve genetic information such as family history, must be <b>voluntary</b>. The textbook describes the EEOC's 2016 rules, which set a 30% incentive limit under those laws. After AARP sued, a federal court found the EEOC had not justified that limit, and the incentive provisions were <b>vacated effective January 1, 2019</b>. The EEOC's January 2021 proposal for replacement rules was suspended, and the sources I reviewed show no replacement dollar limit. The requirement that participation be voluntary still applies, but employers have no bright-line incentive number under those two laws.<span class="upd">Updated</span></p></div>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: what is the maximum incentive?</h3>
+      <p class="hint">Enter the <b>total</b> annual cost of the coverage tier the employee is enrolled in (employer plus employee share). The calculator applies the ACA/HIPAA percentages. Use your own plan's numbers.</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="wlCost">Total annual cost of coverage ($)</label>
+          <input type="number" id="wlCost" value="9000" min="0" step="100">
+        </div>
+        <div class="field">
+          <label for="wlType">Type of program</label>
+          <select id="wlType" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="hc">Health-contingent (for example, reach a target)</option>
+            <option value="tob">Health-contingent, aimed at tobacco use</option>
+            <option value="part">Participation-only (for example, complete a health risk appraisal)</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn" id="wlBtn">Calculate</button>
+      <div class="result" id="wlResult" role="status" aria-live="polite">
+        <p>Enter a coverage cost and select Calculate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART FOUR: FAMILY ============ -->
+  <section>
+    <div class="section-label">Part Four: Family Assistance</div>
+    <h2 class="section-title">Child care, elder care, and adoption</h2>
+    <p><b>Family assistance programs</b> help employees care for young children and dependent older relatives. The cheapest and least labor-intensive form is a <b>referral service</b>, delivered through workshops, newsletters, or the EAP. At the other end are on-site centers and subsidies for community day care.</p>
+    <div class="two-col">
+      <div class="col-card a">
+        <h3>Child care</h3>
+        <ul>
+          <li>Supervision of preschool-age children of working parents, with preschool preparation and meals</li>
+          <li>Driven by single parents and dual-career households</li>
+          <li>Only <b>13%</b> of private workers have access (2025). The textbook's 11% counts companies, a different measure</li>
+        </ul>
+      </div>
+      <div class="col-card b">
+        <h3>Elder care</h3>
+        <ul>
+          <li>Physical, emotional, or financial help for aging parents, spouses, or relatives who are frail or disabled</li>
+          <li>Day programs typically offer meals and activities</li>
+          <li>Facilities usually need state or local licenses</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><b>New for 2026: three tax changes in the 2025 law.</b><span class="upd">Updated</span> The One Big Beautiful Bill Act (July 4, 2025) made these changes:</p>
+      <p>· The <b>dependent care assistance exclusion</b>, which applies to dependent care flexible spending accounts, rises from $5,000 to <b>$7,500</b> starting in 2026 ($3,750 for married filing separately). It is not indexed to inflation.</p>
+      <p>· The <b>employer-provided child care credit</b> becomes 40% of qualified expenses, up to $500,000, for expenses from 2026 (50% and $600,000 for eligible small businesses), up from 25% and $150,000.</p>
+      <p>· Employers may make tax-free contributions of up to <b>$2,500 a year</b> to a new <b>"Trump Account"</b>, an IRA-like account for a child under 18, for an employee or the employee's dependent. It requires a written plan and nondiscrimination testing similar to dependent care plans.</p>
+    </div>
+
+    <h3 class="sub">Adoption assistance</h3>
+    <p>Adoption benefits fall into three types: <b>information</b> (referrals to agencies, support groups, and experts), <b>financial assistance</b> (a lump sum, or reimbursement of up to about 80% of fees), and <b>parental leave</b> that extends the FMLA to adoptive parents. Employers use them to compete for talent, to signal a family-friendly culture, and to give adoptive parents the same support biological parents get. The textbook's extreme example is Netflix's unlimited paid parental leave, and it gives one to three months as the norm. Qualified adoption expenses are the reasonable and necessary adoption fees, court costs, attorneys' fees, and similar costs of adopting an eligible child (under 18, or physically or mentally incapable of self-care). The textbook cites IRC Section 23. Expenses of a foreign adoption count only once the adoption is final.</p>
+    <p><b>The 2026 numbers:</b> the employer-provided adoption assistance exclusion and the adoption credit are each <b>$17,670 per child</b>, phasing out for modified adjusted gross income between $265,080 and $305,080. Since 2025, up to $5,000 of the credit is refundable.<span class="upd">Updated</span></p>
+  </section>
+
+  <!-- ============ PART FIVE: EDUCATION ============ -->
+  <section>
+    <div class="section-label">Part Five: Education and Money</div>
+    <h2 class="section-title">Learning benefits and financial help</h2>
+    <p>The textbook says 83% of companies offer some educational benefit, and virtually all full-time employees, but only about a third of part-timers, qualify. Companies benefit, but many fail to build the career paths that let newly educated employees move up, so the employees leave for jobs elsewhere.</p>
+
+    <div class="plan-grid">
+      <div class="plan-card"><h3>Educational assistance</h3><p>Payments for tuition, fees, books, supplies, and equipment, undergraduate or graduate, work-related or not. Under a written, nondiscriminatory <b>Section 127 program</b>, employees can exclude up to <b>$5,250 a year</b> from income. That limit is unchanged in 2026. Amounts above it are taxable, unless they qualify as a <b>working condition fringe</b> (education that maintains or improves job skills, or is required by the employer or by law), which has no cap.</p></div>
+      <div class="plan-card"><h3>Tuition reimbursement</h3><p>Full or partial reimbursement of education and training expenses. Many employers allow courses unrelated to the job. Do not confuse it with <b>pay-for-knowledge</b>, where set courses earn raises. Plans qualify as working condition fringes when the training is required or maintains job skills.</p></div>
+      <div class="plan-card"><h3>Scholarships</h3><p>Cover tuition for employees or, usually, their children. The least common educational benefit, since employers gain less from educating employees' children. The tax rules are in IRC Section 117. Tuition reductions that discriminate in favor of highly paid employees lose favorable treatment.</p></div>
+      <div class="plan-card"><h3>Financial education</h3><p>Resources for budgeting and long-term saving. The textbook says 21% of employers offer it, and 83% of HR professionals say financial troubles hurt performance. Five principles: know the people you serve; give actionable, timely information; build key skills; build on motivation; and make good decisions easy.</p></div>
+    </div>
+
+    <h3 class="sub">Student loan repayment help</h3>
+    <p>The textbook lists four ways to structure it: a <b>401(k)-linked</b> match (workers' loan payments trigger employer retirement contributions), <b>signing bonuses</b> that are taxable, <b>direct payments</b> to the loan servicer, and letting employees <b>convert unused paid time off</b> into loan payments (the last does not work in every state). It also says the tax exclusion for employer loan payments up to $5,250 lasted only through 2025.</p>
+    <div class="callout">
+      <p><b>That deadline is gone.</b><span class="upd">Updated</span> The 2025 law made the Section 127 exclusion for employer payments of employees' <b>qualified education loans permanent</b>. Loan repayment shares the same <b>$5,250 annual cap</b> with tuition help, and the cap will be indexed for inflation for tax years after 2026. An employer can therefore put loan help on the same footing as tuition help without worrying about expiration.</p>
+    </div>
+
+    <div class="tool">
+      <h3>Try it: how much of this benefit is tax-free in 2026?</h3>
+      <p class="hint">Pick a benefit and enter what the employer provides. The result shows the excludable amount under the 2026 limit and the estimated extra tax on any excess (income tax at the rate you enter, plus 7.65% payroll tax).</p>
+      <div class="grid2">
+        <div class="field">
+          <label for="exBen">Benefit</label>
+          <select id="exBen" style="width:100%;padding:9px 11px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid #8A8F96;border-radius:6px;background:#fff;color:var(--ink);">
+            <option value="edu">Tuition or student loan repayment (per year)</option>
+            <option value="transit">Transit pass or vanpool (per month)</option>
+            <option value="parking">Qualified parking (per month)</option>
+            <option value="dcap">Dependent care assistance (per year)</option>
+            <option value="adopt">Adoption assistance (per child)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="exAmt">Amount the employer provides ($)</label>
+          <input type="number" id="exAmt" value="7000" min="0" step="50">
+        </div>
+        <div class="field">
+          <label for="exRate">Employee's marginal income tax rate (%)</label>
+          <input type="number" id="exRate" value="22" min="0" max="50" step="1">
+        </div>
+        <div class="field" style="align-self:end;">
+          <button type="button" class="btn" id="exBtn">Calculate</button>
+        </div>
+      </div>
+      <div class="result" id="exResult" role="status" aria-live="polite">
+        <p>Enter an amount and select Calculate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PART SIX: DAILY LIVING ============ -->
+  <section>
+    <div class="section-label">Part Six: Daily Living</div>
+    <h2 class="section-title">Commuting and fitness</h2>
+
+    <h3 class="sub">Transportation</h3>
+    <p>Employers sponsor <b>transportation services</b> (transit subsidies, vanpools, employer vans or buses) to recruit people who dislike rush-hour driving or lack parking, and, in smoggy metropolitan areas, to comply with the <b>Clean Air Act Amendments of 1990</b> and their state and local commuter trip reduction laws. The IRC separates <b>de minimis</b> transportation benefits (so little in value that accounting for them is impracticable) from <b>qualified transportation benefits</b> (transit passes, vanpooling, and parking).</p>
+    <table class="tbl">
+      <caption>Tax-free transportation benefits: textbook vs. 2026 <span class="upd">Updated</span></caption>
+      <thead><tr><th scope="col"></th><th scope="col">Textbook (2020)</th><th scope="col">2026</th></tr></thead>
+      <tbody>
+        <tr><td><b>Transit pass or vanpool</b></td><td>$270 a month</td><td><b>$340</b> a month</td></tr>
+        <tr><td><b>Qualified parking</b></td><td>$270 a month</td><td><b>$340</b> a month (separate limit)</td></tr>
+        <tr><td><b>Bicycle commuting reimbursement</b></td><td>Listed as qualified</td><td><b>Permanently eliminated</b> for tax years beginning after 2025</td></tr>
+        <tr><td><b>Employer deduction for the cost</b></td><td>Not addressed</td><td>Not allowed since 2018</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;">Two corrections to the book's wording. The tax benefit belongs to the employee as an <b>exclusion</b> from income, not a deduction. And the employer's own tax deduction for providing these benefits was eliminated in 2018, which makes them less attractive to employers than the book suggests.</p>
+
+    <h3 class="sub">Physical fitness</h3>
+    <p>Employers support fitness through on-site centers or memberships at nearby clubs, expecting less absenteeism, better stress management, and lower health insurance claims. The employer deducts the cost as a business expense. Employees may exclude the value of using an <b>on-premises athletic facility</b> if it is on the employer's property, operated by the employer (or under its control by contract), and used almost entirely by employees, their spouses, and their dependent children. "On-premises" means the employer's property, not necessarily a business location.</p>
+  </section>
+
+  <!-- ============ KEY TERMS ============ -->
+  <section>
+    <h2 class="section-title">Key terms — check yourself</h2>
+    <p>Select a term to see the definition. If you can define it before you click, you are ready for the quiz.</p>
+    <div class="terms" id="termList">
+      <button type="button" class="term" aria-expanded="false" data-def="Programs that help employees cope with personal problems (substance abuse, domestic violence, depression, and others) that may impair their lives or job performance.">Employee assistance program</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A supervisor’s discussion of specific incidents of poor performance and the need to improve within a set period, done before referring an employee to an EAP. Supervisors describe signs of trouble but do not diagnose.">Constructive confrontation</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An EAP that lists contact information for professional help services, usually without a contract with providers.">Referral EAP</button>
+      <button type="button" class="term" aria-expanded="false" data-def="An EAP that provides services in-house, through a third-party provider, or through a consortium of smaller employers.">Full-service EAP</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A benefit exempt from ACA group health plan requirements. An EAP qualifies if it provides no significant medical care, is not coordinated with the health plan, and charges no premiums or cost sharing.">Excepted benefit</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Services for laid-off or terminated employees, such as counseling, career assessment, job-search training, and résumé help.">Outplacement assistance</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Programs that promote employees’ physical and psychological health: back care, smoking cessation, stress management, weight control and nutrition, and health risk appraisals.">Wellness program</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A questionnaire and sometimes an exam that informs employees of potential health risks based on habits, family history, and physical findings.">Health risk appraisal</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A comparison in which people are randomly assigned to a program or a control group. It avoids the bias that arises when healthier people choose to join.">Randomized trial</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A written, nondiscriminatory employer plan under IRC Section 127 that lets employees exclude up to $5,250 a year of educational assistance, including student loan repayment, from income.">Section 127 program</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Property or services provided to an employee that the employee could have deducted if she had paid for them herself, such as job-skills training. Not subject to the $5,250 limit.">Working condition fringe benefit</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A program in which set courses earn pay increases on completion. Different from tuition reimbursement, which is not tied to raises.">Pay-for-knowledge</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Benefits that help employees manage budgeting and long-term saving. About 21% of private employers offer them, according to the textbook.">Financial education</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A transportation benefit of so little value that accounting for it would be impractical. Distinct from qualified transportation benefits such as transit passes, vanpooling, and parking.">De minimis transportation benefit</button>
+      <button type="button" class="term" aria-expanded="false" data-def="Transit passes, vanpool costs, and parking that employees may exclude from income up to a monthly limit ($340 each in 2026).">Qualified transportation benefit</button>
+      <button type="button" class="term" aria-expanded="false" data-def="A gym or athletic facility on the employer’s property, operated by the employer, and used almost entirely by employees, spouses, and dependent children. Employees may exclude its value from income.">On-premises athletic facility</button>
+    </div>
+    <div class="term-def" id="termDef" role="status" aria-live="polite">Select a term above.</div>
+  </section>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <section>
+    <div class="section-label">Learning objectives</div>
+    <h2 class="section-title">Your five learning objectives</h2>
+    <div class="obj-list">
+      <div class="obj-item"><div class="obj-num">1</div><p>Understand accommodation and enhancement benefits and why companies offer them.</p></div>
+      <div class="obj-item"><div class="obj-num">2</div><p>Understand how companies promote the mental and physical well-being of employees and family members.</p></div>
+      <div class="obj-item"><div class="obj-num">3</div><p>Understand various family assistance programs.</p></div>
+      <div class="obj-item"><div class="obj-num">4</div><p>Understand the different types of educational benefits.</p></div>
+      <div class="obj-item"><div class="obj-num">5</div><p>Understand support programs for daily living, including transportation services and physical fitness.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section>
+    <h2 class="section-title">Check your understanding</h2>
+    <p>Five questions. Feedback appears as soon as you answer. This is practice, not graded — but the graded Chapter 9 quiz works the same way.</p>
+
+    <div class="quiz-q" data-answer="d">
+      <fieldset>
+        <legend>1. Which of the following is <b>not</b> one of the conditions for an EAP to qualify as an excepted benefit under the ACA?</legend>
+        <label><input type="radio" name="q1" value="a"> It provides no significant benefits in the nature of medical care</label>
+        <label><input type="radio" name="q1" value="b"> It is not coordinated with benefits under the group health plan</label>
+        <label><input type="radio" name="q1" value="c"> Employees pay no premiums for it</label>
+        <label><input type="radio" name="q1" value="d"> The employer funds it through a separate trust</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. Funding through a trust is not a condition. The four conditions are no significant medical care, no coordination with the health plan, no premiums, and no cost sharing." data-wrong="The excepted-benefit conditions are: no significant medical care, no coordination with the group health plan, no employee premiums, and no cost sharing. A separate trust is not required."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>2. In 2026 an employer pays $7,000 of an employee's graduate tuition under a written Section 127 program. How much can the employee exclude from income?</legend>
+        <label><input type="radio" name="q2" value="a"> $7,000, because graduate tuition is fully excluded</label>
+        <label><input type="radio" name="q2" value="b"> $5,250</label>
+        <label><input type="radio" name="q2" value="c"> $7,500</label>
+        <label><input type="radio" name="q2" value="d"> $0, because the course is not job-related</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The Section 127 exclusion is capped at $5,250 a year, and the courses do not have to be job-related. The remaining $1,750 is taxable unless it qualifies as a working condition fringe." data-wrong="A Section 127 program excludes up to $5,250 a year, for undergraduate or graduate courses whether or not they are job-related. $7,500 is the 2026 dependent care limit, a different benefit."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="c">
+      <fieldset>
+        <legend>3. Which statement about the EEOC and wellness incentives is most accurate today?</legend>
+        <label><input type="radio" name="q3" value="a"> The EEOC's 30% incentive limit under the ADA and GINA is in force</label>
+        <label><input type="radio" name="q3" value="b"> Employers may not offer any wellness incentive</label>
+        <label><input type="radio" name="q3" value="c"> The 30% limit was vacated by a court effective 2019 and not replaced, but participation must still be voluntary</label>
+        <label><input type="radio" name="q3" value="d"> HIPAA's incentive limits no longer apply to any wellness program</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. After AARP v. EEOC, the incentive limit was vacated as of January 1, 2019. The voluntary requirement remains, and HIPAA/ACA limits still apply to health-contingent programs in group health plans." data-wrong="The court vacated the EEOC's incentive provisions effective January 1, 2019, and no replacement number is in place. The voluntary requirement still applies, and HIPAA/ACA limits (30%, or 50% for tobacco) continue to apply to health-contingent programs in group health plans."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="b">
+      <fieldset>
+        <legend>4. In 2026 an employer pays an employee's transit pass ($400 a month) and parking ($150 a month). How much is taxable to the employee each month?</legend>
+        <label><input type="radio" name="q4" value="a"> $0</label>
+        <label><input type="radio" name="q4" value="b"> $60</label>
+        <label><input type="radio" name="q4" value="c"> $210</label>
+        <label><input type="radio" name="q4" value="d"> $310</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. The transit limit and the parking limit are separate, at $340 each. Transit exceeds its limit by $60, and the $150 of parking is fully excluded." data-wrong="The two limits are separate. Transit is limited to $340, so $60 of the $400 is taxable. Parking of $150 is under its own $340 limit. $210 comes from wrongly combining the two benefits under a single $340 cap."></div>
+    </div>
+
+    <div class="quiz-q" data-answer="a">
+      <fieldset>
+        <legend>5. Before referring an employee to the EAP, a supervisor should:</legend>
+        <label><input type="radio" name="q5" value="a"> Discuss specific incidents of poor performance and the need to improve, and describe signs of trouble without diagnosing</label>
+        <label><input type="radio" name="q5" value="b"> Tell the employee's coworkers about the concern so they can help</label>
+        <label><input type="radio" name="q5" value="c"> Diagnose the likely problem so the EAP can prepare</label>
+        <label><input type="radio" name="q5" value="d"> Require the employee to sign a release for the whole department</label>
+      </fieldset>
+      <div class="fb" data-right="Correct. This is constructive confrontation: specific performance incidents and a deadline to improve, without diagnosis and without exposing the employee." data-wrong="Supervisors use constructive confrontation: discuss specific incidents and the need to improve, and describe signs of trouble, but never diagnose and never share the concern with coworkers."></div>
+    </div>
+
+    <p><button type="button" class="btn ghost" id="quizReset">Clear answers</button></p>
+  </section>
+
+  <!-- ============ CRITICAL THINKING ============ -->
+  <section>
+    <div class="think">
+      <div class="think-tag">Critical thinking</div>
+      <h3>A wellness program built on a $3.27 promise</h3>
+      <p class="scenario"><b>The situation.</b> A 500-employee manufacturer's CFO wants to launch a wellness program. She cites a vendor deck, and the same figures in your textbook: medical costs fall $3.27 and absenteeism $2.73 for every dollar spent. The proposal is a biometric screening, a health risk appraisal, coaching, and a premium discount of up to 30% for employees who complete it and hit health targets. Using the book's 2019 average, the program would cost about $762 per employee, or roughly $381,000 a year. The company self-funds its health plan and has a workforce that is older, more male, and heavily hourly.</p>
+      <ol class="ask">
+        <li>Is the $3.27 figure a <b>reliable basis</b> for this decision? Explain what is wrong, or right, with relying on it.</li>
+        <li>Identify at least <b>two legal or ethical risks</b> in the incentive design, and say how you would reduce each.</li>
+        <li>Propose a <b>way to test</b> whether the program works before committing the whole budget, and state what result would lead you to stop.</li>
+      </ol>
+      <label for="thinkText">Your response</label>
+      <textarea id="thinkText" rows="9" placeholder="Take a position, then defend it. Aim for 200 to 300 words."></textarea>
+      <p class="hint" style="margin-top:6px;">Your response stays in your browser. It is not saved or submitted. Copy it into your course platform when you are done.</p>
+      <p style="margin-top:12px;"><button type="button" class="btn ghost" id="thinkBtn" aria-expanded="false" aria-controls="thinkGuide">Show what a strong answer weighs</button></p>
+      <div class="guide" id="thinkGuide" hidden>
+        <p><b>There is no single right answer. A strong response takes a position and shows it has weighed these points:</b></p>
+        <ul>
+          <li><b>Selection bias.</b> The 3-to-1 estimate comes from a 2010 review of largely nonrandomized studies, in which volunteers are healthier than nonparticipants. Two later randomized trials (a 160-worksite trial and a roughly 5,000-employee trial) found no significant effect on medical spending, productivity, or health outcomes, though screening rates and some behaviors improved. A vendor's return-on-investment claim deserves the same skepticism as any claim by a party that profits from it.</li>
+          <li><b>Will it transfer?</b> Neither trial was a self-funded manufacturer with an older, hourly workforce. That is an argument for testing, not for assuming the results will or will not hold.</li>
+          <li><b>Incentive design risks.</b> A health-contingent program is capped at 30% of the total cost of coverage under HIPAA/ACA rules and must offer a reasonable alternative standard to people who cannot meet a target. ADA and GINA require the medical inquiries to be voluntary, and there is no current EEOC bright line, so a large penalty for declining invites a challenge. Fairness matters as well: employees with disabilities or chronic conditions may be least able to hit targets, and hourly workers may have the least time to participate. Options include smaller incentives, participation-based rather than outcome-based rewards, and alternatives for anyone who cannot meet a target.</li>
+          <li><b>Privacy.</b> Health risk appraisals and screenings collect sensitive data. Who sees it, and could it affect employment decisions? Employees' fears here are the same ones that undermine an EAP.</li>
+          <li><b>A credible test.</b> Randomize the offer across sites or departments, or stagger the rollout so that some sites serve as controls. Track medical claims, absence, and turnover for at least 18 to 24 months, and compare participants and nonparticipants only against the randomized control group. Decide the stop rule in advance, for example no measurable change in claims or absence by the end of the period, and treat gains in screening alone as not enough to justify the full cost.</li>
+          <li><b>What else could the money do?</b> A strong answer compares this against alternatives, such as better coverage, lower cost sharing, an EAP, or ergonomic changes that address the injuries actually driving absence.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="big-picture">
+    <p class="lead">Don't just memorize the program types.</p>
+    <h2>Ask what the evidence says it accomplishes.</h2>
+    <div class="flow">
+      Employer spots a cost <span class="arrow">→</span> Launches a program to reduce it<br>
+      Employees who join are often the ones who needed it least<br>
+      <span class="arrow">→</span> Averages look good <span class="arrow">→</span> A controlled test shows what the program itself did
+    </div>
+    <p class="question">Some of these benefits are worth offering because they help people, whether or not they save money. Which of this chapter's benefits would you defend on that basis alone, and which would you require a controlled trial for first?</p>
+  </div>
+
+  <!-- ============ REFERENCES ============ -->
+  <section class="refs" id="refs">
+    <h2>Sources</h2>
+    <p class="asof">All figures verified September 2026. Where a statistic differs from the textbook, the source below governs. BLS is scheduled to publish its March 2026 benefits estimates on September 25, 2026; this page should be refreshed after they publish.</p>
+    <ol>
+      <li>U.S. Bureau of Labor Statistics, <i>Employee Benefits in the United States — March 2025</i>, USDL-25-1464 (September 25, 2025). Childcare, employee assistance, wellness, subsidized commuting, and student loan repayment access. Also BLS, March 2023 release (EAP access by union status) and March 2022 release (student loan repayment access).</li>
+      <li>Song, Z. and Baicker, K., "Effect of a Workplace Wellness Program on Employee Health and Economic Outcomes: A Randomized Clinical Trial," <i>JAMA</i> 321(15):1491–1501 (2019).</li>
+      <li>Jones, D., Molitor, D., and Reif, J., "What Do Workplace Wellness Programs Do? Evidence from the Illinois Workplace Wellness Study," <i>Quarterly Journal of Economics</i> 134(4):1747–1791 (2019). Also NBER Illinois Workplace Wellness Study results page.</li>
+      <li>Baicker, K., Cutler, D., and Song, Z., "Workplace Wellness Programs Can Generate Savings," <i>Health Affairs</i> 29(2):304–311 (2010). The source of the textbook's $3.27 and $2.73 figures.</li>
+      <li><i>AARP v. EEOC</i>, 267 F. Supp. 3d 14 (D.D.C. 2017) and 292 F. Supp. 3d 238 (D.D.C. 2017); EEOC removal of the vacated incentive provisions (effective January 1, 2019); SHRM, "EEOC Proposes—Then Suspends—Regulations on Wellness Program Incentives" (2021). HIPAA/ACA wellness limits as described in the same sources.</li>
+      <li>Internal Revenue Service, Revenue Procedure 2025-32 and Publication 15-B (2026): 2026 qualified transportation limits ($340 parking, $340 transit and vanpool), Section 127 educational assistance ($5,250), and Section 137 adoption assistance ($17,670; phase-out $265,080–$305,080).</li>
+      <li>One Big Beautiful Bill Act, Pub. L. 119-21 (July 4, 2025), as summarized by Ernst &amp; Young, Winston &amp; Strawn, Mercer, Stinson LLP, and Kushner &amp; Company (2025). Section 127 student loan exclusion made permanent and indexed after 2026 (§70412); dependent care assistance limit raised to $7,500 from 2026; employer child care credit enhanced; bicycle commuting exclusion permanently eliminated; adoption credit partially refundable; employer contributions to Trump Accounts.</li>
+      <li>Quest Diagnostics, <i>Drug Testing Index</i> (2025 edition, 2024 data). Workforce urine drug positivity of 4.4%.</li>
+      <li>Joseph J. Martocchio, <i>Employee Benefits: A Primer for Human Resource Professionals</i>, 7th ed., Chapter 9. Conceptual framework and definitions; statistical content superseded by the sources above.</li>
+    </ol>
+  </section>
+
+  </main>
+
+  <footer>
+    INS 432 / INS 532 — Employee Benefits · Chapter 9: Accommodation and Enhancement Benefits
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var money = function(n){ return "$" + Math.round(n).toLocaleString("en-US"); };
+  var money2 = function(n){ return "$" + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var num = function(el, fallback){
+    var v = parseFloat(el.value);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  };
+
+  /* ---------- EAP confidentiality sorter ---------- */
+  var eap = {
+    consent:["Yes, with written consent","The employee has given <b>written consent</b>, which is what the EAP needs before releasing information to a supervisor. Keep the release narrow: confirming attendance is very different from sharing what was discussed."],
+    sup:["No","Without written consent, an EAP <b>may not release information</b> to a supervisor, and even confirming attendance is information. Supervisors who ask are testing the trust that makes the program work. The supervisor can encourage the employee to use the program, but cannot be told whether she did."],
+    abuse:["Yes, and it must","<b>Every state</b> requires release of information about suspected <b>child abuse or neglect</b> to the appropriate authorities, with no written consent required."],
+    threat:["Yes, and it must","EAPs are obligated to disclose evidence or strong professional judgment that a person poses a <b>risk to the health and welfare of themselves or others</b>. No written consent is needed."],
+    family:["No","Written consent is required before releasing information to <b>family members</b> as well as supervisors and treatment facilities. A spouse’s call does not change that."]
+  };
+  document.getElementById("epSel").addEventListener("change", function(){
+    var v = this.value, box = document.getElementById("epResult");
+    if(!v){ box.innerHTML = "<p>Choose a situation to begin.</p>"; return; }
+    box.innerHTML = '<p class="big">' + eap[v][0] + '</p><p>' + eap[v][1] + '</p>';
+  });
+
+  /* ---------- wellness incentive limit ---------- */
+  document.getElementById("wlBtn").addEventListener("click", function(){
+    var cost = num(document.getElementById("wlCost"), 0);
+    var type = document.getElementById("wlType").value;
+    var html;
+    if(type === "part"){
+      html = '<p class="big">No HIPAA/ACA dollar cap</p>';
+      html += '<p>HIPAA’s percentage limits apply to <b>health-contingent</b> programs, not to programs that reward only participation. But if the program asks medical questions or requires exams, the ADA and GINA require it to be <b>voluntary</b>, and the EEOC’s 30% number was vacated in 2019 with no replacement. An incentive large enough to feel like a penalty for declining invites a challenge. Smaller incentives are the safer choice.</p>';
+    } else {
+      var pct = type === "tob" ? 0.5 : 0.3;
+      var cap = cost * pct;
+      html = '<p class="big">Maximum incentive: ' + money(cap) + ' a year</p>';
+      html += '<p>That is ' + Math.round(pct * 100) + '% of the ' + money(cost) + ' total cost of coverage' + (type === "tob" ? ' (the 50% limit applies to programs aimed at preventing or reducing tobacco use).' : '.') + '</p>';
+      html += '<p>Health-contingent programs must also give a <b>reasonable alternative standard</b> to anyone who cannot meet the target, and offer the chance to earn the reward at least once a year. If the program also collects medical information, the ADA and GINA voluntariness requirement still applies.</p>';
+    }
+    document.getElementById("wlResult").innerHTML = html;
+  });
+
+  /* ---------- exclusion limit checker (2026) ---------- */
+  var limits = {
+    edu:{name:"Educational assistance (Section 127), including student loan repayment", limit:5250, per:"a year"},
+    transit:{name:"Transit pass or vanpool", limit:340, per:"a month"},
+    parking:{name:"Qualified parking", limit:340, per:"a month"},
+    dcap:{name:"Dependent care assistance", limit:7500, per:"a year"},
+    adopt:{name:"Adoption assistance", limit:17670, per:"per child"}
+  };
+  document.getElementById("exBtn").addEventListener("click", function(){
+    var k = document.getElementById("exBen").value;
+    var amt = num(document.getElementById("exAmt"), 0);
+    var rate = Math.min(50, num(document.getElementById("exRate"), 0)) / 100;
+    var L = limits[k];
+    var exc = Math.min(amt, L.limit);
+    var taxable = Math.max(0, amt - L.limit);
+    var extra = taxable * (rate + 0.0765);
+    var html = '<p class="big">' + money(exc) + ' tax-free · ' + money(taxable) + ' taxable</p>';
+    html += '<p><b>' + L.name + ':</b> the 2026 limit is ' + money(L.limit) + ' ' + L.per + '.</p>';
+    if(taxable > 0){
+      html += '<p>The ' + money(taxable) + ' above the limit is added to wages. At a ' + Math.round(rate*100) + '% income tax rate plus 7.65% payroll tax, that costs the employee about <b>' + money(extra) + '</b> in additional tax.</p>';
+    } else {
+      html += '<p>The amount is within the limit, so none of it is taxable.</p>';
+    }
+    if(k === "edu"){ html += '<p>Tuition and loan repayment share the same $5,250 cap. Education that qualifies as a working condition fringe benefit is not counted against it.</p>'; }
+    if(k === "adopt"){ html += '<p>The exclusion phases out for modified adjusted gross income between $265,080 and $305,080.</p>'; }
+    if(k === "dcap"){ html += '<p>The limit is $3,750 for married people filing separately. It is not indexed to inflation.</p>'; }
+    if(k === "transit" || k === "parking"){ html += '<p>Transit and parking have <b>separate</b> $340 limits. The employer can no longer deduct the cost of providing them.</p>'; }
+    document.getElementById("exResult").innerHTML = html;
+  });
+
+  /* ---------- key terms ---------- */
+  var defBox = document.getElementById("termDef");
+  Array.prototype.forEach.call(document.querySelectorAll(".term"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      Array.prototype.forEach.call(document.querySelectorAll(".term"), function(t){ t.setAttribute("aria-expanded","false"); });
+      if(open){ defBox.textContent = "Select a term above."; }
+      else {
+        btn.setAttribute("aria-expanded","true");
+        defBox.innerHTML = "<b>" + btn.innerHTML + ".</b> " + btn.getAttribute("data-def");
+      }
+    });
+  });
+
+  /* ---------- quiz ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".quiz-q"), function(q){
+    var fb = q.querySelector(".fb");
+    var correct = q.getAttribute("data-answer");
+    Array.prototype.forEach.call(q.querySelectorAll('input[type="radio"]'), function(r){
+      r.addEventListener("change", function(){
+        var right = r.value === correct;
+        fb.className = "fb show " + (right ? "right" : "wrong");
+        fb.textContent = fb.getAttribute(right ? "data-right" : "data-wrong");
+      });
+    });
+  });
+  document.getElementById("quizReset").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.quiz-q input[type="radio"]'), function(r){ r.checked = false; });
+    Array.prototype.forEach.call(document.querySelectorAll(".quiz-q .fb"), function(f){ f.className = "fb"; f.textContent = ""; });
+  });
+
+  /* ---------- critical thinking reveal ---------- */
+  var tBtn = document.getElementById("thinkBtn"), tGuide = document.getElementById("thinkGuide");
+  tBtn.addEventListener("click", function(){
+    var open = tBtn.getAttribute("aria-expanded") === "true";
+    tBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    tGuide.hidden = open;
+    tBtn.textContent = open ? "Show what a strong answer weighs" : "Hide the guide";
+  });
+})();
+</script>
+</body>
+</html>
